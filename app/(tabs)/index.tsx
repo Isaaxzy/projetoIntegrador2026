@@ -1,42 +1,62 @@
-import { View, StyleSheet, Text } from 'react-native';
-import InputBusca from '../components/inputBusca';
-import { Link } from 'expo-router';
-
+import { View, StyleSheet, Text, ImageBackground, Image,  } from 'react-native';
 
 export default function App() {
     return (
-        <View style={styles.container}>
-            <Text style={styles.texto}> Seu projeto integrador começa aqui!</Text>
-            <Link href={"/rotas/produtos/1"} style={styles.link}>
-                <Text> Click aqui para ir a página de um produto exemplo! </Text>
-            </Link>
-        </View >
+      <View style={styles.fundo}>
+        <ImageBackground
+        source={require("../imagens/Projetodesintegrador.png")}
+        style={styles.imageback}
+        />
+        <View>
+          <Image
+            source={require("../imagens/Projeto desintegrador (1).png")}
+            style={styles.logo}
+          />
+          <View style={styles.enter}>
+            <Text style={styles.button}>Entrar</Text>
+            <Text style={styles.button}>Cadastre-se</Text>
+            <Text style={styles.button}>Convidado</Text>
+          </View>
+        </View>
+      </View>
+ 
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        alignItems: "center",
-        flex: 1,
-        backgroundColor: "#6868f7ff",
-        justifyContent: "center",
-    },
-    texto: {
-        color: "#FFFFFF",
-        fontSize: 18,
-        fontWeight: "600",
-        alignItems: "center",
-        justifyContent: "center",
 
-    },
-    link: {
-        color: "#133a94ff",
-        fontSize: 18,
-        fontWeight: "800",
-        alignItems: "center",
-        justifyContent: "center",
-        margin: 15,
-    }
+fundo: {
+  backgroundColor: "rgb(31, 185, 0)"
+},
+
+enter: {
+  margin: "auto"
+},
+
+button: {
+  width: 250,
+  backgroundColor: "rgba(223, 223, 223, 0.67)",
+  padding: 15,
+  textAlign: "center",
+  marginTop: 30,
+  borderRadius: 20 
+},
+
+imageback: {
+  width: "100%",
+},
+
+logo: {
+  marginTop: 20,
+  margin: "auto",
+  width: "40%",
+  height: "90%",
+  borderRadius: 20,
+},
+
+
+
+       
 });
 
 
