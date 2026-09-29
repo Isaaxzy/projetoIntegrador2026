@@ -1,5 +1,4 @@
 import { View, StyleSheet, Text, Touchable, TouchableOpacity } from 'react-native';
-import InputBusca from '../components/inputBusca';
 import { Link } from 'expo-router';
 
 
@@ -15,7 +14,7 @@ export default function App() {
                  Vamos começar?
          </Text>
             
-            <Link href={"/rotas/produtos/1"} style={styles.link}>
+            <Link href={"#"} style={styles.link}>
                 <TouchableOpacity>Proximo</TouchableOpacity>
             </Link>
         </View >
@@ -27,7 +26,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         flex: 1,
         backgroundColor: "#86db8c",
-        
         justifyContent: "center",
         flexDirection: 'column'
     },
