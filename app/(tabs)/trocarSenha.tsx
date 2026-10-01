@@ -1,5 +1,5 @@
 import { Link } from 'expo-router';
-import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, } from 'react-native';
 
 export default function App() {
     return (
@@ -7,43 +7,29 @@ export default function App() {
         <View>
           <Image
           style={styles.logo}
-          source={require("../imagens/Projeto integrador (1).png")}
+          source={require("../imagens/Projeto integrador (2).png")}
           />
           <View style={{ alignItems: "center", marginBottom: 20 }}>
-            <Text style={styles.texto}>Welcome back</Text>
-            <Text style={styles.subtexto}>Log in to your account</Text>
+            <Text style={styles.texto}>Reset password</Text>
+            <Text style={styles.subtexto}>We´ll send you a link to reset it</Text>
           </View>
               <View style={styles.container}>
-                <View style={styles.googleContainer}>
-                  <Image
-                  source={require("../imagens/720255.png")}
-                  style={styles.google}
-                  />
-                  <Text>Continue with Google</Text>
-                </View>
-                <View>
-                  <Text style={styles.orText}>────────────── OR ──────────────</Text>
-                </View>
                 <View style={styles.loginContainer}>
-                  <Text style={styles.label}>Email:</Text>
-                  <input style={styles.input} type="email" placeholder="✉︎ you@example.com" />
                   <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center",  }}>
-                  <Text style={styles.label}>Password: </Text>
-                  <Link href="/(tabs)/trocarSenha">
-                    <Text style={styles.forgotPassword}>Forgot password?</Text>
-                  </Link>
+                  <Text style={styles.label}>Email address </Text>
                  </View>
-                  <input style={styles.input} type="password" placeholder="🔒︎ Enter your password" />
+                  <input style={styles.input} type="email" placeholder="✉︎ you@example.com" />
                   <View>
-                    <Text style={styles.loginButton}>Log in</Text>
+                    <Text style={styles.loginButton}>Send reset link</Text>
                   </View>
                 </View>   
               </View>
               <View style={styles.signUpContainer}>
-                <Text>Don´t have an account?</Text>
+                <Link href="/(tabs)index">
                 <TouchableOpacity>
-                  <Text style={{ color: "#078523", fontWeight: "bold", cursor: "pointer" }}>Create One</Text>
+                      <Text style={{ color: "#078523", fontWeight: "bold", cursor: "pointer" }}>← Back to log in</Text>  
                 </TouchableOpacity>
+                </Link>
               </View>
         </View>
       </View>
