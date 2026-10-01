@@ -4,13 +4,15 @@ export default function App() {
     return (
       <View style={styles.fundo}>
         <View>
-          <Image
-          style={styles.logo}
-          source={require("../imagens/Projeto integrador (1).png")}
-          />
+          <View style={styles.logobox}>
+            <Image
+            style={styles.logo}
+            source={require("../imagens/add-user.png")}
+            />
+          </View>
           <View style={{ alignItems: "center", marginBottom: 20 }}>
-            <Text style={styles.texto}>Welcome back</Text>
-            <Text style={styles.subtexto}>Log in to your account</Text>
+            <Text style={styles.texto}>Create your account</Text>
+            <Text style={styles.subtexto}>Sign up to get started</Text>
           </View>
               <View style={styles.container}>
                 <View style={styles.googleContainer}>
@@ -28,17 +30,20 @@ export default function App() {
                   <input style={styles.input} type="email" placeholder="✉︎ you@example.com" />
                   <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center",  }}>
                   <Text style={styles.label}>Password: </Text>
-                    <Text style={styles.forgotPassword}>Forgot password?</Text>
                  </View>
                   <input style={styles.input} type="password" placeholder="🔒︎ Enter your password" />
+                  <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center",  }}>
+                  <Text style={styles.label}>Confirm Password: </Text>
+                 </View>
+                  <input style={styles.input} type="password" placeholder="🔒︎ Confirm your password" />
                   <View>
-                    <Text style={styles.loginButton}>Log in</Text>
+                    <Text style={styles.loginButton}>Create Account</Text>
                   </View>
                 </View>   
               </View>
               <View style={styles.signUpContainer}>
-                <Text>Don´t have an account?</Text>
-                <Text style={{ color: "#078523", fontWeight: "bold" }}>Create One</Text>
+                <Text>Already have an account?</Text>
+                <Text style={{ color: "#078523", fontWeight: "bold" }}>Log in</Text>
               </View>
         </View>
       </View>
@@ -53,21 +58,27 @@ fundo: {
   backgroundColor: "rgb(248, 248, 248)"
 },
 
-logo: {
-  width: 90,
-  height: 90,
-  margin: "auto",
-  marginTop: 40,
-  marginBottom: 20,
-  borderRadius: 20,
+logobox: {
+  backgroundColor: "#078523",
+  width: 100,
+  height: 100,
+  margin: 'auto',
+  marginTop: 20,
+  marginBottom: 10,
+  borderRadius: 25
 },
 
-
+logo: {
+  width: 50,
+  height: 50,
+  margin: "auto",
+  filter: 'invert(',
+},
 
 texto: {
   fontSize: 30,
   fontWeight: "bold",
-  marginBottom: 10,
+  marginBottom: 5,
 },
   
 subtexto: {
@@ -81,7 +92,6 @@ container: {
   alignItems: "center",
   boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
   borderRadius: 10,
-  width: "87%",
   padding: 20,
   backgroundColor: "#fff",
   margin: "auto",
@@ -94,7 +104,7 @@ google: {
 },
 
 googleContainer: {
-  marginTop: 13,
+  marginTop: 10,
   width: "90%",
   boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.21)",
   borderRadius: 10,
@@ -108,7 +118,7 @@ googleContainer: {
 },
   
 orText: {
-  marginVertical: 20,
+  marginVertical: 10,
   color: "gray",
 },
 
@@ -120,9 +130,9 @@ input: {
   boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2) inset",
   borderRadius: 5,
   padding: 10,
-  marginBottom: 10,
+  marginBottom: 2,
   height: 20,
-
+  borderWidth: 0
 },
 
 label: {
@@ -132,7 +142,7 @@ label: {
   justifyContent: "space-between",
   fontWeight: 400,
   paddingBottom: 5,
-  marginTop: 7,
+  marginTop: 2,
 },
 
 forgotPassword: {
@@ -151,12 +161,12 @@ loginButton: {
   paddingVertical: 10,
   borderRadius: 5,
   fontSize: 16,
-  marginTop: 10,
+  marginTop: 5,
   boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
 },
 
 signUpContainer: {
-  marginTop: 20,
+  marginTop: 5,
   alignItems: "center",
   flexDirection: "row",
   justifyContent: "center",
