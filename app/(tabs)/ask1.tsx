@@ -23,151 +23,148 @@ export default function CheckBox() {
 
     return (
          
-
-         <View style={styles.progressSection}>
-              <View style={styles.barContainer}>
-                {Array.from({ length: totalSteps }).map((_, index) => {
-                  const stepNumber = index + 1;
-                  const isActive = stepNumber <= currentStep;
-                  return (
-                    <View
-                      key={index}
-                      style={[
-                        styles.segment,
-                        isActive ? styles.activeSegment : styles.inactiveSegment,
-                      ]}
-                    />
-                  );
-                })}
-              </View>
-              <Text style={styles.stepText}>Etapa {currentStep} de {totalSteps}</Text>
-
-          <View style={{ alignItems: "center", marginBottom: 20 }}>
-            <Text style={styles.texto}>Sua alimentação</Text>
-            <Text style={styles.subtexto}>Como você costuma se alimentar? Você pode marcar mais de uma</Text>
-          </View>
-
-              <View style={styles.container}>
-                
-                <View style={styles.loginContainer}>
-
-                <View style={styles.fundo}>
-
-                <View style={styles.container}>
-                
-                {itensIniciais.map((item, index) => (
-                <Pressable
-                    key={item}
-                    style={styles.linha}
-                    onPress={() => alternarItem(index)}
-                >
-                <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
-                {itensMarcados[index] && <Text style={styles.check}>✓</Text>}  
-
-                <Text style={[styles.item, itensMarcados[index] && styles.concluido]}>
-                 {item}
-                </Text>
-
-                </View>
-               
-                </Pressable>
-                            ))}
-                </View>
-                  
-                  <View style={styles.bots}>
-                    <TouchableOpacity style={styles.loginButtonV}><Text style={styles.textButtonV}>←  Voltar</Text></TouchableOpacity>
-                    
-                    <TouchableOpacity style={styles.loginButtonP}><Text style={styles.textButtonP}>Proximo →</Text></TouchableOpacity>
-                  </View>
-
-                </View>   
-
-              </View>
-
-        </View>
+   <View style={styles.container}>
+          
+    <View style={styles.progressSection}>
+       <View style={styles.barContainer}>
+           {Array.from({ length: totalSteps }).map((_, index) => {
+            const stepNumber = index + 1;
+            const isActive = stepNumber <= currentStep;
+            return (
+      <View
+         key={index}
+         style={[
+           styles.segment,
+            isActive ? styles.activeSegment : styles.inactiveSegment,
+            ]}
+            />
+            );
+            })}
       </View>
- 
+      <Text style={styles.stepText}>Etapa {currentStep} de {totalSteps}</Text>
+          
+      <View style={{ alignItems: "center", marginBottom: 20}}>
+          
+        <Text style={styles.texto}>Sua alimentação</Text>
+        <Text style={styles.subtexto}>Como você costuma se alimentar? Você pode marcer mais de uma opção.</Text>
+      </View>
+          
+          <View style={styles.linha}>              
+           {itensIniciais.map((item, index) => (
+            <Pressable
+            key={item}
+            onPress={() => alternarItem(index)}
+            >
+            <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
+            {itensMarcados[index] && <Text style={styles.check}></Text>}  
+          
+            <Text style={[styles.item, itensMarcados[index] && styles.concluido]}>
+            {item}
+            </Text>
+          
+          </View>
+                        
+          </Pressable>
+         ))}
+      </View>
+
+      <View style={styles.bots}>
+        <TouchableOpacity style={styles.loginButtonV}><Text style={styles.textButtonV}>←  Voltar</Text></TouchableOpacity>
+                              
+        <TouchableOpacity style={styles.loginButtonP}><Text style={styles.textButtonP}>Proximo →</Text></TouchableOpacity>
+      </View>
+          
+    </View>   
+          
+    </View>    
+
 )};
 
 
 const styles = StyleSheet.create({
 
-	container: {
-		flex: 1,
-		padding: 24,
-		backgroundColor: '#fff',
-	},
-    
-	linha: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		marginBottom: 16,
-	},
-
-	checkbox: {
-		width: 180,
-		height: 50,
+	 container: {
+        width: 550,
+        flex: 1,
+        padding: 24,
+        margin: 'auto',
+        backgroundColor: '#fff',  
+        flexWrap: 'wrap',
         flexDirection: 'row',
-        marginLeft: 20,
-        borderRadius: 25,
-        marginRight: 10,
-		alignItems: 'center',
-		justifyContent: 'center',
-		borderWidth: 2,
-		borderColor: '#555',
-	},
-
-	marcado: {
-		backgroundColor: '#2563eb',
-		borderColor: '#2563eb',
-	},
-
-	check: {
-		color: '#fff',
-		fontWeight: 'bold',
-	},
-
-	item: {
-		fontSize: 18,
-	},
-
-	concluido: {
-		color: '#888',
-		textDecorationLine: 'line-through',
-	},
-
-    logobox: {
-    backgroundColor: "#078523",
-    width: 100,
-    height: 100,
-    margin: 'auto',
-    marginTop: 20,
-    marginBottom: 10,
-    borderRadius: 25
+    },
+  linha: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+    },
+    aviso:{
+        width: '100%',
+        height: 100,
+        backgroundColor: '#ffef96',
+        paddingLeft: 10,
+        paddingRight: 20,
+        borderRadius: 10,
+        borderWidth: 4,
+        borderColor: '#ffdc19',
+        alignItems: 'center',
+        flexDirection: 'row',
+        gap: 15,
     },
 
-    logo: {
-    width: 50,
-    height: 50,
-    margin: "auto",
-    filter: 'invert(',
+    icoav:{
+        width: 35,
+        height: 90,
+        marginInlineEnd: 'auto',
+        fontSize: 30,
+    },
+
+    teavs:{
+        width: '90%',
+        fontSize: 15,
+        textAlign: 'justify',
+    },
+
+    checkbox: {
+        padding: 12,
+        marginHorizontal: 10,
+        marginBottom: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+        boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
+        borderRadius: 25,
+    },
+
+   marcado: {
+        backgroundColor: "#078523",
+        borderColor: "#078523",
+        boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
+    },
+    check: {
+        color: '#fff',
+        fontWeight: 'bold',
+    },
+    item: {
+        fontSize: 18,
+    },
+    concluido: {
+        color: '#ffffff',
     },
 
     texto: {
     fontSize: 30,
     fontWeight: "bold",
     marginBottom: 5,
+    marginTop: 5,
     },
     
     subtexto: {
     fontSize: 15,
     color: "gray",
-    width: 250,
+    width: 300,
     textAlign: 'center',
     },
 
     loginContainer: {
-    width: "90%",
+    width: "80%",
     },
 
     bots:{
@@ -175,17 +172,20 @@ const styles = StyleSheet.create({
         gap: 10,
         borderTopWidth: 2,
         borderColor: 'gray',
-        width: 270,
+        width: '100%',
+        justifyContent: 'flex-end',
     },
 
     textButtonV:{
         color: '#313131',
         textAlign: "center",
+        fontWeight: 'bold',
     },
 
      textButtonP:{
         color: '#ececec',
         textAlign: "center",
+        fontWeight: 'bold',
     },
 
     loginButtonP: {
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     width: "45%",
     paddingVertical: 10,
-    borderRadius: 5,
+    borderRadius: 10,
     marginLeft: 10,
     fontSize: 16,
     marginTop: 5,
@@ -201,15 +201,14 @@ const styles = StyleSheet.create({
     },
 
 loginButtonV: {
-    backgroundColor: "#FAFAFA",
     color: "#2b2b2b",
     width: "45%",
     paddingVertical: 10,
     borderRadius: 5,
-    marginLeft: 5,
+    marginLeft: 10,
     fontSize: 16,
     marginTop: 5,
-    boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
+    marginHorizontal: 'auto',
     },
 
 progressSection: {
@@ -245,7 +244,3 @@ segment: {
     color: "gray",
     },
     });
-
-
-
-
