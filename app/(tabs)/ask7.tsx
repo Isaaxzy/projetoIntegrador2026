@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
  
 // As tarefas exibidas inicialmente na lista de afazeres.
 const itensIniciais = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada'];
@@ -64,6 +64,13 @@ export default function CheckBox() {
                    
                     </Pressable>
                 ))}
+                     <View>
+                           <View style={styles.bots}>
+                             <TouchableOpacity style={styles.loginButtonV}><Text style={styles.textButtonV}>←  Voltar</Text></TouchableOpacity>
+                                                        
+                             <TouchableOpacity style={styles.loginButtonP}><Text style={styles.textButtonP}>Proximo →</Text></TouchableOpacity>
+                        </View>   
+                    </View>
         </View>
     </View>
 </View>
@@ -74,34 +81,86 @@ export default function CheckBox() {
 const styles = StyleSheet.create({
     backgroundd: {
         padding: 20,
+        width: '100%',
         height: '100%',
         margin: 'auto',
     },
+
     container: {
         borderRadius: 25,
         flex: 1,
-        width: 400,
+        width: '80%',
         margin: 'auto',
         padding: 24,
         backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
     },
+
     tdr: {
         marginBottom: 20,
     },
+
     titulo: {
         marginBottom: 20,
         fontSize: 24,
         fontWeight: 'bold',
     },
+
     subtexto: {
         fontSize: 15,
         color: "gray",
 },
+
     linha: {
         flexDirection: 'row',
         flexWrap: 'wrap',
     },
+
+       bots:{
+        flexDirection: 'row',
+        gap: 10,
+        borderTopWidth: 2,
+        borderColor: 'gray',
+        width: 480,
+        justifyContent: 'flex-end',
+        marginVertical: '70%',
+
+    },
+
+     textButtonV:{
+        color: '#313131',
+        textAlign: "center",
+        fontWeight: 'bold',
+    },
+
+     textButtonP:{
+        color: '#ececec',
+        textAlign: "center",
+        fontWeight: 'bold',
+    },
+
+    loginButtonP: {
+    backgroundColor: "#078523",
+    color: "#fff",
+    width: "45%",
+    paddingVertical: 10,
+    borderRadius: 10,
+    marginLeft: 10,
+    fontSize: 16,
+    marginTop: 5,
+    boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
+    },
+
+loginButtonV: {
+    color: "#2b2b2b",
+    width: "45%",
+    paddingVertical: 10,
+    borderRadius: 5,
+    fontSize: 16,
+    marginTop: 5,
+    marginHorizontal: 'auto',
+    },
+
 
     checkbox: {
         padding: 12,
@@ -112,6 +171,7 @@ const styles = StyleSheet.create({
         boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
         borderRadius: 25,
     },
+
     input: {
         boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2) inset",
         borderRadius: 5,
@@ -121,45 +181,56 @@ const styles = StyleSheet.create({
         height: 20,
         borderWidth: 0
     },
+
     marcado: {
         backgroundColor: "#078523",
         borderColor: "#078523",
         boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
     },
+
     check: {
         color: '#fff',
         fontWeight: 'bold',
     },
+
     item: {
         fontSize: 18,
     },
+
     concluido: {
         color: '#ffffff',
     },
+
     progressSection: {
         width: "90%",
         gap: 8,
         marginBottom: 10,
         marginHorizontal: 'auto',
     },
+
      barContainer: {
         flexDirection: "row",
         width: "100%",
         gap: 6,
     },
+
     segment: {
         flex: 1,
         height: 6,
         borderRadius: 3,
      },
+
     activeSegment: {
         backgroundColor: "#209e3c",
     },
+
      inactiveSegment: {
         backgroundColor: "#E2E8F0",
     },
+
      stepText: {
         fontSize: 14,
         color: "gray",
      },
+
 });

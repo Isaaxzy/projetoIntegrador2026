@@ -69,8 +69,8 @@ export default function CheckBox() {
                                         
              <TouchableOpacity style={styles.loginButtonP}><Text style={styles.textButtonP}>Proximo →</Text></TouchableOpacity>
         </View>   
-
     </View>
+    
     </View>
 </View>
     );
@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         width: '100%',
         justifyContent: 'flex-end',
+        marginVertical: '50%',
     },
 
     textButtonV:{

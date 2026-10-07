@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     container: {
         width: 550,
         flex: 1,
+        margin: 'auto',
         padding: 24,
         backgroundColor: '#fff',  
         flexWrap: 'wrap',
@@ -160,8 +161,9 @@ const styles = StyleSheet.create({
     },
 
     marcado: {
-        backgroundColor: '#2563eb',
-        borderColor: '#2563eb',
+        backgroundColor: "#078523",
+        borderColor: "#078523",
+        boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
     },
 
     check: {
@@ -174,11 +176,8 @@ const styles = StyleSheet.create({
     },
 
     concluido: {
-        color: '#888',
-        textDecorationLine: 'line-through',
-        paddingHorizontal: 12,
+        color: '#ffffff',
     },
-
     texto: {
     fontSize: 30,
     fontWeight: "bold",

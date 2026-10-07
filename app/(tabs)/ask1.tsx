@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
 
 	 container: {
         width: 550,
+        height: 500,
         flex: 1,
         padding: 24,
         margin: 'auto',
@@ -92,10 +93,12 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         flexDirection: 'row',
     },
+
   linha: {
       flexDirection: 'row',
       flexWrap: 'wrap',
     },
+
     aviso:{
         width: '100%',
         height: 100,
@@ -126,7 +129,7 @@ const styles = StyleSheet.create({
     checkbox: {
         padding: 12,
         marginHorizontal: 10,
-        marginBottom: 30,
+        marginTop: 60,
         alignItems: 'center',
         justifyContent: 'center',
         boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
@@ -172,8 +175,9 @@ const styles = StyleSheet.create({
         gap: 10,
         borderTopWidth: 2,
         borderColor: 'gray',
-        width: '100%',
+        width: '110%',
         justifyContent: 'flex-end',
+        marginVertical: '50%',
     },
 
     textButtonV:{
