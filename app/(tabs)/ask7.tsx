@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     container: {
         borderRadius: 25,
         flex: 1,
-        width: '80%',
+        width: '100%',
         margin: 'auto',
         padding: 24,
         backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',

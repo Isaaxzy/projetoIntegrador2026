@@ -106,13 +106,14 @@ export default function CheckBox() {
 const styles = StyleSheet.create({
 
     container: {
-        width: 550,
+        width: "auto",
         flex: 1,
         margin: 'auto',
         padding: 24,
         backgroundColor: '#fff',  
         flexWrap: 'wrap',
         flexDirection: 'row',
+        borderRadius: 10,
     },
     
     cont:{
@@ -148,9 +149,9 @@ const styles = StyleSheet.create({
 
     checkbox: {
         paddingHorizontal: 12,
-        height: 50,
+        height: 43,
         flexDirection: 'row',
-        marginLeft: 20,
+        marginLeft: 3,
         borderRadius: 25,
         marginRight: 10,
         margin: 10,

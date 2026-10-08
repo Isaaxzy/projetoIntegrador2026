@@ -46,7 +46,7 @@ export default function CheckBox() {
             </View>
         <Text style={styles.titulo}>Seu objetivo</Text>
         <Text style={styles.subtexto}>O que você procura no aplicativo?</Text>
-       
+            <View style={{flexWrap: 'wrap', flexDirection: 'row', gap: 10, marginTop: 10, width: "100%",}}>
                     {itensIniciais.map((item, index) => (
         <Pressable
                             key={item}
@@ -62,7 +62,7 @@ export default function CheckBox() {
         </Pressable>
                     ))}
 
-       
+        </View>
         <View>
            <View style={styles.bots}>
              <TouchableOpacity style={styles.loginButtonV}><Text style={styles.textButtonV}>←  Voltar</Text></TouchableOpacity>
