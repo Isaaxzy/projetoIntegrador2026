@@ -106,7 +106,7 @@ export default function CheckBox() {
 const styles = StyleSheet.create({
 
     container: {
-        width: "auto",
+        width: 500,
         flex: 1,
         margin: 'auto',
         padding: 24,
