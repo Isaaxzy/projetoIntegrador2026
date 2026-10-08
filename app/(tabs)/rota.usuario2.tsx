@@ -1,10 +1,26 @@
 import { Link } from 'expo-router';
-import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput } from 'react-native';
+import { useState } from 'react';
+import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+
+const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Avançado'];
+
 
 export default function App() {
     const totalSteps = 7;
     const currentStep = 1;
 
+    const [itensMarcados, setItensMarcados] = useState<boolean[]>(
+            itensIniciais.map(() => false),
+        );
+     
+        function alternarItem(index: number) {
+            // Cria um novo array e inverte somente o item que foi pressionado.
+            setItensMarcados((marcados) =>
+                marcados.map((marcado, itemIndex) =>
+                    itemIndex === index ? !marcado : marcado,
+                ),
+            );
+          }
     return (
       <View style={styles.fundo}>
           <View style={styles.container}>
@@ -38,16 +54,26 @@ export default function App() {
                       <Text style={styles.label}>Idade</Text>
                     </View>
                     <TextInput style={styles.input} secureTextEntry placeholder="Ex: 28" />
-                    
                     <Text style={styles.label}>Para quantas pessoas você costuma cozinhar?</Text>
                     <TextInput style={styles.input} placeholder="Número de pessoas" />
                     
                     <Text>Nivel de experiência na cozinha</Text>
-                    <View style={styles.optionContainer}>
-                      <Text style={styles.option1}>🌱 Iniciante</Text>
-                      <Text style={styles.option}>🌿 Intermediário</Text>
-                      <Text style={styles.option}>🔥 Avançado</Text>
-                    </View>
+                    <View style={{ flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
+                                          {itensIniciais.map((item, index) => (
+                                            <Pressable
+                                            key={item}
+                                            style={styles.linha}
+                                            onPress={() => alternarItem(index)}
+                        >
+                                            {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
+                        <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
+                                                {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
+                        </View>
+                                            {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
+                       
+                        </Pressable>
+                        ))}
+                                        </View>
              </View> 
              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
              <Text>← Voltar</Text>
@@ -68,6 +94,26 @@ fundo: {
 logo: {
   width: 130,
   height: 187,
+},
+
+item: {
+  fontSize: 15,
+},
+
+concluido: {
+  color: '#ffffff',
+},
+
+marcado: {
+  backgroundColor: "#078523",
+  borderColor: "#078523",
+  boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
+},
+
+checkbox: {
+  padding: 11,
+  boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
+  borderRadius: 25,
 },
 
 ButtonRota: {
