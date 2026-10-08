@@ -46,12 +46,11 @@ export default function CheckBox() {
                    
                     </Pressable>
                 ))}
-                     <View>
                            <View style={styles.bots}>
                              <TouchableOpacity style={styles.loginButtonV}><Text style={styles.textButtonV}>←  Voltar</Text></TouchableOpacity>
                                                         
                              <TouchableOpacity style={styles.loginButtonP}><Text style={styles.textButtonP}>Proximo →</Text></TouchableOpacity>
-                        </View>   
+
                     </View>
         </View>
     </View>
@@ -68,10 +67,10 @@ const styles = StyleSheet.create({
         margin: 'auto',
     },
 
-    container: {
+     container: {
         borderRadius: 25,
         flex: 1,
-        width: '80%',
+        width: 400,
         margin: 'auto',
         padding: 24,
         backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
@@ -115,9 +114,8 @@ const styles = StyleSheet.create({
         gap: 10,
         borderTopWidth: 2,
         borderColor: 'gray',
-        width: 480,
-        justifyContent: 'flex-end',
-        marginVertical: '70%',
+        width: '100%',
+        justifyContent: 'flex-end'
 
     },
 

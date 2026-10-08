@@ -22,7 +22,7 @@ export default function CheckBox() {
     const currentStep = 1;
 
     return (
-         
+<View style={styles.backgroundd}>
    <View style={styles.container}>
           
     <View style={styles.progressSection}>
@@ -77,21 +77,24 @@ export default function CheckBox() {
     </View>   
           
     </View>    
-
+</View>
 )};
 
 
 const styles = StyleSheet.create({
-
-	 container: {
-        width: 550,
-        height: 500,
-        flex: 1,
-        padding: 24,
+    backgroundd: {
+        padding: 20,
+        height: '100%',
         margin: 'auto',
-        backgroundColor: '#fff',  
-        flexWrap: 'wrap',
-        flexDirection: 'row',
+    },
+	 container: {
+        borderRadius: 25,
+        flex: 1,
+        width: 400,
+        margin: 'auto',
+        padding: 24,
+        backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
+        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
     },
 
   linha: {
@@ -129,7 +132,7 @@ const styles = StyleSheet.create({
     checkbox: {
         padding: 12,
         marginHorizontal: 10,
-        marginTop: 60,
+        marginTop: 12,
         alignItems: 'center',
         justifyContent: 'center',
         boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",

@@ -92,6 +92,7 @@ container: {
   alignItems: "center",
   boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
   borderRadius: 10,
+  width: 400,
   padding: 20,
   backgroundColor: "#fff",
   margin: "auto",

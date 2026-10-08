@@ -24,6 +24,8 @@ export default function CheckBox() {
     return (
         <View style={styles.cont}>
 
+<View style={styles.backgroundd}>     
+              <View style={styles.container}>
          <View style={styles.progressSection}>
               <View style={styles.barContainer}>
                 {Array.from({ length: totalSteps }).map((_, index) => {
@@ -47,16 +49,13 @@ export default function CheckBox() {
             <Text style={styles.texto}>Alergias e intolerâncias</Text>
             <Text style={styles.subtexto}>Existe algum alimento que você não pode consumir?</Text>
           </View>
-
-              <View style={styles.container}>
-                
+             </View>        
            <View style={styles.aviso}>
                  <View style={styles.icoav}>⚠️</View><Text style={styles.teavs}>Confira sempre os ingredientes e rótulos dos produtos.
                         As sugestões do aplicativo não substituem orientação médica ou nutricional.
                 </Text>
            </View>
 
-                <View style={styles.container}>
                 
                 {itensIniciais.map((item, index) => (
                 <Pressable
@@ -92,28 +91,30 @@ export default function CheckBox() {
                     <TouchableOpacity style={styles.loginButtonP}><Text style={styles.textButtonP}>Proximo →</Text></TouchableOpacity>
                   </View>
 
-                </View>   
 
               </View>
 
-             </View>
+
 
             </View>
- 
+ </View>   
 )};
 
 
 const styles = StyleSheet.create({
-
+    backgroundd: {
+        padding: 20,
+        height: '100%',
+        margin: 'auto',
+    },
     container: {
-        width: "auto",
+        borderRadius: 25,
         flex: 1,
+        width: 400,
         margin: 'auto',
         padding: 24,
-        backgroundColor: '#fff',  
-        flexWrap: 'wrap',
-        flexDirection: 'row',
-        borderRadius: 10,
+        backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
+        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
     },
     
     cont:{
@@ -288,8 +289,7 @@ loginButtonV: {
     },
 
 progressSection: {
-    width: "90%",
-    marginTop: 30,
+    marginTop: 10,
     alignSelf: 'center',
     gap: 8,
     marginBottom: 10,
