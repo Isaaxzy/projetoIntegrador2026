@@ -19,7 +19,7 @@ export default function CheckBox() {
 	}
 
     const totalSteps = 7;
-    const currentStep = 1;
+    const currentStep = 2;
 
     return (
 <View style={styles.backgroundd}>

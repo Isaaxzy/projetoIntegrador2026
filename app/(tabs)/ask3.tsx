@@ -19,7 +19,7 @@ export default function CheckBox() {
     }
 
     const totalSteps = 7;
-    const currentStep = 1;
+    const currentStep = 3;
 
     return (
         <View style={styles.cont}>
@@ -56,14 +56,14 @@ export default function CheckBox() {
                 </Text>
            </View>
 
-                
+                <View style={styles.linha}>
                 {itensIniciais.map((item, index) => (
                 <Pressable
                     key={item}
                     onPress={() => alternarItem(index)}
                 >
                 <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
-                {itensMarcados[index] && <Text style={styles.check}>✓</Text>}  
+                {itensMarcados[index] && <Text style={styles.check}></Text>}  
 
                 <Text style={[styles.item, itensMarcados[index] && styles.concluido]}>
                  {item}
@@ -73,6 +73,7 @@ export default function CheckBox() {
                
                 </Pressable>
                             ))}
+                        </View>
             <View style={styles.VFtext}>
                 <Text style={styles.Ftex}>Outros que você prcisa evitar:</Text>
             </View>
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
 
     aviso:{
         width: '100%',
-        height: 100,
+        height: 90,
         backgroundColor: '#ffef96',
         paddingLeft: 10,
         paddingRight: 20,
@@ -132,7 +133,6 @@ const styles = StyleSheet.create({
         borderColor: '#ffdc19',
         alignItems: 'center',
         flexDirection: 'row',
-        gap: 15,
     },
 
     icoav:{
@@ -141,25 +141,23 @@ const styles = StyleSheet.create({
         marginInlineEnd: 'auto',
         fontSize: 30,
     },
-
+    linha: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+    },
     teavs:{
         width: '90%',
-        fontSize: 15,
         textAlign: 'justify',
     },
 
     checkbox: {
-        paddingHorizontal: 12,
-        height: 43,
-        flexDirection: 'row',
-        marginLeft: 3,
-        borderRadius: 25,
-        marginRight: 10,
-        margin: 10,
+        padding: 12,
+        marginHorizontal: 10,
+        marginTop: 12,
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 2,
-        borderColor: '#555',
+        boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
+        borderRadius: 25,
     },
 
     marcado: {
