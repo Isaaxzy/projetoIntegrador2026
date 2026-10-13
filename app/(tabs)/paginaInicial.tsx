@@ -1,7 +1,10 @@
 import { View, StyleSheet, Text, ImageBackground, Image, Pressable, Touchable, TouchableOpacity, FlatList,} from 'react-native';
 import { useState } from 'react';
+import DadosDosFilmes from '../componentes/coisas';
+import renderCategoria from '../componentes/cardCategorias';
 
 const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Avançado'];
+const categorias = DadosDosFilmes();
 
 export default function App() {
     const [itensMarcados, setItensMarcados] = useState<boolean[]>(
@@ -59,29 +62,15 @@ export default function App() {
             </View>
             <View style={{width: 500, margin: "auto"}}>
                     <Text style={styles.titulo3}>☆ Receitas para você</Text>
-                        <View style={{flexDirection: "row",}}>
-                            <View style={styles.modulo}>
-                            <ImageBackground style={styles.imagef} source={require("../imagens/composicao-de-comida-brasileira-deliciosa-de-alto-angulo_23-2148739223.avif")}>
-                                <Text style={styles.info}>☆ Combina com você</Text>
-
-                            </ImageBackground>
-                                <Text style={styles.titulo2}>Frango Cremoso com batatas</Text>
-                                 <Text style={styles.subtexto1}>🕒 30 min <Text> 🌿 Facil</Text></Text>
-                                 <Text style={styles.subtexto1}>Frango, batata, creme...</Text>
-                            </View>
-                            <View style={styles.modulo}>
-                                 <ImageBackground style={styles.imagef} source={require("../imagens/composicao-de-comida-brasileira-deliciosa-de-alto-angulo_23-2148739223.avif")}>
-                                <Text style={styles.info}>☆ Combina com você</Text>
-
-                            </ImageBackground>
-                                <Text style={styles.titulo2}>Frango Cremoso com batatas</Text>
-                                <Text style={styles.subtexto1}>🕒 30 min <Text> 🌿 Facil</Text></Text>
-                                <Text style={styles.subtexto1}>Arroz, Queijo, Tomate...</Text>
-                            </View>
+                             <View style={styles.backcolor}>
+                                <FlatList
+                                data={categorias}
+                                keyExtractor={i => i.id}
+                                renderItem={renderCategoria }
+                                />
                         </View>
                 </View>                          
         </View>
-
     )
 }
 
@@ -150,7 +139,7 @@ titulo2: {
 
 titulo3: {
     fontWeight: "bold",
-    fontSize: 22,
+    fontSize: 24,
     padding: 13,
     paddingHorizontal: 2
 },
