@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View, TouchableOpacity, Image, LogBox} from 'react-native';
+
  
-// As tarefas exibidas inicialmente na lista de afazeres.
  
 export default function CheckBox() {
 
@@ -15,16 +15,18 @@ export default function CheckBox() {
             style={styles.logo}
             source={require("../imagens/2026_10_01_0mz_Kleki.png")}
              />
-         <Text style={styles.Uptext}> Nome </Text>
+         <Text style={styles.Uptext}>Tempero de casa</Text>
         </View>
 
+        <View>
         <Text style={styles.titulo}> 🧡 Favoritos</Text>
+        </View>
         
         <View style={styles.favs}>
 
         <View style={styles.boxFav}>
             <View style={styles.imgbox}>
-                <Text style={styles.textinf}>SSSSSSSSSSSSSS</Text>
+                <Text style={styles.textinf}>Combina com você</Text>
             <Image
             style={styles.prato}
             source={require("../imagens/Projeto integrador (2).png")}
@@ -36,15 +38,14 @@ export default function CheckBox() {
 
                 <Text style={styles.updec}>🕐 30min  🍴 Fácil</Text>  
 
-                <Text style={styles.upingred}>Frango, Batata, Creme...</Text>
+                <Text style={styles.upingred}>Frango, Batata, Creme e outros ingredienteseeeeeeeeeeeeeeeeeeeeeeeeeeeee</Text>
 
-                <Text style={styles.upmark}>Você marcou Batata como...</Text>
              </View>
         </View>
 
         <View style={styles.boxFav}>
             <View style={styles.imgbox}>
-                <Text style={styles.textinf}>SSSSSSSSSSSSSS</Text>
+                <Text style={styles.textinf}>Combina com você</Text>
             <Image
             style={styles.prato}
             source={require("../imagens/Projeto integrador (2).png")}
@@ -57,7 +58,6 @@ export default function CheckBox() {
 
                 <Text style={styles.upingred}>Frango, Batata, Creme...</Text>
 
-                <Text style={styles.upmark}>Você marcou Batata como...</Text>
              </View>
         </View>
         
@@ -66,40 +66,43 @@ export default function CheckBox() {
 
          <View style={styles.ops}>
 
+       
         <View style={styles.foote}>
+            <TouchableOpacity style={styles.loginButtonP}>
             <Image
             style={styles.perf}
             source={require("../imagens/house.png")}
              /> 
-             <TouchableOpacity><Text style={styles.textButtonP}>Inicio</Text></TouchableOpacity>
+            <Text style={styles.textButtonP}>Inicio</Text></TouchableOpacity>
             </View>
 
             <View style={styles.foote}>
 
+            <TouchableOpacity style={styles.loginButtonP}>
              <Image
             style={styles.perf}
             source={require("../imagens/agend.png")}
              /> 
-             <TouchableOpacity><Text style={styles.textButtonP}>Planejar</Text></TouchableOpacity>
+            <Text style={styles.textButtonP}>Planejar</Text></TouchableOpacity>
             </View>
 
             <View style={styles.foote}>
-
+          <TouchableOpacity style={styles.loginButtonP}>
             <Image
             style={styles.perf}
             source={require("../imagens/fav.png")}
              />
-             <TouchableOpacity><Text style={styles.textButtonP}>Favoritos</Text></TouchableOpacity>
+           <Text style={styles.textButtonP}>Favoritos</Text></TouchableOpacity>
 
             </View>
 
             <View style={styles.foote}>
-
+              <TouchableOpacity style={styles.loginButtonP}>
              <Image
             style={styles.perf}
             source={require("../imagens/perf.png")}
              />
-             <TouchableOpacity><Text style={styles.textButtonP}>Perfil</Text></TouchableOpacity>
+            <Text style={styles.textButtonP}>Perfil</Text></TouchableOpacity>
                 </View>
 
              </View>
@@ -111,7 +114,6 @@ export default function CheckBox() {
 // Estilos separados deixam a estrutura do componente mais legivel e reutilizavel.
 const styles = StyleSheet.create({
     backgroundd: {
-        flex: 1,
         padding: 20,
         width: '100%',
         height: '100%',
@@ -137,6 +139,7 @@ const styles = StyleSheet.create({
         marginBottom: 40,
         marginTop: 10,
         paddingBottom: 15,
+        gap: 15,
         flexDirection: 'row',
         alignItems: 'center',
     },
@@ -146,11 +149,19 @@ const styles = StyleSheet.create({
         gap: 12
     },
 
+      Uptext:{
+        fontSize: 22,
+        fontFamily: 'Arial, serif',
+        fontWeight: 'bold',
+    },
+
     logo: {
-        maxWidth: 130,
-        height: 187,
-        
-        position: 'absolute',
+        maxWidth: 40,
+        height: 60,
+        marginTop: -15,
+        marginLeft: 10,
+        alignSelf: 'center',
+        position: 'relative',
         },
 
     prato:{
@@ -162,19 +173,24 @@ const styles = StyleSheet.create({
     },
 
     perf:{
-        maxWidth: '10%',
-        height: 35,
-        marginTop: 10,
+        maxWidth: '45%',
+        height: '80%',
+        marginTop: -10, 
     },
 
     textinf:{
+        width: '75%',
+        height: 30,
+        alignSelf: 'center',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        paddingTop: 3,
+        marginTop: 10,
         position: 'absolute',
+        borderRadius: 10,
+        zIndex: 10,
+        color: 'rgba(7, 158, 7, 0.67)',
         backgroundColor: '#FFFF',
-    },
-
-    Uptext:{
-        fontSize: 20,
-        marginLeft: 50,
     },
 
     boxFav:{
@@ -203,21 +219,23 @@ const styles = StyleSheet.create({
 
      upnome:{
         fontWeight: 'bold',
-        fontSize: 17,
-        marginBottom: 4,
+        fontSize: 20,
+        marginBottom: 5,
+        marginTop: 6,
     },
 
     updec:{
-        
+        fontSize: 16,
      },
 
      upingred:{
+        width: '90%',
+        height: 'auto',
+        fontSize: 16,
 
-    },
-
-    upmark:{
-        fontSize: 13,
-        color: '#078523'
+        overflow: 'hidden',
+        textOverflow: 'eplipssis',
+        
     },
 
     titulo: {
@@ -229,14 +247,13 @@ const styles = StyleSheet.create({
 
        ops:{
         flexDirection: 'row',
-        gap: 2,
         borderTopWidth: 2,
         borderColor: 'gray',
         width: '100%',
-        height: 100,
-        justifyContent: 'flex-end',
+        height: '14%',
         alignItems: 'center',
-        marginVertical: 150,
+        alignContent: 'center',
+        marginVertical: 165,
     },
 
      textButtonV:{
@@ -246,21 +263,24 @@ const styles = StyleSheet.create({
     },
 
      textButtonP:{
-        color: '#806969',
+        color: '#313131',
         textAlign: "center",
         fontWeight: 'bold',
     },
 
     loginButtonP: {
+        width: '100%',
+        height: '50%',
         alignItems: 'center',
-        flexDirection: 'column',
+        display: 'contents',
     },
 
     foote:{
-        width: 100,
-        height: 'auto',
+        width: '26%',
+        height: '50%',
+        alignItems: 'center',
+        alignContent: 'center',
         flexDirection: 'column',
-        
     },
 
 });
