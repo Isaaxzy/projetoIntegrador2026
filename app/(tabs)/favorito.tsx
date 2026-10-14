@@ -173,9 +173,9 @@ const styles = StyleSheet.create({
     },
 
     perf:{
-        maxWidth: '45%',
-        height: '80%',
-        marginTop: -10, 
+        maxWidth: 50,
+        maxHeight: 50,
+        marginTop: -15, 
     },
 
     textinf:{
