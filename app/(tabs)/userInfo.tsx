@@ -1,6 +1,6 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
-import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable, ScrollView } from 'react-native';
 
 const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Avançado'];
 
@@ -14,12 +14,19 @@ export default function App() {
         );
      
         function alternarItem(index: number) {
-            // Cria um novo array e inverte somente o item que foi pressionado.
+            // Cria um novo array e inverte somente o item que foi pressionado.                        
             setItensMarcados((marcados) =>
                 marcados.map((marcado, itemIndex) =>
-                    itemIndex === index ? !marcado : marcado,
-                ),
+                    itemIndex === index ? !marcado : marcado
+                )
             );
+            setItensMarcados((marcados) =>
+                marcados.map((marcado, itemIndex) =>                    
+                        itemIndex !=index ? !marcado : false
+                )
+            );
+
+            console.log(itensMarcados)
           }
     return (
       <View style={styles.fundo}>
@@ -36,18 +43,19 @@ export default function App() {
             <Text style={styles.texto}>[Nome do usuario!]</Text>
             <Text style={styles.subtexto}>Edite suas preferencias alimentares</Text>
 
+            <ScrollView>
                 <View style={styles.loginContainer}>
                     <Text style={styles.sobv}>Sobre você</Text>
 
                     <Text style={styles.label}>Nome</Text>
-                    <input style={styles.input} type='text' placeholder="Seu nome" />
+                    <input style={styles.input} type='text' max={30} placeholder="Seu nome" />
                     
                     <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                       <Text style={styles.label}>Idade</Text>
                     </View>
-                    <input style={styles.input} secureTextEntry type='number' min={15} placeholder="Ex: 15" />
+                    <input style={styles.input} secureTextEntry type='number' min={14} max={75} placeholder="Ex: 15" />
                     <Text style={styles.label}>Para quantas pessoas você costuma cozinhar?</Text>
-                    <input style={styles.input} type='number' min={1} max={50} placeholder="Número de pessoas" />
+                    <input style={styles.input} type='number' min={1} max={10} placeholder="Número de pessoas" />
                     
                     <Text style={styles.label}>Nivel de experiência na cozinha</Text>
                     <View style={{ flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
@@ -67,6 +75,8 @@ export default function App() {
                         ))}
                     </View>
              </View> 
+
+             </ScrollView>
              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
              <Text>← Voltar</Text>
             <Text style={styles.ButtonRota}>Próximo →</Text>
@@ -108,12 +118,17 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     },
 
+    Uptext:{
+        fontSize: 24,
+        fontWeight: "bold",
+        fontFamily: 'Times New Roman',
+    },
+
      UPbar:{
         width: '100%',
         height: '5%',
         borderBottomWidth: 2,
         borderColor: '#bebdbd',
-        marginBottom: 40,
         marginTop: 10,
         paddingBottom: 15,
         gap: 15,
@@ -147,7 +162,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     marginBottom: 5,
-    width: "80%",
+    width: "90%",
     marginTop: 20,
     justifyContent: "justify",
     },
@@ -156,7 +171,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "gray",
     width: "86%",
-    marginTop: 5,
+    marginBottom: 10,
     justifyContent: "justify",
     },
 
@@ -186,13 +201,14 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 3,
     borderColor: 'transparent',
-    boxShadow: "1px 2px 7px rgba(0, 0, 0, 0.2)",
+    boxShadow: "2px 5px 9px rgba(0, 0, 0, 0.2)",
     borderRadius: 10,
     },
 
     input: {
     boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2) inset",
     borderRadius: 5,
+    fontSize: 17,
     padding: 10,
     marginBottom: 10,
     height: 45,
