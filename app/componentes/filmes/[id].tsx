@@ -10,43 +10,28 @@ export default function Filme() {
     .flatMap(categoria => categoria.filmes)
     .find(f => f.id === id);
   console.log("Filme encontrado:", filmeEncontrado);
-  const filme: Filmeprops = {
+  const item: Filmeprops = {
     ...filmeEncontrado,
   }
   return (
     <View style={styles.fundo}>
         <View style={styles.capa}>
-      <ImageBackground
-        source={{ uri: filme.Imagem }}
+      <Image
+        source={{ uri: item.Imagem }}
         style={styles.imagem}>
-        <Image style={styles.play}
-        />
-        <Image source={{ uri: filme.classificacao }} style={styles.classificacao}
-        />
-      </ImageBackground>
+      </Image>
       </View>
       <View style={styles.informacoes}>
-        <Text style={styles.titulo}>{filme.titulo}</Text>
-        <Text style={styles.descricao}>{filme.descrição}</Text>
-        <Text style={styles.duracao}>2h 15min</Text>
-        <Text style={styles.duracao}>Gênero: Drama, História, Biografia</Text>
-        <Text style={styles.duracao}>Diretor: Christopher Nolan</Text>
+        <Text style={styles.titulo}>{item.titulo}</Text>
+        <Text style={styles.descricao}>{item.descrição}</Text>
+        <View style={{flexDirection: "row", justifyContent: "space-between", width: "90%", margin: "auto", }}>
+        <Text style={styles.duracao}>{item.duracao}</Text>
+        <Text style={styles.duracao}>{item.dificuldade}</Text>
         <Text style={styles.avaliacao}>Avaliação: 8.5/10</Text>
-        <Text></Text>
+        </View>
       </View>
       <View style={styles.botaoContainer}>
         <Link href="https://youtu.be/oHg5SJYRHA0?si=upSeTCosjOo_Q9u4">
-          <TouchableOpacity>
-            <Text style={styles.botao}>+ Adicionar à Lista</Text>
-          </TouchableOpacity>
-        </Link>
-        <TouchableOpacity>
-          <Text style={styles.botao}>▶ Assistir Trailer</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.botao}>★ Avaliar</Text>
-        </TouchableOpacity>
-        <Link href="../../(tabs)index">
           <TouchableOpacity>
             <Text style={styles.botao2}>🏠︎</Text>
           </TouchableOpacity>
@@ -60,75 +45,81 @@ const styles = StyleSheet.create({
 
   fundo: {
     flex: 1,
-    backgroundColor: "#d11313",
+    backgroundColor: "#ececec",
   },
 
   capa: {
     borderRadius: 10,
     alignItems: 'center',
     marginTop: 15,
+    backgroundColor: "rgb(6, 172, 1)",
+    padding: 10,
+    margin: "auto",
+    width: 470,
+    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.27)",
   },
 
   imagem: {
-    width: 250,
-    height: 400,
+    width: 450,
+    height: 320,
     borderRadius: 10,
   },
 
   titulo: {
-    fontSize: 24,
+    fontSize: 25,
     fontWeight: "bold",
     textAlign: "left",
     marginTop: 12,
     color: "#fff",
-    marginHorizontal: 20,
+    margin: "auto",
+    marginBottom: 6,
+    width: "90%"
   },
 
   descricao: {
+    width: "90%",
     fontSize: 16,
     textAlign: "left",
-    marginHorizontal: 20,
     color: "#fff",
-    backgroundColor: "#757575",
+    backgroundColor: "#05810b",
     padding: 10,
-    borderRadius: 6,
+    borderRadius: 10,
     marginTop: 5,
+    margin: "auto"
   },
 
   informacoes: {
-    backgroundColor: "#757575",
+    width: 470,
+    height: 320,
+    backgroundColor: "#31ac00",
     padding: 10,
     borderRadius: 6,
-    marginTop: 16,
-    marginHorizontal: 20,
-  },
-
-  play: {
-    width: 100,
-    height: 100,
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: [{ translateX: -50 }, { translateY: -50 }],
-    cursor: "pointer",
+    marginTop: 5,
+    margin: "auto",
+    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.23)",
   },
 
   duracao: {
     fontSize: 16,
-    textAlign: "left",
-    marginHorizontal: 20,
+    textAlign: "center",
     color: "#fff",
-    marginTop: 5,
     fontWeight: "bold",
+    width: 110,
+    padding: 8,
+    borderRadius: 10,
+    backgroundColor: "#05810b",
   },
 
   avaliacao: {
+    paddingVertical: 9.5,
     fontSize: 16,
-    textAlign: "left",
-    marginHorizontal: 20,
+    textAlign: "center",
     color: "#fff",
-    marginTop: 5,
     fontWeight: "bold",
+    backgroundColor: "#05810b",
+    width: 150,
+    padding: 9,
+    borderRadius: 10,
   },
 
   classificacao: {
@@ -151,22 +142,17 @@ const styles = StyleSheet.create({
   },
 
   botaoContainer: {
-    width: "100%",
-    flexDirection: "row",
-    gap: 15,
-    justifyContent:'space-between'
+    margin: "auto",
   },
 
   botao2: {
-    width: "50%",
-    marginHorizontal: 20,
-    marginTop: 15,
-    backgroundColor: "#e0e0e0",
-    color: "#1d1d1d",
-    padding: 10,
+    width: 80,
+    backgroundColor: "#00a316",
+    padding: 12,
     borderRadius: 20,
     textAlign: "center",
     fontWeight: "bold",
+    color: "#f7f7f7"
   },
 
 });    
