@@ -67,8 +67,8 @@ export default function App() {
                     <Text style={styles.ButtonRota}>+ Adicionar</Text>
              </View> 
              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
-             <Text>← Voltar</Text>
-            <Text style={styles.ButtonRota}>Próximo →</Text>
+             <Text><Link href={'/(tabs)/ask3'}>← Voltar</Link></Text>
+            <Text style={styles.ButtonRota}><Link href={'/(tabs)/rota.usuario4'}>Próximo →</Link></Text>
           </View>
         </View>
       </View>

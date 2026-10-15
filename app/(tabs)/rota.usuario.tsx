@@ -14,7 +14,7 @@ export default function App() {
               <Text style={styles.texto}>Olá, Eu sou seu companheiro de cozinha</Text>
               <Text style={styles.subtexto}>Antes de começarmos, quero conhecer um pouquinho dos seus gostos para encontrar receitas que realmente combinem com você.</Text>
             </View>
-            <Text style={styles.ButtonRota}>Começar →</Text>
+            <Text style={styles.ButtonRota}><Link href={'/(tabs)/rota.usuario2'}>Começar →</Link></Text>
           </View>
         </View>
       </View>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { Link } from 'expo-router';
  
 // As tarefas exibidas inicialmente na lista de afazeres.
 const itensIniciais = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada'];
@@ -66,9 +67,9 @@ export default function CheckBox() {
                 ))}
                     <View style={styles.bottomcon}>
                         <View style={styles.bots}>
-                             <TouchableOpacity style={styles.loginButtonV}><Text style={styles.textButtonV}>←  Voltar</Text></TouchableOpacity>
+                             <TouchableOpacity style={styles.loginButtonV}><Text style={styles.textButtonV}><Link href={'/(tabs)/ask6'}>←  Voltar</Link></Text></TouchableOpacity>
                                                         
-                             <TouchableOpacity style={styles.loginButtonP}><Text style={styles.textButtonP}>Proximo →</Text></TouchableOpacity>
+                             <TouchableOpacity style={styles.loginButtonP}><Text style={styles.textButtonP}><Link href={'/(tabs)/paginaInicial'}>Proximo →</Link></Text></TouchableOpacity>
                         </View>   
                     </View>
         </View>

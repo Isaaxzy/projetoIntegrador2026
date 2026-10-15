@@ -1,5 +1,6 @@
 import { View, StyleSheet, Text, ImageBackground, Image, Pressable, Touchable, TouchableOpacity  } from 'react-native';
 import { useState } from 'react';
+import { Link } from 'expo-router';
 
  
 const itensIniciais = ['🍽️ Sem restrições', '🥕 Vegetariano', '🌱 Vegano', '🥗 Flexitariano', '🥑 Low crab', '✨ outra'];
@@ -69,9 +70,9 @@ export default function CheckBox() {
       </View>
 
       <View style={styles.bots}>
-        <TouchableOpacity style={styles.loginButtonV}><Text style={styles.textButtonV}>←  Voltar</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.loginButtonV}><Text style={styles.textButtonV}><Link href={'/(tabs)/rota.usuario2'}>←  Voltar</Link></Text></TouchableOpacity>
                               
-        <TouchableOpacity style={styles.loginButtonP}><Text style={styles.textButtonP}>Proximo →</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.loginButtonP}><Text style={styles.textButtonP}><Link href={'/(tabs)/ask3'}>Proximo →</Link></Text></TouchableOpacity>
       </View>
           
     </View>   
