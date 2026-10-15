@@ -4,6 +4,7 @@ import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextI
 
 const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Avançado'];
 
+const itensIniciais2 = ['🍽️ Sem restrições', '🥕 Vegetariano', '🌱 Vegano', '🥗 Flexitariano', '🥑 Low crab', '✨ outra'];
 
 export default function App() {
     const totalSteps = 7;
@@ -20,14 +21,22 @@ export default function App() {
                     itemIndex === index ? !marcado : marcado
                 )
             );
-            setItensMarcados((marcados) =>
-                marcados.map((marcado, itemIndex) =>                    
-                        itemIndex !=index ? !marcado : false
+
+            const [itensMarcados2, setItensMarcados2] = useState<boolean[]>(
+            itensIniciais2.map(() => false),
+        );
+     
+        function alternarItem1(index1: number) {
+            // Cria um novo array e inverte somente o item que foi pressionado.                        
+            setItensMarcados2((marcados1) =>
+                marcados1.map((marcado1, itemIndex1) =>
+                    itemIndex1 === index1 ? !marcado1 : marcado1
                 )
             );
-
+            
             console.log(itensMarcados)
           }
+        }
     return (
       <View style={styles.fundo}>
           <View style={styles.container}>
@@ -43,7 +52,7 @@ export default function App() {
             <Text style={styles.texto}>[Nome do usuario!]</Text>
             <Text style={styles.subtexto}>Edite suas preferencias alimentares</Text>
 
-            <ScrollView>
+            <ScrollView style={styles.scroll}>
                 <View style={styles.loginContainer}>
                     <Text style={styles.sobv}>Sobre você</Text>
 
@@ -74,13 +83,69 @@ export default function App() {
                         </Pressable>
                         ))}
                     </View>
-             </View> 
+                </View> 
 
-             </ScrollView>
-             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
-             <Text>← Voltar</Text>
-            <Text style={styles.ButtonRota}>Próximo →</Text>
-          </View>
+                 <View style={styles.loginContainer}>
+                    <View style={{ flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
+                        {itensIniciais2.map((item, index1) => (
+                     <Pressable
+                     key={item}
+                     style={styles.linha}
+                     onPress={() => alternarItem(index1)}
+                 >
+                            
+                 <View style={[styles.checkbox, itensMarcados[index1] && styles.marcado]}>
+                 {itensMarcados[index1]}<Text style={[styles.item, itensMarcados[index1] && styles.concluido]}>{item}</Text>
+                 </View>
+                    
+                       
+                        </Pressable>
+                        ))}
+                    </View>
+                    </View>
+             
+              <View style={styles.ops}>
+             
+                     <View style={styles.foote}>
+                         <TouchableOpacity style={styles.loginButtonP}>
+                         <Image
+                         style={styles.perf}
+                         source={require("../imagens/house.png")}
+                          /> 
+                         <Text style={styles.textButtonP}>Inicio</Text></TouchableOpacity>
+                         </View>
+             
+                         <View style={styles.foote}>
+             
+                         <TouchableOpacity style={styles.loginButtonP}>
+                          <Image
+                         style={styles.perf}
+                         source={require("../imagens/agend.png")}
+                          /> 
+                         <Text style={styles.textButtonP}>Planejar</Text></TouchableOpacity>
+                         </View>
+             
+                         <View style={styles.foote}>
+                       <TouchableOpacity style={styles.loginButtonP}>
+                         <Image
+                         style={styles.perf}
+                         source={require("../imagens/fav.png")}
+                          />
+                        <Text style={styles.textButtonP}>Favoritos</Text></TouchableOpacity>
+             
+                         </View>
+             
+                         <View style={styles.foote}>
+                           <TouchableOpacity style={styles.loginButtonP}>
+                          <Image
+                         style={styles.perf}
+                         source={require("../imagens/perf.png")}
+                          />
+                         <Text style={styles.textButtonP}>Perfil</Text></TouchableOpacity>
+                             </View>
+             
+                          </View>
+          </ScrollView>
         </View>
     </View> 
     );
@@ -96,6 +161,23 @@ const styles = StyleSheet.create({
     logo: {
     width: 130,
     height: 187,
+    },
+
+    scroll:{
+        padding: 10,
+        margin: 'auto',
+        width: '100%',
+        borderRadius: 10,
+    },
+
+    loginContainer: {
+    width: "95%",
+    padding: 10,
+    borderWidth: 3,
+    marginBottom: 20,
+    borderColor: 'transparent',
+    boxShadow: "2px 5px 9px rgba(0, 0, 0, 0.2)",
+    borderRadius: 10,
     },
 
     item: {
@@ -196,15 +278,6 @@ const styles = StyleSheet.create({
     gap: 10,
     },
 
-    loginContainer: {
-    width: "95%",
-    padding: 10,
-    borderWidth: 3,
-    borderColor: 'transparent',
-    boxShadow: "2px 5px 9px rgba(0, 0, 0, 0.2)",
-    borderRadius: 10,
-    },
-
     input: {
     boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2) inset",
     borderRadius: 5,
@@ -225,5 +298,31 @@ const styles = StyleSheet.create({
     marginTop: 7,
     fontWeight:'bold',
     },
+
+     perf:{
+        maxWidth: 50,
+        maxHeight: 50,
+        marginTop: -10, 
+    },
+
+     ops:{
+        flexDirection: 'row',
+        borderTopWidth: 2,
+        borderColor: 'gray',
+        width: '100%',
+        height: '10%',
+        alignItems: 'center',
+        alignContent: 'center',
+        marginVertical: 50,
+    },
+
+    foote:{
+        width: '26%',
+        height: '50%',
+        alignItems: 'center',
+        alignContent: 'center',
+        flexDirection: 'column',
+    },
+
 
     });
