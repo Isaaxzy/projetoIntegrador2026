@@ -1,0 +1,52 @@
+export default function DadosDosFilmes() {
+    const categorias = [
+  {
+    id: "1",
+    filmes: [
+      { id: "1a", 
+        titulo: "Prato de comida", 
+        cor: "#1a1a2e", 
+        Imagem:"https://img.magnific.com/fotos-gratis/closeup-de-carne-assada-com-molho-legumes-e-batatas-fritas-em-um-prato-sobre-a-mesa_181624-35847.jpg", 
+        descrição: "Um retrato cinematográfico do físico Robert Oppenheimer, que liderou o Projeto Manhattan durante a Segunda Guerra Mundial.", 
+        info: "Frango, Batata, Arroz",
+        dificuldade: "👨‍🍳 Fácil", 
+        duracao:'⏳ 30min' },
+      { id: "1b", 
+        titulo: "Sopa de batata", 
+        cor: "#16213e", 
+        Imagem:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROWlIkh7eKx96hxWd_FxA1uqhghj0rMG5WvzChBu_s3JnkiUVVKDT1Z3c&s=10", 
+        descrição: "A continuação da jornada de Paul Atreides em Duna, onde ele se torna o líder da resistência contra o Império.", 
+        info: "Frango, Batata, Arroz",
+        dificuldade: "👨‍🍳 Médio", 
+        duracao:'⏳ 45min' },
+      { id: "1c", 
+        titulo: "Espaguete", 
+        cor: "#0f3460", 
+        Imagem:"https://s2-receitas.glbimg.com/cB0OfLAbJ7TWJcxGIrsvgvj28R4=/0x0:1280x960/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2024/7/1/wQXSK5TwCpzfH72biAHQ/macarrao-de-panela-com-frango-de-vo.jpg", 
+        descrição: "Uma comédia sobre a vida de Barbie, que descobre o mundo real e enfrenta desafios.", 
+        info: "Frango, Batata, Arroz",
+        dificuldade: "👨‍🍳 Fácil", 
+        duracao:'⏳ 20min' },
+      { id: "1d", 
+        titulo: "Comidas", 
+        cor: "#533483", 
+        Imagem:"https://i0.wp.com/pat.feldman.com.br/wp-content/uploads/2012/01/comida-caseira.jpg?resize=800%2C540&ssl=1", 
+        descrição: "Uma comédia romântica sobre a vida de Bella, que é ressuscitada por um cientista louco.", 
+        info: "Frango, Batata, Arroz",
+        dificuldade: "👨‍🍳 Fácil", 
+        duracao:'⏳ 15min' },
+      { id: "1e", 
+        titulo: "ensopado", 
+        cor: "#2b2d42", 
+        Imagem:"https://cdn.deliway.com.br/blog/base/c57/abe/86d/prato-tipico-espanhol.jpg", 
+        descrição: "Um drama sobre a vida de um jovem que se envolve em um relacionamento complicado com um homem rico.", 
+        info: "Frango, Batata, Arroz",
+        dificuldade: "👨‍🍳 Fácil", 
+        duracao:'⏳ 1h' },
+    ],
+  },
+];
+    return(
+        categorias
+    )
+};

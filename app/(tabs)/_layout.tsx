@@ -1,7 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { Platform, StyleSheet, Text, View } from "react-native";
-import InputBusca from "../components/inputBusca";
 
 export default function TabLayout() {
   return (
@@ -13,7 +12,6 @@ export default function TabLayout() {
           <View style={styles.headerContainer}>
             <Text style={styles.headerTitleText}>{props.children}</Text>
             <View style={styles.inputContainer}>
-              <InputBusca placeholder="Buscar..." />
             </View>
           </View>
         ),
