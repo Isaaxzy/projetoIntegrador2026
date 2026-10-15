@@ -34,7 +34,6 @@ export default function App() {
                 )
             );
             
-            console.log(itensMarcados)
           }
         }
     return (
@@ -62,17 +61,17 @@ export default function App() {
                     <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                       <Text style={styles.label}>Idade</Text>
                     </View>
-                    <input style={styles.input} secureTextEntry type='number' min={14} max={75} placeholder="Ex: 15" />
+                    <input style={styles.input} secureTextEntry type='number' min={14} max={75} placeholder="14+" />
                     <Text style={styles.label}>Para quantas pessoas você costuma cozinhar?</Text>
                     <input style={styles.input} type='number' min={1} max={10} placeholder="Número de pessoas" />
                     
                     <Text style={styles.label}>Nivel de experiência na cozinha</Text>
                     <View style={{ flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
-                                          {itensIniciais.map((item, index) => (
-                                            <Pressable
-                                            key={item}
-                                            style={styles.linha}
-                                            onPress={() => alternarItem(index)}
+                                    {itensIniciais.map((item, index) => (
+                                    <Pressable
+                                    key={item}
+                                    style={styles.linha}
+                                    onPress={() => alternarItem(index)}
                         >
                         
                         <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
@@ -87,20 +86,22 @@ export default function App() {
 
                  <View style={styles.loginContainer}>
                     <View style={{ flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
-                        {itensIniciais2.map((item, index1) => (
+                        {itensIniciais2.map((item1, index1) => (
                      <Pressable
-                     key={item}
+                     key={item1}
                      style={styles.linha}
                      onPress={() => alternarItem(index1)}
                  >
                             
                  <View style={[styles.checkbox, itensMarcados[index1] && styles.marcado]}>
-                 {itensMarcados[index1]}<Text style={[styles.item, itensMarcados[index1] && styles.concluido]}>{item}</Text>
+                 {itensMarcados[index1]}<Text style={[styles.item, itensMarcados[index1] && styles.concluido]}>{item1}</Text>
                  </View>
-                    
-                       
                         </Pressable>
                         ))}
+                    <View style={styles.botbox}>
+                        <input style={styles.inpout} placeholder='Exemplo de outros...'type="text" />
+                        <TouchableOpacity style={styles.ButtonRota}>+ Adicionar </TouchableOpacity>
+                    </View>
                     </View>
                     </View>
              
@@ -230,14 +231,19 @@ const styles = StyleSheet.create({
     ButtonRota: {
     backgroundColor: "#209e3c",
     color: "#fff",
-    width: "45%",
+    width: "25%",
+    height: '55%',
     textAlign: "center",
     paddingVertical: 10,
-    borderRadius: 20,
+    marginTop: 15,
+    marginLeft: 5,
+    borderRadius: 10,
     fontSize: 16,
-    marginTop: 10,
     boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
-    cursor: "pointer",
+    },
+
+    botbox:{
+        flexDirection: 'row',
     },
 
     texto: {
@@ -285,6 +291,18 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
     height: 45,
+    borderWidth: 0,
+    },
+
+    inpout:{
+    width: '60%',
+    boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2) inset",
+    borderRadius: 5,
+    fontSize: 17,
+    padding: 10,
+    marginTop: 10,
+    marginBottom: 10,
+    height: 30,
     borderWidth: 0,
     },
 
