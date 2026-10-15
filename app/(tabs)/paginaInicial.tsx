@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, ImageBackground, Image, Pressable, Touchable, TouchableOpacity, FlatList,} from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, Image, Pressable, Touchable, TouchableOpacity, FlatList, ScrollView,} from 'react-native';
 import { useState } from 'react';
 import DadosDosFilmes from '../componentes/coisas';
 import renderCategoria from '../componentes/cardCategorias';
@@ -20,6 +20,7 @@ export default function App() {
             );
           }
     return(
+        <ScrollView>
     <View style={styles.fundo}>
         <View style={styles.container}>
             <View style={{flexDirection: "row", alignItems: "center", padding: 10, gap:8}}>
@@ -71,6 +72,7 @@ export default function App() {
                         </View>
                 </View>                          
         </View>
+        </ScrollView>
     )
 }
 

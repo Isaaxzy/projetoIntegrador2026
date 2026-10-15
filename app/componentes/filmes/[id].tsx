@@ -1,4 +1,4 @@
-import { View, StyleSheet, FlatList, Text, Touchable, TouchableOpacity, Image, ImageBackground } from 'react-native';
+import { View, StyleSheet, FlatList, Text, Touchable, TouchableOpacity, Image, ImageBackground, ScrollView } from 'react-native';
 import DadosDosFilmes from '../coisas';
 import { Link, useLocalSearchParams } from 'expo-router';
 
@@ -14,20 +14,27 @@ export default function Filme() {
     ...filmeEncontrado,
   }
   return (
+    
     <View style={styles.fundo}>
-        <View style={styles.capa}>
+      <ScrollView>
+      <View style={styles.container}>
       <Image
         source={{ uri: item.Imagem }}
         style={styles.imagem}>
       </Image>
-      </View>
       <View style={styles.informacoes}>
         <Text style={styles.titulo}>{item.titulo}</Text>
         <Text style={styles.descricao}>{item.descrição}</Text>
-        <View style={{flexDirection: "row", justifyContent: "space-between", width: "90%", margin: "auto", }}>
+        <View style={{flexDirection: "row",}}>
         <Text style={styles.duracao}>{item.duracao}</Text>
         <Text style={styles.duracao}>{item.dificuldade}</Text>
-        <Text style={styles.avaliacao}>Avaliação: 8.5/10</Text>
+        <Text style={styles.avaliacao}>👥 2 Porções</Text>
+        </View>
+        <View style={styles.reco}>
+          <Image source={require("../../imagens/repowise-icon.png")} style={styles.image2}>
+          </Image>
+          <Text style={styles.texto1}>Por que recomendamos esta receita?</Text>
+          <Text style={styles.texto2}>Você prefere receitas de até 30 minutos, gosta de receitas fácil, combina com seu tipo de alimentação</Text>
         </View>
       </View>
       <View style={styles.botaoContainer}>
@@ -37,7 +44,10 @@ export default function Filme() {
           </TouchableOpacity>
         </Link>
       </View>
+      </View>
+      </ScrollView>
     </View>
+    
   );
 }
 
@@ -45,24 +55,44 @@ const styles = StyleSheet.create({
 
   fundo: {
     flex: 1,
-    backgroundColor: "#ececec",
+    backgroundColor: "#f5f5f5",
+  },
+  container: {
+    marginTop: 15,
+    backgroundColor: "#ffffff",
+    width: 440,
+    borderRadius: 20,
+    margin: "auto",
   },
 
-  capa: {
-    borderRadius: 10,
-    alignItems: 'center',
-    marginTop: 15,
-    backgroundColor: "rgb(6, 172, 1)",
-    padding: 10,
-    margin: "auto",
-    width: 470,
-    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.27)",
+  image2: {
+    width: 30,
+    height: 30,
   },
 
   imagem: {
-    width: 450,
+    width: "100%",
     height: 320,
-    borderRadius: 10,
+    borderTopEndRadius: 20,
+    borderTopLeftRadius: 20,
+  },
+
+  reco: {
+    margin: "auto",
+    width: "85%",
+    backgroundColor: "#b1e7a036",
+    padding: 15,
+    borderWidth: 2,
+    borderColor: "#00a316",
+    borderRadius: 20,
+    flexDirection: "row"
+  },
+
+  texto1: {
+    fontWeight: "bold",
+    fontSize: 15,
+    color: "#00a316",
+    marginBottom: 3
   },
 
   titulo: {
@@ -70,7 +100,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "left",
     marginTop: 12,
-    color: "#fff",
+    color: "#080808",
     margin: "auto",
     marginBottom: 6,
     width: "90%"
@@ -80,45 +110,41 @@ const styles = StyleSheet.create({
     width: "90%",
     fontSize: 16,
     textAlign: "left",
-    color: "#fff",
-    backgroundColor: "#05810b",
-    padding: 10,
+    color: "#666666",
+    marginBottom: 10,
     borderRadius: 10,
     marginTop: 5,
     margin: "auto"
   },
 
   informacoes: {
-    width: 470,
+    width: 400,
     height: 320,
-    backgroundColor: "#31ac00",
+    backgroundColor: "#ffffff",
     padding: 10,
-    borderRadius: 6,
-    marginTop: 5,
+    borderRadius: 20,
+    marginTop: -30,
     margin: "auto",
     boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.23)",
   },
 
   duracao: {
-    fontSize: 16,
+    fontSize: 15,
     textAlign: "center",
-    color: "#fff",
-    fontWeight: "bold",
+    color: "#080808",
     width: 110,
-    padding: 8,
+    padding: 3,
     borderRadius: 10,
-    backgroundColor: "#05810b",
+    paddingVertical: 9,
   },
 
   avaliacao: {
-    paddingVertical: 9.5,
-    fontSize: 16,
+    paddingVertical: 9,
+    fontSize: 15,
     textAlign: "center",
-    color: "#fff",
-    fontWeight: "bold",
-    backgroundColor: "#05810b",
-    width: 150,
-    padding: 9,
+    color: "#080808",
+    width: 110,
+    padding: 3,
     borderRadius: 10,
   },
 
