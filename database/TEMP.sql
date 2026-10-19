@@ -6,13 +6,13 @@ CREATE TABLE clientes(
 	id_cli INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR (50) NOT NULL,
     password VARCHAR(255) NOT NULL UNIQUE,
-    idade INT NOT NULL UNIQUE,
-    QUANTIDADE DE PESSOAS INT NOT NULL
+    idade INT NOT NULL,
+    quantidade de pessoas INT NOT NULL
 );
 
     CREATE TABLE experiencia(
     id_exp INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-     VARCHAR(255) NOT NULL
+    nivel VARCHAR(14) NOT NULL
     ),
  
 CREATE TABLE produtos(
