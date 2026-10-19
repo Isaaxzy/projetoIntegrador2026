@@ -7,18 +7,22 @@ const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Ava
 const itensIniciais2 = ['🍽️ Sem restrições', '🥕 Vegetariano', '🌱 Vegano', '🥗 Flexitariano', '🥑 Low crab', '✨ outra'];
 
 export default function App() {
-    const totalSteps = 7;
-    const currentStep = 1;
 
     const [itensMarcados, setItensMarcados] = useState<boolean[]>(
             itensIniciais.map(() => false),
         );
      
-        function alternarItem(index: number) {
+        function alternarItem(index: number, index1: number) {
             // Cria um novo array e inverte somente o item que foi pressionado.                        
             setItensMarcados((marcados) =>
                 marcados.map((marcado, itemIndex) =>
                     itemIndex === index ? !marcado : marcado
+                )
+            );
+            
+            setItensMarcados2((marcados1) =>
+                marcados1.map((marcado1, itemIndex1) =>
+                itemIndex1 === index1 ? !marcado1 : marcado1
                 )
             );
 
@@ -26,13 +30,9 @@ export default function App() {
             itensIniciais2.map(() => false),
         );
      
-        function alternarItem1(index1: number) {
+        function alternarItem(index1: number) {
             // Cria um novo array e inverte somente o item que foi pressionado.                        
-            setItensMarcados2((marcados1) =>
-                marcados1.map((marcado1, itemIndex1) =>
-                    itemIndex1 === index1 ? !marcado1 : marcado1
-                )
-            );
+          
             
           }
         }
@@ -317,6 +317,20 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
     },
 
+     loginButtonP: {
+        width: '100%',
+        height: '50%',
+        alignItems: 'center',
+        display: 'contents',
+    },
+
+      textButtonP:{
+        color: '#313131',
+        textAlign: "center",
+        fontWeight: 'bold',
+    },
+
+
      perf:{
         maxWidth: 50,
         maxHeight: 50,
@@ -335,7 +349,7 @@ const styles = StyleSheet.create({
     },
 
     foote:{
-        width: '26%',
+        width: '25%',
         height: '50%',
         alignItems: 'center',
         alignContent: 'center',

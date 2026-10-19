@@ -6,10 +6,14 @@ CREATE TABLE clientes(
 	id_cli INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR (50) NOT NULL,
     password VARCHAR(255) NOT NULL UNIQUE,
-    CNPJ VARCHAR(18) NOT NULL UNIQUE,
-    nome_empresa VARCHAR(60) NOT NULL,
-    nome_responsavel VARCHAR(50) NOT NULL
+    idade INT NOT NULL UNIQUE,
+    QUANTIDADE DE PESSOAS INT NOT NULL
 );
+
+    CREATE TABLE experiencia(
+    id_exp INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+     VARCHAR(255) NOT NULL
+    ),
  
 CREATE TABLE produtos(
 	id_prod INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -17,18 +21,21 @@ CREATE TABLE produtos(
     descricao VARCHAR(255) NOT NULL,
     nome_prod VARCHAR(40) NOT NULL
     );
+
     CREATE TABLE compra(
     id_compra INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     id_prod INT NOT NULL,
     pagamento VARCHAR(100) NOT NULL,
     FOREIGN KEY (id_prod) REFERENCES produtos (id_prod)
     );
+
 CREATE TABLE servico(
 	id_serv INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     preco_base DECIMAL (10,2) NOT NULL,
     categoria_serv VARCHAR(60) NOT NULL,
     descricao VARCHAR(255) NOT NULL
     );
+
 CREATE TABLE servico_contratado(
 	id_servCon INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     id_cli INT NOT NULL,
@@ -39,6 +46,7 @@ CREATE TABLE servico_contratado(
     FOREIGN KEY (id_cli) REFERENCES clientes (id_cli),
     FOREIGN KEY (id_serv) REFERENCES servico (id_serv)
     );
+
     CREATE TABLE manutencao(
     id_manu INT NOT  NULL PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(50) NOT NULL,
@@ -48,6 +56,7 @@ CREATE TABLE servico_contratado(
     tipo_sistema VARCHAR(255) NOT NULL,
     descricao TEXT NOT NULL
     );
+
 CREATE TABLE solicitar_instalacao(
 	id_insta INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     id_prod INT NOT NULL,
@@ -59,6 +68,7 @@ CREATE TABLE solicitar_instalacao(
     data_solicita DATE NOT NULL,
     FOREIGN KEY (id_prod) REFERENCES produtos (id_prod)
     );
+
     CREATE TABLE consultoria (
     id_cons INT AUTO_INCREMENT PRIMARY KEY,
     id_cli INT NOT NULL,
