@@ -6,27 +6,36 @@ CREATE TABLE clientes(
 	id_cli INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR (50) NOT NULL,
     password VARCHAR(255) NOT NULL UNIQUE,
+    nom_cli VARCHAR(40) NOT NULL,
     idade INT NOT NULL,
-    quantidade de pessoas INT NOT NULL
+    quantidade de pessoas INT NOT NULL,
+    alergia VARCHAR(50) NOT NULL,
+    ingre_gosta VARCHAR(50) NOT NULL,
+    ingre_Ngosta VARCHAR(50) NOT NULL,
+    objetivo VARCHAR(255) NOT NULL,
+    tempo VARCHAR(25) NOT NULL,
+    experiencia VARCHAR(30) NOT NULL,
+    alimentacao VARCHAR(40) NOT NULL
 );
 
-    CREATE TABLE experiencia(
-    id_exp INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    nivel VARCHAR(14) NOT NULL
-    ),
- 
-CREATE TABLE produtos(
-	id_prod INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    preco DECIMAL(10,2) NOT NULL,
-    descricao VARCHAR(255) NOT NULL,
-    nome_prod VARCHAR(40) NOT NULL
-    );
+CREATE TABLE favoritos(
+    id_fav INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id_receita INT NOT NULL,
+    FOREIGN KEY (id_receita) REFERENCES (id_receita)
+);
 
-    CREATE TABLE compra(
-    id_compra INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    id_prod INT NOT NULL,
-    pagamento VARCHAR(100) NOT NULL,
-    FOREIGN KEY (id_prod) REFERENCES produtos (id_prod)
+CREATE TABLE receitas(
+	id_receita INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    descricao VARCHAR(255) NOT NULL,
+    nome_prod VARCHAR(40) NOT NULL,
+    dificuldade VARCHAR(15) NOT NULL,
+    tempo VARCHAR(20) NOT NULL,
+    ingredientes VARCHAR(255) NOT NULL,
+    alergias VARCHAR(255) NOT NULL,
+    utensilios VARCHAR(255) NOT NULL,
+    preparo VARCHAR(255) NOT NULL,
+    num_pessoas INT NOT NULL,
+    resentimente VARCHAR(3) NOT NULL
     );
 
 CREATE TABLE servico(
