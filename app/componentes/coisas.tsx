@@ -4,10 +4,10 @@ export default function DadosDosFilmes() {
     id: "1",
     filmes: [
       { id: "1a", 
-        titulo: "Prato de comida", 
+        titulo: "Bowl de quinoa com legumes", 
         cor: "#1a1a2e", 
         Imagem:"https://img.magnific.com/fotos-gratis/closeup-de-carne-assada-com-molho-legumes-e-batatas-fritas-em-um-prato-sobre-a-mesa_181624-35847.jpg", 
-        descrição: "Um retrato cinematográfico do físico Robert Oppenheimer, que liderou o Projeto Manhattan durante a Segunda Guerra Mundial.", 
+        descrição: "Quinoa colorida com grão-de-bico, abacate e molho de limão.", 
         info: "Frango, Batata, Arroz",
         dificuldade: "👨‍🍳 Fácil", 
         duracao:'⏳ 30min' },

@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   },
   filme:{
     width: 175,
-    height: 220,
+    height: 240,
     backgroundColor: '#fafafa',
     margin: 7,
     borderRadius: 10,
