@@ -2,11 +2,11 @@ import { Link } from 'expo-router';
 import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
 import { useState } from 'react';
 
-const itensIniciais = ['Frango', 'Carne', 'Batata', 'Queijo', 'Chocolate', 'Morango', 'Massas', 'Arroz', 'Ovo', 'Tomate', 'Cenoura', 'Abacate', 'Salmão', 'Limão', 'Milho', 'Feijão' ];
+const itensIniciais = ['Cebola', 'Alho', 'Tomate', 'Peixe', 'Coentro', 'Pimentão', 'Brócolis', 'Cogumelo', 'Azeitona', 'Pimenta', 'Gengibre', 'Manjericão' ];
 
 export default function App() {
     const totalSteps = 7;
-    const currentStep = 5;
+    const currentStep = 4;
 
     // Cada posição corresponde à tarefa na mesma posição de `itensIniciais`.
     const [itensMarcados, setItensMarcados] = useState<boolean[]>(
@@ -44,8 +44,8 @@ export default function App() {
               <Text style={styles.stepText}>Etapa {currentStep} de {totalSteps}</Text>
             </View> 
 
-            <Text style={styles.texto}>Oque você ama?</Text>
-              <Text style={styles.subtexto}>Quais ingredientes você adora? Eles vão priorizar suas recomendações.</Text>
+            <Text style={styles.texto}>Oque você não gosta?</Text>
+              <Text style={styles.subtexto}>Quais ingredientes voce prefere evitar?</Text>
                 <View style={styles.loginContainer}>
                     <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 10, marginTop: 10, width: "100%",}}>
                       {itensIniciais.map((item, index) => (
@@ -63,12 +63,12 @@ export default function App() {
     </Pressable>
     ))}
                     </View>
-                    <TextInput style={styles.input} placeholder="Adicionar outro favorito" />
+                    <TextInput style={styles.input} placeholder="Adicionar outro ingrediente" />
                     <Text style={styles.ButtonRota}>+ Adicionar</Text>
              </View> 
              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
-             <Text><Link href={'/(tabs)/rota.usuario3'}>← Voltar</Link></Text>
-            <Text style={styles.ButtonRota}><Link href={'/(tabs)/ask6'}>Próximo →</Link></Text>
+             <Text><Link href={'/(tabs)/intro_etapa_3'}>← Voltar</Link></Text>
+            <Text style={styles.ButtonRota}><Link href={'/(tabs)/intro_etapa_5'}>Próximo →</Link></Text>
           </View>
         </View>
       </View>

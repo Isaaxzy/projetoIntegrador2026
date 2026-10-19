@@ -88,9 +88,9 @@ export default function CheckBox() {
                 </View>
 
                   <View style={styles.bots}>
-                    <TouchableOpacity style={styles.loginButtonV}><Text style={styles.textButtonV}><Link href={'/(tabs)/ask1'}>←  Voltar</Link></Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.loginButtonV}><Text style={styles.textButtonV}><Link href={'/(tabs)/intro_etapa_2'}>←  Voltar</Link></Text></TouchableOpacity>
                     
-                    <TouchableOpacity style={styles.loginButtonP}><Text style={styles.textButtonP}><Link href={'/(tabs)/rota.usuario3'}>Proximo →</Link></Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.loginButtonP}><Text style={styles.textButtonP}><Link href={'/(tabs)/intro_etapa_4'}>Proximo →</Link></Text></TouchableOpacity>
                   </View>
 
 

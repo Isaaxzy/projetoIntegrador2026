@@ -1,28 +1,28 @@
 import { Link } from 'expo-router';
-import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
 import { useState } from 'react';
+import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
 
-const itensIniciais = ['Cebola', 'Alho', 'Tomate', 'Peixe', 'Coentro', 'Pimentão', 'Brócolis', 'Cogumelo', 'Azeitona', 'Pimenta', 'Gengibre', 'Manjericão' ];
+const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Avançado'];
+
 
 export default function App() {
     const totalSteps = 7;
-    const currentStep = 4;
+    const currentStep = 1;
 
-    // Cada posição corresponde à tarefa na mesma posição de `itensIniciais`.
     const [itensMarcados, setItensMarcados] = useState<boolean[]>(
-        itensIniciais.map(() => false),
-    );
- 
-    function alternarItem(index: number) {
-        // Cria um novo array e inverte somente o item que foi pressionado.
-        setItensMarcados((marcados) =>
-            marcados.map((marcado, itemIndex) =>
-                itemIndex === index ? !marcado : marcado,
-            ),
+            itensIniciais.map(() => false),
         );
-    }
+     
+        function alternarItem(index: number) {
+            // Cria um novo array e inverte somente o item que foi pressionado.
+            setItensMarcados((marcados) =>
+                marcados.map((marcado, itemIndex) =>
+                    itemIndex === index ? !marcado : marcado,
+                ),
+            );
+          }
     return (
-      <View style={styles.fundo}>
+      <View style={styles.backgroundd}>
           <View style={styles.container}>
             {/* Barra de Progresso + Etapa */}
             <View style={styles.progressSection}>
@@ -44,31 +44,39 @@ export default function App() {
               <Text style={styles.stepText}>Etapa {currentStep} de {totalSteps}</Text>
             </View> 
 
-            <Text style={styles.texto}>Oque você não gosta?</Text>
-              <Text style={styles.subtexto}>Quais ingredientes voce prefere evitar?</Text>
-                <View style={styles.loginContainer}>
-                    <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 10, marginTop: 10, width: "100%",}}>
-                      {itensIniciais.map((item, index) => (
-                        <Pressable
-                        key={item}
-                        style={styles.linha}
-                        onPress={() => alternarItem(index)}
-    >
-                        {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
-    <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
-                            {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
-    </View>
-                        {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
-   
-    </Pressable>
-    ))}
+            <Text style={styles.texto}>Sobre você</Text>
+            <Text style={styles.subtexto}>Vamos começar com o básico.</Text>
+            <View style={styles.loginContainer}>
+                <Text style={styles.label}>Nome</Text>
+                <TextInput style={styles.input} placeholder="Seu nome" />
+                
+                <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                  <Text style={styles.label}>Idade</Text>
+                </View>
+                <TextInput style={styles.input} secureTextEntry placeholder="Ex: 28" />
+                <Text style={styles.label}>Para quantas pessoas você costuma cozinhar?</Text>
+                <TextInput style={styles.input} placeholder="Número de pessoas" />
+                
+                <Text>Nivel de experiência na cozinha</Text>
+                <View style={{ flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
+                                      {itensIniciais.map((item, index) => (
+                                        <Pressable
+                                        key={item}
+                                        onPress={() => alternarItem(index)}
+                    >
+                                        {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
+                    <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
+                                            {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
                     </View>
-                    <TextInput style={styles.input} placeholder="Adicionar outro ingrediente" />
-                    <Text style={styles.ButtonRota}>+ Adicionar</Text>
-             </View> 
+                                        {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
+                    
+                    </Pressable>
+                    ))}
+                                    </View>
+            </View> 
              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
-             <Text><Link href={'/(tabs)/ask3'}>← Voltar</Link></Text>
-            <Text style={styles.ButtonRota}><Link href={'/(tabs)/rota.usuario4'}>Próximo →</Link></Text>
+             <Text><Link href={'/(tabs)/intro_comecar'}>← Voltar</Link></Text>
+            <Text style={styles.ButtonRota}><Link href={'/(tabs)/intro_etapa_2'}>Próximo →</Link></Text>
           </View>
         </View>
       </View>
@@ -77,10 +85,11 @@ export default function App() {
 
 const styles = StyleSheet.create({
 
-fundo: {
-  flex: 1,
-  backgroundColor: "rgb(248, 248, 248)"
-},
+backgroundd: {
+        padding: 20,
+        height: '100%',
+        margin: 'auto',
+    },
 
 logo: {
   width: 130,
@@ -88,7 +97,7 @@ logo: {
 },
 
 item: {
-  fontSize: 18,
+  fontSize: 15,
 },
 
 concluido: {
@@ -103,9 +112,6 @@ marcado: {
 
 checkbox: {
   padding: 11,
-  marginHorizontal: 'auto',
-  alignItems: 'center',
-  justifyContent: 'center',
   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
   borderRadius: 25,
 },
@@ -123,23 +129,15 @@ ButtonRota: {
   cursor: "pointer",
 },
 
-nota: {
-  fontSize: 12.2,
-  color: "#a05d06",
-  backgroundColor: "#ffeec8",
-  padding: 10,
-  borderRadius: 10,
-  marginBottom: 10,
-  borderColor: "#a05d06",
-  borderWidth: 1,
-},
-
 texto: {
-  fontSize: 28,
+  fontSize: 30,
   fontWeight: "bold",
+  marginBottom: 10,
   textAlign: "center",
-  width: "100%",
-  padding: 5,
+  width: "70%",
+  margin: "auto",
+  marginTop: 20,
+  justifyContent: "center",
 },
   
 subtexto: {
@@ -147,7 +145,9 @@ subtexto: {
   color: "gray",
   textAlign: "center",
   width: "86%",
-  padding: 10,
+  margin: "auto",
+  marginTop: 10,
+  justifyContent: "center",
 },
 
 option1: {
@@ -186,18 +186,15 @@ optionContainer: {
   gap: 15,
 },
 
-container: {
-  flex: 1,
-  alignItems: "center",
-  boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-  borderRadius: 10,
-  width: 400,
-  padding: 20,
-  backgroundColor: "#fff",
-  margin: "auto",
-  marginTop: 10,
-  gap: 10,
-},
+ container: {
+        borderRadius: 25,
+        flex: 1,
+        width: 400,
+        margin: 'auto',
+        padding: 24,
+        backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
+        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+    },
 
 google: {
   width: 20,
@@ -230,7 +227,6 @@ loginContainer: {
 },
 
 input: {
-  marginTop: 20,
   boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2) inset",
   borderRadius: 5,
   padding: 10,

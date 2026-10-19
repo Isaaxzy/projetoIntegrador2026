@@ -66,9 +66,9 @@ export default function CheckBox() {
         </View>
         <View>
            <View style={styles.bots}>
-             <TouchableOpacity style={styles.loginButtonV}><Text style={styles.textButtonV}><Link href={'/(tabs)/rota.usuario4'}>←  Voltar</Link></Text></TouchableOpacity>
+             <TouchableOpacity style={styles.loginButtonV}><Text style={styles.textButtonV}><Link href={'/(tabs)/intro_etapa_5'}>←  Voltar</Link></Text></TouchableOpacity>
                                         
-             <TouchableOpacity style={styles.loginButtonP}><Text style={styles.textButtonP}><Link href={'/(tabs)/ask7'}>Proximo →</Link></Text></TouchableOpacity>
+             <TouchableOpacity style={styles.loginButtonP}><Text style={styles.textButtonP}><Link href={'/(tabs)/intro_etapa_7'}>Proximo →</Link></Text></TouchableOpacity>
         </View>   
     </View>
     
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
         borderColor: 'gray',
         width: '100%',
         justifyContent: 'flex-end',
-        marginVertical: '50%',
+        marginVertical: '20%',
     },
 
     textButtonV:{

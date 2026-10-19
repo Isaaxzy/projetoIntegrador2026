@@ -67,7 +67,7 @@ export default function CheckBox() {
                 ))}
                     <View style={styles.bottomcon}>
                         <View style={styles.bots}>
-                             <TouchableOpacity style={styles.loginButtonV}><Text style={styles.textButtonV}><Link href={'/(tabs)/ask6'}>←  Voltar</Link></Text></TouchableOpacity>
+                             <TouchableOpacity style={styles.loginButtonV}><Text style={styles.textButtonV}><Link href={'/(tabs)/intro_etapa_6'}>←  Voltar</Link></Text></TouchableOpacity>
                                                         
                              <TouchableOpacity style={styles.loginButtonP}><Text style={styles.textButtonP}><Link href={'/(tabs)/paginaInicial'}>Proximo →</Link></Text></TouchableOpacity>
                         </View>   
