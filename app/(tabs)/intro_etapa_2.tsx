@@ -84,6 +84,7 @@ backgroundd: {
 container: {
         borderRadius: 25,
         flex: 1,
+        width: 400,
         margin: 'auto',
         padding: 24,
         justifyContent: 'center',

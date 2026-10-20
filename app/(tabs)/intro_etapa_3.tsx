@@ -1,33 +1,31 @@
-import { View, StyleSheet, Text, ImageBackground, Image, Pressable, Touchable, TouchableOpacity,} from 'react-native';
-import { useState } from 'react';
 import { Link } from 'expo-router';
+import { useState } from 'react';
+import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
 
- 
 const itensIniciais = ['🥛 Leite', '🥚 Ovo', '🥜 Amendoim', '🌰 Castanhas', '🫘 Soja', '🌾 Trigo', '🐟 Peixes', '🦐 Frutos do Mar'];
-export default function CheckBox() {
-    // Cada posição corresponde à tarefa na mesma posição de `itensIniciais`.
-    const [itensMarcados, setItensMarcados] = useState<boolean[]>(
-        itensIniciais.map(() => false),
-    );
- 
-    function alternarItem(index: number) {
-        // Cria um novo array e inverte somente o item que foi pressionado.
-        setItensMarcados((marcados) =>
-            marcados.map((marcado, itemIndex) =>
-                itemIndex === index ? !marcado : marcado,
-            ),
-        );
-    }
 
+
+export default function App() {
     const totalSteps = 7;
     const currentStep = 3;
 
+    const [itensMarcados, setItensMarcados] = useState<boolean[]>(
+            itensIniciais.map(() => false),
+        );
+     
+        function alternarItem(index: number) {
+            // Cria um novo array e inverte somente o item que foi pressionado.
+            setItensMarcados((marcados) =>
+                marcados.map((marcado, itemIndex) =>
+                    itemIndex === index ? !marcado : marcado,
+                ),
+            );
+          }
     return (
-        <View style={styles.cont}>
-
-<View style={styles.backgroundd}>     
-              <View style={styles.container}>
-         <View style={styles.progressSection}>
+      <View style={styles.backgroundd}>
+          <View style={styles.container}>
+            {/* Barra de Progresso + Etapa */}
+            <View style={styles.progressSection}>
               <View style={styles.barContainer}>
                 {Array.from({ length: totalSteps }).map((_, index) => {
                   const stepNumber = index + 1;
@@ -44,282 +42,187 @@ export default function CheckBox() {
                 })}
               </View>
               <Text style={styles.stepText}>Etapa {currentStep} de {totalSteps}</Text>
-
-          <View style={{ alignItems: "center", marginBottom: 20}}>
+            </View> 
 
             <Text style={styles.texto}>Alergias e intolerâncias</Text>
             <Text style={styles.subtexto}>Existe algum alimento que você não pode consumir?</Text>
-          </View>
-             </View>        
-           <View style={styles.aviso}>
-                 <View style={styles.icoav}>⚠️</View><Text style={styles.teavs}>Confira sempre os ingredientes e rótulos dos produtos.
-                        As sugestões do aplicativo não substituem orientação médica ou nutricional.
-                </Text>
-           </View>
-
-                <View style={styles.linha}>
-                {itensIniciais.map((item, index) => (
-                <Pressable
+            <View style={styles.aviso}>
+              <View style={styles.icoav}>⚠️</View><Text style={styles.teavs}>Confira sempre os ingredientes e rótulos dos produtos.
+                      As sugestões do aplicativo não substituem orientação médica ou nutricional.
+              </Text>
+            </View>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10}}>
+                  {itensIniciais.map((item, index) => (
+                    <Pressable
                     key={item}
                     onPress={() => alternarItem(index)}
                 >
+                                    {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
                 <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
-                {itensMarcados[index] && <Text style={styles.check}></Text>}  
-
-                <Text style={[styles.item, itensMarcados[index] && styles.concluido]}>
-                 {item}
-                </Text>
-
+                        {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
                 </View>
-               
+                                    {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
+                
                 </Pressable>
-                            ))}
-                        </View>
-            <View style={styles.VFtext}>
-                <Text style={styles.Ftex}>Outros que você prcisa evitar:</Text>
+                ))}
             </View>
-
-                <View style={styles.Fbox}>
-                <input style={styles.input} type="text" placeholder="Ex: Corantes, gluten..."/>
-                <TouchableOpacity style={styles.Fbot}>
-                 +   Adicionar
-                </TouchableOpacity>
- 
-                </View>
-
-                  <View style={styles.bots}>
-                    <TouchableOpacity style={styles.loginButtonV}><Text style={styles.textButtonV}><Link href={'/(tabs)/intro_etapa_2'}>←  Voltar</Link></Text></TouchableOpacity>
-                    
-                    <TouchableOpacity style={styles.loginButtonP}><Text style={styles.textButtonP}><Link href={'/(tabs)/intro_etapa_4'}>Proximo →</Link></Text></TouchableOpacity>
-                  </View>
-
-
-              </View>
-
-
-
-            </View>
- </View>   
-)};
-
+            <View style={styles.loginContainer}>
+                <Text style={styles.pergunta}>Outros que você precisa evitar:</Text>
+                <TextInput style={styles.input} placeholder="Ex: Corantes, gluten..." />
+            </View> 
+             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
+             <Text><Link href={'/(tabs)/intro_comecar'}>← Voltar</Link></Text>
+            <Link href={'/(tabs)/intro_etapa_2'} style={styles.Button}><Text>Próximo →</Text></Link>
+          </View>
+        </View>
+      </View>
+    );
+}
 
 const styles = StyleSheet.create({
-    backgroundd: {
+
+backgroundd: {
         padding: 20,
         height: '100%',
         margin: 'auto',
-    },
-    container: {
+},
+
+container: {
         borderRadius: 25,
         flex: 1,
         width: 400,
         margin: 'auto',
         padding: 24,
+        justifyContent: 'center',
         backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-    },
+},
     
-    cont:{
-        flex: 1,
-    },
-
-    aviso:{
-        width: '100%',
-        height: 90,
-        backgroundColor: '#ffef96',
-        paddingLeft: 10,
-        paddingRight: 20,
-        borderRadius: 10,
-        borderWidth: 4,
-        borderColor: '#ffdc19',
-        alignItems: 'center',
-        flexDirection: 'row',
-    },
-
-    icoav:{
-        width: 35,
-        height: 90,
-        marginInlineEnd: 'auto',
-        fontSize: 30,
-    },
-    linha: {
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-    },
-    teavs:{
-        width: '90%',
-        textAlign: 'justify',
-    },
-
-    checkbox: {
-        padding: 12,
-        marginHorizontal: 10,
-        marginTop: 12,
-        alignItems: 'center',
-        justifyContent: 'center',
-        boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
-        borderRadius: 25,
-    },
-
-    marcado: {
-        backgroundColor: "#078523",
-        borderColor: "#078523",
-        boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
-    },
-
-    check: {
-        color: '#fff',
-        fontWeight: 'bold',
-    },
-
-    item: {
-        fontSize: 18,
-    },
-
-    concluido: {
-        color: '#ffffff',
-    },
-    texto: {
-    fontSize: 30,
-    fontWeight: "bold",
-    marginBottom: 5,
-    marginTop: 5,
-    },
-    
-    subtexto: {
-    fontSize: 15,
-    color: "gray",
-    width: 250,
-    textAlign: 'center',
-    },
-
-    loginContainer: {
-    width: "90%",
-    },
-
-    VFtext:{
-        width: '100%',
-        marginTop: 10,
-        textAlign: 'center',
-    },
-
-    Ftex:{
-        marginTop: 10,
-        fontSize: 17,
-        textAlign: 'center',
-        justifyContent: 'center',
-    },
-
-    Fbox:{
-        width: '100%',
-        height: 70,
-        margin: 10,
-        justifyContent: 'center',
-        flexDirection: 'row',
-        gap: 10 ,
-    },
-
-    input:{
-        width: '70%',
-        height: 35,
-        fontSize: 18,
-        marginTop: 10,
-        marginBottom: 10,
-        borderRadius: 10,
-        borderColor: 'transparent',
-        boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
-    },
-
-    Fbot:{
-        width: '25%',
-        height: 40,
-        marginTop: 10,
-        paddingTop: 11,
-        fontFamily: 'open-sans',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        color: '#05a528',
-        backgroundColor: '#befacb',
-        borderRadius: 6,
-    },
-
-    bots:{
-        flexDirection: 'row',
-        gap: 10,
-        borderTopWidth: 2,
-        borderColor: 'gray',
-        width: '100%',
-        justifyContent: 'flex-end',
-    },
-
-    textButtonV:{
-        color: '#313131',
-        textAlign: "center",
-        fontWeight: 'bold',
-    },
-
-     textButtonP:{
-        color: '#ececec',
-        textAlign: "center",
-        fontWeight: 'bold',
-    },
-
-    loginButtonP: {
-    backgroundColor: "#078523",
-    color: "#fff",
-    width: "45%",
-    paddingVertical: 10,
-    borderRadius: 10,
-    marginLeft: 10,
-    fontSize: 16,
-    marginTop: 5,
-    boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
-    },
-
-loginButtonV: {
-    color: "#2b2b2b",
-    width: "45%",
-    paddingVertical: 10,
-    borderRadius: 5,
-    marginLeft: 10,
-    fontSize: 16,
-    marginTop: 5,
-    marginHorizontal: 'auto',
-    },
-
+/* Estilos adicionados para a barra de progresso */
 progressSection: {
-    marginTop: 10,
-    alignSelf: 'center',
-    gap: 8,
-    marginBottom: 10,
-    },
-
-    barContainer: {
-    flexDirection: "row",
-    width: "100%",
-    gap: 6,
-    },
-
+  width: "90%",
+  marginHorizontal: 'auto',
+  gap: 8,
+  marginBottom: 'auto',
+},
+barContainer: {
+  flexDirection: "row",
+  width: "100%",
+  gap: 6,
+},
 segment: {
-    flex: 1,
-    height: 6,
-    borderRadius: 3,
-    },
+  flex: 1,
+  height: 6,
+  borderRadius: 3,
+},
+activeSegment: {
+  backgroundColor: "#209e3c",
+},
+inactiveSegment: {
+  backgroundColor: "#E2E8F0",
+},
+stepText: {
+  fontSize: 14,
+  color: "gray",
+},
 
-    activeSegment: {
-    backgroundColor: "#209e3c",
-    },
+Button: {
+  backgroundColor: "#209e3c",
+  color: "#fff",
+  width: "45%",
+  textAlign: "center",
+  paddingVertical: 10,
+  borderRadius: 20,
+  fontSize: 16,
+  marginTop: 10,
+  boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
+  cursor: "pointer",
+},
 
-    inactiveSegment: {
-    backgroundColor: "#E2E8F0",
-    },
+texto: {
+  fontSize: 30,
+  fontWeight: "bold",
+  textAlign: "center",
+  width: "70%",
+  marginHorizontal: "auto",
+},
+  
+subtexto: {
+  fontSize: 16,
+  color: "gray",
+  textAlign: "center",
+  width: "86%",
+  marginHorizontal: "auto",
+  marginBottom: 'auto',
+},
 
-    stepText: {
-    fontSize: 14,
-    color: "gray",
-    },
-    });
+pergunta: {
+  fontSize: 16,
+  marginBottom: 5,
+  flexDirection: "row",
+  justifyContent: "space-between",
+  fontWeight: "400",
+  paddingBottom: 5,
+  marginTop: 7,
+},
 
+input: {
+  boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2) inset",
+  borderRadius: 5,
+  padding: 10,
+  marginBottom: 10,
+  height: 45,
+  borderWidth: 0,
+},
 
+marcado: {
+  backgroundColor: "#078523",
+  borderColor: "#078523",
+  boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
+},
 
+checkbox: {
+  padding: 11,
+  boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
+  borderRadius: 25,
+},
 
+item: {
+  fontSize: 15,
+},
+
+concluido: {
+  color: '#ffffff',
+},
+
+/*desta tela*/
+
+loginContainer: {
+  width: "80%",
+  marginHorizontal: 'auto',
+},
+aviso:{
+  width: '80%',
+  height: 90,
+  backgroundColor: '#ffef96',
+  padding: 20,
+  marginHorizontal: 'auto',
+  marginBottom: 'auto',
+  borderRadius: 10,
+  borderWidth: 4,
+  borderColor: '#ffdc19',
+  alignItems: 'center',
+  flexDirection: 'row',
+  },
+
+icoav:{
+  margin: 'auto',
+  fontSize: 20,
+  },
+teavs:{
+  width: '90%',
+  fontSize: 11,
+  textAlign: 'justify',
+},
+
+});
