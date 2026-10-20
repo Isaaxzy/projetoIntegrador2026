@@ -1,85 +1,77 @@
-import { View, StyleSheet, Text, ImageBackground, Image, Pressable, Touchable, TouchableOpacity  } from 'react-native';
-import { useState } from 'react';
 import { Link } from 'expo-router';
+import { useState } from 'react';
+import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
 
- 
 const itensIniciais = ['🍽️ Sem restrições', '🥕 Vegetariano', '🌱 Vegano', '🥗 Flexitariano', '🥑 Low crab', '✨ outra'];
-export default function CheckBox() {
-	// Cada posição corresponde à tarefa na mesma posição de `itensIniciais`.
-	const [itensMarcados, setItensMarcados] = useState<boolean[]>(
-		itensIniciais.map(() => false),
-	);
- 
-	function alternarItem(index: number) {
-		// Cria um novo array e inverte somente o item que foi pressionado.
-		setItensMarcados((marcados) =>
-			marcados.map((marcado, itemIndex) =>
-				itemIndex === index ? !marcado : marcado,
-			),
-		);
-	}
 
+
+export default function App() {
     const totalSteps = 7;
     const currentStep = 2;
 
-    return (
-<View style={styles.backgroundd}>
-   <View style={styles.container}>
-          
-    <View style={styles.progressSection}>
-       <View style={styles.barContainer}>
-           {Array.from({ length: totalSteps }).map((_, index) => {
-            const stepNumber = index + 1;
-            const isActive = stepNumber <= currentStep;
-            return (
-      <View
-         key={index}
-         style={[
-           styles.segment,
-            isActive ? styles.activeSegment : styles.inactiveSegment,
-            ]}
-            />
+    const [itensMarcados, setItensMarcados] = useState<boolean[]>(
+            itensIniciais.map(() => false),
+        );
+     
+        function alternarItem(index: number) {
+            // Cria um novo array e inverte somente o item que foi pressionado.
+            setItensMarcados((marcados) =>
+                marcados.map((marcado, itemIndex) =>
+                    itemIndex === index ? !marcado : marcado,
+                ),
             );
-            })}
-      </View>
-      <Text style={styles.stepText}>Etapa {currentStep} de {totalSteps}</Text>
-          
-      <View style={{ alignItems: "center", marginBottom: 20}}>
-          
-        <Text style={styles.texto}>Sua alimentação</Text>
-        <Text style={styles.subtexto}>Como você costuma se alimentar? Você pode marcer mais de uma opção.</Text>
-      </View>
-          
-        <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10, marginHorizontal: 'auto',}}>           
-           {itensIniciais.map((item, index) => (
-            <Pressable
-            key={item}
-            onPress={() => alternarItem(index)}
-            >
-            <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
-            {itensMarcados[index] && <Text style={styles.check}></Text>}  
-          
-            <Text style={[styles.item, itensMarcados[index] && styles.concluido]}>
-            {item}
-            </Text>
-          
-          </View>
-                        
-          </Pressable>
-         ))}
-        </View>
+          }
+    return (
+      <View style={styles.backgroundd}>
+          <View style={styles.container}>
+            {/* Barra de Progresso + Etapa */}
+            <View style={styles.progressSection}>
+              <View style={styles.barContainer}>
+                {Array.from({ length: totalSteps }).map((_, index) => {
+                  const stepNumber = index + 1;
+                  const isActive = stepNumber <= currentStep;
+                  return (
+                    <View
+                      key={index}
+                      style={[
+                        styles.segment,
+                        isActive ? styles.activeSegment : styles.inactiveSegment,
+                      ]}
+                    />
+                  );
+                })}
+              </View>
+              <Text style={styles.stepText}>Etapa {currentStep} de {totalSteps}</Text>
+            </View> 
 
-      <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
-                   <Text><Link href={'/(tabs)/intro_comecar'}>← Voltar</Link></Text>
-                  <Link href={'/(tabs)/intro_etapa_2'} style={styles.Button}><Text>Próximo →</Text></Link>
+            <Text style={styles.texto}>Sua alimentação</Text>
+            <Text style={styles.subtexto}>Como você costuma se alimentar? Você pode marcer mais de uma opção.</Text>
+            <View style={styles.loginContainer}>
+                
+                <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: '50%'}}>
+                      {itensIniciais.map((item, index) => (
+                        <Pressable
+                        key={item}
+                        onPress={() => alternarItem(index)}
+                    >
+                                        {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
+                    <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
+                      {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
+                    </View>
+                                        {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
+                    
+                    </Pressable>
+                    ))}
                 </View>
-          
-    </View>   
-          
-    </View>    
-</View>
-)};
-
+            </View> 
+             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
+             <Text><Link href={'/(tabs)/intro_comecar'}>← Voltar</Link></Text>
+            <Link href={'/(tabs)/intro_etapa_2'} style={styles.Button}><Text>Próximo →</Text></Link>
+          </View>
+        </View>
+      </View>
+    );
+}
 
 const styles = StyleSheet.create({
 
@@ -92,8 +84,7 @@ backgroundd: {
 container: {
         borderRadius: 25,
         flex: 1,
-        width: 400,
-        margin:'auto',
+        margin: 'auto',
         padding: 24,
         justifyContent: 'center',
         backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
@@ -144,12 +135,9 @@ Button: {
 texto: {
   fontSize: 30,
   fontWeight: "bold",
-  marginBottom: 10,
   textAlign: "center",
   width: "70%",
-  margin: "auto",
-  marginTop: 20,
-  justifyContent: "center",
+  marginHorizontal: "auto",
 },
   
 subtexto: {
@@ -157,9 +145,8 @@ subtexto: {
   color: "gray",
   textAlign: "center",
   width: "86%",
-  margin: "auto",
-  marginTop: 10,
-  justifyContent: "center",
+  marginHorizontal: "auto",
+  marginBottom: 'auto',
 },
 
 pergunta: {
@@ -192,14 +179,20 @@ checkbox: {
   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
   borderRadius: 25,
 },
-    check: {
-        color: '#fff',
-        fontWeight: 'bold',
-    },
-    item: {
-        fontSize: 18,
-    },
-    concluido: {
-        color: '#ffffff',
-    },
+
+item: {
+  fontSize: 15,
+},
+
+concluido: {
+  color: '#ffffff',
+},
+
+/*desta tela*/
+
+loginContainer: {
+  width: "80%",
+  marginHorizontal: 'auto',
+},
+
 });

@@ -66,7 +66,7 @@ export default function App() {
                     >
                                         {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
                     <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
-                                            {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
+                            {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
                     </View>
                                         {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
                     
@@ -94,7 +94,6 @@ backgroundd: {
 container: {
         borderRadius: 25,
         flex: 1,
-        width: 400,
         margin: 'auto',
         padding: 24,
         justifyContent: 'center',
@@ -206,7 +205,7 @@ concluido: {
 /*desta tela*/
 
 loginContainer: {
-  width: "90%",
+  width: "80%",
   marginHorizontal: 'auto',
 },
 
