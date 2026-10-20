@@ -51,7 +51,6 @@ export default function App() {
                       {itensIniciais.map((item, index) => (
                         <Pressable
                         key={item}
-                        style={styles.linha}
                         onPress={() => alternarItem(index)}
     >
                         {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}

@@ -14,7 +14,7 @@ export default function App() {
               <Text style={styles.texto}>Olá, Eu sou seu companheiro de cozinha</Text>
               <Text style={styles.subtexto}>Antes de começarmos, quero conhecer um pouquinho dos seus gostos para encontrar receitas que realmente combinem com você.</Text>
             </View>
-            <Text style={styles.ButtonRota}><Link href={'/(tabs)/intro_etapa_1'}>Começar →</Link></Text>
+            <Link href={'/(tabs)/intro_etapa_1'} style={styles.ButtonRota}><Text >Começar →</Text></Link>
           </View>
         </View>
       </View>
@@ -56,7 +56,6 @@ texto: {
   width: "70%",
   margin: "auto",
   marginTop: 20,
-  justifyContent: "justify",
 },
   
 subtexto: {
@@ -66,7 +65,6 @@ subtexto: {
   width: "86%",
   margin: "auto",
   marginTop: 10,
-  justifyContent: "justify",
 },
 
 container: {
@@ -111,15 +109,6 @@ orText: {
 
 loginContainer: {
   width: "90%",
-},
-
-input: {
-  boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2) inset",
-  borderRadius: 5,
-  padding: 10,
-  marginBottom: 10,
-  height: 24,
-  border: "none",
 },
 
 label: {
