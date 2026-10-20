@@ -1,33 +1,31 @@
-import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Link } from 'expo-router';
- 
-// As tarefas exibidas inicialmente na lista de afazeres.
+import { useState } from 'react';
+import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+
 const itensIniciais = ['💫 Comer melhor', '⚡ Encontrar receitas práticas', '💰 Economizar', '🌈 Variar minha alimentação', '🎓 Aprender a cozinhar', '📅 Encontrar receitas para minha rotina', '✨ Outro'];
- 
-export default function CheckBox() {
- 
+
+
+export default function App() {
     const totalSteps = 7;
     const currentStep = 6;
-    // Cada posição corresponde à tarefa na mesma posição de `itensIniciais`.
+
     const [itensMarcados, setItensMarcados] = useState<boolean[]>(
-        itensIniciais.map(() => false),
-    );
- 
-    function alternarItem(index: number) {
-        // Cria um novo array e inverte somente o item que foi pressionado.
-        setItensMarcados((marcados) =>
-            marcados.map((marcado, itemIndex) =>
-                itemIndex === index ? !marcado : marcado,
-            ),
+            itensIniciais.map(() => false),
         );
-    }
- 
+     
+        function alternarItem(index: number) {
+            // Cria um novo array e inverte somente o item que foi pressionado.
+            setItensMarcados((marcados) =>
+                marcados.map((marcado, itemIndex) =>
+                    itemIndex === index ? !marcado : marcado,
+                ),
+            );
+          }
     return (
- 
-<View style={styles.backgroundd}>
-    <View style={styles.container}>
-        <View style={styles.progressSection}>
+      <View style={styles.backgroundd}>
+          <View style={styles.container}>
+            {/* Barra de Progresso + Etapa */}
+            <View style={styles.progressSection}>
               <View style={styles.barContainer}>
                 {Array.from({ length: totalSteps }).map((_, index) => {
                   const stepNumber = index + 1;
@@ -44,147 +42,59 @@ export default function CheckBox() {
                 })}
               </View>
               <Text style={styles.stepText}>Etapa {currentStep} de {totalSteps}</Text>
-            </View>
-        <Text style={styles.titulo}>Seu objetivo</Text>
-        <Text style={styles.subtexto}>O que você procura no aplicativo?</Text>
-            <View style={{flexWrap: 'wrap', flexDirection: 'row', gap: 10, marginTop: 10, width: "100%",}}>
-                    {itensIniciais.map((item, index) => (
-        <Pressable
-                            key={item}
-                            style={styles.linha}
-                            onPress={() => alternarItem(index)}
-        >
-                            {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
-        <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
-                                {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
-        </View>
-                            {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
-       
-        </Pressable>
-                    ))}
+            </View> 
 
+            <Text style={styles.texto}>Seu objetivo</Text>
+            <Text style={styles.subtexto}>O que você procura no aplicativo?</Text>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 30}}>
+                  {itensIniciais.map((item, index) => (
+                    <Pressable
+                    key={item}
+                    onPress={() => alternarItem(index)}
+                >
+                                    {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
+                <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
+                        {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
+                </View>
+                                    {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
+                
+                </Pressable>
+                ))}
+            </View>
+             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
+             <Text><Link href={'/(tabs)/intro_etapa_5'}>← Voltar</Link></Text>
+            <Link href={'/(tabs)/intro_etapa_7'} style={styles.Button}><Text>Próximo →</Text></Link>
+          </View>
         </View>
-        <View>
-           <View style={styles.bots}>
-             <TouchableOpacity style={styles.loginButtonV}><Text style={styles.textButtonV}><Link href={'/(tabs)/intro_etapa_5'}>←  Voltar</Link></Text></TouchableOpacity>
-                                        
-             <TouchableOpacity style={styles.loginButtonP}><Text style={styles.textButtonP}><Link href={'/(tabs)/intro_etapa_7'}>Proximo →</Link></Text></TouchableOpacity>
-        </View>   
-    </View>
-    
-    </View>
-</View>
+      </View>
     );
 }
- 
-// Estilos separados deixam a estrutura do componente mais legivel e reutilizavel.
+
 const styles = StyleSheet.create({
-    backgroundd: {
+
+backgroundd: {
         padding: 20,
         height: '100%',
         margin: 'auto',
-    },
-    container: {
+},
+
+container: {
         borderRadius: 25,
         flex: 1,
         width: 400,
         margin: 'auto',
         padding: 24,
+        justifyContent: 'center',
         backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-    },
-    tdr: {
-        marginBottom: 20,
-    },
-    titulo: {
-        marginBottom: 20,
-        fontSize: 24,
-        fontWeight: 'bold',
-    },
-    subtexto: {
-        fontSize: 15,
-        color: "gray",
-        marginBottom: 20,
 },
-    linha: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        marginBottom: '3%',
-    },
-    bots:{
-        flexDirection: 'row',
-        gap: 10,
-        borderTopWidth: 2,
-        borderColor: 'gray',
-        width: '100%',
-        justifyContent: 'flex-end',
-        marginVertical: '20%',
-    },
-
-    textButtonV:{
-        color: '#313131',
-        textAlign: "center",
-        fontWeight: 'bold',
-    },
-
-     textButtonP:{
-        color: '#ececec',
-        textAlign: "center",
-        fontWeight: 'bold',
-    },
-
-    loginButtonP: {
-    backgroundColor: "#078523",
-    color: "#fff",
-    width: "45%",
-    paddingVertical: 10,
-    borderRadius: 10,
-    marginLeft: 10,
-    fontSize: 16,
-    marginTop: 5,
-    boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
-    },
-
-loginButtonV: {
-    color: "#2b2b2b",
-    width: "45%",
-    paddingVertical: 10,
-    borderRadius: 5,
-    marginLeft: 10,
-    fontSize: 16,
-    marginTop: 5,
-    marginHorizontal: 'auto',
-    },
-
-    checkbox: {
-        paddingHorizontal: 12,
-        padding: 10,
-        marginHorizontal: 'auto',
-        alignItems: 'center',
-        justifyContent: 'center',
-        boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
-        borderRadius: 25,
-    },
-    marcado: {
-        backgroundColor: "#078523",
-        borderColor: "#078523",
-        boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
-    },
-    check: {
-        color: '#fff',
-        fontWeight: 'bold',
-    },
-    item: {
-        fontSize: 18,
-    },
-    concluido: {
-        color: '#ffffff',
-    },
-    progressSection: {
+    
+/* Estilos adicionados para a barra de progresso */
+progressSection: {
   width: "90%",
-  gap: 8,
-  marginBottom: 10,
   marginHorizontal: 'auto',
+  gap: 8,
+  marginBottom: 'auto',
 },
 barContainer: {
   flexDirection: "row",
@@ -206,4 +116,104 @@ stepText: {
   fontSize: 14,
   color: "gray",
 },
+
+Button: {
+  backgroundColor: "#209e3c",
+  color: "#fff",
+  width: "45%",
+  textAlign: "center",
+  paddingVertical: 10,
+  borderRadius: 20,
+  fontSize: 16,
+  marginTop: 10,
+  boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
+  cursor: "pointer",
+},
+
+texto: {
+  fontSize: 30,
+  fontWeight: "bold",
+  textAlign: "center",
+  width: "70%",
+  marginHorizontal: "auto",
+},
+  
+subtexto: {
+  fontSize: 16,
+  color: "gray",
+  textAlign: "center",
+  width: "86%",
+  marginHorizontal: "auto",
+  marginBottom: 'auto',
+},
+
+pergunta: {
+  fontSize: 16,
+  marginBottom: 5,
+  flexDirection: "row",
+  justifyContent: "space-between",
+  fontWeight: "400",
+  paddingBottom: 5,
+  marginTop: 7,
+},
+
+input: {
+  boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2) inset",
+  borderRadius: 5,
+  padding: 10,
+  marginBottom: 10,
+  height: 45,
+  borderWidth: 0,
+},
+
+marcado: {
+  backgroundColor: "#078523",
+  borderColor: "#078523",
+  boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
+},
+
+checkbox: {
+  padding: 11,
+  boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
+  borderRadius: 25,
+},
+
+item: {
+  fontSize: 15,
+},
+
+concluido: {
+  color: '#ffffff',
+},
+
+/*desta tela*/
+
+loginContainer: {
+  width: "80%",
+  marginHorizontal: 'auto',
+},
+aviso:{
+  width: '80%',
+  height: 90,
+  backgroundColor: '#ffef96',
+  padding: 20,
+  marginHorizontal: 'auto',
+  marginBottom: 'auto',
+  borderRadius: 10,
+  borderWidth: 4,
+  borderColor: '#ffdc19',
+  alignItems: 'center',
+  flexDirection: 'row',
+  },
+
+icoav:{
+  margin: 'auto',
+  fontSize: 20,
+  },
+teavs:{
+  width: '90%',
+  fontSize: 11,
+  textAlign: 'justify',
+},
+
 });
