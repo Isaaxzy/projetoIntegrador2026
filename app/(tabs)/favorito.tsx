@@ -4,6 +4,7 @@ import { Pressable, StyleSheet, Text, View, TouchableOpacity, Image, LogBox} fro
  
  
 export default function CheckBox() {
+    const [ingredientesExpandido, setIngredientesExpandido] = useState(false);
 
     return (
         
@@ -38,7 +39,21 @@ export default function CheckBox() {
 
                 <Text style={styles.updec}>🕐 30min  🍴 Fácil</Text>  
 
-                <Text style={styles.upingred}>Frango, Batata, Creme e outros ingredienteseeeeeeeeeeeeeeeeeeeeeeeeeeeee</Text>
+       <Pressable
+            onPress={() => setIngredientesExpandido((expandido) => !expandido)}
+            accessibilityRole="button"
+            style={[
+                ingredientesExpandido && styles.caixaIngredientesAtiva,
+            ]}
+            >
+            <Text
+                style={styles.upingred}
+                numberOfLines={ingredientesExpandido ? undefined : 2}
+                ellipsizeMode="tail"
+            >
+                Frango, batata, creme de leite, queijo, nose, nose e temperos.
+            </Text>
+        </Pressable>
 
              </View>
         </View>
@@ -210,13 +225,6 @@ const styles = StyleSheet.create({
         position: 'relative',
     },
 
-    descbox:{
-        width: '90%',
-        height: 0,
-        alignContent: 'center',
-        gap: 10
-    },
-
      upnome:{
         fontWeight: 'bold',
         fontSize: 20,
@@ -228,15 +236,31 @@ const styles = StyleSheet.create({
         fontSize: 16,
      },
 
-     upingred:{
+    descbox: {
         width: '90%',
-        height: 'auto',
-        fontSize: 16,
+        flex: 1,
+        gap: 10,
+        },
 
-        overflow: 'hidden',
-        textOverflow: 'eplipssis',
-        
-    },
+    caixaIngredientesAtiva: {
+        width: '100%',
+        height: 'auto',
+        backgroundColor: '#fafafa',
+        borderColor: '#29d82e',
+        borderRadius: 15,
+        boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
+        padding: 10,
+        },
+
+    caixaPressionada: {
+        backgroundColor: '#f0f0f0',
+        transform: [{ scale: 0.98 }],
+        },
+
+    upingred: {
+        fontSize: 16,
+        color: '#333',
+        },
 
     titulo: {
         marginBottom: 20,
