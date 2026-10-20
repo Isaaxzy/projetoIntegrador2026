@@ -627,8 +627,7 @@ const styles = StyleSheet.create({
 
     perf:{
     maxWidth: 50,
-    maxHeight: 50,
-    marginTop: -10, 
+    maxHeight: 50, 
     },
 
     ops:{
