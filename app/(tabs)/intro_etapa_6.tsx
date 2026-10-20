@@ -73,7 +73,7 @@ export default function App() {
 const styles = StyleSheet.create({
 
 backgroundd: {
-        padding: 20,
+        paddingVertical: 20,
         height: '100%',
         margin: 'auto',
 },
