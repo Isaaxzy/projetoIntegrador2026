@@ -27,7 +27,7 @@ CREATE TABLE favoritos(
 CREATE TABLE receitas(
 	id_receita INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     descricao VARCHAR(255) NOT NULL,
-    nome_prod VARCHAR(40) NOT NULL,
+    nome_receita VARCHAR(40) NOT NULL,
     dificuldade VARCHAR(15) NOT NULL,
     tempo VARCHAR(20) NOT NULL,
     ingredientes VARCHAR(255) NOT NULL,
