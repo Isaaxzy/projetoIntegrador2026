@@ -32,9 +32,8 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
 
    const [experienciaSelecionada, setExperienciaSelecionada] = useState<number | null>(null);
 
-    const [restricoesMarcadas, setRestricoesMarcadas] = useState<boolean[]>(
-    itensIniciais2.map(() => false),
-    );
+    const LIMITE_RESTRICOES = 3;
+    const [restricoesSelecionadas, setRestricoesSelecionadas] = useState<number[]>([]);
 
     const [alergiasMarcadas, setAlergiasMarcadas] = useState<boolean[]>(
     itensIniciais3.map(() => false),
@@ -48,9 +47,8 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
     itensIniciais5.map(() => false),
     );
 
-    const [objetivosMarcados, setObjetivosMarcados] = useState<boolean[]>(
-    itensIniciais6.map(() => false),
-    );
+    const LIMITE_RESTRICOES2 = 7;
+    const [objetivosMarcados, setObjetivosMarcados] = useState<number[]>([]);
 
     const [tempoMarcados, setTempoMarcados] = useState<boolean[]>(
     itensIniciais7.map(() => false),
@@ -64,10 +62,18 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
     }
 
     function alternarRestricao(index: number) {
-    setRestricoesMarcadas((marcados) =>
-    marcados.map((marcado, i) => (i === index ? !marcado : marcado)),
-    );
+  setRestricoesSelecionadas((selecionadas) => {
+    if (selecionadas.includes(index)) {
+      return selecionadas.filter((item) => item !== index);
     }
+
+    if (selecionadas.length >= LIMITE_RESTRICOES) {
+      return selecionadas;
+    }
+
+    return [...selecionadas, index];
+  });
+}
 
     function alternarAlergia(index: number) {
     setAlergiasMarcadas((marcados) =>
@@ -87,11 +93,19 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
     );
     }
 
-    function alternarObjetivo(index: number) {
-    setObjetivosMarcados((marcados) =>
-    marcados.map((marcado, i) => (i === index ? !marcado : marcado)),
-    );
+      function alternarObjetivo(index: number) {
+  setObjetivosMarcados((selecionadas) => {
+    if (selecionadas.includes(index)) {
+      return selecionadas.filter((item) => item !== index);
     }
+
+    if (selecionadas.length >= LIMITE_RESTRICOES2) {
+      return selecionadas;
+    }
+
+    return [...selecionadas, index];
+  });
+}
 
     function alternarTempo(index: number) {
     setTempoMarcados((marcados) =>
@@ -121,20 +135,20 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
 
 <ScrollView style={styles.scroll}>
 <View style={styles.loginContainer}>
-    <Text style={styles.sobv}>Sobre você</Text>
+    <Text style={styles.title}>Sobre você</Text>
 
     <Text style={styles.label}>Nome</Text>
-    <TextInput style={styles.input} maxLength={30} placeholder="Seu nome" />
+    <input style={styles.input} type='text' maxLength={35} placeholder="Seu nome" />
     
     <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
         <Text style={styles.label}>Idade</Text>
     </View>
 
-    <TextInput style={styles.input} keyboardType="numeric"placeholder="14+"/>
+    <input style={styles.input} type="number" min="14" max="70" placeholder="14+"/>
 
     <Text style={styles.label}>Para quantas pessoas você costuma cozinhar?</Text>
 
-    <TextInput style={styles.input} keyboardType="numeric" placeholder="Número de pessoas" />
+    <input style={styles.input} type="number" min="1" max="15" placeholder="Número de pessoas" />
     
     <Text style={styles.label}>Nivel de experiência na cozinha</Text>
     <View style={{ flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
@@ -154,28 +168,32 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
     </View>
     <View style={styles.loginContainer}>
     
-    <Text style={styles.sobv}>Restrições alimentares</Text>
+    <Text style={styles.pritext}>Restrições alimentares</Text>
     <View style={{flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
-    {itensIniciais2.map((item, index) => (
-        <TouchableOpacity
-            key={item}
+        {itensIniciais2.map((item, index) => {
+        const selecionada = restricoesSelecionadas.includes(index);
+
+        return (
+            <TouchableOpacity
+            key={`${item}-${index}`}
             onPress={() => alternarRestricao(index)}
-            style={[styles.checkbox,restricoesMarcadas[index] && styles.marcado,
-            ]}>
-            <Text style={[styles.item, restricoesMarcadas[index] && styles.concluido]}>
-            {item}
+            style={[styles.checkbox, selecionada && styles.marcado]}
+            >
+            <Text style={[styles.item, selecionada && styles.concluido]}>
+                {item}
             </Text>
-        </TouchableOpacity>
-        ))}
+            </TouchableOpacity>
+        );
+        })}
     </View>
     </View>
         
     <View style={styles.box2}>
 
-        <Text style={styles.sobv}>Alergias alimentares</Text>
+        <Text style={styles.pritext}>Alergias alimentares</Text>
     <View style={styles.aviso}>
-    <View style={styles.icoav}>⚠️</View><Text style={styles.teavs}>Confira sempre os ingredientes e rótulos dos produtos.
-    As sugestões do aplicativo não substituem orientação médica ou nutricional.
+    <View style={styles.icoav}>⚠️</View>
+    <Text style={styles.teavs}><Text style={styles.bold}>Filtros de segurança </Text>receitas com estes ingredientes não serão recomendadas.
     </Text>
         </View>
         <View style={{flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
@@ -194,7 +212,7 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
 </View>
 
         <View style={styles.loginContainer}>
-        <Text style={styles.sobv}>Ingredientes que evita</Text>
+        <Text style={styles.pritext}>Ingredientes que evita</Text>
         <View style={{flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
              {itensIniciais4.map((item, index) => (
         <TouchableOpacity
@@ -211,7 +229,7 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
         </View>
 
         <View style={styles.loginContainer}>
-        <Text style={styles.sobv}>Ingredientes que você ama</Text>
+        <Text style={styles.pritext}>Ingredientes que você ama</Text>
         <View style={{flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
              {itensIniciais5.map((item, index) => (
         <TouchableOpacity
@@ -228,23 +246,30 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
         </View>
 
         <View style={styles.loginContainer}>
-        <Text style={styles.sobv}>Objetivos</Text>
+        <Text style={styles.pritext}>Seus objetivos</Text>
         <View style={{flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
-             {itensIniciais6.map((item, index) => (
-        <TouchableOpacity
-            key={item}
+             {itensIniciais6.map((item, index) => {
+        const selecionada = objetivosMarcados.includes(index);
+
+        return (
+            <TouchableOpacity
+            key={`${item}-${index}`}
             onPress={() => alternarObjetivo(index)}
-            style={[styles.checkbox, objetivosMarcados[index] && styles.marcado,
-            ]}>
-            <Text style={[styles.item, objetivosMarcados[index] && styles.concluido]}>
-            {item}
+            style={[styles.checkbox, selecionada && styles.marcado]}
+            >
+            <Text style={[styles.item, selecionada && styles.concluido]}>
+                {item}
             </Text>
-        </TouchableOpacity>
-        ))}
+            </TouchableOpacity>
+        );
+        })}
         </View>
         </View>
 
         <View style={styles.loginContainer}>
+        <View style={styles.rotinaContainer}>
+            <Text style={styles.pritext}>Sua rotina</Text>
+        </View>
         <Text style={styles.sobv}>Tempo disponivél para cosinhar</Text>
         <View style={{flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
              {itensIniciais7.map((item, index) => (
@@ -259,10 +284,8 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
         </TouchableOpacity>
         ))}
         </View>
-        </View>
-
-        <View style={styles.loginContainer}>
-        <Text style={styles.sobv}>Dificuldade </Text>
+        <View style={styles.bar}></View>
+        <Text style={styles.sobv}>Dificuldade de cosinhar</Text>
         <View style={{flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
              {itensIniciais8.map((item, index) => (
         <TouchableOpacity
@@ -279,7 +302,10 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
         </View>
 
         <View style={styles.botbox}>
-        <TouchableOpacity style={styles.ButtonRota}>Algum texto ai</TouchableOpacity>
+        <TouchableOpacity style={styles.ButtonRota}><Image
+            style={styles.buttonIcon}
+            source={require("../imagens/save.png")}
+            /> <Text style={styles.buttonText}>Salvar todas as informações</Text></TouchableOpacity>
     </View>
 
     </ScrollView>
@@ -334,6 +360,10 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
 
 const styles = StyleSheet.create({
 
+    bar:{
+        marginTop: 15,
+    },
+
     fundo: {
     flex: 1,
     backgroundColor: "rgb(248, 248, 248)"
@@ -362,8 +392,8 @@ const styles = StyleSheet.create({
 
     teavs:{
     width: '90%',
-    fontSize: 12,
-    textAlign: 'justify',
+    fontSize: 18,
+    textAlign: 'auto',
     },
 
     box2:{
@@ -382,6 +412,14 @@ const styles = StyleSheet.create({
     logo: {
     width: 130,
     height: 187,
+    },
+
+    buttonIcon: {
+    width: 30,
+    height: 30,
+    marginLeft: '10%',
+    marginTop: -3,
+    tintColor: '#fff',
     },
 
     scroll:{
@@ -452,7 +490,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#209e3c",
     color: "#fff",
     width: "95%",
-    height: '60%',
+    height: '70%',
     textAlign: "center",
     paddingVertical: 10,
     marginTop: 15,
@@ -460,10 +498,23 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     fontSize: 16,
     boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
+    flexDirection: 'row',
+    gap: 15,
     },
 
     botbox:{
     flexDirection: 'row',
+    },
+
+    bold:{
+    fontWeight: 'bold',
+    },
+
+    buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
+    textAlign: 'center',
     },
 
     texto: {
@@ -483,11 +534,34 @@ const styles = StyleSheet.create({
     justifyContent: "justify",
     },
 
+    title:{
+    fontSize: 30,
+    fontWeight: "bold",
+    marginBottom: 5,
+    marginTop: 5,
+    textAlign: 'center',
+    },
+
     sobv:{
     marginTop: 10,
     marginBottom: 10,
-    fontSize: 25,
-    fontWeight:'bold',
+    marginLeft: 5,
+    fontSize: 19,
+    fontWeight: "bold",
+    },
+
+    rotinaContainer: {
+    width: '100%',
+    height: 50,
+    marginBottom: 10,
+    },
+
+    pritext:{
+    fontSize: 26,
+    fontWeight: 'bold', 
+    marginLeft: 5,
+    marginTop: 10,
+    marginBottom: 10,
     },
 
     container: {
@@ -510,7 +584,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     padding: 10,
     marginBottom: 10,
-    height: 45,
+    height: 25,
     borderWidth: 0,
     },
 
