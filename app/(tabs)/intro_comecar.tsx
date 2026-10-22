@@ -32,7 +32,6 @@ fundo: {
 logo: {
   width: 130,
   height: 187,
-
 },
 
 ButtonRota: {

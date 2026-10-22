@@ -3,7 +3,7 @@ import { useState } from 'react';
 import DadosDosFilmes from '../componentes/coisas';
 import renderCategoria from '../componentes/cardCategorias';
 
-const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Avançado'];
+const itensIniciais = ['⭐ Todas', '🍳 Café da manhã', '👩‍🍳 Almoço', '👩‍🍳 Janta'];
 const categorias = DadosDosFilmes();
 
 export default function App() {
@@ -23,7 +23,7 @@ export default function App() {
         <ScrollView>
     <View style={styles.fundo}>
         <View style={styles.container}>
-            <View style={{flexDirection: "row", alignItems: "center", padding: 10, gap:8}}>
+            <View style={{flexDirection: "row", alignItems: "center", padding: 10, gap:8, borderBottomColor: "#cacaca", borderBottomWidth: 1}}>
             <Image 
                 source={require("../imagens/2026_10_01_0mz_Kleki.png")} style={styles.image}></Image>
             <Text>Broly</Text>
@@ -33,14 +33,16 @@ export default function App() {
                     source={require("../imagens/2026_10_01_0mz_Kleki.png")} style={styles.image1}></Image>
                     <Text style={styles.subtexto}><Text style={styles.titulo}>Pronto, Isa! 🥦</Text> Agora já sei um pouquinho mais sobre seus gostos. separei algumas receitas que combinam com você</Text>
                 </View>
-                   
+                   <ScrollView horizontal>
                 <View style={{flexDirection: "row", gap: 10, marginLeft: 8, padding: 8,}}>
                         {itensIniciais.map((item, index) => (
+                            
                                                                 <Pressable
                                                                 key={item}
                                                                 style={styles.linha}
                                                                 onPress={() => alternarItem(index)}
-                                            >                       
+                                            >                      
+                                             
                                                                 {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
                                             <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
                                                                     {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
@@ -48,9 +50,11 @@ export default function App() {
                                                                 {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
                                            
                                             </Pressable>
+                                            
                                             ))}
 
                 </View>
+                </ScrollView>
                <View style={styles.cont}>
                     <Text style={styles.titulo1}>O que tenho em casa</Text>
                     <Text style={styles.subtexto}>Digite o que você tem na geladeira e encontre receitas.</Text>
@@ -61,7 +65,7 @@ export default function App() {
                 </View>
                 
             </View>
-            <View style={{width: 500, margin: "auto"}}>
+            <View style={{width: 500, margin: "auto",}}>
                     <Text style={styles.titulo3}>☆ Receitas para você</Text>
                              <View style={styles.backcolor}>
                                 <FlatList
@@ -216,7 +220,8 @@ marcado: {
 
 checkbox: {
   padding: 11,
-  boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
+  paddingHorizontal: 21,
+  boxShadow: "0px 0px 3px rgba(0, 0, 0, 0.2)",
   borderRadius: 25,
 },
 
