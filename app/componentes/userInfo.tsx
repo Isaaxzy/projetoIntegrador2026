@@ -50,7 +50,10 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
     const LIMITE_RESTRICOES2 = 7;
     const [objetivosMarcados, setObjetivosMarcados] = useState<number[]>([]);
 
-    const [tempoMarcados, setTempoMarcados] = useState<number | null>(null);
+
+  const [tempoMarcados, setTempoMarcados] = useState<boolean[]>(
+    itensIniciais7.map(() => false),
+  )
  
     const [dificuldadeMarcados, setDificuldadeMarcados] = useState<number | null>(null);
     
@@ -134,7 +137,7 @@ function alternarRestricao(id: number) {
 <Text style={styles.texto}>[Nome do usuario!]</Text>
 <Text style={styles.subtexto}>Edite suas preferencias alimentares</Text>
 
-<ScrollView style={styles.scroll}>
+<ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
 <View style={styles.loginContainer}>
     <Text style={styles.title}>Sobre você</Text>
 
@@ -196,14 +199,16 @@ function alternarRestricao(id: number) {
     </View>
     </View>
         
-    <View style={styles.box2}>
+    <View style={styles.loginContainer}>
 
         <Text style={styles.pritext}>Alergias alimentares</Text>
+
     <View style={styles.aviso}>
     <View style={styles.icoav}>⚠️</View>
     <Text style={styles.teavs}><Text style={styles.bold}>Filtros de segurança </Text>receitas com estes ingredientes não serão recomendadas.
     </Text>
         </View>
+
         <View style={{flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
     {itensIniciais3.map((item, index) => (
         <TouchableOpacity
@@ -284,14 +289,15 @@ function alternarRestricao(id: number) {
         <TouchableOpacity
             key={item}
             onPress={() => alternarTempo(index)}
-            style={[styles.checkbox, tempoMarcados === index && styles.marcado,
+            style={[styles.checkbox, tempoMarcados[index] && styles.marcado,
             ]}>
-            <Text style={[styles.item, tempoMarcados === index && styles.concluido]}>
+            <Text style={[styles.item, tempoMarcados[index] && styles.concluido]}>
             {item}
             </Text>
         </TouchableOpacity>
         ))}
         </View>
+
         <View style={styles.bar}></View>
         <Text style={styles.sobv}>Dificuldade de cozinhar</Text>
              <View style={{ flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
@@ -361,7 +367,6 @@ function alternarRestricao(id: number) {
 
             </View>
 
-
 </View>
 </View> 
 );
@@ -379,7 +384,7 @@ const styles = StyleSheet.create({
     },
 
     aviso:{
-    width: '100%',
+    width: '95%',
     height: 100,
     backgroundColor: '#ffef96',
     paddingLeft: 10,
@@ -657,6 +662,5 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     flexDirection: 'column',
     },
-
 
     });

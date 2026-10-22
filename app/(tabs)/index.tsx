@@ -35,15 +35,19 @@ export default function App() {
                  </View>
                   <input style={styles.input} type="password" placeholder="🔒︎ Enter your password" />
                   <View>
-                    <Text style={styles.loginButton}>Log in</Text>
+                  <Link style={styles.loginButton} href="../componentes/paginaInicial">
+                    <Text>Log in</Text>
+                  </Link>
                   </View>
                 </View>   
               </View>
               <View style={styles.signUpContainer}>
                 <Text>Don´t have an account?</Text>
-                <TouchableOpacity>
-                  <Text style={{ color: "#078523", fontWeight: "bold", cursor: "pointer" }}>Create One</Text>
-                </TouchableOpacity>
+                <Link href="../(tabs)/Criar conta">
+                  <TouchableOpacity>
+                    <Text style={{ color: "#078523", fontWeight: "bold", cursor: "pointer" }}>Create One</Text>
+                  </TouchableOpacity>
+                </Link>
               </View>
         </View>
       </View>

@@ -16,7 +16,7 @@ export default function TabLayout() {
           </View>
         ),
         headerStyle: {
-          backgroundColor: "rgb(93, 0, 7)",
+          backgroundColor: "rgb(241, 2, 22)",
           height: Platform.OS === "ios" ? 100 : 75,
           elevation: 0,
           shadowOpacity: 0,
@@ -30,7 +30,7 @@ export default function TabLayout() {
           borderTopWidth: 1,
           borderTopColor: "#F0F0F0",
           height: Platform.OS === "ios" ? 88 : 64,
-          paddingBottom: Platform.OS === "ios" ? 30 : 80,
+          paddingBottom: Platform.OS === "ios" ? 30 : 4,
           paddingTop: 10,
         },
         tabBarLabelStyle: {
@@ -40,12 +40,41 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="paginaInicial"
         options={{
-          title: "Projeto integrador!",
+          title: "Inicial",
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
-              name={focused ? "link" : "eye"}
+              name={focused ? "home" : "home-outline"}
+              size={24}
+              color={color}
+            />
+          ),
+        }}
+      />
+
+         <Tabs.Screen
+        name="favorito"
+        options={{
+          title: "Favoritos",
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "heart" : "heart-outline"}
+              size={24}
+              color={color}
+            />
+          ),
+        }}
+      />
+
+      
+         <Tabs.Screen
+        name="userInfo"
+        options={{
+          title: "Informações do Usuário",
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "person" : "person-outline"}
               size={24}
               color={color}
             />

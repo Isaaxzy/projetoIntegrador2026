@@ -1,33 +1,31 @@
 import { View, StyleSheet, FlatList, Text, Touchable, TouchableOpacity, Image, ImageBackground, ScrollView, Pressable } from 'react-native';
-import DadosDosFilmes from '../coisas';
+import DadosDosFilmes, { type Receita } from '../coisas';
 import { Link, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 
 const itensIniciais = ['♡ Favoritar', '✓ Já fiz essa receita'];
 
 export default function Filme() {
-  const { id } = useLocalSearchParams();
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const [itensMarcados, setItensMarcados] = useState<boolean[]>(
+    itensIniciais.map(() => false),
+  );
 
   const categorias = DadosDosFilmes();
-  const filmeEncontrado = categorias
+  const item: Receita | undefined = categorias
     .flatMap(categoria => categoria.filmes)
     .find(f => f.id === id);
-  console.log("Filme encontrado:", filmeEncontrado);
-  const item: Filmeprops = {
-    ...filmeEncontrado,
+  function alternarItem(index: number) {
+    setItensMarcados((marcados) =>
+      marcados.map((marcado, itemIndex) =>
+        itemIndex === index ? !marcado : marcado,
+      ),
+    );
   }
-     const [itensMarcados, setItensMarcados] = useState<boolean[]>(
-                itensIniciais.map(() => false),
-            );
-         
-            function alternarItem(index: number) {
-                // Cria um novo array e inverte somente o item que foi pressionado.
-                setItensMarcados((marcados) =>
-                    marcados.map((marcado, itemIndex) =>
-                        itemIndex === index ? !marcado : marcado,
-                    ),
-                );
-              }
+
+  if (!item) {
+    return <Text>Receita não encontrada.</Text>;
+  }
 
   return (
     
@@ -74,50 +72,26 @@ export default function Filme() {
       </View>
         <View style={styles.informacoes2}>
              <Text style={styles.titulo}>Ingredientes</Text>
-             <View style={{ width: "90%", marginLeft: 18, justifyContent: "space-between", flexDirection: "row"}}>
-              <Text style={styles.ingre}>Quinoa</Text>
-              <Text style={styles.ingre}>1 xícara</Text>
-          </View>
-          <Text style={{marginLeft: 18, color: "#66666673"}}>───────────────────────────────────</Text>
-             <View style={{ width: "90%", marginLeft: 18, justifyContent: "space-between", flexDirection: "row"}}>
-              <Text style={styles.ingre}>Grão-de-bico</Text>
-              <Text style={styles.ingre}>1 lata</Text>
-          </View>
-          <Text style={{marginLeft: 18, color: "#66666673"}}>───────────────────────────────────</Text>
-             <View style={{ width: "90%", marginLeft: 18, justifyContent: "space-between", flexDirection: "row"}}>
-              <Text style={styles.ingre}>Abacate</Text>
-              <Text style={styles.ingre}>1 unidade</Text>
-          </View>
-          <Text style={{marginLeft: 18, color: "#66666673",}}>───────────────────────────────────</Text>
-             <View style={{ width: "90%", marginLeft: 18, justifyContent: "space-between", flexDirection: "row"}}>
-              <Text style={styles.ingre}>Tomate</Text>
-              <Text style={styles.ingre}>1 unidade</Text>
-          </View>
-          <Text style={{marginLeft: 18, color: "#66666673"}}>───────────────────────────────────</Text>
-             <View style={{ width: "90%", marginLeft: 18, justifyContent: "space-between", flexDirection: "row"}}>
-              <Text style={styles.ingre}>Limão</Text>
-              <Text style={styles.ingre}>1 unidade</Text>
-          </View>
-          <Text style={{marginLeft: 18, color: "#66666673"}}>───────────────────────────────────</Text>
-             <View style={{ width: "90%", marginLeft: 18, justifyContent: "space-between", flexDirection: "row"}}>
-              <Text style={styles.ingre}>Azeite</Text>
-              <Text style={styles.ingre}>2 colheres</Text>
-          </View>
+             {item.ingredientes.map((ingrediente, index) => (
+               <View key={ingrediente.nome}>
+                 <View style={{ width: "90%", marginLeft: 18, justifyContent: "space-between", flexDirection: "row"}}>
+                   <Text style={styles.ingre}>{ingrediente.nome}</Text>
+                   <Text style={styles.ingre}>{ingrediente.unidade}</Text>
+                 </View>
+                 {index < item.ingredientes.length - 1 && (
+                   <Text style={{marginLeft: 18, color: "#66666673"}}>───────────────────────────────────</Text>
+                 )}
+               </View>
+             ))}
         </View>
         <View style={styles.informacoes3}>
           <Text style={styles.titulo}>Modo de Preparo</Text>
-            <View style={{ width: "90%", marginLeft: 18, flexDirection: "row", alignItems: "center"}}>
-              <Text style={styles.ingre1}>1</Text>
-              <Text>Cozinhe a quinoa em água com sal.</Text>
-          </View>
-          <View style={{ width: "90%", marginLeft: 18, flexDirection: "row", alignItems: "center"}}>
-              <Text style={styles.ingre1}>2</Text>
-              <Text>Misture o grão-de-bico e o tomate picado.</Text>
-          </View>
-          <View style={{ width: "90%", marginLeft: 18, flexDirection: "row", alignItems: "center"}}>
-              <Text style={styles.ingre1}>3</Text>
-              <Text>Finalize com abacate e molho de limão.</Text>
-          </View>
+          {item.modoDePreparo.map((passo, index) => (
+            <View key={`${index}-${passo}`} style={{ width: "90%", marginLeft: 18, flexDirection: "row", alignItems: "center"}}>
+              <Text style={styles.ingre1}>{index + 1}</Text>
+              <Text>{passo}</Text>
+            </View>
+          ))}
         </View>
       </View>
       
