@@ -1,33 +1,33 @@
-export async function register(email, password, confirmPassword) {
-    if (password !== confirmPassword) {
-        return { success: false, message: 'Passwords do not match.' }
+export function register() {
+    var email = document.getElementById('email').value
+    var senha = document.getElementById('password').value
+    var consenha = document.getElementById('confpassw').value
+
+    if (consenha != senha) {
+        console.alert('confirme a senha')
+        document.getElementById('password').value
+        document.getElementById('confpassw').value
     }
 
-    try {
-        const response = await fetch('http://localhost:3000/registro', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, password })
+    fetch('http://localhost:3000/registro', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: email,
+            password: senha
         })
-        const data = await response.json()
-
-        if (!response.ok || data.error) {
-            return {
-                success: false,
-                message: data.error || 'Could not create the account.'
+    })
+        .then((response) => response.json())
+        .then((dados) => {
+            if (dados.hasOwnProperty('error')) {
+                document.getElementById('email').value = ''
+                document.getElementById('password').value = ''
+                document.getElementById('confpassw').value = ''
+                return
             }
-        }
-
-        return {
-            success: true,
-            message: data.message || 'Account created successfully.'
-        }
-    } catch {
-        return {
-            success: false,
-            message: 'Unable to connect to the server.'
-        }
-    }
+            alert(dados.message)
+            window.location.href = './app/(tabs)/intro_comecar.tsx'
+        })
 }

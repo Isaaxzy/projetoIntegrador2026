@@ -1,26 +1,7 @@
-import { useState } from 'react';
-import { Alert, View, StyleSheet, Text, Image, TextInput, TouchableOpacity } from 'react-native';
-import { useRouter } from 'expo-router';
-import { register } from '../../create account';
+import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity,  } from 'react-native';
+import {register} from '../../create account'
 
 export default function App() {
-    const router = useRouter();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-
-    const handleRegister = async () => {
-      const result = await register(email, password, confirmPassword);
-      Alert.alert(result.success ? 'Success' : 'Registration failed', result.message);
-
-      if (result.success) {
-        setEmail('');
-        setPassword('');
-        setConfirmPassword('');
-        router.replace('/intro_comecar');
-      }
-    };
-
     return (
       <View style={styles.fundo}>
         <View>
@@ -47,44 +28,23 @@ export default function App() {
                 </View>
                 <View style={styles.loginContainer}>
                   <Text style={styles.label}>Email:</Text>
-                  <TextInput
-                    style={styles.input}
-                    value={email}
-                    onChangeText={setEmail}
-                    placeholder="✉︎ you@example.com"
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                  />
+                  <input style={styles.input} type="email" id='email' placeholder="✉︎ you@example.com" />
                   <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center",  }}>
                   <Text style={styles.label}>Password: </Text>
                  </View>
-                  <TextInput
-                    style={styles.input}
-                    value={password}
-                    onChangeText={setPassword}
-                    placeholder="🔒︎ Enter your password"
-                    secureTextEntry
-                  />
+                  <input style={styles.input} type="password" id='password' placeholder="🔒︎ Enter your password" />
                   <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center",  }}>
                   <Text style={styles.label}>Confirm Password: </Text>
                  </View>
-                  <TextInput
-                    style={styles.input}
-                    value={confirmPassword}
-                    onChangeText={setConfirmPassword}
-                    placeholder="🔒︎ Confirm your password"
-                    secureTextEntry
-                  />
+                  <input style={styles.input} type="password" id='confpassw' placeholder="🔒︎ Confirm your password" />
                   <View>
-                    <TouchableOpacity style={styles.loginButton} onPress={handleRegister}>
-                      <Text style={styles.loginButtonText}>Create Account</Text>
-                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.loginButton}>Create Account</TouchableOpacity>
                   </View>
                 </View>   
               </View>
               <View style={styles.signUpContainer}>
                 <Text>Already have an account?</Text>
-                <TouchableOpacity><Text style={{ color: "#078523", fontWeight: "bold" }}>Log in</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => register()}><Text style={{ color: "#078523", fontWeight: "bold" }}>Log in</Text></TouchableOpacity>
               </View>
         </View>
       </View>
@@ -173,7 +133,7 @@ input: {
   borderRadius: 5,
   padding: 10,
   marginBottom: 2,
-  height: 40,
+  height: 20,
   borderWidth: 0
 },
 
@@ -197,18 +157,14 @@ forgotPassword: {
 
 loginButton: {
   backgroundColor: "#078523",
+  color: "#fff",
   width: "100%",
+  textAlign: "center",
   paddingVertical: 10,
   borderRadius: 5,
   fontSize: 16,
   marginTop: 5,
   boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
-},
-
-loginButtonText: {
-  color: "#fff",
-  textAlign: "center",
-  fontSize: 16,
 },
 
 signUpContainer: {
