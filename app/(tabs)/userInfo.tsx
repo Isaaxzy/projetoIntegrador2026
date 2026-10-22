@@ -14,7 +14,7 @@ ScrollView
 
 const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Avançado'];
 
-const itensIniciais2 = ['🍽️ Sem restrições', '🥕 Vegetariano', '🌱 Vegano', '🥗 Flexitariano', '🥑 Low crab', '✨ outra'];
+const itensIniciais2 = [ { id: 1, label: '🍽️ Sem restrições' }, { id: 2, label: '🥕 Vegetariano' }, { id: 3, label: '🌱 Vegano' }, { id: 4, label: '🥗 Flexitariano' }, { id: 5, label: '🥑 Low crab' }, { id: 6, label: '✨ outra' } ];
 
 const itensIniciais3 = ['🥛 Leite', '🥚 Ovo', '🥜 Amendoim', '🌰 Castanhas', '🫘 Soja', '🌾 Trigo', '🐟 Peixes', '🦐 Frutos do Mar'];
 
@@ -52,25 +52,27 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
 
     const [tempoMarcados, setTempoMarcados] = useState<number | null>(null);
  
-    const [dificuldadeMarcados, setDificuldadeMarcados] = useState<boolean[]>(
-    itensIniciais8.map(() => false),
-    );
-
+    const [dificuldadeMarcados, setDificuldadeMarcados] = useState<number | null>(null);
+    
     function alternarExperiencia(index: number) {
     setExperienciaSelecionada(index === experienciaSelecionada ? null : index);
     }
 
-    function alternarRestricao(index: number) {
+function alternarRestricao(id: number) {
   setRestricoesSelecionadas((selecionadas) => {
-    if (selecionadas.includes(index)) {
-      return selecionadas.filter((item) => item !== index);
+    if (selecionadas.includes(id)) {
+      return selecionadas.filter((item) => item !== id);
     }
 
-    if (selecionadas.length >= LIMITE_RESTRICOES) {
+    if (id === 1) {
+      return [1];
+    }
+
+    if (selecionadas.includes(1) || selecionadas.length >= LIMITE_RESTRICOES) {
       return selecionadas;
     }
 
-    return [...selecionadas, index];
+    return [...selecionadas, id];
   });
 }
 
@@ -106,15 +108,16 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
   });
 }
 
-       function alternarTempo(index: number) {
-    setTempoMarcados(index === tempoMarcados ? null : index);
-    }
-
-    function alternarDificuldade(index: number) {
-    setDificuldadeMarcados((marcados) =>
+      function alternarTempo(index: number) {
+    setTempoMarcados((marcados) =>
     marcados.map((marcado, i) => (i === index ? !marcado : marcado)),
     );
     }
+
+       function alternarDificuldade(index: number) {
+    setDificuldadeMarcados(index === dificuldadeMarcados ? null : index);
+    }
+
 
     return (
     <View style={styles.fundo}>
@@ -168,21 +171,28 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
     
     <Text style={styles.pritext}>Restrições alimentares</Text>
     <View style={{flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
-        {itensIniciais2.map((item, index) => {
-        const selecionada = restricoesSelecionadas.includes(index);
+        {itensIniciais2.map((item) => {
+  const selecionada = restricoesSelecionadas.includes(item.id);
+  const bloqueada =
+    item.id !== 1 && restricoesSelecionadas.includes(1);
 
-        return (
-            <TouchableOpacity
-            key={`${item}-${index}`}
-            onPress={() => alternarRestricao(index)}
-            style={[styles.checkbox, selecionada && styles.marcado]}
-            >
-            <Text style={[styles.item, selecionada && styles.concluido]}>
-                {item}
-            </Text>
-            </TouchableOpacity>
-        );
-        })}
+  return (
+    <TouchableOpacity
+      key={item.id}
+      disabled={bloqueada}
+      onPress={() => alternarRestricao(item.id)}
+      style={[
+        styles.checkbox,
+        selecionada && styles.marcado,
+        bloqueada && { opacity: 0.5 },
+      ]}
+    >
+      <Text style={[styles.item, selecionada && styles.concluido]}>
+        {item.label}
+      </Text>
+    </TouchableOpacity>
+  );
+})}
     </View>
     </View>
         
@@ -268,36 +278,36 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
         <View style={styles.rotinaContainer}>
             <Text style={styles.pritext}>Sua rotina</Text>
         </View>
-        <Text style={styles.sobv}>Tempo disponivél para cosinhar</Text>
-           <View style={{ flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
-    {itensIniciais7.map((item, index) => (
-    <TouchableOpacity
-        key={item}
-        onPress={() => alternarTempo(index)}
-        style={[ styles.checkbox, tempoMarcados === index && styles.marcado,
-        ]}
-    >
-        <Text style={[styles.item, tempoMarcados === index && styles.concluido]}>
-        {item}
-        </Text>
-    </TouchableOpacity>
-    ))}
-</View>
-        <View style={styles.bar}></View>
-        <Text style={styles.sobv}>Dificuldade de cosinhar</Text>
-        <View style={{flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
-             {itensIniciais8.map((item, index) => (
+        <Text style={styles.sobv}>Tempo disponivél para cozinhar</Text>
+     <View style={{flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
+             {itensIniciais7.map((item, index) => (
         <TouchableOpacity
             key={item}
-            onPress={() => alternarDificuldade(index)}
-            style={[styles.checkbox, dificuldadeMarcados[index] && styles.marcado,
+            onPress={() => alternarTempo(index)}
+            style={[styles.checkbox, tempoMarcados === index && styles.marcado,
             ]}>
-            <Text style={[styles.item, dificuldadeMarcados[index] && styles.concluido]}>
+            <Text style={[styles.item, tempoMarcados === index && styles.concluido]}>
             {item}
             </Text>
         </TouchableOpacity>
         ))}
         </View>
+        <View style={styles.bar}></View>
+        <Text style={styles.sobv}>Dificuldade de cozinhar</Text>
+             <View style={{ flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
+    {itensIniciais8.map((item, index) => (
+    <TouchableOpacity
+        key={item}
+        onPress={() => alternarDificuldade(index)}
+        style={[ styles.checkbox, dificuldadeMarcados === index && styles.marcado,
+        ]}
+    >
+        <Text style={[styles.item, dificuldadeMarcados === index && styles.concluido]}>
+        {item}
+        </Text>
+    </TouchableOpacity>
+    ))}
+</View>
         </View>
 
         <View style={styles.botbox}>
