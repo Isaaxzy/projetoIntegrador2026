@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { usePathname } from 'expo-router';
+import { Link, usePathname } from 'expo-router';
 import { FlatList, Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import type { ReceitaFavorita } from '../servicos/favoritos';
 
@@ -103,10 +103,10 @@ export default function App() {
 
                 <View style={styles.ops}>
                     <View style={styles.foote}>
-                        <TouchableOpacity style={styles.loginButtonP}>
+                        <Link href={"/(tabs)/paginaInicial"}><TouchableOpacity style={styles.loginButtonP}>
                             <Image style={styles.perf} source={require("../imagens/house.png")} />
                             <Text style={styles.textButtonP}>Inicio</Text>
-                        </TouchableOpacity>
+                        </TouchableOpacity></Link>
                     </View>
                     <View style={styles.foote}>
                         <TouchableOpacity style={styles.loginButtonP}>
@@ -124,13 +124,13 @@ export default function App() {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.foote}>
-                        <TouchableOpacity style={styles.loginButtonP}>
+                        <Link href={"/(tabs)/userInfo"}><TouchableOpacity style={styles.loginButtonP}>
                             <Image
                                 style={styles.perf}
                                 source={require("../imagens/perf.png")}
                             />
                             <Text style={styles.textButtonP}>Perfil</Text>
-                        </TouchableOpacity>
+                        </TouchableOpacity></Link>
                     </View>
                 </View>
             </View>

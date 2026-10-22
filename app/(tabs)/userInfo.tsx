@@ -322,12 +322,12 @@ function alternarRestricao(id: number) {
     <View style={styles.ops}>
 
         <View style={styles.foote}>
-            <TouchableOpacity style={styles.loginButtonP}>
+            <Link href={"/(tabs)/paginaInicial"} style={styles.loginButtonP}><TouchableOpacity>
             <Image
             style={styles.perf}
             source={require("../imagens/house.png")}
             /> 
-            <Text style={styles.textButtonP}>Inicio</Text></TouchableOpacity>
+            <Text style={styles.textButtonP}>Inicio</Text></TouchableOpacity></Link>
             </View>
 
             <View style={styles.foote}>
@@ -341,17 +341,17 @@ function alternarRestricao(id: number) {
             </View>
 
             <View style={styles.foote}>
-        <TouchableOpacity style={styles.loginButtonP}>
+        <Link href={"/(tabs)/favorito"} style={styles.loginButtonP}><TouchableOpacity style={styles.loginButtonP}>
             <Image
             style={styles.perf}
             source={require("../imagens/fav.png")}
             />
-        <Text style={styles.textButtonP}>Favoritos</Text></TouchableOpacity>
+        <Text style={styles.textButtonP}>Favoritos</Text></TouchableOpacity></Link>
 
             </View>
 
             <View style={styles.foote}>
-            <TouchableOpacity style={styles.loginButtonP}>
+            <TouchableOpacity >
             <Image
             style={styles.perf}
             source={require("../imagens/perf.png")}

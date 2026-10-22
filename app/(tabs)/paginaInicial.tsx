@@ -39,7 +39,6 @@ export default function App() {
                             
                                                                 <Pressable
                                                                 key={item}
-                                                                style={styles.linha}
                                                                 onPress={() => alternarItem(index)}
                                             >                      
                                              
@@ -67,7 +66,7 @@ export default function App() {
             </View>
             <View style={{width: 500, margin: "auto",}}>
                     <Text style={styles.titulo3}>☆ Receitas para você</Text>
-                             <View style={styles.backcolor}>
+                             <View>
                                 <FlatList
                                 data={categorias}
                                 keyExtractor={i => i.id}
@@ -178,7 +177,6 @@ cont: {
     padding: 15,
     borderWidth: 2,
     borderRadius: 20,
-    border: "none",
     boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
     marginBottom: 15,
 },
@@ -199,7 +197,6 @@ button: {
 input: {
     borderRadius: 10,
     boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.38) inset",
-    border: "none",
     padding: 10,
     height: 25,
 },
