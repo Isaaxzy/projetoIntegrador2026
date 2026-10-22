@@ -1,3 +1,4 @@
+import { Link } from "expo-router";
 import { View, StyleSheet, Text, ImageBackground, Image,  } from 'react-native';
 
 export default function App() {
@@ -43,7 +44,9 @@ export default function App() {
               </View>
               <View style={styles.signUpContainer}>
                 <Text>Already have an account?</Text>
-                <Text style={{ color: "#078523", fontWeight: "bold" }}>Log in</Text>
+                <Link href="/(tabs)">
+                  <Text style={{ color: "#078523", fontWeight: "bold" }}>Log in</Text>
+                </Link>
               </View>
         </View>
       </View>
