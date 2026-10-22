@@ -24,7 +24,7 @@ export default function App() {
     return (
       <View style={styles.fundo}>
           <View style={styles.container}>
-            {/* Barra de Progresso + Etapa */}
+
             <View style={styles.progressSection}>
               <View style={styles.barContainer}>
                 {Array.from({ length: totalSteps }).map((_, index) => {
