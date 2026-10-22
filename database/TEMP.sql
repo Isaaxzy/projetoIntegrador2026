@@ -21,7 +21,7 @@ CREATE TABLE clientes(
 CREATE TABLE favoritos(
     id_fav INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     id_receita INT NOT NULL,
-    FOREIGN KEY (id_receita) REFERENCES (id_receita)
+    FOREIGN KEY (id_receita) REFERENCES receitas (id_receita)
 );
 
 CREATE TABLE receitas(
