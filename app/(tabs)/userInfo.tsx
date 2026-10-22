@@ -50,9 +50,8 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
     const LIMITE_RESTRICOES2 = 7;
     const [objetivosMarcados, setObjetivosMarcados] = useState<number[]>([]);
 
-    const [tempoMarcados, setTempoMarcados] = useState<boolean[]>(
-    itensIniciais7.map(() => false),
-    );
+    const [tempoMarcados, setTempoMarcados] = useState<number | null>(null);
+ 
     const [dificuldadeMarcados, setDificuldadeMarcados] = useState<boolean[]>(
     itensIniciais8.map(() => false),
     );
@@ -107,11 +106,10 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
   });
 }
 
-    function alternarTempo(index: number) {
-    setTempoMarcados((marcados) =>
-    marcados.map((marcado, i) => (i === index ? !marcado : marcado)),
-    );
+       function alternarTempo(index: number) {
+    setTempoMarcados(index === tempoMarcados ? null : index);
     }
+
     function alternarDificuldade(index: number) {
     setDificuldadeMarcados((marcados) =>
     marcados.map((marcado, i) => (i === index ? !marcado : marcado)),
@@ -271,19 +269,20 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
             <Text style={styles.pritext}>Sua rotina</Text>
         </View>
         <Text style={styles.sobv}>Tempo disponivél para cosinhar</Text>
-        <View style={{flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
-             {itensIniciais7.map((item, index) => (
-        <TouchableOpacity
-            key={item}
-            onPress={() => alternarTempo(index)}
-            style={[styles.checkbox, tempoMarcados[index] && styles.marcado,
-            ]}>
-            <Text style={[styles.item, tempoMarcados[index] && styles.concluido]}>
-            {item}
-            </Text>
-        </TouchableOpacity>
-        ))}
-        </View>
+           <View style={{ flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
+    {itensIniciais7.map((item, index) => (
+    <TouchableOpacity
+        key={item}
+        onPress={() => alternarTempo(index)}
+        style={[ styles.checkbox, tempoMarcados === index && styles.marcado,
+        ]}
+    >
+        <Text style={[styles.item, tempoMarcados === index && styles.concluido]}>
+        {item}
+        </Text>
+    </TouchableOpacity>
+    ))}
+</View>
         <View style={styles.bar}></View>
         <Text style={styles.sobv}>Dificuldade de cosinhar</Text>
         <View style={{flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
