@@ -4,11 +4,13 @@ USE temp_db;
  
 CREATE TABLE clientes(
 	id_cli INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR (50) NOT NULL,
+    username VARCHAR (30) NOT NULL,
     email VARCHAR (50) NOT NULL,
     password VARCHAR(255) NOT NULL UNIQUE,
     nom_cli VARCHAR(40) NOT NULL,
     idade INT NOT NULL,
-    quantidade de pessoas INT NOT NULL,
+    quantidade_pessoas INT NOT NULL,
     alergia VARCHAR(50) NOT NULL,
     ingre_gosta VARCHAR(50) NOT NULL,
     ingre_Ngosta VARCHAR(50) NOT NULL,
@@ -16,12 +18,6 @@ CREATE TABLE clientes(
     tempo VARCHAR(25) NOT NULL,
     experiencia VARCHAR(30) NOT NULL,
     alimentacao VARCHAR(40) NOT NULL
-);
-
-CREATE TABLE favoritos(
-    id_fav INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    id_receita INT NOT NULL,
-    FOREIGN KEY (id_receita) REFERENCES receitas (id_receita)
 );
 
 CREATE TABLE receitas(
@@ -37,13 +33,12 @@ CREATE TABLE receitas(
     num_pessoas INT NOT NULL,
     resentimente VARCHAR(3) NOT NULL
     );
-
-CREATE TABLE servico(
-	id_serv INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    preco_base DECIMAL (10,2) NOT NULL,
-    categoria_serv VARCHAR(60) NOT NULL,
-    descricao VARCHAR(255) NOT NULL
-    );
+    
+    CREATE TABLE favoritos(
+    id_fav INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    id_receita INT NOT NULL,
+    FOREIGN KEY (id_receita) REFERENCES receitas (id_receita)
+);
 
 CREATE TABLE servico_contratado(
 	id_servCon INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -55,7 +50,6 @@ CREATE TABLE servico_contratado(
     FOREIGN KEY (id_cli) REFERENCES clientes (id_cli),
     FOREIGN KEY (id_serv) REFERENCES servico (id_serv)
     );
-
     CREATE TABLE manutencao(
     id_manu INT NOT  NULL PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(50) NOT NULL,
@@ -65,7 +59,6 @@ CREATE TABLE servico_contratado(
     tipo_sistema VARCHAR(255) NOT NULL,
     descricao TEXT NOT NULL
     );
-
 CREATE TABLE solicitar_instalacao(
 	id_insta INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     id_prod INT NOT NULL,
@@ -77,7 +70,6 @@ CREATE TABLE solicitar_instalacao(
     data_solicita DATE NOT NULL,
     FOREIGN KEY (id_prod) REFERENCES produtos (id_prod)
     );
-
     CREATE TABLE consultoria (
     id_cons INT AUTO_INCREMENT PRIMARY KEY,
     id_cli INT NOT NULL,
