@@ -6,7 +6,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerShown: true,
+        headerShown: false,
         headerTitleAlign: "left",
         headerTitle: (props) => (
           <View style={styles.headerContainer}>
@@ -23,13 +23,13 @@ export default function TabLayout() {
           borderBottomWidth: 1,
           borderBottomColor: "rgb(37, 6, 6)",
         },
-        tabBarActiveTintColor: "#007AFF",
-        tabBarInactiveTintColor: "#8E8E93",
+        tabBarActiveTintColor: "#ffffff",
+        tabBarInactiveTintColor: "#ffffff",
         tabBarStyle: {
-          backgroundColor: "rgb(9, 9, 94)",
+          backgroundColor: "rgb(1, 158, 28)",
           borderTopWidth: 1,
           borderTopColor: "#F0F0F0",
-          height: Platform.OS === "ios" ? 88 : 64,
+          height: Platform.OS === "ios" ? 88 : 68,
           paddingBottom: Platform.OS === "ios" ? 30 : 4,
           paddingTop: 10,
         },

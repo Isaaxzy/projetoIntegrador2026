@@ -1,7 +1,7 @@
 import { View, StyleSheet, Text, ImageBackground, Image, Pressable, Touchable, TouchableOpacity, FlatList, ScrollView,} from 'react-native';
 import { useState } from 'react';
-import DadosDosFilmes from './coisas';
-import renderCategoria from './cardCategorias';
+import DadosDosFilmes from '../componentes/coisas';
+import renderCategoria from '../componentes/cardCategorias';
 
 const itensIniciais = ['⭐ Todas', '🍳 Café da manhã', '👩‍🍳 Almoço', '👩‍🍳 Janta'] as const;
 const categoriasOriginal = DadosDosFilmes();

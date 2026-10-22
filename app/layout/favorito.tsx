@@ -100,39 +100,6 @@ export default function App() {
                     columnWrapperStyle={styles.linha}
                     showsVerticalScrollIndicator={false}
                 />
-
-                <View style={styles.ops}>
-                    <View style={styles.foote}>
-                        <TouchableOpacity style={styles.loginButtonP}>
-                            <Image style={styles.perf} source={require("../imagens/house.png")} />
-                            <Text style={styles.textButtonP}>Inicio</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.foote}>
-                        <TouchableOpacity style={styles.loginButtonP}>
-                            <Image style={styles.perf} source={require("../imagens/agend.png")} />
-                            <Text style={styles.textButtonP}>Planejar</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.foote}>
-                        <TouchableOpacity style={styles.loginButtonP}>
-                            <Image
-                                style={[styles.perf, favoritosAtivo && styles.iconeAtivo]}
-                                source={require("../imagens/fav.png")}
-                            />
-                            <Text style={styles.textButtonP}>Favoritos</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.foote}>
-                        <TouchableOpacity style={styles.loginButtonP}>
-                            <Image
-                                style={styles.perf}
-                                source={require("../imagens/perf.png")}
-                            />
-                            <Text style={styles.textButtonP}>Perfil</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
             </View>
         </View>
     );
