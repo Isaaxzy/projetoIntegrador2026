@@ -1,5 +1,19 @@
-export default function DadosDosFilmes() {
-    const categorias = [
+export type Receita = {
+  id: string;
+  titulo: string;
+  cor: string;
+  Imagem: string;
+  descrição: string;
+  info: string;
+  dificuldade: string;
+  duracao: string;
+  categorias: ('⭐ Todas' | '🍳 Café da manhã' | '👩‍🍳 Almoço' | '👩‍🍳 Janta')[];
+  ingredientes: { nome: string; unidade: string }[];
+  modoDePreparo: string[];
+};
+
+export default function DadosDosFilmes(): { id: string; filmes: Receita[] }[] {
+    const categorias: { id: string; filmes: Receita[] }[] = [
   {
     id: "1",
     filmes: [
@@ -10,15 +24,45 @@ export default function DadosDosFilmes() {
         descrição: "Quinoa colorida com grão-de-bico, abacate e molho de limão.", 
         info: "Frango, Batata, Arroz",
         dificuldade: "👨‍🍳 Fácil", 
-        duracao:'⏳ 30min' },
+        duracao:'⏳ 30min',
+        categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
+        ingredientes: [
+          { nome: 'Quinoa', unidade: '1 xícara' },
+          { nome: 'Grão-de-bico', unidade: '1 lata' },
+          { nome: 'Abacate', unidade: '1 unidade' },
+          { nome: 'Tomate', unidade: '1 unidade' },
+          { nome: 'Limão', unidade: '1 unidade' },
+          { nome: 'Azeite', unidade: '2 colheres' },
+        ],
+        modoDePreparo: [
+          'Cozinhe a quinoa em água com sal.',
+          'Misture o grão-de-bico e o tomate picado.',
+          'Finalize com abacate e molho de limão.',
+        ],
+      },
       { id: "1b", 
-        titulo: "Sopa de batata", 
+        titulo: "Pipoca doce",
         cor: "#16213e", 
         Imagem:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROWlIkh7eKx96hxWd_FxA1uqhghj0rMG5WvzChBu_s3JnkiUVVKDT1Z3c&s=10", 
         descrição: "A continuação da jornada de Paul Atreides em Duna, onde ele se torna o líder da resistência contra o Império.", 
         info: "Frango, Batata, Arroz",
         dificuldade: "👨‍🍳 Médio", 
-        duracao:'⏳ 45min' },
+        duracao:'⏳ 45min',
+        categorias: ['⭐ Todas', '🍳 Café da manhã'],
+        ingredientes: [
+          { nome: 'Açúcar', unidade: '5 colheres (sopa)' },
+          { nome: 'Óleo', unidade: '5 colheres (sopa)' },
+          { nome: 'Água', unidade: '5 colheres (sopa)' },
+          { nome: 'Milho de pipoca', unidade: '5 colheres (sopa)' },
+          { nome: 'Chocolate em pó', unidade: '1 colher' },
+        ],
+        modoDePreparo: [
+          'Em uma panela, adicione todos os ingredientes e misture delicadamente.',
+          'Desligue o fogo quando o intervalo de tempo entre os estouros da pipoca diminuírem.',
+          'Está pronta para comer.',
+          'mais um passo'
+        ],
+      },
       { id: "1c", 
         titulo: "Espaguete", 
         cor: "#0f3460", 
@@ -26,7 +70,11 @@ export default function DadosDosFilmes() {
         descrição: "Uma comédia sobre a vida de Barbie, que descobre o mundo real e enfrenta desafios.", 
         info: "Frango, Batata, Arroz",
         dificuldade: "👨‍🍳 Fácil", 
-        duracao:'⏳ 20min' },
+        duracao:'⏳ 20min',
+        categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
+        ingredientes: [],
+        modoDePreparo: [],
+      },
       { id: "1d", 
         titulo: "Comidas", 
         cor: "#533483", 
@@ -34,7 +82,11 @@ export default function DadosDosFilmes() {
         descrição: "Uma comédia romântica sobre a vida de Bella, que é ressuscitada por um cientista louco.", 
         info: "Frango, Batata, Arroz",
         dificuldade: "👨‍🍳 Fácil", 
-        duracao:'⏳ 15min' },
+        duracao:'⏳ 15min',
+        categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
+        ingredientes: [],
+        modoDePreparo: [],
+      },
       { id: "1e", 
         titulo: "ensopado", 
         cor: "#2b2d42", 
@@ -42,7 +94,11 @@ export default function DadosDosFilmes() {
         descrição: "Um drama sobre a vida de um jovem que se envolve em um relacionamento complicado com um homem rico.", 
         info: "Frango, Batata, Arroz",
         dificuldade: "👨‍🍳 Fácil", 
-        duracao:'⏳ 1h' },
+        duracao:'⏳ 1h',
+        categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
+        ingredientes: [],
+        modoDePreparo: [],
+      },
     ],
   },
 ];

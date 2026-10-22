@@ -3,22 +3,36 @@ import { useState } from 'react';
 import DadosDosFilmes from '../componentes/coisas';
 import renderCategoria from '../componentes/cardCategorias';
 
-const itensIniciais = ['⭐ Todas', '🍳 Café da manhã', '👩‍🍳 Almoço', '👩‍🍳 Janta'];
-const categorias = DadosDosFilmes();
+const itensIniciais = ['⭐ Todas', '🍳 Café da manhã', '👩‍🍳 Almoço', '👩‍🍳 Janta'] as const;
+const categoriasOriginal = DadosDosFilmes();
+
 
 export default function App() {
-    const [itensMarcados, setItensMarcados] = useState<boolean[]>(
-            itensIniciais.map(() => false),
-        );
-     
-        function alternarItem(index: number) {
-            // Cria um novo array e inverte somente o item que foi pressionado.
-            setItensMarcados((marcados) =>
-                marcados.map((marcado, itemIndex) =>
-                    itemIndex === index ? !marcado : marcado,
+    // Hooks precisam ficar dentro do componente para que o React acompanhe seu estado.
+    const [categoriaSelecionada, setCategoriaSelecionada] =
+        useState<(typeof itensIniciais)[number]>(itensIniciais[0]);
+    const [categoriasLista, setCategoriasLista] = useState(categoriasOriginal);
+
+    function filtrarPorCategoria(categoria: (typeof itensIniciais)[number]) {
+        setCategoriaSelecionada(categoria);
+
+        // "Todas" restaura a lista original; as outras opções filtram cada grupo de receitas.
+        if (categoria === itensIniciais[0]) {
+            setCategoriasLista(categoriasOriginal);
+            return;
+        }
+
+        const listaAtualizada = categoriasOriginal
+            .map((grupo) => ({
+                ...grupo,
+                filmes: grupo.filmes.filter((receita) =>
+                    receita.categorias.includes(categoria),
                 ),
-            );
-          }
+            }))
+            .filter((grupo) => grupo.filmes.length > 0);
+
+        setCategoriasLista(listaAtualizada);
+    }
     return(
         <ScrollView>
     <View style={styles.fundo}>
@@ -26,7 +40,7 @@ export default function App() {
             <View style={{flexDirection: "row", alignItems: "center", padding: 10, gap:8, borderBottomColor: "#cacaca", borderBottomWidth: 1}}>
             <Image 
                 source={require("../imagens/2026_10_01_0mz_Kleki.png")} style={styles.image}></Image>
-            <Text>Broly</Text>
+            <Text style={{}}>Tempero de casa</Text>
             </View>
                     <View style={{flexDirection: "row", padding: 10, gap: 20,}}>
                     <Image 
@@ -35,23 +49,21 @@ export default function App() {
                 </View>
                    <ScrollView horizontal>
                 <View style={{flexDirection: "row", gap: 10, marginLeft: 8, padding: 8,}}>
-                        {itensIniciais.map((item, index) => (
+                        {itensIniciais.map((item) => (
                             
-                                                                <Pressable
-                                                                key={item}
-                                                                style={styles.linha}
-                                                                onPress={() => alternarItem(index)}
-                                            >                      
-                                             
-                                                                {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
-                                            <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
-                                                                    {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
-                                            </View>
-                                                                {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
-                                           
-                                            </Pressable>
-                                            
-                                            ))}
+                        <Pressable
+                        key={item}
+                        style={styles.linha}
+                        onPress={() => filtrarPorCategoria(item)}
+    >
+
+                <View style={[styles.checkbox, categoriaSelecionada === item && styles.marcado]}>
+                                        <Text style={[styles.item, categoriaSelecionada === item && styles.concluido]}>{item}</Text>
+                </View>
+
+                </Pressable>
+
+                ))}
 
                 </View>
                 </ScrollView>
@@ -69,7 +81,7 @@ export default function App() {
                     <Text style={styles.titulo3}>☆ Receitas para você</Text>
                              <View style={styles.backcolor}>
                                 <FlatList
-                                data={categorias}
+                                data={categoriasLista}
                                 keyExtractor={i => i.id}
                                 renderItem={renderCategoria }
                                 />
