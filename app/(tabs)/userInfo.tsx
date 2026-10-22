@@ -134,7 +134,7 @@ function alternarRestricao(id: number) {
 <Text style={styles.texto}>[Nome do usuario!]</Text>
 <Text style={styles.subtexto}>Edite suas preferencias alimentares</Text>
 
-<ScrollView style={styles.scroll}>
+<ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
 <View style={styles.loginContainer}>
     <Text style={styles.title}>Sobre você</Text>
 
@@ -199,11 +199,13 @@ function alternarRestricao(id: number) {
     <View style={styles.box2}>
 
         <Text style={styles.pritext}>Alergias alimentares</Text>
+
     <View style={styles.aviso}>
     <View style={styles.icoav}>⚠️</View>
     <Text style={styles.teavs}><Text style={styles.bold}>Filtros de segurança </Text>receitas com estes ingredientes não serão recomendadas.
     </Text>
         </View>
+
         <View style={{flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
     {itensIniciais3.map((item, index) => (
         <TouchableOpacity
@@ -657,6 +659,5 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     flexDirection: 'column',
     },
-
 
     });
