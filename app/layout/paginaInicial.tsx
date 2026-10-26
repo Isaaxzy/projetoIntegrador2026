@@ -1,38 +1,74 @@
-import { View, StyleSheet, Text, ImageBackground, Image, Pressable, Touchable, TouchableOpacity, FlatList, ScrollView,} from 'react-native';
+import { View, StyleSheet, Text, Image, Pressable, FlatList, ScrollView, TextInput } from 'react-native';
 import { useState } from 'react';
-import DadosDosFilmes from '../componentes/coisas';
+import {
+    receitasMaisProcuradas,
+    receitasRecomendadas,
+    receitasSobremesas,
+} from '../componentes/coisas';
 import renderCategoria from '../componentes/cardCategorias';
 
 const itensIniciais = ['⭐ Todas', '🍳 Café da manhã', '👩‍🍳 Almoço', '👩‍🍳 Janta'] as const;
-const categoriasOriginal = DadosDosFilmes();
 
 
 export default function App() {
     // Hooks precisam ficar dentro do componente para que o React acompanhe seu estado.
     const [categoriaSelecionada, setCategoriaSelecionada] =
         useState<(typeof itensIniciais)[number]>(itensIniciais[0]);
-    const [categoriasLista, setCategoriasLista] = useState(categoriasOriginal);
+    const [textoIngredientes, setTextoIngredientes] = useState('');
+    const [ingredientesBusca, setIngredientesBusca] = useState<string[]>([]);
 
     function filtrarPorCategoria(categoria: (typeof itensIniciais)[number]) {
         setCategoriaSelecionada(categoria);
-
-        // "Todas" restaura a lista original; as outras opções filtram cada grupo de receitas.
-        if (categoria === itensIniciais[0]) {
-            setCategoriasLista(categoriasOriginal);
-            return;
-        }
-
-        const listaAtualizada = categoriasOriginal
-            .map((grupo) => ({
-                ...grupo,
-                filmes: grupo.filmes.filter((receita) =>
-                    receita.categorias.includes(categoria),
-                ),
-            }))
-            .filter((grupo) => grupo.filmes.length > 0);
-
-        setCategoriasLista(listaAtualizada);
     }
+
+    function buscarReceitas() {
+        const ingredientes = textoIngredientes
+            .split(/[,;\n]+/)
+            .map((ingrediente) => ingrediente.trim())
+            .filter((ingrediente) => ingrediente.length > 0);
+        const ingredientesUnicos = ingredientes.filter(
+            (ingrediente, index) =>
+                ingredientes.findIndex(
+                    (outro) => normalizar(outro) === normalizar(ingrediente),
+                ) === index,
+        );
+
+        setIngredientesBusca(ingredientesUnicos);
+    }
+
+    const termosBusca = ingredientesBusca.map(normalizar);
+    const correspondeAIngredientes = (receita: (typeof receitasRecomendadas)[number]) =>
+        termosBusca.length === 0 ||
+        receita.ingredientes.some((ingrediente) =>
+            termosBusca.some((termo) =>
+                normalizar(ingrediente.nome).includes(termo),
+            ),
+        );
+    const recomendadasFiltradas = receitasRecomendadas
+        .filter((receita) => {
+            const categoriaCorresponde =
+                categoriaSelecionada === itensIniciais[0] ||
+                receita.categorias.includes(categoriaSelecionada);
+
+            return categoriaCorresponde && correspondeAIngredientes(receita);
+        })
+        .sort((a, b) => {
+            const correspondencias = (receita: (typeof receitasRecomendadas)[number]) =>
+                receita.ingredientes.filter((ingrediente) =>
+                    termosBusca.some((termo) =>
+                        normalizar(ingrediente.nome).includes(termo),
+                    ),
+                ).length;
+
+            return correspondencias(b) - correspondencias(a);
+        });
+    const sobremesasFiltradas = receitasSobremesas.filter(correspondeAIngredientes);
+    const maisProcuradasFiltradas = receitasMaisProcuradas.filter(correspondeAIngredientes);
+    const quantidadeReceitas =
+        recomendadasFiltradas.length +
+        sobremesasFiltradas.length +
+        maisProcuradasFiltradas.length;
+
     return(
         <ScrollView>
     <View style={styles.fundo}>
@@ -70,26 +106,78 @@ export default function App() {
                <View style={styles.cont}>
                     <Text style={styles.titulo1}>O que tenho em casa</Text>
                     <Text style={styles.subtexto}>Digite o que você tem na geladeira e encontre receitas.</Text>
-                    <View style={{flexDirection: "row", margin: "auto", marginTop: 10,}}>
-                    <input style={styles.input} type="text" placeholder='Ex: Frango, arroz, batata' />
-                    <Text style={styles.button}>Adicionar</Text>                        
+                    <View style={styles.linhaBusca}>
+                    <TextInput
+                        style={styles.input}
+                        value={textoIngredientes}
+                        onChangeText={setTextoIngredientes}
+                        onSubmitEditing={buscarReceitas}
+                        placeholder="Ex: quinoa, tomate, limão"
+                        accessibilityLabel="Ingredientes que você tem em casa"
+                        returnKeyType="search"
+                    />
+                    <Pressable style={styles.button} onPress={buscarReceitas}>
+                        <Text style={styles.textoBotao}>Buscar</Text>
+                    </Pressable>
                     </View>
+                    {ingredientesBusca.length > 0 && (
+                        <View style={styles.resultadoBusca}>
+                            <Text>
+                                {quantidadeReceitas > 0
+                                    ? `${quantidadeReceitas} ${quantidadeReceitas === 1 ? 'receita encontrada' : 'receitas encontradas'} com: ${ingredientesBusca.join(', ')}`
+                                    : `Nenhuma receita encontrada com: ${ingredientesBusca.join(', ')}`}
+                            </Text>
+                            <Pressable
+                                onPress={() => {
+                                    setIngredientesBusca([]);
+                                    setTextoIngredientes('');
+                                }}
+                            >
+                                <Text style={styles.limparBusca}>Limpar busca</Text>
+                            </Pressable>
+                        </View>
+                    )}
                 </View>
                 
             </View>
             <View style={{width: 500, margin: "auto",}}>
-                    <Text style={styles.titulo3}>☆ Receitas para você</Text>
-                             <View style={styles.backcolor}>
-                                <FlatList
-                                data={categoriasLista}
-                                keyExtractor={i => i.id}
-                                renderItem={renderCategoria }
-                                />
-                        </View>
+                    <Text style={styles.titulo3}>
+                        {ingredientesBusca.length > 0 ? '☆ Receitas encontradas' : '☆ Receitas para você'}
+                    </Text>
+                    {ingredientesBusca.length > 0 && quantidadeReceitas === 0 && (
+                        <Text style={styles.semResultados}>
+                            Tente outros ingredientes ou confira as receitas disponíveis.
+                        </Text>
+                    )}
+                    <FlatList
+                        data={[{ id: 'recomendadas', filmes: recomendadasFiltradas }]}
+                        keyExtractor={(item) => item.id}
+                        renderItem={renderCategoria}
+                    />
+                    <Text style={styles.titulo3}>🍰 Sobremesas</Text>
+                    <FlatList
+                        data={[{ id: 'sobremesas', filmes: sobremesasFiltradas }]}
+                        keyExtractor={(item) => item.id}
+                        renderItem={renderCategoria}
+                    />
+                    <Text style={styles.titulo3}>🔥 Mais procuradas</Text>
+                    <FlatList
+                        data={[{ id: 'mais-procuradas', filmes: maisProcuradasFiltradas }]}
+                        keyExtractor={(item) => item.id}
+                        renderItem={renderCategoria}
+                    />
                 </View>                          
         </View>
         </ScrollView>
     )
+}
+
+function normalizar(texto: string) {
+    return texto
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-zA-Z0-9]/g, '')
+        .toLocaleLowerCase('pt-BR');
 }
 
 
@@ -100,6 +188,12 @@ fundo: {
     backgroundColor: "#ececec",
 
 },
+
+backcolor: {
+    backgroundColor: "#ececec",
+},
+
+linha: {},
 
 container: {
     width: 500,
@@ -190,30 +284,55 @@ cont: {
     padding: 15,
     borderWidth: 2,
     borderRadius: 20,
-    border: "none",
+    borderColor: "transparent",
     boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
     marginBottom: 15,
 },
 
 button: {
     backgroundColor: "#209e3c",
-    width: "100%",
-    flexDirection: "row",
-    textAlign: "center",
     padding: 12,
     paddingHorizontal: 20,
-    marginLeft: 10,
     borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+},
+
+textoBotao: {
     color: "#fff",
-    margin: "auto"
+    fontWeight: "bold",
+},
+
+linhaBusca: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 10,
+    gap: 15
+},
+
+resultadoBusca: {
+    marginTop: 10,
+    gap: 8,
+},
+
+limparBusca: {
+    color: "#078523",
+    fontWeight: "bold",
+},
+
+semResultados: {
+    paddingHorizontal: 13,
+    paddingBottom: 12,
 },
 
 input: {
     borderRadius: 10,
     boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.38) inset",
-    border: "none",
     padding: 10,
-    height: 25,
+    height: 44,
+    flex: 1,
+    minWidth: 0,
+    backgroundColor: "#fff",
 },
 
 item: {
