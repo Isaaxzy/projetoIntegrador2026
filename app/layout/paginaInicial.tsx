@@ -44,14 +44,13 @@ export default function App() {
                 normalizar(ingrediente.nome).includes(termo),
             ),
         );
+    const correspondeACategoria = (receita: (typeof receitasRecomendadas)[number]) =>
+        categoriaSelecionada === itensIniciais[0] ||
+        receita.categorias.includes(categoriaSelecionada);
+    const correspondeAosFiltros = (receita: (typeof receitasRecomendadas)[number]) =>
+        correspondeACategoria(receita) && correspondeAIngredientes(receita);
     const recomendadasFiltradas = receitasRecomendadas
-        .filter((receita) => {
-            const categoriaCorresponde =
-                categoriaSelecionada === itensIniciais[0] ||
-                receita.categorias.includes(categoriaSelecionada);
-
-            return categoriaCorresponde && correspondeAIngredientes(receita);
-        })
+        .filter(correspondeAosFiltros)
         .sort((a, b) => {
             const correspondencias = (receita: (typeof receitasRecomendadas)[number]) =>
                 receita.ingredientes.filter((ingrediente) =>
@@ -62,8 +61,8 @@ export default function App() {
 
             return correspondencias(b) - correspondencias(a);
         });
-    const sobremesasFiltradas = receitasSobremesas.filter(correspondeAIngredientes);
-    const maisProcuradasFiltradas = receitasMaisProcuradas.filter(correspondeAIngredientes);
+    const sobremesasFiltradas = receitasSobremesas.filter(correspondeAosFiltros);
+    const maisProcuradasFiltradas = receitasMaisProcuradas.filter(correspondeAosFiltros);
     const quantidadeReceitas =
         recomendadasFiltradas.length +
         sobremesasFiltradas.length +
@@ -77,11 +76,12 @@ export default function App() {
             <Image 
                 source={require("../imagens/2026_10_01_0mz_Kleki.png")} style={styles.image}></Image>
             <Text style={{}}>Tempero de casa</Text>
+            <Image source={require("../imagens/sair.png")} />
             </View>
                     <View style={{flexDirection: "row", padding: 10, gap: 20,}}>
                     <Image 
                     source={require("../imagens/2026_10_01_0mz_Kleki.png")} style={styles.image1}></Image>
-                    <Text style={styles.subtexto}><Text style={styles.titulo}>Pronto, Isa! 🥦</Text> Agora já sei um pouquinho mais sobre seus gostos. separei algumas receitas que combinam com você</Text>
+                    <Text style={styles.textoApresentacao}><Text style={styles.titulo}>Pronto, Isa! 🥦</Text> Agora já sei um pouquinho mais sobre seus gostos. separei algumas receitas que combinam com você</Text>
                 </View>
                    <ScrollView horizontal>
                 <View style={{flexDirection: "row", gap: 10, marginLeft: 8, padding: 8,}}>
@@ -140,32 +140,44 @@ export default function App() {
                 </View>
                 
             </View>
-            <View style={{width: 500, margin: "auto",}}>
-                    <Text style={styles.titulo3}>
-                        {ingredientesBusca.length > 0 ? '☆ Receitas encontradas' : '☆ Receitas para você'}
-                    </Text>
+            <View style={styles.listaReceitas}>
                     {ingredientesBusca.length > 0 && quantidadeReceitas === 0 && (
                         <Text style={styles.semResultados}>
                             Tente outros ingredientes ou confira as receitas disponíveis.
                         </Text>
                     )}
-                    <FlatList
-                        data={[{ id: 'recomendadas', filmes: recomendadasFiltradas }]}
-                        keyExtractor={(item) => item.id}
-                        renderItem={renderCategoria}
-                    />
-                    <Text style={styles.titulo3}>🍰 Sobremesas</Text>
-                    <FlatList
-                        data={[{ id: 'sobremesas', filmes: sobremesasFiltradas }]}
-                        keyExtractor={(item) => item.id}
-                        renderItem={renderCategoria}
-                    />
-                    <Text style={styles.titulo3}>🔥 Mais procuradas</Text>
-                    <FlatList
-                        data={[{ id: 'mais-procuradas', filmes: maisProcuradasFiltradas }]}
-                        keyExtractor={(item) => item.id}
-                        renderItem={renderCategoria}
-                    />
+                    {recomendadasFiltradas.length > 0 && (
+                        <>
+                            <Text style={styles.titulo3}>
+                                {ingredientesBusca.length > 0 ? '☆ Receitas encontradas' : '☆ Receitas para você'}
+                            </Text>
+                            <FlatList
+                                data={[{ id: 'recomendadas', filmes: recomendadasFiltradas }]}
+                                keyExtractor={(item) => item.id}
+                                renderItem={renderCategoria}
+                            />
+                        </>
+                    )}
+                    {sobremesasFiltradas.length > 0 && (
+                        <>
+                            <Text style={styles.titulo3}>🍰 Sobremesas</Text>
+                            <FlatList
+                                data={[{ id: 'sobremesas', filmes: sobremesasFiltradas }]}
+                                keyExtractor={(item) => item.id}
+                                renderItem={renderCategoria}
+                            />
+                        </>
+                    )}
+                    {maisProcuradasFiltradas.length > 0 && (
+                        <>
+                            <Text style={styles.titulo3}>🔥 Mais procuradas</Text>
+                            <FlatList
+                                data={[{ id: 'mais-procuradas', filmes: maisProcuradasFiltradas }]}
+                                keyExtractor={(item) => item.id}
+                                renderItem={renderCategoria}
+                            />
+                        </>
+                    )}
                 </View>                          
         </View>
         </ScrollView>
@@ -196,12 +208,19 @@ backcolor: {
 linha: {},
 
 container: {
-    width: 500,
+    width: "100%",
+    maxWidth: 500,
     marginTop: 10,
     backgroundColor: "#ffffff",
     boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
     margin: "auto",
     borderRadius: 10,
+},
+
+listaReceitas: {
+    width: "100%",
+    maxWidth: 500,
+    alignSelf: "center",
 },
 
 info: {
@@ -225,7 +244,7 @@ imagef: {
 
 image: {
     width: 30,
-    height: 40,
+    height: 45,
 },
 
 image1: {
@@ -261,6 +280,14 @@ subtexto: {
     lineHeight: 25,
     padding: 5,
     width: "100%"
+},
+
+textoApresentacao: {
+    flex: 1,
+    minWidth: 0,
+    fontSize: 16,
+    lineHeight: 25,
+    padding: 5,
 },
 
 subtexto1: {

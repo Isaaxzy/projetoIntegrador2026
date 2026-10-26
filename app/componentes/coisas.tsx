@@ -146,7 +146,7 @@ export const receitasSobremesas: Receita[] = [
     descrição: 'Sorvete cremoso de banana feito com poucos ingredientes.',
     info: 'Banana, creme de leite e mel',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '⏳ 10min + congelamento',
+    duracao: '⏳ 10min',
     categorias: ['⭐ Todas'],
     ingredientes: [
       { nome: 'Banana', unidade: '4 unidades maduras congeladas' },
@@ -192,7 +192,7 @@ export const receitasSobremesas: Receita[] = [
     descrição: 'Pudim clássico, macio e servido com calda de caramelo.',
     info: 'Leite condensado, leite e ovo',
     dificuldade: '👨‍🍳 Médio',
-    duracao: '⏳ 1h + geladeira',
+    duracao: '⏳ 1h',
     categorias: ['⭐ Todas'],
     ingredientes: [
       { nome: 'Leite condensado', unidade: '1 lata' },
