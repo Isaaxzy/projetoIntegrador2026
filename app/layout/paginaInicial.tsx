@@ -1,5 +1,6 @@
 import { View, StyleSheet, Text, Image, Pressable, FlatList, ScrollView, TextInput } from 'react-native';
 import { useState } from 'react';
+import { Link } from 'expo-router';
 import {
     receitasMaisProcuradas,
     receitasRecomendadas,
@@ -7,7 +8,16 @@ import {
 } from '../componentes/coisas';
 import renderCategoria from '../componentes/cardCategorias';
 
-const itensIniciais = ['⭐ Todas', '🍳 Café da manhã', '👩‍🍳 Almoço', '👩‍🍳 Janta'] as const;
+const itensIniciais = [
+    '⭐ Todas',
+    '🍳 Café da manhã',
+    '👩‍🍳 Almoço',
+    '👩‍🍳 Janta',
+    '🍰 Sobremesas',
+    '🥗 Saudáveis',
+    '⚡ Rápidas',
+    '🌱 Vegetarianas',
+] as const;
 
 
 export default function App() {
@@ -72,15 +82,15 @@ export default function App() {
         <ScrollView>
     <View style={styles.fundo}>
         <View style={styles.container}>
-            <View style={{flexDirection: "row", alignItems: "center", padding: 10, gap:8, borderBottomColor: "#cacaca", borderBottomWidth: 1}}>
+            <View style={{flexDirection: "row", alignItems: "center", padding: 10, gap:8, borderBottomColor: "#cacaca", borderBottomWidth: 1, justifyContent: "space-between",}}>
+            <View style={{flexDirection: "row", alignItems: "center", gap:8, }}>
             <Image 
                 source={require("../imagens/2026_10_01_0mz_Kleki.png")} style={styles.image}></Image>
-            <Text style={{}}>Tempero de casa</Text>
-            <Image source={require("../imagens/sair.png")} />
+            <Text style={{color: "#168A3A", fontSize: 18, fontWeight: "700",}}>Tempero de casa</Text>
             </View>
-                    <View style={{flexDirection: "row", padding: 10, gap: 20,}}>
-                    <Image 
-                    source={require("../imagens/2026_10_01_0mz_Kleki.png")} style={styles.image1}></Image>
+            <Link href="/login"><Image style={styles.image2} source={require("../imagens/seta.png")} /></Link>
+            </View>
+                    <View style={{flexDirection: "row", padding: 10, gap: 20, width: "95%", margin: "auto"}}>
                     <Text style={styles.textoApresentacao}><Text style={styles.titulo}>Pronto, Isa! 🥦</Text> Agora já sei um pouquinho mais sobre seus gostos. separei algumas receitas que combinam com você</Text>
                 </View>
                    <ScrollView horizontal>
@@ -143,7 +153,7 @@ export default function App() {
             <View style={styles.listaReceitas}>
                     {ingredientesBusca.length > 0 && quantidadeReceitas === 0 && (
                         <Text style={styles.semResultados}>
-                            Tente outros ingredientes ou confira as receitas disponíveis.
+                            Tente outros ingredientes.
                         </Text>
                     )}
                     {recomendadasFiltradas.length > 0 && (
@@ -212,7 +222,7 @@ container: {
     maxWidth: 500,
     marginTop: 10,
     backgroundColor: "#ffffff",
-    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
+    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.14)",
     margin: "auto",
     borderRadius: 10,
 },
@@ -250,7 +260,12 @@ image: {
 image1: {
     width: 70,
     height: 100,
+},
 
+image2: {
+    width: 25,
+    height: 25,
+    cursor: "pointer"
 },
 
 titulo: {
@@ -327,7 +342,6 @@ button: {
 
 textoBotao: {
     color: "#fff",
-    fontWeight: "bold",
 },
 
 linhaBusca: {
@@ -349,7 +363,14 @@ limparBusca: {
 
 semResultados: {
     paddingHorizontal: 13,
-    paddingBottom: 12,
+    paddingVertical: 11,
+    marginTop: 15,
+    backgroundColor: "#03a51e",
+    color: "white",
+    borderRadius: 10,
+    width: "38%",
+    textAlign: "center",
+    margin: "auto",
 },
 
 input: {

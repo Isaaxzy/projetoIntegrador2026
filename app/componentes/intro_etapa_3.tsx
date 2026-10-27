@@ -71,8 +71,8 @@ export default function App() {
                 <TextInput style={styles.input} placeholder="Ex: Corantes, gluten..." />
             </View> 
              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
-             <Text><Link href={'/(tabs)/intro_etapa_2'}>← Voltar</Link></Text>
-            <Link href={'/(tabs)/intro_etapa_4'} style={styles.Button}><Text>Próximo →</Text></Link>
+             <Text><Link href={'./intro_etapa_2'}>← Voltar</Link></Text>
+            <Link href={'./intro_etapa_4'} style={styles.Button}><Text>Próximo →</Text></Link>
           </View>
         </View>
       </View>

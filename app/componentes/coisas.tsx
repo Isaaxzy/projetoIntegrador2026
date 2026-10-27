@@ -7,7 +7,17 @@ export type Receita = {
   info: string;
   dificuldade: string;
   duracao: string;
-  categorias: ('⭐ Todas' | '🍳 Café da manhã' | '👩‍🍳 Almoço' | '👩‍🍳 Janta')[];
+  categorias: (
+    | '⭐ Todas'
+    | '🍳 Café da manhã'
+    | '👩‍🍳 Almoço'
+    | '👩‍🍳 Janta'
+    | '🍰 Sobremesas'
+    | '🥗 Saudáveis'
+    | '⚡ Rápidas'
+    | '💰 Econômicas'
+    | '🌱 Vegetarianas'
+  )[];
   ingredientes: { nome: string; unidade: string }[];
   modoDePreparo: string[];
 };
@@ -22,7 +32,7 @@ export const receitasRecomendadas: Receita[] = [
     info: 'Quinoa, grão-de-bico e legumes',
     dificuldade: '👨‍🍳 Fácil',
     duracao: '⏳ 30min',
-    categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
+    categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🥗 Saudáveis', '🌱 Vegetarianas'],
     ingredientes: [
       { nome: 'Quinoa', unidade: '1 xícara' },
       { nome: 'Grão-de-bico', unidade: '1 lata' },
@@ -47,7 +57,7 @@ export const receitasRecomendadas: Receita[] = [
     info: 'Macarrão, tomate e manjericão',
     dificuldade: '👨‍🍳 Fácil',
     duracao: '⏳ 25min',
-    categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
+    categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
     ingredientes: [
       { nome: 'Espaguete', unidade: '250 g' },
       { nome: 'Tomate', unidade: '4 unidades' },
@@ -97,7 +107,7 @@ export const receitasRecomendadas: Receita[] = [
     info: 'Batata, cenoura e tomate',
     dificuldade: '👨‍🍳 Fácil',
     duracao: '⏳ 40min',
-    categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
+    categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🥗 Saudáveis', '💰 Econômicas', '🌱 Vegetarianas'],
     ingredientes: [
       { nome: 'Batata', unidade: '2 unidades' },
       { nome: 'Cenoura', unidade: '1 unidade' },
@@ -122,7 +132,7 @@ export const receitasRecomendadas: Receita[] = [
     info: 'Banana, ovo e aveia',
     dificuldade: '👨‍🍳 Fácil',
     duracao: '⏳ 15min',
-    categorias: ['⭐ Todas', '🍳 Café da manhã'],
+    categorias: ['⭐ Todas', '🍳 Café da manhã', '🥗 Saudáveis', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
     ingredientes: [
       { nome: 'Banana', unidade: '1 unidade madura' },
       { nome: 'Ovo', unidade: '1 unidade' },
@@ -147,7 +157,7 @@ export const receitasSobremesas: Receita[] = [
     info: 'Banana, creme de leite e mel',
     dificuldade: '👨‍🍳 Fácil',
     duracao: '⏳ 10min',
-    categorias: ['⭐ Todas'],
+    categorias: ['⭐ Todas', '🍰 Sobremesas', '⚡ Rápidas', '🌱 Vegetarianas'],
     ingredientes: [
       { nome: 'Banana', unidade: '4 unidades maduras congeladas' },
       { nome: 'Creme de leite', unidade: '1/2 caixinha' },
@@ -168,7 +178,7 @@ export const receitasSobremesas: Receita[] = [
     info: 'Cenoura, farinha e chocolate',
     dificuldade: '👨‍🍳 Médio',
     duracao: '⏳ 50min',
-    categorias: ['⭐ Todas'],
+    categorias: ['⭐ Todas', '🍰 Sobremesas', '💰 Econômicas', '🌱 Vegetarianas'],
     ingredientes: [
       { nome: 'Cenoura', unidade: '2 unidades médias' },
       { nome: 'Ovo', unidade: '3 unidades' },
@@ -193,7 +203,7 @@ export const receitasSobremesas: Receita[] = [
     info: 'Leite condensado, leite e ovo',
     dificuldade: '👨‍🍳 Médio',
     duracao: '⏳ 1h',
-    categorias: ['⭐ Todas'],
+    categorias: ['⭐ Todas', '🍰 Sobremesas', '🌱 Vegetarianas'],
     ingredientes: [
       { nome: 'Leite condensado', unidade: '1 lata' },
       { nome: 'Leite', unidade: 'a mesma medida da lata' },
@@ -216,7 +226,7 @@ export const receitasSobremesas: Receita[] = [
     info: 'Leite condensado, chocolate e manteiga',
     dificuldade: '👨‍🍳 Fácil',
     duracao: '⏳ 25min',
-    categorias: ['⭐ Todas'],
+    categorias: ['⭐ Todas', '🍰 Sobremesas', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
     ingredientes: [
       { nome: 'Leite condensado', unidade: '1 lata' },
       { nome: 'Chocolate em pó', unidade: '3 colheres' },
@@ -238,7 +248,7 @@ export const receitasSobremesas: Receita[] = [
     info: 'Milho de pipoca, açúcar e óleo',
     dificuldade: '👨‍🍳 Fácil',
     duracao: '⏳ 20min',
-    categorias: ['⭐ Todas'],
+    categorias: ['⭐ Todas', '🍰 Sobremesas', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
     ingredientes: [
       { nome: 'Milho de pipoca', unidade: '1/2 xícara' },
       { nome: 'Açúcar', unidade: '1/2 xícara' },
@@ -289,7 +299,7 @@ export const receitasMaisProcuradas: Receita[] = [
     info: 'Polvilho, queijo e ovos',
     dificuldade: '👨‍🍳 Fácil',
     duracao: '⏳ 35min',
-    categorias: ['⭐ Todas', '🍳 Café da manhã'],
+    categorias: ['⭐ Todas', '🍳 Café da manhã', '🌱 Vegetarianas'],
     ingredientes: [
       { nome: 'Polvilho doce', unidade: '2 xícaras' },
       { nome: 'Leite', unidade: '1/2 xícara' },
@@ -312,7 +322,7 @@ export const receitasMaisProcuradas: Receita[] = [
     info: 'Macarrão, alho e azeite',
     dificuldade: '👨‍🍳 Fácil',
     duracao: '⏳ 20min',
-    categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
+    categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
     ingredientes: [
       { nome: 'Macarrão', unidade: '250 g' },
       { nome: 'Alho', unidade: '4 dentes' },

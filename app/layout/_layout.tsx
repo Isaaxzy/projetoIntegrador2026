@@ -52,8 +52,21 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="planejar"
+        options={{
+          title: "Planejar",
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "calendar" : "calendar-outline"}
+              size={24}
+              color={color}
+            />
+          ),
+        }}
+      />
 
-         <Tabs.Screen
+      <Tabs.Screen
         name="favorito"
         options={{
           title: "Favoritos",
@@ -67,8 +80,7 @@ export default function TabLayout() {
         }}
       />
 
-      
-         <Tabs.Screen
+      <Tabs.Screen
         name="userInfo"
         options={{
           title: "Informações do Usuário",
