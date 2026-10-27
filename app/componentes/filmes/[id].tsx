@@ -96,7 +96,7 @@ export default function Filme() {
       </View>
       
       </ScrollView>
-      <Link rel="stylesheet" href="../../(tabs)/paginaInicial" style={{position: "fixed", borderRadius: 20, boxShadow: "0px 1px 3px rgba(0, 0, 0, 0.23)", padding: 12, paddingHorizontal: 15.2, backgroundColor: "#ffffff", margin: 17, marginTop: 30, cursor: "pointer"}}>
+      <Link rel="stylesheet" href="../../componentes/paginaInicial" style={{position: "fixed", borderRadius: 20, boxShadow: "0px 1px 3px rgba(0, 0, 0, 0.23)", padding: 12, paddingHorizontal: 15.2, backgroundColor: "#ffffff", margin: 17, marginTop: 30, cursor: "pointer"}}>
       <TouchableOpacity>
       <Text>←</Text>
      </TouchableOpacity>
