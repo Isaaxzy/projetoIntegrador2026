@@ -2,7 +2,7 @@ import { Link } from 'expo-router';
 import { useState } from 'react';
 import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
 
-const itensIniciais = ['Cebola', 'Alho', 'Tomate', 'Peixe', 'Coentro', 'Pimentão', 'Brócolis', 'Cogumelo', 'Azeitona', 'Pimenta', 'Gengibre', 'Manjericão' ];
+const itensIniciais = ['🧅 Cebola', '🧄 Alho', '🍅 Tomate', '🐟 Peixe', '🌿 Coentro', '🫑 Pimentão', '🥦 Brócolis', '🍄 Cogumelo', '🫒 Azeitona', '🌶️ Pimenta', '🫚 Gengibre', '🌿 Manjericão' ];
 
 
 export default function App() {

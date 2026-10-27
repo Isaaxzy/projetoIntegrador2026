@@ -9,11 +9,8 @@ export default function TabLayout() {
         headerShown: false,
         headerTitleAlign: "left",
         headerTitle: (props) => (
-          <View style={styles.headerContainer}>
             <Text style={styles.headerTitleText}>{props.children}</Text>
-            <View style={styles.inputContainer}>
-            </View>
-          </View>
+   
         ),
         headerStyle: {
           backgroundColor: "rgb(241, 2, 22)",
@@ -83,7 +80,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="userInfo"
         options={{
-          title: "Informações do Usuário",
+          title: "Perfil",
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "person" : "person-outline"}

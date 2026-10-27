@@ -2,8 +2,7 @@ import { Link } from 'expo-router';
 import { useState } from 'react';
 import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
 
-const itensIniciais = ['Frango', 'Carne', 'Batata', 'Queijo', 'Chocolate', 'Morango', 'Massas', 'Arroz', 'Ovo', 'Tomate', 'Cenoura', 'Abacate', 'Salmão', 'Limão', 'Milho', 'Feijão' ];
-
+const itensIniciais = ['🍗 Frango', '🥩 Carne', '🥔 Batata', '🧀 Queijo', '🍫 Chocolate', '🍓 Morango', '🍝 Massas', '🍚 Arroz', '🥚 Ovo', '🍅 Tomate', '🥕 Cenoura', '🥑 Abacate', '🐟 Salmão', '🍋 Limão', '🌽 Milho', '🫘 Feijão' ];
 
 export default function App() {
     const totalSteps = 7;
