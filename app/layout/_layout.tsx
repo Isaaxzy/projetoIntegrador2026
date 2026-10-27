@@ -6,7 +6,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerShown: true,
+        headerShown: false,
         headerTitleAlign: "left",
         headerTitle: (props) => (
             <Text style={styles.headerTitleText}>{props.children}</Text>

@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, ImageBackground, Image, Pressable, Touchable, TouchableOpacity, FlatList, ScrollView,} from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, Image, Pressable, FlatList, ScrollView,} from 'react-native';
 import { useState } from 'react';
 import DadosDosFilmes from '../componentes/coisas';
 import renderCategoria from '../componentes/cardCategorias';
@@ -12,6 +12,7 @@ export default function App() {
     const [categoriaSelecionada, setCategoriaSelecionada] =
         useState<(typeof itensIniciais)[number]>(itensIniciais[0]);
     const [categoriasLista, setCategoriasLista] = useState(categoriasOriginal);
+    const [adicionarEmHover, setAdicionarEmHover] = useState(false);
 
     function filtrarPorCategoria(categoria: (typeof itensIniciais)[number]) {
         setCategoriaSelecionada(categoria);
@@ -72,7 +73,18 @@ export default function App() {
                     <Text style={styles.subtexto}>Digite o que você tem na geladeira e encontre receitas.</Text>
                     <View style={{flexDirection: "row", margin: "auto", marginTop: 10,}}>
                     <input style={styles.input} type="text" placeholder='Ex: Frango, arroz, batata' />
-                    <Text style={styles.button}>Adicionar</Text>                        
+                    <Pressable
+                        onHoverIn={() => setAdicionarEmHover(true)}
+                        onHoverOut={() => setAdicionarEmHover(false)}
+                        style={({ pressed }) => [
+                            styles.button,
+                            adicionarEmHover && styles.buttonHover,
+                            pressed && styles.buttonPressed,
+                        ]}
+                        accessibilityRole="button"
+                    >
+                        <Text style={styles.buttonText}>Adicionar</Text>
+                    </Pressable>
                     </View>
                 </View>
                 
@@ -197,15 +209,28 @@ cont: {
 
 button: {
     backgroundColor: "#209e3c",
-    width: "100%",
-    flexDirection: "row",
-    textAlign: "center",
+    minWidth: 100,
+    alignItems: "center",
+    justifyContent: "center",
     padding: 12,
     paddingHorizontal: 20,
-    marginLeft: 10,
     borderRadius: 10,
+    marginLeft: 10,
+},
+
+buttonHover: {
+    backgroundColor: "#168a32",
+},
+
+buttonPressed: {
+    backgroundColor: "#0f6f27",
+    opacity: 0.9,
+},
+
+buttonText: {
     color: "#fff",
-    margin: "auto"
+    textAlign: "center",
+    fontWeight: "bold",
 },
 
 input: {

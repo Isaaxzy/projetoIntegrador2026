@@ -1,26 +1,85 @@
-import { View, StyleSheet, FlatList, Text, Touchable, TouchableOpacity, Image, ImageBackground, ScrollView, Pressable } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Image, ScrollView, Pressable, Alert } from 'react-native';
 import DadosDosFilmes, { type Receita } from '../coisas';
 import { Link, useLocalSearchParams } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { adicionarFavorito, listarFavoritos, removerFavorito } from '../../servicos/favoritos';
 
-const itensIniciais = ['♡ Favoritar', '✓ Já fiz essa receita'];
+const itensIniciais = ['Favoritar', '✓ Já fiz essa receita'];
 
 export default function Filme() {
-  const { id } = useLocalSearchParams<{ id: string }>();
-  const [itensMarcados, setItensMarcados] = useState<boolean[]>(
-    itensIniciais.map(() => false),
-  );
-
+  const { id, origem } = useLocalSearchParams<{ id: string; origem?: string }>();
+  const destinoVoltar = origem === 'favorito'
+    ? '../../layout/favorito'
+    : '../../layout/paginaInicial';
+    
   const categorias = DadosDosFilmes();
   const item: Receita | undefined = categorias
     .flatMap(categoria => categoria.filmes)
     .find(f => f.id === id);
+  const [itensMarcados, setItensMarcados] = useState<boolean[]>(
+    itensIniciais.map(() => false),
+  );
+  const [favorito, setFavorito] = useState(false);
+  const [salvandoFavorito, setSalvandoFavorito] = useState(false);
+
+  useEffect(() => {
+    let ativo = true;
+
+    async function verificarFavorito() {
+      try {
+        const favoritos = await listarFavoritos();
+        if (ativo) {
+          setFavorito(favoritos.some(receita => receita.id === item?.id));
+        }
+      } catch (error) {
+        console.error('Não foi possível verificar os favoritos.', error);
+        Alert.alert('Erro', 'Não foi possível carregar o estado dos favoritos.');
+      }
+    }
+
+    void verificarFavorito();
+    return () => {
+      ativo = false;
+    };
+  }, [item?.id]);
+
   function alternarItem(index: number) {
     setItensMarcados((marcados) =>
       marcados.map((marcado, itemIndex) =>
         itemIndex === index ? !marcado : marcado,
       ),
     );
+  }
+
+  async function alternarFavorito() {
+    if (!item || salvandoFavorito) {
+      return;
+    }
+
+    setSalvandoFavorito(true);
+    try {
+      if (favorito) {
+        await removerFavorito(item.id);
+        setFavorito(false);
+      } else {
+        await adicionarFavorito({
+          id: item.id,
+          nome: item.titulo,
+          tempo: item.duracao,
+          dificuldade: item.dificuldade,
+          ingredientes: item.ingredientes
+            .map(ingrediente => `${ingrediente.nome} (${ingrediente.unidade})`)
+            .join(', '),
+          imagemUrl: item.Imagem,
+        });
+        setFavorito(true);
+      }
+    } catch (error) {
+      console.error('Não foi possível atualizar os favoritos.', error);
+      Alert.alert('Erro', 'Não foi possível atualizar seus favoritos. Tente novamente.');
+    } finally {
+      setSalvandoFavorito(false);
+    }
   }
 
   if (!item) {
@@ -53,20 +112,30 @@ export default function Filme() {
          </View>
         </View>
           <View style={{flexDirection: "row", gap: 15, padding: 8, margin: "auto"}}>
-            {itensIniciais.map((item, index) => (
+            {itensIniciais.map((texto, index) => (
               <Pressable
-              key={item}
+              key={texto}
               style={styles.linha}
-              onPress={() => alternarItem(index)}
-                                >                       
-                    {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
-                    <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
-                        {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
-                    </View>
-                    {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
-                                
-                      </Pressable>
-                                ))}
+              onPress={() => index === 0 ? void alternarFavorito() : alternarItem(index)}
+              disabled={index === 0 && salvandoFavorito}
+              accessibilityRole="button"
+              accessibilityState={{ selected: index === 0 ? favorito : itensMarcados[index] }}
+              >
+                <View style={[
+                  styles.checkbox,
+                  (index === 0 ? favorito : itensMarcados[index]) && styles.marcado,
+                ]}>
+                  <Text style={[
+                    styles.item,
+                    (index === 0 ? favorito : itensMarcados[index]) && styles.concluido,
+                  ]}>
+                    {index === 0
+                      ? (favorito ? '♥ Favoritado' : '♡ Favoritar')
+                      : itensMarcados[index] ? '✓ Já fiz' : texto}
+                  </Text>
+                </View>
+              </Pressable>
+            ))}
           
         </View>
       </View>
@@ -96,7 +165,7 @@ export default function Filme() {
       </View>
       
       </ScrollView>
-      <Link rel="stylesheet" href="../../layout/paginaInicial" style={{position: "fixed", borderRadius: 20, boxShadow: "0px 1px 3px rgba(0, 0, 0, 0.23)", padding: 12, paddingHorizontal: 15.2, backgroundColor: "#ffffff", margin: 17, marginTop: 30, cursor: "pointer"}}>
+      <Link href={destinoVoltar} style={{position: "fixed", borderRadius: 20, boxShadow: "0px 1px 3px rgba(0, 0, 0, 0.23)", padding: 12, paddingHorizontal: 15.2, backgroundColor: "#ffffff", margin: 17, marginTop: 30, cursor: "pointer"}}>
       <TouchableOpacity>
       <Text>←</Text>
      </TouchableOpacity>

@@ -18,9 +18,9 @@ const itensIniciais2 = [ { id: 1, label: '🍽️ Sem restrições' }, { id: 2, 
 
 const itensIniciais3 = ['🥛 Leite', '🥚 Ovo', '🥜 Amendoim', '🌰 Castanhas', '🫘 Soja', '🌾 Trigo', '🐟 Peixes', '🦐 Frutos do Mar'];
 
-const itensIniciais4 = ['Cebola', 'Alho', 'Tomate', 'Peixe', 'Coentro', 'Pimentão', 'Brócolis', 'Cogumelo', 'Azeitona', 'Pimenta', 'Gengibre', 'Manjericão' ];
+const itensIniciais4 = ['🧅 Cebola', '🧄 Alho', '🍅 Tomate', '🐟 Peixe', '🌿 Coentro', '🫑 Pimentão', '🥦 Brócolis', '🍄 Cogumelo', '🫒 Azeitona', '🌶️ Pimenta', '🫚 Gengibre', '🌿 Manjericão' ];
 
-const itensIniciais5 = ['Frango', 'Carne', 'Batata', 'Queijo', 'Chocolate', 'Morango', 'Massas', 'Arroz', 'Ovo', 'Tomate', 'Cenoura', 'Abacate', 'Salmão', 'Limão', 'Milho', 'Feijão' ];
+const itensIniciais5 = ['🍗 Frango', '🥩 Carne', '🥔 Batata', '🧀 Queijo', '🍫 Chocolate', '🍓 Morango', '🍝 Massas', '🍚 Arroz', '🥚 Ovo', '🍅 Tomate', '🥕 Cenoura', '🥑 Abacate', '🐟 Salmão', '🍋 Limão', '🌽 Milho', '🫘 Feijão' ];
 
 const itensIniciais6 = ['💫 Comer melhor', '⚡ Encontrar receitas práticas', '💰 Economizar', '🌈 Variar minha alimentação', '🎓 Aprender a cozinhar', '📅 Encontrar receitas para minha rotina', '✨ Outro'];
 

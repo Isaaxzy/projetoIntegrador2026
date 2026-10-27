@@ -1,81 +1,70 @@
-import { useState } from 'react';
-import { usePathname } from 'expo-router';
-import { FlatList, Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import type { ReceitaFavorita } from '../servicos/favoritos';
-
-const receitasExemplo: ReceitaFavorita[] = [
-    {
-        id: 'exemplo-frango',
-        nome: 'Frango cremoso com batatas',
-        tempo: '30 min',
-        dificuldade: 'Fácil',
-        ingredientes: 'Frango, batata, creme de leite, queijo e temperos.',
-    },
-    {
-        id: 'exemplo-panqueca',
-        nome: 'Panqueca de legumes',
-        tempo: '25 min',
-        dificuldade: 'Fácil',
-        ingredientes: 'Abobrinha, cenoura, farinha, ovos e leite.',
-    },
-    {
-        id: 'exemplo-macarrao',
-        nome: 'Macarrão ao molho caseiro',
-        tempo: '35 min',
-        dificuldade: 'Médio',
-        ingredientes: 'Macarrão, tomate, cebola, alho e manjericão.',
-    },
-    {
-        id: 'exemplo-bolo',
-        nome: 'Bolo de chocolate',
-        tempo: '50 min',
-        dificuldade: 'Médio',
-        ingredientes: 'Farinha, chocolate, ovos, leite e açúcar.',
-    },
-];
+import { useCallback, useState } from 'react';
+import { Link, useFocusEffect } from 'expo-router';
+import { FlatList, Image, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { listarFavoritos, type ReceitaFavorita } from '../servicos/favoritos';
 
 export default function App() {
-    const caminho = usePathname();
-    const favoritosAtivo = caminho.endsWith('/favorito');
-    const [ingredientesExpandidosId, setIngredientesExpandidosId] = useState<string | null>(null);
+    const { width } = useWindowDimensions();
+    const [favoritos, setFavoritos] = useState<ReceitaFavorita[]>([]);
+    const [carregando, setCarregando] = useState(true);
+    const [erro, setErro] = useState<string | null>(null);
+    const numColumns = width < 500 ? 1 : width < 900 ? 2 : width < 1200 ? 3 : 4;
+    const horizontalPadding = width < 560 ? 12 : width < 900 ? 24 : width < 1200 ? 36 : 48;
+    const cardWidth = `${(100 - (numColumns - 1) * 0) / numColumns}%` as `${number}%`;
+    const imageHeight = numColumns === 1 ? 180 : numColumns === 2 ? 155 : 140;
+
+    const carregarFavoritos = useCallback(async () => {
+        setCarregando(true);
+        setErro(null);
+
+        try {
+            setFavoritos(await listarFavoritos());
+        } catch (error) {
+            console.error('Não foi possível carregar os favoritos.', error);
+            setErro('Não foi possível carregar seus favoritos. Tente novamente.');
+        } finally {
+            setCarregando(false);
+        }
+    }, []);
+
+    useFocusEffect(
+        useCallback(() => {
+            void carregarFavoritos();
+        }, [carregarFavoritos]),
+    );
 
     const renderizarFavorito = ({ item }: { item: ReceitaFavorita }) => {
-        const expandido = ingredientesExpandidosId === item.id;
-
         return (
-    <View style={styles.coluna}>
-    <View style={styles.boxFav}>
-    <View style={styles.imgbox}>
-        <Text style={styles.textinf}>Combina com você</Text>
-        <Image
-            style={styles.prato}
-            source={item.imagemUrl ? { uri: item.imagemUrl } : require("../imagens/Projeto integrador (2).png")}
-        />
-    </View>
-    <View style={styles.descbox}>
-        <Text style={styles.upnome}>{item.nome}</Text>
-        <Text style={styles.updec}>🕐 {item.tempo}  🍴 {item.dificuldade}</Text>
-        <Pressable
-            onPress={() => setIngredientesExpandidosId(expandido ? null : item.id)}
-            accessibilityRole="button"
-        >
-            <Text
-                style={styles.upingred}
-                numberOfLines={expandido ? undefined : 2}
-                ellipsizeMode="tail"
-            >
-                {item.ingredientes}
-            </Text>
-        </Pressable>
-    </View>
-    </View>
-    </View>
+            <View style={[styles.coluna, { width: cardWidth }]}>
+                <Link href={`/componentes/filmes/${item.id}?origem=favorito`} asChild>
+                    <Pressable style={styles.boxFav} accessibilityRole="button">
+                        <View style={[styles.imgbox, { height: imageHeight }]}>
+                            <Text style={styles.textinf}>☆ Combina com você</Text>
+                            <Image
+                                style={styles.prato}
+                                source={item.imagemUrl ? { uri: item.imagemUrl } : require("../imagens/Projeto integrador (2).png")}
+                            />
+                        </View>
+                        <View style={styles.descbox}>
+                            <Text style={styles.upnome}>{item.nome}</Text>
+                            <Text style={styles.updec}>🕐 {item.tempo}  🍴 {item.dificuldade}</Text>
+                            <Text
+                                style={styles.upingred}
+                                numberOfLines={2}
+                                ellipsizeMode="tail"
+                            >
+                                {item.ingredientes}
+                            </Text>
+                        </View>
+                    </Pressable>
+                </Link>
+            </View>
         );
     };
 
     return (
-        <View style={styles.backgroundd}>
-            <View style={styles.container}>
+        <View style={[styles.backgroundd, { padding: horizontalPadding }]}>
+            <View style={[styles.container, { padding: horizontalPadding }]}>
                 <View style={styles.UPbar}>
                     <Image
                         style={styles.logo}
@@ -86,19 +75,30 @@ export default function App() {
 
                 <Text style={styles.titulo}>🧡 Favoritos</Text>
 
-                <Text style={styles.avisoExemplos}>
-                    Prévia da grade — estes cartões são apenas exemplos.
-                </Text>
+                {erro !== null && <Text style={styles.erro}>{erro}</Text>}
 
                 <FlatList
+                    key={`favoritos-${numColumns}`}
                     style={styles.lista}
                     contentContainerStyle={styles.favs}
-                    data={receitasExemplo}
+                    data={favoritos}
                     renderItem={renderizarFavorito}
                     keyExtractor={(item) => item.id}
-                    numColumns={2}
-                    columnWrapperStyle={styles.linha}
+                    numColumns={numColumns}
+                    columnWrapperStyle={numColumns > 1 ? styles.linha : undefined}
                     showsVerticalScrollIndicator={false}
+                    ListEmptyComponent={carregando || erro !== null ? null : (
+                        <View style={styles.estadoVazio}>
+                            <Image
+                                style={styles.imagemVazia}
+                                source={require("../imagens/2026_10_01_0mz_Kleki.png")}
+                                resizeMode="contain"
+                            />
+                            <Text style={styles.vazio}>
+                                Você ainda não adicionou nenhuma receita aos favoritos.
+                            </Text>
+                        </View>
+                    )}
                 />
             </View>
         </View>
@@ -109,16 +109,14 @@ export default function App() {
 const styles = StyleSheet.create({
     backgroundd: {
         flex: 1,
-        padding: 20,
     },
 
      container: {
         borderRadius: 25,
         flex: 1,
         width: '100%',
-        maxWidth: 900,
+        maxWidth: 1200,
         alignSelf: 'center',
-        padding: 24,
         backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
     },
@@ -139,7 +137,6 @@ const styles = StyleSheet.create({
         },
 
     favs:{
-        flexGrow: 1,
         paddingBottom: 12,
     },
 
@@ -193,7 +190,6 @@ const styles = StyleSheet.create({
     },
 
     coluna: {
-        width: '48%',
         marginBottom: 12,
     },
 
@@ -242,10 +238,28 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
 
-    avisoExemplos: {
-        marginBottom: 8,
+    erro: {
+        marginBottom: 12,
+        color: '#b00020',
+        fontSize: 14,
+    },
+
+    vazio: {
+        textAlign: 'center',
         color: '#666',
-        fontSize: 12,
+        fontSize: 16,
+    },
+
+    estadoVazio: {
+        alignItems: 'center',
+        marginTop: 32,
+        paddingHorizontal: 16,
+    },
+
+    imagemVazia: {
+        width: 180,
+        height: 180,
+        marginBottom: 16,
     },
 
        ops:{
