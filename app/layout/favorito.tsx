@@ -109,15 +109,16 @@ export default function App() {
 const styles = StyleSheet.create({
     backgroundd: {
         flex: 1,
+        backgroundColor: "#f4f8f4",
     },
 
      container: {
-        borderRadius: 25,
+        borderRadius: 18,
         flex: 1,
         width: '100%',
         maxWidth: 1200,
         alignSelf: 'center',
-        backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
+        backgroundColor: "#fff",
         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
     },
 
@@ -165,7 +166,7 @@ const styles = StyleSheet.create({
     prato:{
         width: '100%',
         height: '100%',
-        borderRadius: 30,
+        borderRadius: 16,
         borderBottomEndRadius: 0,
         borderBottomStartRadius: 0,
     },
@@ -199,13 +200,13 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         alignItems: 'center',
         boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
-        backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
+        backgroundColor: "#fff",
     },
 
     imgbox:{
         width: '100%',
         height: 140,
-        borderRadius: 30,
+        borderRadius: 16,
         position: 'relative',
     },
 

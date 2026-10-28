@@ -8,6 +8,7 @@ import {
     ScrollView,
     StyleSheet,
     Text,
+    useWindowDimensions,
     View,
 } from "react-native";
 import {
@@ -32,6 +33,8 @@ const receitasDisponiveis = [
 ];
 
 export default function Planejar() {
+    const { width } = useWindowDimensions();
+    const larguraCartaoDia = width < 560 ? "100%" : "48%";
     const [plano, setPlano] = useState<PlanoSemanal>(criarPlanoVazio);
     const [diaSelecionado, setDiaSelecionado] = useState<DiaDaSemana | null>(null);
     const [receitaSelecionada, setReceitaSelecionada] = useState<Receita | null>(null);
@@ -182,7 +185,7 @@ export default function Planejar() {
                             const receitasDoDia = receitasPlanejadas(dia.id);
 
                             return (
-                                <View key={dia.id} style={styles.cartaoDia}>
+                                <View key={dia.id} style={[styles.cartaoDia, { width: larguraCartaoDia }]}>
                                     <View style={styles.cabecalhoDia}>
                                         <Text style={styles.nomeDia}>{dia.abreviacao}</Text>
                                         <Text style={styles.quantidadeDia}>{receitasDoDia.length}</Text>

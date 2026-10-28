@@ -1,6 +1,6 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
-import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { View, StyleSheet, Text, TextInput, Pressable, ScrollView } from 'react-native';
 
 const itensIniciais = ['🥛 Leite', '🥚 Ovo', '🥜 Amendoim', '🌰 Castanhas', '🫘 Soja', '🌾 Trigo', '🐟 Peixes', '🦐 Frutos do Mar'];
 
@@ -22,7 +22,7 @@ export default function App() {
             );
           }
     return (
-      <View style={styles.backgroundd}>
+      <ScrollView style={styles.backgroundd} contentContainerStyle={styles.backgroundContent} keyboardShouldPersistTaps="handled">
           <View style={styles.container}>
             {/* Barra de Progresso + Etapa */}
             <View style={styles.progressSection}>
@@ -40,7 +40,7 @@ export default function App() {
                     />
                   );
                 })}
-              </View>
+          </View>
               <Text style={styles.stepText}>Etapa {currentStep} de {totalSteps}</Text>
             </View> 
 
@@ -75,26 +75,33 @@ export default function App() {
             <Link href={'./intro_etapa_4'} style={styles.Button}><Text>Próximo →</Text></Link>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
 
 backgroundd: {
+        flex: 1,
+        backgroundColor: "#f4f8f4",
+},
+
+backgroundContent: {
+        flexGrow: 1,
+        justifyContent: "center",
         paddingVertical: 20,
-        height: '100%',
-        margin: 'auto',
+        paddingHorizontal: 16,
 },
 
 container: {
         borderRadius: 25,
-        flex: 1,
-        width: 400,
-        margin: 'auto',
+        width: "100%",
+        maxWidth: 560,
+        minHeight: 440,
+        alignSelf: "center",
         padding: 24,
-        justifyContent: 'center',
-        backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
+        justifyContent: 'flex-start',
+        backgroundColor: "#fff",
         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
 },
     
@@ -103,7 +110,7 @@ progressSection: {
   width: "90%",
   marginHorizontal: 'auto',
   gap: 8,
-  marginBottom: 'auto',
+  marginBottom: 24,
 },
 barContainer: {
   flexDirection: "row",
@@ -116,7 +123,7 @@ segment: {
   borderRadius: 3,
 },
 activeSegment: {
-  backgroundColor: "#209e3c",
+  backgroundColor: "#168A3A",
 },
 inactiveSegment: {
   backgroundColor: "#E2E8F0",
@@ -127,7 +134,7 @@ stepText: {
 },
 
 Button: {
-  backgroundColor: "#209e3c",
+  backgroundColor: "#168A3A",
   color: "#fff",
   width: "45%",
   textAlign: "center",
@@ -153,7 +160,7 @@ subtexto: {
   textAlign: "center",
   width: "86%",
   marginHorizontal: "auto",
-  marginBottom: 'auto',
+  marginBottom: 24,
 },
 
 pergunta: {
@@ -176,8 +183,8 @@ input: {
 },
 
 marcado: {
-  backgroundColor: "#078523",
-  borderColor: "#078523",
+  backgroundColor: "#168A3A",
+  borderColor: "#168A3A",
   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
 },
 
@@ -198,31 +205,34 @@ concluido: {
 /*desta tela*/
 
 loginContainer: {
-  width: "80%",
+  width: "100%",
   marginHorizontal: 'auto',
 },
 aviso:{
-  width: '80%',
-  height: 90,
+  width: "100%",
+  minHeight: 90,
   backgroundColor: '#ffef96',
   padding: 20,
   marginHorizontal: 'auto',
-  marginBottom: 'auto',
+  marginBottom: 12,
   borderRadius: 10,
   borderWidth: 4,
   borderColor: '#ffdc19',
   alignItems: 'center',
   flexDirection: 'row',
+  gap: 10
   },
 
 icoav:{
   margin: 'auto',
-  fontSize: 20,
+  marginTop: 6,
+  fontSize: 30,
   },
 teavs:{
   width: '90%',
-  fontSize: 11,
+  fontSize: 12.7,
   textAlign: 'justify',
+  lineHeight: 21
 },
 
 });

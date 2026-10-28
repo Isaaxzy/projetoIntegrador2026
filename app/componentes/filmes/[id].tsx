@@ -147,9 +147,7 @@ export default function Filme() {
                    <Text style={styles.ingre}>{ingrediente.nome}</Text>
                    <Text style={styles.ingre}>{ingrediente.unidade}</Text>
                  </View>
-                 {index < item.ingredientes.length - 1 && (
-                   <Text style={{marginLeft: 18, color: "#66666673"}}>───────────────────────────────────</Text>
-                 )}
+                 {index < item.ingredientes.length - 1 && <View style={styles.divider} />}
                </View>
              ))}
         </View>
@@ -165,7 +163,7 @@ export default function Filme() {
       </View>
       
       </ScrollView>
-      <Link href={destinoVoltar} style={{position: "fixed", borderRadius: 20, boxShadow: "0px 1px 3px rgba(0, 0, 0, 0.23)", padding: 12, paddingHorizontal: 15.2, backgroundColor: "#ffffff", margin: 17, marginTop: 30, cursor: "pointer"}}>
+      <Link href={destinoVoltar} style={styles.botaoVoltar}>
       <TouchableOpacity>
       <Text>←</Text>
      </TouchableOpacity>
@@ -179,20 +177,24 @@ const styles = StyleSheet.create({
 
   fundo: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "#f4f8f4",
   },
   container: {
     marginTop: 15,
     backgroundColor: "#ffffff",
-    width: 440,
-    borderRadius: 20,
-    margin: "auto",
+    width: "100%",
+    maxWidth: 720,
+    borderRadius: 18,
+    alignSelf: "center",
+    paddingHorizontal: 12,
+    paddingBottom: 20,
   },
 
   container2: {
     marginTop: 15,
     backgroundColor: "#ffffff",
-    width: 440,
+    width: "100%",
+    maxWidth: 720,
     borderRadius: 20,
     margin: "auto",
   },
@@ -213,7 +215,7 @@ const styles = StyleSheet.create({
   },
 
   informacoes2: {
-    width: 400,
+    width: "100%",
     backgroundColor: "#ffffff",
     padding: 10,
     borderRadius: 20,
@@ -223,7 +225,7 @@ const styles = StyleSheet.create({
   },
 
   informacoes3: {
-    width: 400,
+    width: "100%",
     backgroundColor: "#ffffff",
     padding: 10,
     borderRadius: 20,
@@ -241,13 +243,13 @@ const styles = StyleSheet.create({
   imagem: {
     width: "100%",
     height: 320,
-    borderTopEndRadius: 20,
-    borderTopLeftRadius: 20,
+    borderTopEndRadius: 18,
+    borderTopLeftRadius: 18,
   },
 
   reco: {
     margin: "auto",
-    width: "85%",
+    width: "100%",
     backgroundColor: "#b1e7a036",
     padding: 15,
     borderWidth: 2,
@@ -268,7 +270,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     marginBottom: 3,
     textAlign: "justify",
-    width: "40%"
+    flex: 1,
   },
 
   titulo: {
@@ -279,7 +281,7 @@ const styles = StyleSheet.create({
     color: "#080808",
     margin: "auto",
     marginBottom: 6,
-    width: "90%"
+    width: "100%"
   },
 
   descricao: {
@@ -294,7 +296,7 @@ const styles = StyleSheet.create({
   },
 
   informacoes: {
-    width: 400,
+    width: "100%",
     backgroundColor: "#ffffff",
     padding: 10,
     borderRadius: 20,
@@ -307,7 +309,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: "center",
     color: "#080808",
-    width: 110,
+    flex: 1,
+    minWidth: 96,
     padding: 3,
     borderRadius: 10,
     paddingVertical: 18,
@@ -318,7 +321,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: "center",
     color: "#080808",
-    width: 110,
+    flex: 1,
+    minWidth: 96,
     padding: 3,
     borderRadius: 10,
   },
@@ -365,17 +369,42 @@ concluido: {
 },
 
 marcado: {
-  backgroundColor: "#078523",
-  borderColor: "#078523",
+  backgroundColor: "#168A3A",
+  borderColor: "#168A3A",
   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
 },
 
 checkbox: {
   padding: 12,
-  paddingHorizontal: 25,
+  paddingHorizontal: 16,
   boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.07)",
   borderRadius: 25,
   textAlign: "center"
 },
 
-});    
+linha: {
+flexDirection: "row",
+flexWrap: "wrap",
+gap: 12,
+justifyContent: "center",
+},
+
+divider: {
+  height: 1,
+  marginLeft: 18,
+  marginRight: 8,
+  backgroundColor: "#e5ebe6",
+},
+
+botaoVoltar: {
+  position: "absolute",
+  left: 16,
+  bottom: 16,
+  borderRadius: 20,
+  padding: 12,
+  paddingHorizontal: 16,
+  backgroundColor: "#fff",
+  boxShadow: "0px 1px 3px rgba(0, 0, 0, 0.16)",
+},
+
+});

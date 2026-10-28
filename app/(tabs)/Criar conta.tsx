@@ -1,9 +1,9 @@
 import { Link } from "expo-router";
-import { View, StyleSheet, Text, ImageBackground, Image,  } from 'react-native';
+import { View, StyleSheet, Text, Image, ScrollView } from 'react-native';
 
 export default function App() {
     return (
-      <View style={styles.fundo}>
+      <ScrollView style={styles.fundo} contentContainerStyle={styles.pagina}>
         <View>
           <View style={styles.logobox}>
             <Image
@@ -45,11 +45,11 @@ export default function App() {
               <View style={styles.signUpContainer}>
                 <Text>Already have an account?</Text>
                 <Link href="/login">
-                  <Text style={{ color: "#078523", fontWeight: "bold" }}>Log in</Text>
+                  <Text style={{ color: "#168A3A", fontWeight: "bold" }}>Log in</Text>
                 </Link>
               </View>
         </View>
-      </View>
+      </ScrollView>
  
     );
 }
@@ -58,15 +58,22 @@ const styles = StyleSheet.create({
 
 fundo: {
   flex: 1,
-  backgroundColor: "rgb(248, 248, 248)"
+  backgroundColor: "#f4f8f4",
+},
+
+pagina: {
+  flexGrow: 1,
+  justifyContent: "center",
+  paddingHorizontal: 16,
+  paddingVertical: 24,
 },
 
 logobox: {
-  backgroundColor: "#078523",
+  backgroundColor: "#168A3A",
   width: 90,
   height: 90,
   margin: 'auto',
-  marginTop: 40,
+  marginTop: 12,
   marginBottom: 10,
   borderRadius: 25
 },
@@ -95,7 +102,8 @@ container: {
   alignItems: "center",
   boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
   borderRadius: 10,
-  width: 400,
+  width: "100%",
+  maxWidth: 440,
   padding: 20,
   backgroundColor: "#fff",
   margin: "auto",
@@ -136,8 +144,9 @@ input: {
   borderRadius: 5,
   padding: 10,
   marginBottom: 2,
-  height: 20,
-  borderWidth: 0
+  height: 33,
+  borderWidth: 0,
+  fontSize: 13.5,
 },
 
 label: {
@@ -152,21 +161,21 @@ label: {
 
 forgotPassword: {
   fontSize: 14,
-  color: "#078523",
+  color: "#168A3A",
   textDecorationLine: "none",
   paddingBottom: 5,
   marginTop: 5,
 },
 
 loginButton: {
-  backgroundColor: "#078523",
+  backgroundColor: "#168A3A",
   color: "#fff",
   width: "100%",
   textAlign: "center",
   paddingVertical: 10,
   borderRadius: 5,
   fontSize: 16,
-  marginTop: 5,
+  marginTop: 10,
   boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
 },
 
@@ -179,6 +188,3 @@ signUpContainer: {
 },
 
 });
-
-
-

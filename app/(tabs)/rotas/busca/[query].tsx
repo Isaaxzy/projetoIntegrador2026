@@ -22,13 +22,13 @@ export default function Busca() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#000000",
+        backgroundColor: "#f4f8f4",
         justifyContent: "center",
         alignItems: "center",
         padding: 16,
     },
     texto: {
-        color: "#FFFFFF",
+        color: "#168A3A",
         fontSize: 18,
         fontWeight: "600",
     },

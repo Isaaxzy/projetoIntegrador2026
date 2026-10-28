@@ -1,14 +1,11 @@
-import { Link } from 'expo-router';
 import { useState } from 'react';
 import {
 View,
 StyleSheet,
 Text,
-ImageBackground,
 Image,
 TouchableOpacity,
 TextInput,
-Pressable,
 ScrollView 
 } from 'react-native';
 
@@ -142,17 +139,17 @@ function alternarRestricao(id: number) {
     <Text style={styles.title}>Sobre você</Text>
 
     <Text style={styles.label}>Nome</Text>
-    <input style={styles.input} type='text' maxLength={35} placeholder="Seu nome" />
+    <TextInput style={styles.input} maxLength={35} placeholder="Seu nome" />
     
     <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
         <Text style={styles.label}>Idade</Text>
     </View>
 
-    <input style={styles.input} type="number" min="14" max="70" placeholder="14+"/>
+    <TextInput style={styles.input} keyboardType="number-pad" placeholder="14+" />
 
     <Text style={styles.label}>Para quantas pessoas você costuma cozinhar?</Text>
 
-    <input style={styles.input} type="number" min="1" max="15" placeholder="Número de pessoas" />
+    <TextInput style={styles.input} keyboardType="number-pad" placeholder="Número de pessoas" />
     
     <Text style={styles.label}>Nivel de experiência na cozinha</Text>
     <View style={{ flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
@@ -338,12 +335,12 @@ const styles = StyleSheet.create({
 
     fundo: {
     flex: 1,
-    backgroundColor: "rgb(248, 248, 248)"
+    backgroundColor: "#f4f8f4"
     },
 
     aviso:{
-    width: '95%',
-    height: 100,
+    width: '100%',
+    minHeight: 100,
     backgroundColor: '#ffef96',
     paddingLeft: 10,
     paddingRight: 20,
@@ -396,7 +393,7 @@ const styles = StyleSheet.create({
 
     scroll:{
     padding: 10,
-    margin: 'auto',
+    flex: 1,
     width: '100%',
     borderRadius: 10,
     },
@@ -420,8 +417,8 @@ const styles = StyleSheet.create({
     },
 
     marcado: {
-    backgroundColor: "#078523",
-    borderColor: "#078523",
+    backgroundColor: "#168A3A",
+    borderColor: "#168A3A",
     boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
     },
 
@@ -459,14 +456,14 @@ const styles = StyleSheet.create({
     },
 
     ButtonRota: {
-    backgroundColor: "#209e3c",
+    backgroundColor: "#168A3A",
     color: "#fff",
-    width: "95%",
-    height: '70%',
+    width: "100%",
+    minHeight: 48,
     textAlign: "center",
     paddingVertical: 10,
     marginTop: 15,
-    marginLeft: 5,
+    marginLeft: 0,
     borderRadius: 10,
     fontSize: 16,
     boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
@@ -495,7 +492,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     width: "90%",
     marginTop: 20,
-    justifyContent: "justify",
+    textAlign: "left",
     },
 
     subtexto: {
@@ -503,7 +500,7 @@ const styles = StyleSheet.create({
     color: "gray",
     width: "86%",
     marginBottom: 10,
-    justifyContent: "justify",
+    textAlign: "left",
     },
 
     title:{
@@ -537,16 +534,17 @@ const styles = StyleSheet.create({
     },
 
     container: {
-    flex: 2,
-    justify: "center",
+    flex: 1,
+    justifyContent: "flex-start",
     alignItems: "center",
     boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-    borderRadius: 10,
-    width: 400,
+    borderRadius: 18,
+    width: "100%",
+    maxWidth: 880,
     padding: 20,
     backgroundColor: "#fff",
-    margin: "auto",
-    marginTop: 10,
+    alignSelf: "center",
+    marginTop: 8,
     gap: 10,
     },
 
@@ -556,7 +554,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     padding: 10,
     marginBottom: 10,
-    height: 25,
+    height: 44,
     borderWidth: 0,
     },
 
@@ -568,7 +566,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 10,
     marginBottom: 10,
-    height: 30,
+    height: 44,
     borderWidth: 0,
     },
 
@@ -577,17 +575,16 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     flexDirection: "row",
     justifyContent: "space-between",
-    fontWeight: "400",
+    fontWeight: "bold",
     paddingBottom: 5,
     marginTop: 7,
-    fontWeight:'bold',
     },
 
     loginButtonP: {
     width: '100%',
     height: '50%',
     alignItems: 'center',
-    display: 'contents',
+    justifyContent: 'center',
     },
 
     textButtonP:{

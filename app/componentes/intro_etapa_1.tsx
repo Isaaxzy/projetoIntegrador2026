@@ -1,6 +1,6 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
-import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { View, StyleSheet, Text, TextInput, Pressable, ScrollView } from 'react-native';
 
 const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Avançado'];
 
@@ -22,7 +22,7 @@ export default function App() {
     );
   }
   return (
-    <View style={styles.backgroundd}>
+    <ScrollView style={styles.backgroundd} contentContainerStyle={styles.backgroundContent} keyboardShouldPersistTaps="handled">
       <View style={styles.container}>
         {/* Barra de Progresso + Etapa */}
         <View style={styles.progressSection}>
@@ -79,26 +79,34 @@ export default function App() {
             <Link href={'./intro_etapa_2'} style={styles.Button}><Text>Próximo →</Text></Link>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
 
   backgroundd: {
+    flex: 1,
+    backgroundColor: "#f4f8f4",
+  },
+
+  backgroundContent: {
+    flexGrow: 1,
+    justifyContent: "center",
     paddingVertical: 20,
-    height: '100%',
-    margin: 'auto',
+    paddingHorizontal: 16,
   },
 
   container: {
     borderRadius: 25,
     flex: 1,
-    width: 400,
-    margin: 'auto',
+    width: "100%",
+    maxWidth: 560,
+    alignSelf: "center",
+    minHeight: 440,
     padding: 24,
-    justifyContent: 'center',
-    backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
+    justifyContent: 'flex-start',
+    backgroundColor: "#fff",
     boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
   },
 
@@ -106,7 +114,7 @@ const styles = StyleSheet.create({
     width: "90%",
     marginHorizontal: 'auto',
     gap: 8,
-    marginBottom: 'auto',
+    marginBottom: 24,
   },
   barContainer: {
     flexDirection: "row",
@@ -119,7 +127,7 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
   activeSegment: {
-    backgroundColor: "#209e3c",
+    backgroundColor: "#168A3A",
   },
   inactiveSegment: {
     backgroundColor: "#E2E8F0",
@@ -130,7 +138,7 @@ const styles = StyleSheet.create({
   },
 
   Button: {
-    backgroundColor: "#209e3c",
+    backgroundColor: "#168A3A",
     color: "#fff",
     width: "45%",
     textAlign: "center",
@@ -183,8 +191,8 @@ const styles = StyleSheet.create({
   },
 
   marcado: {
-    backgroundColor: "#078523",
-    borderColor: "#078523",
+    backgroundColor: "#168A3A",
+    borderColor: "#168A3A",
     boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
   },
 
@@ -203,7 +211,7 @@ const styles = StyleSheet.create({
   },
 
   loginContainer: {
-    width: "80%",
+    width: "100%",
     marginHorizontal: 'auto',
   },
 
