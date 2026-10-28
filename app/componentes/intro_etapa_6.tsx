@@ -1,6 +1,7 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
 import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { etapa6 } from '../../login info'
 
 const itensIniciais = ['💫 Comer melhor', '⚡ Encontrar receitas práticas', '💰 Economizar', '🌈 Variar minha alimentação', '🎓 Aprender a cozinhar', '📅 Encontrar receitas para minha rotina', '✨ Outro'];
 
@@ -63,7 +64,16 @@ export default function App() {
             </View>
              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
              <Text><Link href={'/componentes/intro_etapa_5'}>← Voltar</Link></Text>
-            <Link href={'/componentes/intro_etapa_7'} style={styles.Button}><Text>Próximo →</Text></Link>
+            <TouchableOpacity
+                                    style={styles.Button}
+                                    onPress={() =>
+                                      etapa6(
+                                        itensMarcados.flatMap((marcado, index) => marcado ? [index] : [])
+                                      )
+                                    }
+                                  >
+                                    Próximo →
+                                  </TouchableOpacity>
           </View>
         </View>
       </View>

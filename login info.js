@@ -48,7 +48,7 @@ export function etapa3(indicesMarcados = []) {
     var outros = document.getElementById('outros').value;
 
     localStorage.setItem('Alergias', JSON.stringify(indicesMarcados));
-    localStorage.setItem('Outros', JSON.stringify(outros));
+    localStorage.setItem('OutrosA', JSON.stringify(outros));
     window.location.href = 'http://localhost:8081/componentes/intro_etapa_4';
 
 }
@@ -56,8 +56,8 @@ export function etapa3(indicesMarcados = []) {
 export function etapa4(indicesMarcados = []) {
     var outros = document.getElementById('outros').value;
 
-    localStorage.setItem('Alergias', JSON.stringify(indicesMarcados));
-    localStorage.setItem('Outros', JSON.stringify(outros));
+    localStorage.setItem('Desgostos', JSON.stringify(indicesMarcados));
+    localStorage.setItem('OutrosD', JSON.stringify(outros));
     window.location.href = 'http://localhost:8081/componentes/intro_etapa_5';
 
 }
@@ -65,8 +65,30 @@ export function etapa4(indicesMarcados = []) {
 export function etapa5(indicesMarcados = []) {
     var outros = document.getElementById('outros').value;
 
-    localStorage.setItem('Alergias', JSON.stringify(indicesMarcados));
-    localStorage.setItem('Outros', JSON.stringify(outros));
+    localStorage.setItem('Gostos', JSON.stringify(indicesMarcados));
+    localStorage.setItem('OutrosG', JSON.stringify(outros));
     window.location.href = 'http://localhost:8081/componentes/intro_etapa_6';
 
+}
+
+export function etapa6(indicesMarcados = []) {
+
+    if (indicesMarcados.length == 0) {
+        alert('Selecione pelo menos um objetivo');
+    } else {
+        localStorage.setItem('Objetivos', JSON.stringify(indicesMarcados));
+        window.location.href = 'http://localhost:8081/componentes/intro_etapa_7';
+    }
+}
+
+export function etapa7(indicesMarcados = []) {
+    var tempo = document.getElementById('tempo').value;
+
+    if (indicesMarcados.length == 0) {
+        alert('Insira os dados corretamente');
+    } else {
+        localStorage.setItem('Tempo', JSON.stringify(tempo));
+        localStorage.setItem('Tipo', JSON.stringify(indicesMarcados));
+        window.location.href = 'http://localhost:8081/componentes/paginaInicial';
+    }
 }
