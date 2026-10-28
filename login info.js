@@ -92,3 +92,7 @@ export function etapa7(indicesMarcados = []) {
         window.location.href = 'http://localhost:8081/componentes/paginaInicial';
     }
 }
+
+export function infoSet(indicesMarcados = []) {
+    eta
+}

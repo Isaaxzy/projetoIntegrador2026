@@ -1,5 +1,5 @@
 import { Link } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
 View,
 StyleSheet,
@@ -11,6 +11,7 @@ TextInput,
 Pressable,
 ScrollView 
 } from 'react-native';
+import { infoSet } from '../../login info'
 
 const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Avançado'];
 
@@ -27,6 +28,23 @@ const itensIniciais6 = ['💫 Comer melhor', '⚡ Encontrar receitas práticas',
 const itensIniciais7 = ['Até 10 min', 'Até 20 min', 'Até 30 min', 'Até 1 hora', 'Mais de 1 hora'];
 
 const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada'];
+
+function lerIndices(key: string): number[] {
+  if (typeof window === 'undefined') return [];
+
+  try {
+    const valor = JSON.parse(localStorage.getItem(key) ?? '[]');
+    return Array.isArray(valor)
+      ? valor.filter((item): item is number => Number.isInteger(item))
+      : [];
+  } catch {
+    return [];
+  }
+}
+
+function indicesParaBooleanos(indices: number[], tamanho: number): boolean[] {
+  return Array.from({ length: tamanho }, (_, index) => indices.includes(index));
+}
 
     export default function App() {
 
@@ -56,77 +74,123 @@ const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada']
   )
  
     const [dificuldadeMarcados, setDificuldadeMarcados] = useState<number | null>(null);
-    
-    function alternarExperiencia(index: number) {
+
+    useEffect(() => {
+      const restricoes = lerIndices('Alimentacao').map((indice) => indice + 1);
+      const tempoSalvo = localStorage.getItem('Tempo');
+      let tempoTexto: string | null = null;
+    document.getElementById('nome').value = JSON.parse(localStorage.getItem('voce'))[0];
+    document.getElementById('pessoas').value = JSON.parse(localStorage.getItem('voce'))[1];
+    document.getElementById('idade').value = JSON.parse(localStorage.getItem('voce'))[2];
+
+      if (tempoSalvo) {
+        try {
+          tempoTexto = JSON.parse(tempoSalvo);
+        } catch {
+          tempoTexto = tempoSalvo;
+        }
+      }
+
+      const tempoIndex = tempoTexto
+        ? itensIniciais7.findIndex((opcao) => opcao === tempoTexto)
+        : -1;
+
+      setExperienciaSelecionada(lerIndices('nivelExperienciaIndices')[0] ?? null);
+      setRestricoesSelecionadas(restricoes);
+      setAlergiasMarcadas(indicesParaBooleanos(lerIndices('Alergias'), itensIniciais3.length));
+      setIngredientesMarcados(indicesParaBooleanos(lerIndices('Desgostos'), itensIniciais4.length));
+      setIngredientesPrefereMarcados(indicesParaBooleanos(lerIndices('Gostos'), itensIniciais5.length));
+      setObjetivosMarcados(lerIndices('Objetivos'));
+      setTempoMarcados(indicesParaBooleanos(tempoIndex >= 0 ? [tempoIndex] : [], itensIniciais7.length));
+      setDificuldadeMarcados(lerIndices('Tipo')[0] ?? null);
+    }, []);
+
+  const alternarExperiencia = (index: number) => {
     setExperienciaSelecionada(index === experienciaSelecionada ? null : index);
-    }
+  };
 
-function alternarRestricao(id: number) {
-  setRestricoesSelecionadas((selecionadas) => {
-    if (selecionadas.includes(id)) {
-      return selecionadas.filter((item) => item !== id);
-    }
+  const alternarRestricao = (id: number) => {
+    setRestricoesSelecionadas((selecionadas) => {
+      if (selecionadas.includes(id)) {
+        return selecionadas.filter((item) => item !== id);
+      }
 
-    if (id === 1) {
-      return [1];
-    }
+      if (id === 1) {
+        return [1];
+      }
 
-    if (selecionadas.includes(1) || selecionadas.length >= LIMITE_RESTRICOES) {
-      return selecionadas;
-    }
+      if (selecionadas.includes(1) || selecionadas.length >= LIMITE_RESTRICOES) {
+        return selecionadas;
+      }
 
-    return [...selecionadas, id];
-  });
-}
-
-    function alternarAlergia(index: number) {
+      return [...selecionadas, id];
+    });
+  };
+  
+  const alternarAlergia = (index: number) => {
     setAlergiasMarcadas((marcados) =>
     marcados.map((marcado, i) => (i === index ? !marcado : marcado)),
     );
-    }
+    };
 
-    function alternarIngrediente(index: number) {
+  const alternarIngrediente = (index: number) => {
     setIngredientesMarcados((marcados) =>
     marcados.map((marcado, i) => (i === index ? !marcado : marcado)),
     );
-    }
+    };
 
-    function alternarIngredientePrefere(index: number) {
+  const alternarIngredientePrefere = (index: number) => {
     setIngredientesPrefereMarcados((marcados) =>
     marcados.map((marcado, i) => (i === index ? !marcado : marcado)),
     );
-    }
+    };
 
-      function alternarObjetivo(index: number) {
-  setObjetivosMarcados((selecionadas) => {
-    if (selecionadas.includes(index)) {
-      return selecionadas.filter((item) => item !== index);
-    }
+  const alternarObjetivo = (index: number) => {
+    setObjetivosMarcados((selecionadas) => {
+      if (selecionadas.includes(index)) {
+        return selecionadas.filter((item) => item !== index);
+      }
 
-    if (selecionadas.length >= LIMITE_RESTRICOES2) {
-      return selecionadas;
-    }
+      if (selecionadas.length >= LIMITE_RESTRICOES2) {
+        return selecionadas;
+      }
 
-    return [...selecionadas, index];
-  });
-}
+      return [...selecionadas, index];
+    });
+  };
 
-      function alternarTempo(index: number) {
+  const alternarTempo = (index: number) => {
     setTempoMarcados((marcados) =>
     marcados.map((marcado, i) => (i === index ? !marcado : marcado)),
     );
-    }
+    };
 
-       function alternarDificuldade(index: number) {
+  const alternarDificuldade = (index: number) => {
     setDificuldadeMarcados(index === dificuldadeMarcados ? null : index);
+    };
+
+    const tempoSalvo = typeof window === 'undefined'
+        ? null
+        : localStorage.getItem('Tempo');
+    let tempoTexto: string | null = null;
+
+    if (tempoSalvo) {
+        try {
+            tempoTexto = JSON.parse(tempoSalvo);
+        } catch {
+            tempoTexto = tempoSalvo;
+        }
     }
 
+    const tempoIndex = tempoTexto
+        ? itensIniciais7.findIndex((opcao) => opcao === tempoTexto)
+        : -1;
 
     return (
     <View style={styles.fundo}>
     <View style={styles.container}>
 
-<View style={styles.UPbar}>
+<View style={styles.UPbar} onFocus={() => infoSet()}>
             <Image
         style={styles.logo1}
         source={require("../imagens/2026_10_01_0mz_Kleki.png")}
@@ -142,17 +206,17 @@ function alternarRestricao(id: number) {
     <Text style={styles.title}>Sobre você</Text>
 
     <Text style={styles.label}>Nome</Text>
-    <input style={styles.input} type='text' maxLength={35} placeholder="Seu nome" />
+    <input style={styles.input} type='text' id="nome" maxLength={35} placeholder="Seu nome" />
     
     <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
         <Text style={styles.label}>Idade</Text>
     </View>
 
-    <input style={styles.input} type="number" min="14" max="70" placeholder="14+"/>
+    <input style={styles.input} type="number" id="idade" min="14" max="70" placeholder="14+"/>
 
     <Text style={styles.label}>Para quantas pessoas você costuma cozinhar?</Text>
 
-    <input style={styles.input} type="number" min="1" max="15" placeholder="Número de pessoas" />
+    <input style={styles.input} type="number" id="pessoas" min="1" max="15" placeholder="Número de pessoas" />
     
     <Text style={styles.label}>Nivel de experiência na cozinha</Text>
     <View style={{ flexDirection: "row",flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%",}}>
@@ -317,7 +381,8 @@ function alternarRestricao(id: number) {
         </View>
 
         <View style={styles.botbox}>
-        <TouchableOpacity style={styles.ButtonRota}><Image
+        <TouchableOpacity style={styles.ButtonRota} onPress={() => infoSet()}
+        ><Image
             style={styles.buttonIcon}
             source={require("../imagens/save.png")}
             /> <Text style={styles.buttonText}>Salvar todas as informações</Text></TouchableOpacity>
@@ -328,7 +393,7 @@ function alternarRestricao(id: number) {
     <View style={styles.ops}>
 
         <View style={styles.foote}>
-            <Link href={"/(tabs)/paginaInicial"} style={styles.loginButtonP}><TouchableOpacity>
+            <Link href={"./paginaInicial"} style={styles.loginButtonP}><TouchableOpacity>
             <Image
             style={styles.perf}
             source={require("../imagens/house.png")}
@@ -347,7 +412,7 @@ function alternarRestricao(id: number) {
             </View>
 
             <View style={styles.foote}>
-        <Link href={"/(tabs)/favorito"} style={styles.loginButtonP}><TouchableOpacity style={styles.loginButtonP}>
+        <Link href={"./favorito"} style={styles.loginButtonP}><TouchableOpacity style={styles.loginButtonP}>
             <Image
             style={styles.perf}
             source={require("../imagens/fav.png")}
@@ -537,7 +602,6 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     width: "90%",
     marginTop: 20,
-    justifyContent: "justify",
     },
 
     subtexto: {
@@ -545,7 +609,6 @@ const styles = StyleSheet.create({
     color: "gray",
     width: "86%",
     marginBottom: 10,
-    justifyContent: "justify",
     },
 
     title:{
@@ -580,7 +643,7 @@ const styles = StyleSheet.create({
 
     container: {
     flex: 2,
-    justify: "center",
+    justifyContent: "center",
     alignItems: "center",
     boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
     borderRadius: 10,
@@ -622,7 +685,6 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     paddingBottom: 5,
     marginTop: 7,
-    fontWeight:'bold',
     },
 
     loginButtonP: {
