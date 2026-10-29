@@ -1,6 +1,7 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
-import { View, StyleSheet, Text, TextInput, Pressable, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { etapa4 } from '../../login info'
 
 const itensIniciais = ['🧅 Cebola', '🧄 Alho', '🍅 Tomate', '🐟 Peixe', '🌿 Coentro', '🫑 Pimentão', '🥦 Brócolis', '🍄 Cogumelo', '🫒 Azeitona', '🌶️ Pimenta', '🫚 Gengibre', '🌿 Manjericão' ];
 
@@ -45,7 +46,7 @@ export default function App() {
             </View> 
 
             <Text style={styles.texto}>O que você não gosta?</Text>
-            <Text style={styles.subtexto}>Quais ingredientes voce prefere evitar?</Text>
+            <Text style={styles.subtexto}>Quais ingredientes você prefere evitar?</Text>
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 30}}>
                   {itensIniciais.map((item, index) => (
                     <Pressable
@@ -62,11 +63,20 @@ export default function App() {
                 ))}
             </View>
             <View style={styles.loginContainer}>
-                <TextInput style={styles.input} placeholder="Adicionar outro ingrediente" />
+                <TextInput style={styles.input} id='outros' placeholder="Adicionar outro ingrediente" />
             </View> 
              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
-             <Text><Link href={'./intro_etapa_3'}>← Voltar</Link></Text>
-            <Link href={'./intro_etapa_5'} style={styles.Button}><Text>Próximo →</Text></Link>
+             <Text><Link href={'/componentes/intro_etapa_3'}>← Voltar</Link></Text>
+            <TouchableOpacity
+            style={styles.Button}
+            onPress={() =>
+              etapa4(
+                itensMarcados.flatMap((marcado, index) => marcado ? [index] : [])
+              )
+            }
+          >
+            Próximo →
+          </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -125,6 +135,16 @@ inactiveSegment: {
 stepText: {
   fontSize: 14,
   color: "gray",
+},
+
+ButtonLeft:{
+  width: "55%",
+  textAlign: "center",
+  paddingVertical: 10,
+  borderRadius: 20,
+  fontSize: 16,
+  marginTop: 10,
+  cursor: "pointer",
 },
 
 Button: {
@@ -199,7 +219,9 @@ concluido: {
 /*desta tela*/
 
 loginContainer: {
-  width: "100%",
+  width: "80%",
+  marginBottom: 30,
+  marginTop: 30,
   marginHorizontal: 'auto',
 },
 aviso:{

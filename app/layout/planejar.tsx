@@ -465,6 +465,7 @@ const styles = StyleSheet.create({
     gradeDias: {
         flexDirection: "row",
         flexWrap: "wrap",
+        alignItems: "flex-start",
         justifyContent: "space-between",
         gap: 12,
     },

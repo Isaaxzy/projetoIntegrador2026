@@ -1,5 +1,6 @@
-import { Link } from "expo-router";
-import { View, StyleSheet, Text, Image, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity,  } from 'react-native';
+import { Link } from 'expo-router';
+import {register} from '../../login info'
 
 export default function App() {
     return (
@@ -16,37 +17,36 @@ export default function App() {
             <Text style={styles.subtexto}>Sign up to get started</Text>
           </View>
               <View style={styles.container}>
-                <View style={styles.googleContainer}>
+                <TouchableOpacity style={styles.googleContainer}>
                   <Image
                   source={require("../imagens/720255.png")}
                   style={styles.google}
                   />
                   <Text>Continue with Google</Text>
-                </View>
+                </TouchableOpacity>
                 <View>
                   <Text style={styles.orText}>──────────── OR ────────────</Text>
                 </View>
                 <View style={styles.loginContainer}>
                   <Text style={styles.label}>Email:</Text>
-                  <input style={styles.input} type="email" placeholder="✉︎ you@example.com" />
+                  <input style={styles.input} type="email" id='email' placeholder="✉︎ you@example.com" />
                   <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center",  }}>
                   <Text style={styles.label}>Password: </Text>
                  </View>
-                  <input style={styles.input} type="password" placeholder="🔒︎ Enter your password" />
+                  <input style={styles.input} type="password" id='password' placeholder="🔒︎ Enter your password" />
                   <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center",  }}>
                   <Text style={styles.label}>Confirm Password: </Text>
                  </View>
-                  <input style={styles.input} type="password" placeholder="🔒︎ Confirm your password" />
-                  <View>
-                    <Text style={styles.loginButton}>Create Account</Text>
-                  </View>
+                  <input style={styles.input} type="password" id='confpassw' placeholder="🔒︎ Confirm your password" />
+
+                  <TouchableOpacity onPress={() => register()}><Text style={styles.loginButton}>Create Account</Text></TouchableOpacity>
+
                 </View>   
               </View>
               <View style={styles.signUpContainer}>
+               
                 <Text>Already have an account?</Text>
-                <Link href="/login">
-                  <Text style={{ color: "#168A3A", fontWeight: "bold" }}>Log in</Text>
-                </Link>
+                <Link href="http://localhost:8081/"><TouchableOpacity><Text style={{ color: "#078523", fontWeight: "bold" }}>Log in</Text></TouchableOpacity></Link>
               </View>
         </View>
       </ScrollView>

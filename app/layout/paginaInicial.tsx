@@ -91,7 +91,7 @@ export default function App() {
             <Link href="/login"><Image style={styles.image2} source={require("../imagens/seta.png")} /></Link>
             </View>
                     <View style={{flexDirection: "row", padding: 10, gap: 20, width: "95%", margin: "auto"}}>
-                    <Text style={styles.textoApresentacao}><Text style={styles.titulo}>Pronto, Isa! 🥦</Text> Agora já sei um pouquinho mais sobre seus gostos. separei algumas receitas que combinam com você</Text>
+                    <Text style={styles.textoApresentacao}><Text style={styles.titulo}>Pronto, nome do usuário! 🥦</Text> Agora já sei um pouquinho mais sobre seus gostos. separei algumas receitas que combinam com você</Text>
                 </View>
                    <ScrollView horizontal>
                 <View style={{flexDirection: "row", gap: 10, marginLeft: 8, padding: 8,}}>

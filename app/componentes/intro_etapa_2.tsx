@@ -1,26 +1,44 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
+import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { etapa2 } from '../../login info'
 import { View, StyleSheet, Text, Pressable, ScrollView } from 'react-native';
 
-const itensIniciais = ['🍽️ Sem restrições', '🥕 Vegetariano', '🌱 Vegano', '🥗 Flexitariano', '🥑 Low crab', '✨ outra'];
+const itensIniciais = [
+  { id: 1, label: '🍽️ Sem restrições' },
+  { id: 2, label: '🥕 Vegetariano' },
+  { id: 3, label: '🌱 Vegano' },
+  { id: 4, label: '🥗 Flexitariano' },
+  { id: 5, label: '🥑 Low carb' },
+  { id: 6, label: '✨ Outra' },
+];
 
 
 export default function App() {
-    const totalSteps = 7;
-    const currentStep = 2;
+  const totalSteps = 7;
+  const currentStep = 2;
 
-    const [itensMarcados, setItensMarcados] = useState<boolean[]>(
-            itensIniciais.map(() => false),
-        );
-     
-        function alternarItem(index: number) {
-            // Cria um novo array e inverte somente o item que foi pressionado.
-            setItensMarcados((marcados) =>
-                marcados.map((marcado, itemIndex) =>
-                    itemIndex === index ? !marcado : marcado,
-                ),
-            );
-          }
+    const LIMITE_RESTRICOES = 3;
+    const [restricoesSelecionadas, setRestricoesSelecionadas] = useState<number[]>([]);
+
+    function alternarRestricao(id: number) {
+      setRestricoesSelecionadas((selecionadas) => {
+        if (selecionadas.includes(id)) {
+          return selecionadas.filter((item) => item !== id);
+        }
+
+        if (id === 1) {
+          return [1];
+        }
+
+        if (selecionadas.includes(1) || selecionadas.length >= LIMITE_RESTRICOES) {
+          return selecionadas;
+        }
+
+        return [...selecionadas, id];
+      });
+    }
+
     return (
       <ScrollView style={styles.backgroundd} contentContainerStyle={styles.backgroundContent} keyboardShouldPersistTaps="handled">
           <View style={styles.container}>
@@ -45,6 +63,33 @@ export default function App() {
             </View> 
 
             <Text style={styles.texto}>Sua alimentação</Text>
+            <Text style={styles.subtexto}>Como você costuma se alimentar? Você pode marcar mais de uma opção.</Text>
+            <View style={styles.loginContainer}> 
+                 <View style={{flexDirection: "row", flexWrap: "wrap", justifyContent: "center", gap: 12, marginTop: -50, width: "100%"}}>
+                       {itensIniciais.map((item) => {
+                 const selecionada = restricoesSelecionadas.includes(item.id);
+                 const bloqueada =
+                   item.id !== 1 && restricoesSelecionadas.includes(1);
+               
+                 return (
+                   <TouchableOpacity
+                     key={item.id}
+                     disabled={bloqueada}
+                     onPress={() => alternarRestricao(item.id)}
+                     style={[
+                       styles.checkbox,
+                       selecionada && styles.marcado,
+                       bloqueada && { opacity: 0.5 },
+                     ]}
+                   >
+                     <Text style={[styles.item, selecionada && styles.concluido]}>
+                       {item.label}
+                     </Text>
+                   </TouchableOpacity>
+                 );
+               })}
+                   </View>
+                   
             <Text style={styles.subtexto}>Como você costuma se alimentar? Você pode marcer mais de uma opção.</Text>
             <View style={styles.loginContainer}>
                 
@@ -64,8 +109,8 @@ export default function App() {
                     ))}
                 </View>
             </View> 
-             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
-             <Text><Link href={'./intro_etapa_1'}>← Voltar</Link></Text>
+             <View style={styles.footer}> 
+             <Text><Link href={'./intro_etapa_1'} style={styles.ButtonLeft}>← Voltar</Link></Text>
             <Link href={'./intro_etapa_3'} style={styles.Button}><Text>Próximo →</Text></Link>
           </View>
         </View>
@@ -98,12 +143,24 @@ container: {
         backgroundColor: "#fff",
         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
 },
+
+footer: {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
+  width: "95%",
+  borderTopColor: "gray",
+  borderTopWidth: 1,
+  paddingTop: 10,
+  marginTop: "auto",
+},
     
-/* Estilos adicionados para a barra de progresso */
+
 progressSection: {
   width: "90%",
   marginHorizontal: 'auto',
   gap: 8,
+  marginBottom: 24,
   marginBottom: 24,
 },
 barContainer: {
@@ -127,6 +184,16 @@ stepText: {
   color: "gray",
 },
 
+ButtonLeft: {
+  width: "55%",
+  textAlign: "center",
+  paddingVertical: 10,
+  borderRadius: 20,
+  fontSize: 16,
+  marginTop: 10,
+  cursor: "pointer",
+},
+
 Button: {
   backgroundColor: "#168A3A",
   color: "#fff",
@@ -146,6 +213,7 @@ texto: {
   textAlign: "center",
   width: "70%",
   marginHorizontal: "auto",
+  marginTop: 60,
 },
   
 subtexto: {
@@ -157,24 +225,24 @@ subtexto: {
   marginBottom: 24,
 },
 
-pergunta: {
-  fontSize: 16,
-  marginBottom: 5,
-  flexDirection: "row",
-  justifyContent: "space-between",
-  fontWeight: "400",
-  paddingBottom: 5,
-  marginTop: 7,
-},
+  pergunta: {
+    fontSize: 16,
+    marginBottom: 5,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    fontWeight: "400",
+    paddingBottom: 5,
+    marginTop: 7,
+  },
 
-input: {
-  boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2) inset",
-  borderRadius: 5,
-  padding: 10,
-  marginBottom: 10,
-  height: 45,
-  borderWidth: 0,
-},
+  input: {
+    boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2) inset",
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10,
+    height: 45,
+    borderWidth: 0,
+  },
 
 marcado: {
   backgroundColor: "#168A3A",
@@ -182,21 +250,21 @@ marcado: {
   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
 },
 
-checkbox: {
-  padding: 11,
-  boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
-  borderRadius: 25,
-},
+  checkbox: {
+    padding: 11,
+    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
+    borderRadius: 25,
+  },
 
-item: {
-  fontSize: 15,
-},
+  item: {
+    fontSize: 15,
+  },
 
-concluido: {
-  color: '#ffffff',
-},
+  concluido: {
+    color: '#ffffff',
+  },
 
-/*desta tela*/
+  /*desta tela*/
 
 loginContainer: {
   width: "100%",

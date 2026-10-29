@@ -1,6 +1,7 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
-import { View, StyleSheet, Text, TextInput, Pressable, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { etapa3 } from '../../login info'
 
 const itensIniciais = ['🥛 Leite', '🥚 Ovo', '🥜 Amendoim', '🌰 Castanhas', '🫘 Soja', '🌾 Trigo', '🐟 Peixes', '🦐 Frutos do Mar'];
 
@@ -51,7 +52,7 @@ export default function App() {
                       As sugestões do aplicativo não substituem orientação médica ou nutricional.
               </Text>
             </View>
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10}}>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 15, marginTop: 5}}>
                   {itensIniciais.map((item, index) => (
                     <Pressable
                     key={item}
@@ -68,11 +69,20 @@ export default function App() {
             </View>
             <View style={styles.loginContainer}>
                 <Text style={styles.pergunta}>Outros que você precisa evitar:</Text>
-                <TextInput style={styles.input} placeholder="Ex: Corantes, gluten..." />
+                <TextInput style={styles.input} id='outros' placeholder="Ex: Corantes, gluten..." />
             </View> 
              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
-             <Text><Link href={'./intro_etapa_2'}>← Voltar</Link></Text>
-            <Link href={'./intro_etapa_4'} style={styles.Button}><Text>Próximo →</Text></Link>
+             <Text><Link href={'/componentes/intro_etapa_2'}>← Voltar</Link></Text>
+            <TouchableOpacity
+                        style={styles.Button}
+                        onPress={() =>
+                          etapa3(
+                            itensMarcados.flatMap((marcado, index) => marcado ? [index] : [])
+                          )
+                        }
+                      >
+                        Próximo →
+                      </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -133,6 +143,16 @@ stepText: {
   color: "gray",
 },
 
+ButtonLeft: {
+  width: "55%",
+  textAlign: "center",
+  paddingVertical: 10,
+  borderRadius: 20,
+  fontSize: 16,
+  marginTop: 10,
+  cursor: "pointer",
+},
+
 Button: {
   backgroundColor: "#168A3A",
   color: "#fff",
@@ -150,7 +170,7 @@ texto: {
   fontSize: 30,
   fontWeight: "bold",
   textAlign: "center",
-  width: "70%",
+  width: "95%",
   marginHorizontal: "auto",
 },
   
@@ -168,7 +188,7 @@ pergunta: {
   marginBottom: 5,
   flexDirection: "row",
   justifyContent: "space-between",
-  fontWeight: "400",
+  fontWeight: "bold",
   paddingBottom: 5,
   marginTop: 7,
 },
@@ -207,6 +227,8 @@ concluido: {
 loginContainer: {
   width: "100%",
   marginHorizontal: 'auto',
+  marginBottom: 30,
+  marginTop: 30,
 },
 aviso:{
   width: "100%",

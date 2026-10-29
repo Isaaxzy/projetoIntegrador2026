@@ -1,6 +1,7 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
-import { View, StyleSheet, Text, TextInput, Pressable, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { etapa1 } from '../../login info'
 
 const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Avançado'];
 
@@ -9,20 +10,16 @@ export default function App() {
   const totalSteps = 7;
   const currentStep = 1;
 
-  const [itensMarcados, setItensMarcados] = useState<boolean[]>(
-    itensIniciais.map(() => false),
-  );
+  const [itensMarcados, setItensMarcados] = useState<number | null>(null);
+  const [numeroPessoas, setNumeroPessoas] = useState('');
+  const [idade, setIdade] = useState('');
 
-  function alternarItem(index: number) {
-    // Cria um novo array e inverte somente o item que foi pressionado.
-    setItensMarcados((marcados) =>
-      marcados.map((marcado, itemIndex) =>
-        itemIndex === index ? !marcado : marcado,
-      ),
-    );
+  function alternarExperiencia(index: number) {
+    setItensMarcados((atual) => (atual === index ? null : index));
   }
+
   return (
-    <ScrollView style={styles.backgroundd} contentContainerStyle={styles.backgroundContent} keyboardShouldPersistTaps="handled">
+    <View style={styles.backgroundd}>
       <View style={styles.container}>
         {/* Barra de Progresso + Etapa */}
         <View style={styles.progressSection}>
@@ -44,47 +41,93 @@ export default function App() {
           <Text style={styles.stepText}>Etapa {currentStep} de {totalSteps}</Text>
         </View>
 
-            <Text style={styles.texto}>Sobre você</Text>
-            <Text style={styles.subtexto}>Vamos começar com o básico.</Text>
-            <View style={styles.loginContainer}>
-                <Text style={styles.pergunta}>Nome</Text>
-                <TextInput style={styles.input} placeholder="Seu nome" />
-                
-                <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                  <Text style={styles.pergunta}>Idade</Text>
+    <View style={styles.backgroundd}>
+      <View style={styles.container}>
+        {/* Barra de Progresso + Etapa */}
+        <View style={styles.progressSection}>
+          <View style={styles.barContainer}>
+            {Array.from({ length: totalSteps }).map((_, index) => {
+              const stepNumber = index + 1;
+              const isActive = stepNumber <= currentStep;
+              return (
+                <View
+                  key={index}
+                  style={[
+                    styles.segment,
+                    isActive ? styles.activeSegment : styles.inactiveSegment,
+                  ]}
+                />
+              );
+            })}
+          </View>
+          <Text style={styles.stepText}>Etapa {currentStep} de {totalSteps}</Text>
+        </View>
+
+        <Text style={styles.texto}>Sobre você</Text>
+        <Text style={styles.subtexto}>Vamos começar com o básico.</Text>
+        <View style={styles.loginContainer}>
+          <Text style={styles.pergunta}>Nome</Text>
+          <TextInput style={styles.input} id="nome" placeholder="Seu nome" />
+
+          <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+            <Text style={styles.pergunta}>Idade</Text>
+          </View>
+          <TextInput style={styles.input} id="idade" placeholder="Ex: 28" />
+          <Text style={styles.pergunta}>Para quantas pessoas você costuma cozinhar?</Text>
+          <TextInput style={styles.input} id="pessoas" placeholder="Número de pessoas" />
+
+          <Text>Nivel de experiência na cozinha</Text>
+          <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10 }}>
+            {itensIniciais.map((item, index) => (
+              <Pressable
+                key={item}
+                onPress={() => alternarItem(index)}
+              >
+                {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
+                <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
+                  {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
                 </View>
-                <TextInput style={styles.input} secureTextEntry placeholder="Ex: 28" />
-                <Text style={styles.pergunta}>Para quantas pessoas você costuma cozinhar?</Text>
-                <TextInput style={styles.input} placeholder="Número de pessoas" />
-                
-                <Text>Nivel de experiência na cozinha</Text>
-                <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10}}>
-                      {itensIniciais.map((item, index) => (
-                        <Pressable
-                        key={item}
-                        onPress={() => alternarItem(index)}
-                    >
-                                        {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
-                    <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
-                            {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
-                    </View>
-                                        {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
-                    
-                    </Pressable>
-                    ))}
-                </View>
-            </View> 
-             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
-             <Text><Link href={'./intro_comecar'}>← Voltar</Link></Text>
-            <Link href={'./intro_etapa_2'} style={styles.Button}><Text>Próximo →</Text></Link>
+                {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
+
+              </Pressable>
+            ))}
           </View>
         </View>
-      </ScrollView>
-    );
+        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}>
+          <Text><Link href={'/componentes/intro_comecar'}>← Voltar</Link></Text>
+          <TouchableOpacity
+            style={styles.Button}
+            onPress={() =>
+              etapa1(
+                itensMarcados.flatMap((marcado, index) => marcado ? [index] : [])
+              )
+            }
+          >
+            Próximo →
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
+  );
 }
-
+//flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 50}
 const styles = StyleSheet.create({
 
+  backgroundd: {
+    paddingVertical: 20,
+    height: '100%',
+    margin: 'auto',
+  },
+  backgroundd: {
+    paddingVertical: 20,
+    height: '100%',
+    margin: 'auto',
+  },
+  backgroundd: {
+    paddingVertical: 20,
+    height: '100%',
+    margin: 'auto',
+  },
   backgroundd: {
     flex: 1,
     backgroundColor: "#f4f8f4",
@@ -137,6 +180,27 @@ const styles = StyleSheet.create({
     color: "gray",
   },
 
+  botoes: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "95%",
+    borderTopColor: "gray",
+    borderTopWidth: 1,
+    paddingTop: 10,
+    marginTop: 50
+  },
+
+  ButtonLeft: {
+    width: "55%",
+    textAlign: "center",
+    paddingVertical: 10,
+    borderRadius: 20,
+    fontSize: 16,
+    marginTop: 10,
+    cursor: "pointer",
+  },
+
   Button: {
     backgroundColor: "#168A3A",
     color: "#fff",
@@ -170,13 +234,33 @@ const styles = StyleSheet.create({
     marginTop: 10,
     justifyContent: "center",
   },
+  texto: {
+    fontSize: 30,
+    fontWeight: "bold",
+    marginBottom: 10,
+    textAlign: "center",
+    width: "70%",
+    margin: "auto",
+    marginTop: 20,
+    justifyContent: "center",
+  },
+
+  subtexto: {
+    fontSize: 16,
+    color: "gray",
+    textAlign: "center",
+    width: "86%",
+    margin: "auto",
+    marginTop: 10,
+    justifyContent: "center",
+  },
 
   pergunta: {
     fontSize: 16,
     marginBottom: 5,
     flexDirection: "row",
     justifyContent: "space-between",
-    fontWeight: "400",
+    fontWeight: "bold",
     paddingBottom: 5,
     marginTop: 7,
   },
@@ -191,6 +275,16 @@ const styles = StyleSheet.create({
   },
 
   marcado: {
+    backgroundColor: "#078523",
+    borderColor: "#078523",
+    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
+  },
+  marcado: {
+    backgroundColor: "#078523",
+    borderColor: "#078523",
+    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
+  },
+  marcado: {
     backgroundColor: "#168A3A",
     borderColor: "#168A3A",
     boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
@@ -201,7 +295,15 @@ const styles = StyleSheet.create({
     boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
     borderRadius: 25,
   },
+  checkbox: {
+    padding: 11,
+    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
+    borderRadius: 25,
+  },
 
+  item: {
+    fontSize: 15,
+  },
   item: {
     fontSize: 15,
   },
@@ -210,6 +312,14 @@ const styles = StyleSheet.create({
     color: '#ffffff',
   },
 
+  loginContainer: {
+    width: "80%",
+    marginHorizontal: 'auto',
+  },
+  loginContainer: {
+    width: "80%",
+    marginHorizontal: 'auto',
+  },
   loginContainer: {
     width: "100%",
     marginHorizontal: 'auto',

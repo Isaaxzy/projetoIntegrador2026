@@ -322,6 +322,48 @@ function alternarRestricao(id: number) {
 
     </ScrollView>
 
+    <View style={styles.ops}>
+
+        <View style={styles.foote}>
+            <Link href={"./paginaInicial"} style={styles.loginButtonP}><TouchableOpacity>
+            <Image
+            style={styles.perf}
+            source={require("../imagens/house.png")}
+            /> 
+            <Text style={styles.textButtonP}>Inicio</Text></TouchableOpacity></Link>
+            </View>
+
+            <View style={styles.foote}>
+
+            <TouchableOpacity style={styles.loginButtonP}>
+            <Image
+            style={styles.perf}
+            source={require("../imagens/agend.png")}
+            /> 
+            <Text style={styles.textButtonP}>Planejar</Text></TouchableOpacity>
+            </View>
+
+            <View style={styles.foote}>
+        <Link href={"./favorito"} style={styles.loginButtonP}><TouchableOpacity style={styles.loginButtonP}>
+            <Image
+            style={styles.perf}
+            source={require("../imagens/fav.png")}
+            />
+        <Text style={styles.textButtonP}>Favoritos</Text></TouchableOpacity></Link>
+
+            </View>
+
+            <View style={styles.foote}>
+            <TouchableOpacity >
+            <Image
+            style={styles.perf}
+            source={require("../imagens/perf.png")}
+            />
+            <Text style={styles.textButtonP}>Perfil</Text></TouchableOpacity>
+                </View>
+
+            </View>
+
 </View>
 </View> 
 );
