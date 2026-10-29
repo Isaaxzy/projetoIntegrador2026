@@ -328,7 +328,7 @@ function alternarRestricao(id: number) {
     <View style={styles.ops}>
 
         <View style={styles.foote}>
-            <Link href={"/(tabs)/paginaInicial"} style={styles.loginButtonP}><TouchableOpacity>
+            <Link href={"./paginaInicial"} style={styles.loginButtonP}><TouchableOpacity>
             <Image
             style={styles.perf}
             source={require("../imagens/house.png")}
@@ -347,7 +347,7 @@ function alternarRestricao(id: number) {
             </View>
 
             <View style={styles.foote}>
-        <Link href={"/(tabs)/favorito"} style={styles.loginButtonP}><TouchableOpacity style={styles.loginButtonP}>
+        <Link href={"./favorito"} style={styles.loginButtonP}><TouchableOpacity style={styles.loginButtonP}>
             <Image
             style={styles.perf}
             source={require("../imagens/fav.png")}
@@ -537,7 +537,6 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     width: "90%",
     marginTop: 20,
-    justifyContent: "justify",
     },
 
     subtexto: {
@@ -545,7 +544,6 @@ const styles = StyleSheet.create({
     color: "gray",
     width: "86%",
     marginBottom: 10,
-    justifyContent: "justify",
     },
 
     title:{
@@ -580,7 +578,7 @@ const styles = StyleSheet.create({
 
     container: {
     flex: 2,
-    justify: "center",
+    justifyContent: "center",
     alignItems: "center",
     boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
     borderRadius: 10,
@@ -622,7 +620,6 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     paddingBottom: 5,
     marginTop: 7,
-    fontWeight:'bold',
     },
 
     loginButtonP: {
