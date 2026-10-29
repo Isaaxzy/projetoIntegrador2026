@@ -35,7 +35,7 @@ export default function App() {
                  </View>
                   <input style={styles.input} type="password" placeholder="🔒︎ Enter your password" />
                   <View>
-                  <Link style={styles.loginButton} href="../componentes/paginaInicial">
+                  <Link style={styles.loginButton} href="../layout/paginaInicial">
                     <Text>Log in</Text>
                   </Link>
                   </View>

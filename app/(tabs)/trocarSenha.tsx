@@ -25,7 +25,7 @@ export default function App() {
                 </View>   
               </View>
               <View style={styles.signUpContainer}>
-                <Link href="/(tabs)index">
+                <Link href="/login">
                 <TouchableOpacity>
                       <Text style={{ color: "#078523", fontWeight: "bold", cursor: "pointer" }}>← Back to log in</Text>  
                 </TouchableOpacity>
@@ -157,7 +157,6 @@ signUpContainer: {
 },
 
 });
-
 
 
 

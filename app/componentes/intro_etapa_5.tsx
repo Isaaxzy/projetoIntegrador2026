@@ -2,8 +2,7 @@ import { Link } from 'expo-router';
 import { useState } from 'react';
 import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
 
-const itensIniciais = ['Frango', 'Carne', 'Batata', 'Queijo', 'Chocolate', 'Morango', 'Massas', 'Arroz', 'Ovo', 'Tomate', 'Cenoura', 'Abacate', 'Salmão', 'Limão', 'Milho', 'Feijão' ];
-
+const itensIniciais = ['🍗 Frango', '🥩 Carne', '🥔 Batata', '🧀 Queijo', '🍫 Chocolate', '🍓 Morango', '🍝 Massas', '🍚 Arroz', '🥚 Ovo', '🍅 Tomate', '🥕 Cenoura', '🥑 Abacate', '🐟 Salmão', '🍋 Limão', '🌽 Milho', '🫘 Feijão' ];
 
 export default function App() {
     const totalSteps = 7;
@@ -65,8 +64,8 @@ export default function App() {
                 <TextInput style={styles.input} placeholder="Adicionar outro favorito" />
             </View> 
              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
-             <Text><Link href={'/(tabs)/intro_etapa_4'}>← Voltar</Link></Text>
-            <Link href={'/(tabs)/intro_etapa_6'} style={styles.Button}><Text>Próximo →</Text></Link>
+             <Text><Link href={'./intro_etapa_4'}>← Voltar</Link></Text>
+            <Link href={'./intro_etapa_6'} style={styles.Button}><Text>Próximo →</Text></Link>
           </View>
         </View>
       </View>

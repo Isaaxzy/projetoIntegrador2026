@@ -65,8 +65,8 @@ export default function App() {
                 </View>
             </View> 
              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
-             <Text><Link href={'/(tabs)/intro_etapa_1'}>← Voltar</Link></Text>
-            <Link href={'/(tabs)/intro_etapa_3'} style={styles.Button}><Text>Próximo →</Text></Link>
+             <Text><Link href={'./intro_etapa_1'}>← Voltar</Link></Text>
+            <Link href={'./intro_etapa_3'} style={styles.Button}><Text>Próximo →</Text></Link>
           </View>
         </View>
       </View>

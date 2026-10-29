@@ -61,10 +61,10 @@ fundo: {
 
 logobox: {
   backgroundColor: "#078523",
-  width: 100,
-  height: 100,
+  width: 90,
+  height: 90,
   margin: 'auto',
-  marginTop: 20,
+  marginTop: 40,
   marginBottom: 10,
   borderRadius: 25
 },
@@ -117,6 +117,7 @@ googleContainer: {
   elevation: 2,
   justifyContent: "center",
   paddingVertical: 14,
+  cursor: "pointer",
 },
   
 orText: {
@@ -168,7 +169,7 @@ loginButton: {
 },
 
 signUpContainer: {
-  marginTop: 5,
+  marginTop: 20,
   alignItems: "center",
   flexDirection: "row",
   justifyContent: "center",
@@ -176,7 +177,6 @@ signUpContainer: {
 },
 
 });
-
 
 
 

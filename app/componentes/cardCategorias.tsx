@@ -19,16 +19,16 @@ export default function renderCategoria({ item } : {item:any}) {
         <Link href={`../../componentes/filmes/${item.id}`}>
        <TouchableOpacity style={styles.bott}>    
           <View style={styles.filme}>
-            <View style={{flex: 1}}>
+            <View>
             <ImageBackground
             source={{uri:item.Imagem}}
             style={styles.imagem}
             >
-             <Text style={{width: "70%", textAlign: "center", padding: 5, fontSize: 10, backgroundColor: "#039116b0", margin: 7, marginLeft: 40, borderRadius: 20, color: "#ffffff"}}>☆ Combina com você</Text> 
+             <Text style={{width: "70%", alignSelf: "flex-end", textAlign: "center", padding: 5, fontSize: 10, backgroundColor: "#039116b0", margin: 7, borderRadius: 20, color: "#ffffff"}}>☆ Combina com você</Text>
             </ImageBackground>
               <Text style={styles.filmeTitulo}>{item.titulo}
               </Text>
-              <View style={{flexDirection: "row",}}>
+              <View style={{flexDirection: "row", flexWrap: "wrap"}}>
               <Text style={styles.filmedescricao}>{item.duracao}</Text>
               <Text style={styles.filmedescricao}>{item.dificuldade}</Text>
               </View>
@@ -87,11 +87,11 @@ const styles = StyleSheet.create({
   },
   filme:{
     width: 175,
-    height: 240,
+    minHeight: 240,
     backgroundColor: '#fafafa',
     margin: 7,
     borderRadius: 10,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     padding: 5,
   },
   filmeTitulo:{
@@ -106,4 +106,3 @@ const styles = StyleSheet.create({
   },
        
 });
-
