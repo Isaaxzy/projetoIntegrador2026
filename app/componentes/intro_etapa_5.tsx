@@ -46,7 +46,7 @@ export default function App() {
 
             <Text style={styles.texto}>O que você ama?</Text>
             <Text style={styles.subtexto}>Quais ingredientes você adora? Eles vão priorizar suas recomendações.</Text>
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 30}}>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 40}}>
                   {itensIniciais.map((item, index) => (
                     <Pressable
                     key={item}
@@ -129,6 +129,16 @@ stepText: {
   color: "gray",
 },
 
+ButtonLeft: {
+  width: "55%",
+  textAlign: "center",
+  paddingVertical: 10,
+  borderRadius: 20,
+  fontSize: 16,
+  marginTop: 10,
+  cursor: "pointer",
+},
+
 Button: {
   backgroundColor: "#209e3c",
   color: "#fff",
@@ -198,10 +208,9 @@ concluido: {
   color: '#ffffff',
 },
 
-/*desta tela*/
-
 loginContainer: {
   width: "80%",
+  marginBottom: 35,
   marginHorizontal: 'auto',
 },
 aviso:{

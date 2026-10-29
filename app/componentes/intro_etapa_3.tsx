@@ -52,7 +52,7 @@ export default function App() {
                       As sugestões do aplicativo não substituem orientação médica ou nutricional.
               </Text>
             </View>
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10}}>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 15, marginTop: 5}}>
                   {itensIniciais.map((item, index) => (
                     <Pressable
                     key={item}
@@ -136,6 +136,16 @@ stepText: {
   color: "gray",
 },
 
+ButtonLeft: {
+  width: "55%",
+  textAlign: "center",
+  paddingVertical: 10,
+  borderRadius: 20,
+  fontSize: 16,
+  marginTop: 10,
+  cursor: "pointer",
+},
+
 Button: {
   backgroundColor: "#209e3c",
   color: "#fff",
@@ -153,7 +163,7 @@ texto: {
   fontSize: 30,
   fontWeight: "bold",
   textAlign: "center",
-  width: "70%",
+  width: "95%",
   marginHorizontal: "auto",
 },
   
@@ -171,7 +181,7 @@ pergunta: {
   marginBottom: 5,
   flexDirection: "row",
   justifyContent: "space-between",
-  fontWeight: "400",
+  fontWeight: "bold",
   paddingBottom: 5,
   marginTop: 7,
 },
@@ -210,6 +220,8 @@ concluido: {
 loginContainer: {
   width: "80%",
   marginHorizontal: 'auto',
+  marginBottom: 30,
+  marginTop: 30,
 },
 aviso:{
   width: '80%',

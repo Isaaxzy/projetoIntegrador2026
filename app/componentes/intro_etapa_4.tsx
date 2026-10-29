@@ -46,7 +46,7 @@ export default function App() {
             </View> 
 
             <Text style={styles.texto}>O que você não gosta?</Text>
-            <Text style={styles.subtexto}>Quais ingredientes voce prefere evitar?</Text>
+            <Text style={styles.subtexto}>Quais ingredientes você prefere evitar?</Text>
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 30}}>
                   {itensIniciais.map((item, index) => (
                     <Pressable
@@ -130,6 +130,16 @@ stepText: {
   color: "gray",
 },
 
+ButtonLeft:{
+  width: "55%",
+  textAlign: "center",
+  paddingVertical: 10,
+  borderRadius: 20,
+  fontSize: 16,
+  marginTop: 10,
+  cursor: "pointer",
+},
+
 Button: {
   backgroundColor: "#209e3c",
   color: "#fff",
@@ -203,6 +213,8 @@ concluido: {
 
 loginContainer: {
   width: "80%",
+  marginBottom: 30,
+  marginTop: 30,
   marginHorizontal: 'auto',
 },
 aviso:{
