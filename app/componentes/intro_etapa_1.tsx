@@ -10,14 +10,17 @@ export default function App() {
   const totalSteps = 7;
   const currentStep = 1;
 
-  const [itensMarcados, setItensMarcados] = useState<number | null>(null);
-  const [numeroPessoas, setNumeroPessoas] = useState('');
-  const [idade, setIdade] = useState('');
+  const [itensMarcados, setItensMarcados] = useState<boolean[]>(
+    itensIniciais.map(() => false),
+  );
 
-  function alternarExperiencia(index: number) {
-    setItensMarcados((atual) => (atual === index ? null : index));
+  function alternarItem(index: number) {
+    setItensMarcados((marcados) =>
+      marcados.map((marcado, itemIndex) =>
+        itemIndex === index ? !marcado : marcado,
+      ),
+    );
   }
-
   return (
     <View style={styles.backgroundd}>
       <View style={styles.container}>
@@ -40,76 +43,44 @@ export default function App() {
           </View>
           <Text style={styles.stepText}>Etapa {currentStep} de {totalSteps}</Text>
         </View>
+
         <Text style={styles.texto}>Sobre você</Text>
         <Text style={styles.subtexto}>Vamos começar com o básico.</Text>
         <View style={styles.loginContainer}>
           <Text style={styles.pergunta}>Nome</Text>
           <TextInput style={styles.input} id="nome" placeholder="Seu nome" />
 
-          <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", }}>
+          <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
             <Text style={styles.pergunta}>Idade</Text>
           </View>
-          <TextInput
-            style={styles.input}
-            id="idade"
-            placeholder="14+"
-            keyboardType="number-pad"
-            maxLength={2}
-            value={idade}
-            onChangeText={(texto) => {
-              const somenteDigitos = texto.replace(/\D/g, '');
-              if (somenteDigitos === '') {
-                setIdade('');
-                return;
-              }
-              setIdade(String(Math.min(Number(somenteDigitos), 75)));
-            }}
-            onBlur={() => {
-              if (idade !== '') {
-                setIdade(String(Math.max(Number(idade), 14)));
-              }
-            }}
-          />
+          <TextInput style={styles.input} id="idade" placeholder="Ex: 28" />
           <Text style={styles.pergunta}>Para quantas pessoas você costuma cozinhar?</Text>
-          <TextInput
-            style={styles.input}
-            id="pessoas"
-            placeholder="Número de pessoas"
-            keyboardType="number-pad"
-            value={numeroPessoas}
-            onChangeText={(texto) => {
-              const somenteDigitos = texto.replace(/\D/g, '');
-              if (somenteDigitos === '') {
-                setNumeroPessoas('');
-                return;
-              }
-              setNumeroPessoas(String(Math.min(Number(somenteDigitos), 15)));
-            }}
-          />
+          <TextInput style={styles.input} id="pessoas" placeholder="Número de pessoas" />
 
-          <Text style={styles.pergunta}>Nivel de experiência na cozinha</Text>
-          <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%", }}>
+          <Text>Nivel de experiência na cozinha</Text>
+          <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10 }}>
             {itensIniciais.map((item, index) => (
-              <TouchableOpacity
+              <Pressable
                 key={item}
-                onPress={() => alternarExperiencia(index)}
-                style={[styles.checkbox, itensMarcados === index && styles.marcado,
-                ]}
+                onPress={() => alternarItem(index)}
               >
-                <Text style={[styles.item, itensMarcados === index && styles.concluido]}>
-                  {item}
-                </Text>
-              </TouchableOpacity>
+                {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
+                <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
+                  {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
+                </View>
+                {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
+
+              </Pressable>
             ))}
           </View>
         </View>
-        <View style={styles.botoes}>
-          <Text><Link href={'./intro_comecar'} style={styles.ButtonLeft}>← Voltar</Link></Text>
+        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}>
+          <Text><Link href={'/componentes/intro_comecar'}>← Voltar</Link></Text>
           <TouchableOpacity
             style={styles.Button}
             onPress={() =>
               etapa1(
-                itensIniciais.flatMap((marcado, index) => marcado ? [index] : [])
+                itensMarcados.flatMap((marcado, index) => marcado ? [index] : [])
               )
             }
           >
@@ -120,7 +91,7 @@ export default function App() {
     </View>
   );
 }
-//flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 50}
+
 const styles = StyleSheet.create({
 
   backgroundd: {
@@ -140,6 +111,7 @@ const styles = StyleSheet.create({
     boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
   },
 
+  /* Estilos adicionados para a barra de progresso */
   progressSection: {
     width: "90%",
     marginHorizontal: 'auto',
@@ -165,27 +137,6 @@ const styles = StyleSheet.create({
   stepText: {
     fontSize: 14,
     color: "gray",
-  },
-
-  botoes: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "95%",
-    borderTopColor: "gray",
-    borderTopWidth: 1,
-    paddingTop: 10,
-    marginTop: 50
-  },
-
-  ButtonLeft: {
-    width: "55%",
-    textAlign: "center",
-    paddingVertical: 10,
-    borderRadius: 20,
-    fontSize: 16,
-    marginTop: 10,
-    cursor: "pointer",
   },
 
   Button: {
@@ -227,7 +178,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     flexDirection: "row",
     justifyContent: "space-between",
-    fontWeight: "bold",
+    fontWeight: "400",
     paddingBottom: 5,
     marginTop: 7,
   },
@@ -260,6 +211,8 @@ const styles = StyleSheet.create({
   concluido: {
     color: '#ffffff',
   },
+
+  /*desta tela*/
 
   loginContainer: {
     width: "80%",
