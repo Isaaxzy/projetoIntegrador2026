@@ -2,7 +2,6 @@ import { Link } from 'expo-router';
 import { useState } from 'react';
 import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
 import { etapa2 } from '../../login info'
-import { View, StyleSheet, Text, Pressable, ScrollView } from 'react-native';
 
 const itensIniciais = ['🍽️ Sem restrições', '🥕 Vegetariano', '🌱 Vegano', '🥗 Flexitariano', '🥑 Low crab', '✨ outra'];
 
@@ -128,7 +127,6 @@ progressSection: {
   marginHorizontal: 'auto',
   gap: 8,
   marginBottom: 24,
-  marginBottom: 24,
 },
 barContainer: {
   flexDirection: "row",
@@ -189,7 +187,7 @@ subtexto: {
   textAlign: "center",
   width: "86%",
   marginHorizontal: "auto",
-  marginBottom: 24,
+  marginBottom: 'auto',
 },
 
   pergunta: {

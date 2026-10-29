@@ -23,7 +23,7 @@ export default function App() {
             );
           }
     return (
-      <ScrollView style={styles.backgroundd} contentContainerStyle={styles.backgroundContent} keyboardShouldPersistTaps="handled">
+      <View style={styles.backgroundd}>
           <View style={styles.container}>
             {/* Barra de Progresso + Etapa */}
             <View style={styles.progressSection}>
@@ -41,7 +41,7 @@ export default function App() {
                     />
                   );
                 })}
-          </View>
+              </View>
               <Text style={styles.stepText}>Etapa {currentStep} de {totalSteps}</Text>
             </View> 
 
@@ -85,33 +85,26 @@ export default function App() {
                       </TouchableOpacity>
           </View>
         </View>
-      </ScrollView>
+      </View>
     );
 }
 
 const styles = StyleSheet.create({
 
 backgroundd: {
-        flex: 1,
-        backgroundColor: "#f4f8f4",
-},
-
-backgroundContent: {
-        flexGrow: 1,
-        justifyContent: "center",
         paddingVertical: 20,
-        paddingHorizontal: 16,
+        height: '100%',
+        margin: 'auto',
 },
 
 container: {
         borderRadius: 25,
-        width: "100%",
-        maxWidth: 560,
-        minHeight: 440,
-        alignSelf: "center",
+        flex: 1,
+        width: 400,
+        margin: 'auto',
         padding: 24,
-        justifyContent: 'flex-start',
-        backgroundColor: "#fff",
+        justifyContent: 'center',
+        backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
 },
     
@@ -120,7 +113,7 @@ progressSection: {
   width: "90%",
   marginHorizontal: 'auto',
   gap: 8,
-  marginBottom: 24,
+  marginBottom: 'auto',
 },
 barContainer: {
   flexDirection: "row",
@@ -133,7 +126,7 @@ segment: {
   borderRadius: 3,
 },
 activeSegment: {
-  backgroundColor: "#168A3A",
+  backgroundColor: "#209e3c",
 },
 inactiveSegment: {
   backgroundColor: "#E2E8F0",
@@ -154,7 +147,7 @@ ButtonLeft: {
 },
 
 Button: {
-  backgroundColor: "#168A3A",
+  backgroundColor: "#209e3c",
   color: "#fff",
   width: "45%",
   textAlign: "center",
@@ -180,7 +173,7 @@ subtexto: {
   textAlign: "center",
   width: "86%",
   marginHorizontal: "auto",
-  marginBottom: 24,
+  marginBottom: 'auto',
 },
 
 pergunta: {
@@ -203,8 +196,8 @@ input: {
 },
 
 marcado: {
-  backgroundColor: "#168A3A",
-  borderColor: "#168A3A",
+  backgroundColor: "#078523",
+  borderColor: "#078523",
   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
 },
 
@@ -225,36 +218,33 @@ concluido: {
 /*desta tela*/
 
 loginContainer: {
-  width: "100%",
+  width: "80%",
   marginHorizontal: 'auto',
   marginBottom: 30,
   marginTop: 30,
 },
 aviso:{
-  width: "100%",
-  minHeight: 90,
+  width: '80%',
+  height: 90,
   backgroundColor: '#ffef96',
   padding: 20,
   marginHorizontal: 'auto',
-  marginBottom: 12,
+  marginBottom: 'auto',
   borderRadius: 10,
   borderWidth: 4,
   borderColor: '#ffdc19',
   alignItems: 'center',
   flexDirection: 'row',
-  gap: 10
   },
 
 icoav:{
   margin: 'auto',
-  marginTop: 6,
-  fontSize: 30,
+  fontSize: 20,
   },
 teavs:{
   width: '90%',
-  fontSize: 12.7,
+  fontSize: 11,
   textAlign: 'justify',
-  lineHeight: 21
 },
 
 });
