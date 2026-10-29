@@ -92,7 +92,16 @@ export default function App() {
             </View> 
              <View style={styles.footer}> 
              <Text><Link href={'./intro_etapa_1'} style={styles.ButtonLeft}>← Voltar</Link></Text>
-            <Link href={'./intro_etapa_3'} style={styles.Button}><Text>Próximo →</Text></Link>
+                       <TouchableOpacity
+                         style={styles.Button}
+                         onPress={() =>
+                           etapa2(
+                             itensIniciais.flatMap((marcado, index) => marcado ? [index] : [])
+                           )
+                         }
+                       >
+                         Próximo →
+                       </TouchableOpacity>
           </View>
         </View>
       </View>

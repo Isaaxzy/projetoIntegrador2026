@@ -93,7 +93,7 @@ export default function App() {
                                                 style={styles.Button}
                                                 onPress={() =>
                                                   etapa7(
-                                                    itensMarcados.flatMap((marcado, index) => marcado ? [index] : [])
+                                                    itensIniciais2.flatMap((marcado, index) => marcado ? [index] : [])
                                                   )
                                                 }
                                               >

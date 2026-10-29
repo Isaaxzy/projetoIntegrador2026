@@ -620,7 +620,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 2,
     justifyContent: "center",
-    justifyContent: "center",
     alignItems: "center",
     boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
     borderRadius: 10,
@@ -663,7 +662,6 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     marginTop: 7,
     },
-  },
 
   loginButtonP: {
     width: '100%',
