@@ -2,25 +2,41 @@ import { Link } from 'expo-router';
 import { useState } from 'react';
 import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
 
-const itensIniciais = ['🍽️ Sem restrições', '🥕 Vegetariano', '🌱 Vegano', '🥗 Flexitariano', '🥑 Low crab', '✨ outra'];
+const itensIniciais = [
+  { id: 1, label: '🍽️ Sem restrições' },
+  { id: 2, label: '🥕 Vegetariano' },
+  { id: 3, label: '🌱 Vegano' },
+  { id: 4, label: '🥗 Flexitariano' },
+  { id: 5, label: '🥑 Low carb' },
+  { id: 6, label: '✨ Outra' },
+];
 
 
 export default function App() {
     const totalSteps = 7;
     const currentStep = 2;
 
-    const [itensMarcados, setItensMarcados] = useState<boolean[]>(
-            itensIniciais.map(() => false),
-        );
-     
-        function alternarItem(index: number) {
-            // Cria um novo array e inverte somente o item que foi pressionado.
-            setItensMarcados((marcados) =>
-                marcados.map((marcado, itemIndex) =>
-                    itemIndex === index ? !marcado : marcado,
-                ),
-            );
-          }
+    const LIMITE_RESTRICOES = 3;
+    const [restricoesSelecionadas, setRestricoesSelecionadas] = useState<number[]>([]);
+
+    function alternarRestricao(id: number) {
+      setRestricoesSelecionadas((selecionadas) => {
+        if (selecionadas.includes(id)) {
+          return selecionadas.filter((item) => item !== id);
+        }
+
+        if (id === 1) {
+          return [1];
+        }
+
+        if (selecionadas.includes(1) || selecionadas.length >= LIMITE_RESTRICOES) {
+          return selecionadas;
+        }
+
+        return [...selecionadas, id];
+      });
+    }
+
     return (
       <View style={styles.backgroundd}>
           <View style={styles.container}>
@@ -45,27 +61,36 @@ export default function App() {
             </View> 
 
             <Text style={styles.texto}>Sua alimentação</Text>
-            <Text style={styles.subtexto}>Como você costuma se alimentar? Você pode marcer mais de uma opção.</Text>
-            <View style={styles.loginContainer}>
-                
-                <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: '50%'}}>
-                      {itensIniciais.map((item, index) => (
-                        <Pressable
-                        key={item}
-                        onPress={() => alternarItem(index)}
-                    >
-                                        {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
-                    <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
-                      {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
-                    </View>
-                                        {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
-                    
-                    </Pressable>
-                    ))}
-                </View>
+            <Text style={styles.subtexto}>Como você costuma se alimentar? Você pode marcar mais de uma opção.</Text>
+            <View style={styles.loginContainer}> 
+                 <View style={{flexDirection: "row", flexWrap: "wrap", justifyContent: "center", gap: 12, marginTop: "30%", width: "100%"}}>
+                       {itensIniciais.map((item) => {
+                 const selecionada = restricoesSelecionadas.includes(item.id);
+                 const bloqueada =
+                   item.id !== 1 && restricoesSelecionadas.includes(1);
+               
+                 return (
+                   <TouchableOpacity
+                     key={item.id}
+                     disabled={bloqueada}
+                     onPress={() => alternarRestricao(item.id)}
+                     style={[
+                       styles.checkbox,
+                       selecionada && styles.marcado,
+                       bloqueada && { opacity: 0.5 },
+                     ]}
+                   >
+                     <Text style={[styles.item, selecionada && styles.concluido]}>
+                       {item.label}
+                     </Text>
+                   </TouchableOpacity>
+                 );
+               })}
+                   </View>
+                   
             </View> 
-             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
-             <Text><Link href={'./intro_etapa_1'}>← Voltar</Link></Text>
+             <View style={styles.footer}> 
+             <Text><Link href={'./intro_etapa_1'} style={styles.ButtonLeft}>← Voltar</Link></Text>
             <Link href={'./intro_etapa_3'} style={styles.Button}><Text>Próximo →</Text></Link>
           </View>
         </View>
@@ -76,28 +101,39 @@ export default function App() {
 const styles = StyleSheet.create({
 
 backgroundd: {
-        paddingVertical: 20,
-        height: '100%',
-        margin: 'auto',
+    paddingVertical: 20,
+    height: '100%',
+    margin: 'auto',
 },
 
 container: {
-        borderRadius: 25,
-        flex: 1,
-        width: 400,
-        margin: 'auto',
-        padding: 24,
-        justifyContent: 'center',
-        backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
-        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+  borderRadius: 25,
+  flex: 1,
+  width: 400,
+  margin: 'auto',
+  padding: 24,
+  justifyContent: 'flex-start',
+  backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
+  boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+},
+
+footer: {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
+  width: "95%",
+  borderTopColor: "gray",
+  borderTopWidth: 1,
+  paddingTop: 10,
+  marginTop: "auto",
 },
     
-/* Estilos adicionados para a barra de progresso */
+
 progressSection: {
   width: "90%",
   marginHorizontal: 'auto',
   gap: 8,
-  marginBottom: 'auto',
+  marginBottom: 24,
 },
 barContainer: {
   flexDirection: "row",
@@ -118,6 +154,16 @@ inactiveSegment: {
 stepText: {
   fontSize: 14,
   color: "gray",
+},
+
+ButtonLeft: {
+  width: "55%",
+  textAlign: "center",
+  paddingVertical: 10,
+  borderRadius: 20,
+  fontSize: 16,
+  marginTop: 10,
+  cursor: "pointer",
 },
 
 Button: {

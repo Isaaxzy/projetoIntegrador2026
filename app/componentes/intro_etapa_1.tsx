@@ -9,18 +9,14 @@ export default function App() {
   const totalSteps = 7;
   const currentStep = 1;
 
-  const [itensMarcados, setItensMarcados] = useState<boolean[]>(
-    itensIniciais.map(() => false),
-  );
+  const [itensMarcados, setItensMarcados] = useState<number | null>(null);
+  const [numeroPessoas, setNumeroPessoas] = useState('');
+  const [idade, setIdade] = useState('');
 
-  function alternarItem(index: number) {
-    // Cria um novo array e inverte somente o item que foi pressionado.
-    setItensMarcados((marcados) =>
-      marcados.map((marcado, itemIndex) =>
-        itemIndex === index ? !marcado : marcado,
-      ),
-    );
+  function alternarExperiencia(index: number) {
+    setItensMarcados((atual) => (atual === index ? null : index));
   }
+
   return (
     <View style={styles.backgroundd}>
       <View style={styles.container}>
@@ -44,45 +40,76 @@ export default function App() {
           <Text style={styles.stepText}>Etapa {currentStep} de {totalSteps}</Text>
         </View>
 
-            <Text style={styles.texto}>Sobre você</Text>
-            <Text style={styles.subtexto}>Vamos começar com o básico.</Text>
-            <View style={styles.loginContainer}>
-                <Text style={styles.pergunta}>Nome</Text>
-                <TextInput style={styles.input} placeholder="Seu nome" />
-                
-                <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                  <Text style={styles.pergunta}>Idade</Text>
-                </View>
-                <TextInput style={styles.input} secureTextEntry placeholder="Ex: 28" />
-                <Text style={styles.pergunta}>Para quantas pessoas você costuma cozinhar?</Text>
-                <TextInput style={styles.input} placeholder="Número de pessoas" />
-                
-                <Text>Nivel de experiência na cozinha</Text>
-                <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10}}>
-                      {itensIniciais.map((item, index) => (
-                        <Pressable
-                        key={item}
-                        onPress={() => alternarItem(index)}
-                    >
-                                        {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
-                    <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
-                            {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
-                    </View>
-                                        {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
-                    
-                    </Pressable>
-                    ))}
-                </View>
-            </View> 
-             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
-             <Text><Link href={'./intro_comecar'}>← Voltar</Link></Text>
-            <Link href={'./intro_etapa_2'} style={styles.Button}><Text>Próximo →</Text></Link>
+        <Text style={styles.texto}>Sobre você</Text>
+        <Text style={styles.subtexto}>Vamos começar com o básico.</Text>
+        <View style={styles.loginContainer}>
+          <Text style={styles.pergunta}>Nome</Text>
+          <TextInput style={styles.input} placeholder="Seu nome" />
+
+          <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", }}>
+            <Text style={styles.pergunta}>Idade</Text>
+          </View>
+          <TextInput
+            style={styles.input}
+            placeholder="14+"
+            keyboardType="number-pad"
+            maxLength={2}
+            value={idade}
+            onChangeText={(texto) => {
+              const somenteDigitos = texto.replace(/\D/g, '');
+              if (somenteDigitos === '') {
+                setIdade('');
+                return;
+              }
+              setIdade(String(Math.min(Number(somenteDigitos), 75)));
+            }}
+            onBlur={() => {
+              if (idade !== '') {
+                setIdade(String(Math.max(Number(idade), 14)));
+              }
+            }}
+          />
+          <Text style={styles.pergunta}>Para quantas pessoas você costuma cozinhar?</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Número de pessoas"
+            keyboardType="number-pad"
+            value={numeroPessoas}
+            onChangeText={(texto) => {
+              const somenteDigitos = texto.replace(/\D/g, '');
+              if (somenteDigitos === '') {
+                setNumeroPessoas('');
+                return;
+              }
+              setNumeroPessoas(String(Math.min(Number(somenteDigitos), 15)));
+            }}
+          />
+
+          <Text style={styles.pergunta}>Nivel de experiência na cozinha</Text>
+          <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%", }}>
+            {itensIniciais.map((item, index) => (
+              <TouchableOpacity
+                key={item}
+                onPress={() => alternarExperiencia(index)}
+                style={[styles.checkbox, itensMarcados === index && styles.marcado,
+                ]}
+              >
+                <Text style={[styles.item, itensMarcados === index && styles.concluido]}>
+                  {item}
+                </Text>
+              </TouchableOpacity>
+            ))}
           </View>
         </View>
+        <View style={styles.botoes}>
+          <Text><Link href={'./intro_comecar'} style={styles.ButtonLeft}>← Voltar</Link></Text>
+          <Link href={'./intro_etapa_2'} style={styles.Button}><Text>Próximo →</Text></Link>
+        </View>
       </View>
-    );
+    </View>
+  );
 }
-
+//flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 50}
 const styles = StyleSheet.create({
 
   backgroundd: {
@@ -129,6 +156,27 @@ const styles = StyleSheet.create({
     color: "gray",
   },
 
+  botoes: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "95%",
+    borderTopColor: "gray",
+    borderTopWidth: 1,
+    paddingTop: 10,
+    marginTop: 50
+  },
+
+  ButtonLeft: {
+    width: "55%",
+    textAlign: "center",
+    paddingVertical: 10,
+    borderRadius: 20,
+    fontSize: 16,
+    marginTop: 10,
+    cursor: "pointer",
+  },
+
   Button: {
     backgroundColor: "#209e3c",
     color: "#fff",
@@ -168,7 +216,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     flexDirection: "row",
     justifyContent: "space-between",
-    fontWeight: "400",
+    fontWeight: "bold",
     paddingBottom: 5,
     marginTop: 7,
   },

@@ -46,6 +46,7 @@ export default function App() {
 
             <Text style={styles.texto}>Seu objetivo</Text>
             <Text style={styles.subtexto}>O que você procura no aplicativo?</Text>
+          <View style={styles.loginContainer}> 
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 30}}>
                   {itensIniciais.map((item, index) => (
                     <Pressable
@@ -61,8 +62,9 @@ export default function App() {
                 </Pressable>
                 ))}
             </View>
+          </View>
              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
-             <Text><Link href={'./intro_etapa_5'}>← Voltar</Link></Text>
+             <Text><Link href={'./intro_etapa_5'} style={styles.ButtonLeft}>← Voltar</Link></Text>
             <Link href={'./intro_etapa_7'} style={styles.Button}><Text>Próximo →</Text></Link>
           </View>
         </View>
@@ -115,6 +117,16 @@ inactiveSegment: {
 stepText: {
   fontSize: 14,
   color: "gray",
+},
+
+ButtonLeft: {
+  width: "55%",
+  textAlign: "center",
+  paddingVertical: 10,
+  borderRadius: 20,
+  fontSize: 16,
+  marginTop: 10,
+  cursor: "pointer",
 },
 
 Button: {
@@ -190,6 +202,7 @@ concluido: {
 
 loginContainer: {
   width: "80%",
+  marginBottom: 30,
   marginHorizontal: 'auto',
 },
 aviso:{
