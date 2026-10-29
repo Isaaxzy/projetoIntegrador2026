@@ -93,6 +93,22 @@ export function etapa7(indicesMarcados = []) {
     }
 }
 
-export function infoSet(indicesMarcados = []) {
-    eta
+export function infoSet(dados = {}) {
+    if (typeof localStorage === 'undefined') return;
+
+    const preferencias = {
+        voce: dados.voce ?? ['', '', ''],
+        nivelExperienciaIndices: dados.nivelExperienciaIndices ?? [],
+        Alimentacao: dados.Alimentacao ?? [],
+        Alergias: dados.Alergias ?? [],
+        Desgostos: dados.Desgostos ?? [],
+        Gostos: dados.Gostos ?? [],
+        Objetivos: dados.Objetivos ?? [],
+        Tempo: dados.Tempo ?? '',
+        Tipo: dados.Tipo ?? [],
+    };
+
+    Object.entries(preferencias).forEach(([chave, valor]) => {
+        localStorage.setItem(chave, JSON.stringify(valor));
+    });
 }
