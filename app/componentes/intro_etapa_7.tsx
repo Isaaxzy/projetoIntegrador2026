@@ -9,25 +9,20 @@ export default function App() {
     const totalSteps = 7;
     const currentStep = 7;
 
-    const [itensMarcados, setItensMarcados] = useState<boolean[]>(
-            itensIniciais.map(() => false),
-        );
+    const [itemMarcado, setItemMarcado] = useState<number | null>(null);
 
-    const [tempoMarcados, setTempoMarcados] = useState<boolean[]>(
-            itensIniciais2.map(() => false),
-        );
+  const [tempoMarcados, setTempoMarcados] = useState<boolean[]>(
+      itensIniciais2.map(() => false),
+    )
+   
 
         function alternarItem(index: number) {
-            setItensMarcados((marcados) =>
-                marcados.map((marcado, itemIndex) =>
-                    itemIndex === index ? !marcado : marcado,
-                ),
-            );
+          setItemMarcado((atual) => (atual === index ? null : index));
           }
 
-        function alternarTempo(index: number) {
-            setTempoMarcados((marcados) =>
-              marcados.map((marcado, i) => (i === index ? !marcado : marcado)),
+      function alternarTempo(index: number) {
+    setTempoMarcados((marcados) =>
+    marcados.map((marcado, i) => (i === index ? !marcado : marcado)),
     );
     }
 
@@ -58,14 +53,19 @@ export default function App() {
 
             <View style={styles.loginContainer}>
             <Text style={styles.pergunta}>Tempo para cozinhar:</Text> 
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 50 }}>
-              {itensIniciais2.map((item, index) => (
-                <Pressable key={item} onPress={() => alternarTempo(index)}>
-                  <View style={[styles.checkbox, tempoMarcados[index] && styles.marcado]}>
-                    <Text style={[styles.item, tempoMarcados[index] && styles.concluido]}>{item}</Text>
-                  </View>
-                </Pressable>
-              ))}
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 30 }}>
+            {itensIniciais2.map((item, index) => (
+                        <TouchableOpacity
+                          key={item}
+                          onPress={() => alternarTempo(index)}
+                          style={[styles.checkbox, tempoMarcados[index] && styles.marcado,
+                          ]}
+                        >
+                          <Text style={[styles.item, tempoMarcados[index] && styles.concluido]}>
+                            {item}
+                          </Text>
+                        </TouchableOpacity>
+                      ))}
             </View>
 
               <Text style={styles.pergunta}>Tipo de receita:</Text>
@@ -76,8 +76,8 @@ export default function App() {
                     onPress={() => alternarItem(index)}
                 >
                                     {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
-                <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
-                        {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
+                <View style={[styles.checkbox, itemMarcado === index && styles.marcado]}>
+                  <Text style={[styles.item, itemMarcado === index && styles.concluido]}>{item}</Text>
                 </View>
                                     {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
                 

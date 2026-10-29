@@ -202,7 +202,7 @@ concluido: {
 
 loginContainer: {
   width: "80%",
-  marginBottom: 30,
+  marginBottom: 40,
   marginHorizontal: 'auto',
 },
 aviso:{

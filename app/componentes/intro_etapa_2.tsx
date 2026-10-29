@@ -63,7 +63,7 @@ export default function App() {
             <Text style={styles.texto}>Sua alimentação</Text>
             <Text style={styles.subtexto}>Como você costuma se alimentar? Você pode marcar mais de uma opção.</Text>
             <View style={styles.loginContainer}> 
-                 <View style={{flexDirection: "row", flexWrap: "wrap", justifyContent: "center", gap: 12, marginTop: "30%", width: "100%"}}>
+                 <View style={{flexDirection: "row", flexWrap: "wrap", justifyContent: "center", gap: 12, marginTop: -50, width: "100%"}}>
                        {itensIniciais.map((item) => {
                  const selecionada = restricoesSelecionadas.includes(item.id);
                  const bloqueada =
@@ -185,6 +185,7 @@ texto: {
   textAlign: "center",
   width: "70%",
   marginHorizontal: "auto",
+  marginTop: 60,
 },
   
 subtexto: {

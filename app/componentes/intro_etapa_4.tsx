@@ -45,7 +45,7 @@ export default function App() {
             </View> 
 
             <Text style={styles.texto}>O que você não gosta?</Text>
-            <Text style={styles.subtexto}>Quais ingredientes voce prefere evitar?</Text>
+            <Text style={styles.subtexto}>Quais ingredientes você prefere evitar?</Text>
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 30}}>
                   {itensIniciais.map((item, index) => (
                     <Pressable
