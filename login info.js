@@ -89,7 +89,7 @@ export function etapa7(indicesMarcados = []) {
     } else {
         localStorage.setItem('Tempo', JSON.stringify(tempo));
         localStorage.setItem('Tipo', JSON.stringify(indicesMarcados));
-        window.location.href = 'http://localhost:8081/componentes/paginaInicial';
+        window.location.href = 'http://localhost:8081/layout/paginaInicial';
     }
 }
 
