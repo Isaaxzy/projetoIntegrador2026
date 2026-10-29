@@ -207,7 +207,8 @@ function normalizar(texto: string) {
 const styles = StyleSheet.create({
 
 fundo: {
-    backgroundColor: "#ececec",
+    flex: 1,
+    backgroundColor: "#f4f8f4",
 
 },
 
@@ -219,7 +220,8 @@ linha: {},
 
 container: {
     width: "100%",
-    maxWidth: 500,
+    maxWidth: 1120,
+    alignSelf: "center",
     marginTop: 10,
     backgroundColor: "#ffffff",
     boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.14)",
@@ -229,7 +231,7 @@ container: {
 
 listaReceitas: {
     width: "100%",
-    maxWidth: 500,
+    maxWidth: 1120,
     alignSelf: "center",
 },
 
@@ -332,7 +334,7 @@ cont: {
 },
 
 button: {
-    backgroundColor: "#209e3c",
+    backgroundColor: "#168A3A",
     padding: 12,
     paddingHorizontal: 20,
     borderRadius: 10,
@@ -357,7 +359,7 @@ resultadoBusca: {
 },
 
 limparBusca: {
-    color: "#078523",
+    color: "#168A3A",
     fontWeight: "bold",
 },
 
@@ -392,8 +394,8 @@ concluido: {
 },
 
 marcado: {
-  backgroundColor: "#078523",
-  borderColor: "#078523",
+  backgroundColor: "#168A3A",
+  borderColor: "#168A3A",
   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
 },
 

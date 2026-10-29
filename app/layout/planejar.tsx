@@ -1,13 +1,13 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import {
-    ActivityIndicator,
     Image,
     Modal,
     Pressable,
     ScrollView,
     StyleSheet,
     Text,
+    useWindowDimensions,
     View,
 } from "react-native";
 import {
@@ -24,6 +24,7 @@ import {
     type DiaDaSemana,
     type PlanoSemanal,
 } from "../servicos/planejamento";
+import Carregamento from "../../components/Carregamento";
 
 const receitasDisponiveis = [
     ...receitasRecomendadas,
@@ -32,6 +33,8 @@ const receitasDisponiveis = [
 ];
 
 export default function Planejar() {
+    const { width } = useWindowDimensions();
+    const larguraCartaoDia = width < 560 ? "100%" : "48%";
     const [plano, setPlano] = useState<PlanoSemanal>(criarPlanoVazio);
     const [diaSelecionado, setDiaSelecionado] = useState<DiaDaSemana | null>(null);
     const [receitaSelecionada, setReceitaSelecionada] = useState<Receita | null>(null);
@@ -107,6 +110,7 @@ export default function Planejar() {
     const totalRefeicoes = diasDaSemana.reduce((total, dia) => total + plano[dia.id].length, 0);
 
     return (
+        <>
         <ScrollView style={styles.tela} contentContainerStyle={styles.conteudo}>
             <View style={styles.container}>
                 <View style={styles.marca}>
@@ -174,55 +178,51 @@ export default function Planejar() {
                     </View>
                 )}
 
-                {carregando ? (
-                    <ActivityIndicator size="large" color="#168A3A" style={styles.carregando} />
-                ) : (
-                    <View style={styles.gradeDias}>
-                        {diasDaSemana.map((dia) => {
-                            const receitasDoDia = receitasPlanejadas(dia.id);
+                <View style={styles.gradeDias}>
+                    {diasDaSemana.map((dia) => {
+                        const receitasDoDia = receitasPlanejadas(dia.id);
 
-                            return (
-                                <View key={dia.id} style={styles.cartaoDia}>
-                                    <View style={styles.cabecalhoDia}>
-                                        <Text style={styles.nomeDia}>{dia.abreviacao}</Text>
-                                        <Text style={styles.quantidadeDia}>{receitasDoDia.length}</Text>
-                                    </View>
-
-                                    {receitasDoDia.length === 0 ? (
-                                        <Text style={styles.vazio}>Nenhuma refeição</Text>
-                                    ) : (
-                                        <View style={styles.refeicoes}>
-                                            {receitasDoDia.map(({ receita, indice }) => (
-                                                <View key={`${receita.id}-${indice}`} style={styles.itemRefeicao}>
-                                                    <Text style={styles.nomeRefeicao} numberOfLines={2}>
-                                                        {receita.titulo}
-                                                    </Text>
-                                                    <Pressable
-                                                        accessibilityRole="button"
-                                                        accessibilityLabel={`Remover ${receita.titulo} de ${dia.nome}`}
-                                                        onPress={() => removerReceita(dia.id, indice)}
-                                                        disabled={salvando}
-                                                    >
-                                                        <Ionicons name="close-circle-outline" size={20} color="#7b8b80" />
-                                                    </Pressable>
-                                                </View>
-                                            ))}
-                                        </View>
-                                    )}
-
-                                    <Pressable
-                                        accessibilityRole="button"
-                                        style={styles.botaoAdicionarDia}
-                                        onPress={() => setDiaSelecionado(dia.id)}
-                                    >
-                                        <Ionicons name="add-circle-outline" size={18} color="#168A3A" />
-                                        <Text style={styles.textoBotaoAdicionar}>Adicionar refeição</Text>
-                                    </Pressable>
+                        return (
+                            <View key={dia.id} style={[styles.cartaoDia, { width: larguraCartaoDia }]}>
+                                <View style={styles.cabecalhoDia}>
+                                    <Text style={styles.nomeDia}>{dia.abreviacao}</Text>
+                                    <Text style={styles.quantidadeDia}>{receitasDoDia.length}</Text>
                                 </View>
-                            );
-                        })}
-                    </View>
-                )}
+
+                                {receitasDoDia.length === 0 ? (
+                                    <Text style={styles.vazio}>Nenhuma refeição</Text>
+                                ) : (
+                                    <View style={styles.refeicoes}>
+                                        {receitasDoDia.map(({ receita, indice }) => (
+                                            <View key={`${receita.id}-${indice}`} style={styles.itemRefeicao}>
+                                                <Text style={styles.nomeRefeicao} numberOfLines={2}>
+                                                    {receita.titulo}
+                                                </Text>
+                                                <Pressable
+                                                    accessibilityRole="button"
+                                                    accessibilityLabel={`Remover ${receita.titulo} de ${dia.nome}`}
+                                                    onPress={() => removerReceita(dia.id, indice)}
+                                                    disabled={salvando}
+                                                >
+                                                    <Ionicons name="close-circle-outline" size={20} color="#7b8b80" />
+                                                </Pressable>
+                                            </View>
+                                        ))}
+                                    </View>
+                                )}
+
+                                <Pressable
+                                    accessibilityRole="button"
+                                    style={styles.botaoAdicionarDia}
+                                    onPress={() => setDiaSelecionado(dia.id)}
+                                >
+                                    <Ionicons name="add-circle-outline" size={18} color="#168A3A" />
+                                    <Text style={styles.textoBotaoAdicionar}>Adicionar refeição</Text>
+                                </Pressable>
+                            </View>
+                        );
+                    })}
+                </View>
             </View>
 
             <Modal
@@ -300,6 +300,11 @@ export default function Planejar() {
                 </View>
             </Modal>
         </ScrollView>
+        <Carregamento
+            visivel={carregando || salvando}
+            mensagem={salvando ? "Salvando seu planejamento..." : "Carregando seu planejamento..."}
+        />
+        </>
     );
 }
 
@@ -456,9 +461,6 @@ const styles = StyleSheet.create({
     textoErro: {
         color: "#a52b20",
         fontSize: 13,
-    },
-    carregando: {
-        padding: 36,
     },
     gradeDias: {
         flexDirection: "row",

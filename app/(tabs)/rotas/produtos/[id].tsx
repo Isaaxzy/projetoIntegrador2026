@@ -27,11 +27,11 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     flex: 1,
-    backgroundColor: "#6868f7ff",
+    backgroundColor: "#f4f8f4",
     justifyContent: "center",
   },
   texto: {
-    color: "#FFFFFF",
+    color: "#168A3A",
     fontSize: 18,
     fontWeight: "600",
     alignItems: "center",
@@ -59,4 +59,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-

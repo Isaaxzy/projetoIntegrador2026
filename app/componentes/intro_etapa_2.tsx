@@ -2,6 +2,7 @@ import { Link } from 'expo-router';
 import { useState } from 'react';
 import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
 import { etapa2 } from '../../login info'
+import { View, StyleSheet, Text, Pressable, ScrollView } from 'react-native';
 
 const itensIniciais = ['🍽️ Sem restrições', '🥕 Vegetariano', '🌱 Vegano', '🥗 Flexitariano', '🥑 Low crab', '✨ outra'];
 
@@ -86,80 +87,110 @@ export default function App() {
 
 const styles = StyleSheet.create({
 
-  backgroundd: {
-    paddingVertical: 20,
-    height: '100%',
-    margin: 'auto',
-  },
+backgroundd: {
 
-  container: {
-    borderRadius: 25,
-    flex: 1,
-    width: 400,
-    margin: 'auto',
-    padding: 24,
-    justifyContent: 'center',
-    backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
-    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-  },
+        backgroundColor: "#f4f8f4",
+},
 
-  /* Estilos adicionados para a barra de progresso */
-  progressSection: {
-    width: "90%",
-    marginHorizontal: 'auto',
-    gap: 8,
-    marginBottom: 'auto',
-  },
-  barContainer: {
-    flexDirection: "row",
-    width: "100%",
-    gap: 6,
-  },
-  segment: {
-    flex: 1,
-    height: 6,
-    borderRadius: 3,
-  },
-  activeSegment: {
-    backgroundColor: "#209e3c",
-  },
-  inactiveSegment: {
-    backgroundColor: "#E2E8F0",
-  },
-  stepText: {
-    fontSize: 14,
-    color: "gray",
-  },
+backgroundContent: {
+        flexGrow: 1,
+        justifyContent: "center",
+        paddingVertical: 20,
+        paddingHorizontal: 16,
+},
 
-  Button: {
-    backgroundColor: "#209e3c",
-    color: "#fff",
-    width: "45%",
-    textAlign: "center",
-    paddingVertical: 10,
-    borderRadius: 20,
-    fontSize: 16,
-    marginTop: 10,
-    boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
-    cursor: "pointer",
-  },
+container: {
+        borderRadius: 25,
+        width: "100%",
+        maxWidth: 560,
+        minHeight: 440,
+        alignSelf: "center",
+        padding: 24,
+        justifyContent: 'flex-start',
+        backgroundColor: "#fff",
+        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+},
 
-  texto: {
-    fontSize: 30,
-    fontWeight: "bold",
-    textAlign: "center",
-    width: "70%",
-    marginHorizontal: "auto",
-  },
+footer: {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
+  width: "95%",
+  borderTopColor: "gray",
+  borderTopWidth: 1,
+  paddingTop: 10,
+  marginTop: "auto",
+},
+    
 
-  subtexto: {
-    fontSize: 16,
-    color: "gray",
-    textAlign: "center",
-    width: "86%",
-    marginHorizontal: "auto",
-    marginBottom: 'auto',
-  },
+progressSection: {
+  width: "90%",
+  marginHorizontal: 'auto',
+  gap: 8,
+  marginBottom: 24,
+  marginBottom: 24,
+},
+barContainer: {
+  flexDirection: "row",
+  width: "100%",
+  gap: 6,
+},
+segment: {
+  flex: 1,
+  height: 6,
+  borderRadius: 3,
+},
+activeSegment: {
+  backgroundColor: "#168A3A",
+},
+inactiveSegment: {
+  backgroundColor: "#E2E8F0",
+},
+stepText: {
+  fontSize: 14,
+  color: "gray",
+},
+
+ButtonLeft: {
+  width: "55%",
+  textAlign: "center",
+  paddingVertical: 10,
+  borderRadius: 20,
+  fontSize: 16,
+  marginTop: 10,
+  cursor: "pointer",
+},
+
+Button: {
+  backgroundColor: "#168A3A",
+  color: "#fff",
+  width: "45%",
+  textAlign: "center",
+  paddingVertical: 10,
+  borderRadius: 20,
+  fontSize: 16,
+  marginTop: 10,
+  boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
+  cursor: "pointer",
+},
+
+texto: {
+  fontSize: 30,
+  fontWeight: "bold",
+  textAlign: "center",
+  width: "70%",
+  marginHorizontal: "auto",
+  marginTop: 60,
+},
+  
+subtexto: {
+  fontSize: 16,
+  color: "gray",
+  textAlign: "center",
+  width: "86%",
+  marginHorizontal: "auto",
+  marginBottom: 24,
+},
 
   pergunta: {
     fontSize: 16,
@@ -180,11 +211,11 @@ const styles = StyleSheet.create({
     borderWidth: 0,
   },
 
-  marcado: {
-    backgroundColor: "#078523",
-    borderColor: "#078523",
-    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
-  },
+marcado: {
+  backgroundColor: "#168A3A",
+  borderColor: "#168A3A",
+  boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
+},
 
   checkbox: {
     padding: 11,
@@ -202,9 +233,9 @@ const styles = StyleSheet.create({
 
   /*desta tela*/
 
-  loginContainer: {
-    width: "80%",
-    marginHorizontal: 'auto',
-  },
+loginContainer: {
+  width: "100%",
+  marginHorizontal: 'auto',
+},
 
 });

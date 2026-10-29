@@ -103,11 +103,13 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 25,
     flex: 1,
-    width: 400,
-    margin: 'auto',
+    width: "100%",
+    maxWidth: 560,
+    alignSelf: "center",
+    minHeight: 440,
     padding: 24,
-    justifyContent: 'center',
-    backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
+    justifyContent: 'flex-start',
+    backgroundColor: "#fff",
     boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
   },
 
@@ -116,7 +118,7 @@ const styles = StyleSheet.create({
     width: "90%",
     marginHorizontal: 'auto',
     gap: 8,
-    marginBottom: 'auto',
+    marginBottom: 24,
   },
   barContainer: {
     flexDirection: "row",
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
   activeSegment: {
-    backgroundColor: "#209e3c",
+    backgroundColor: "#168A3A",
   },
   inactiveSegment: {
     backgroundColor: "#E2E8F0",
@@ -140,7 +142,7 @@ const styles = StyleSheet.create({
   },
 
   Button: {
-    backgroundColor: "#209e3c",
+    backgroundColor: "#168A3A",
     color: "#fff",
     width: "45%",
     textAlign: "center",

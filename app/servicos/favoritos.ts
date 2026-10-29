@@ -2,6 +2,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const CHAVE_FAVORITOS = "@tempero-de-casa/favoritos";
 
+function ehRegistro(valor: unknown): valor is Record<string, unknown> {
+    return typeof valor === "object" && valor !== null && !Array.isArray(valor);
+}
+
 export interface ReceitaFavorita {
     id: string;
     nome: string;
@@ -18,13 +22,7 @@ function validarFavoritos(valor: unknown): ReceitaFavorita[] {
 
     return valor.map((item: unknown) => {
         if (
-            typeof item !== "object" ||
-            item === null ||
-            !("id" in item) ||
-            !("nome" in item) ||
-            !("tempo" in item) ||
-            !("dificuldade" in item) ||
-            !("ingredientes" in item) ||
+            !ehRegistro(item) ||
             typeof item.id !== "string" ||
             typeof item.nome !== "string" ||
             typeof item.tempo !== "string" ||

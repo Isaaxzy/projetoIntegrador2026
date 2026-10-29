@@ -23,7 +23,7 @@ export default function App() {
             );
           }
     return (
-      <View style={styles.backgroundd}>
+      <ScrollView style={styles.backgroundd} contentContainerStyle={styles.backgroundContent} keyboardShouldPersistTaps="handled">
           <View style={styles.container}>
             {/* Barra de Progresso + Etapa */}
             <View style={styles.progressSection}>
@@ -78,26 +78,33 @@ export default function App() {
                                   </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
 
 backgroundd: {
+        flex: 1,
+        backgroundColor: "#f4f8f4",
+},
+
+backgroundContent: {
+        flexGrow: 1,
+        justifyContent: "center",
         paddingVertical: 20,
-        height: '100%',
-        margin: 'auto',
+        paddingHorizontal: 16,
 },
 
 container: {
         borderRadius: 25,
-        flex: 1,
-        width: 400,
-        margin: 'auto',
+        width: "100%",
+        maxWidth: 560,
+        minHeight: 440,
+        alignSelf: "center",
         padding: 24,
-        justifyContent: 'center',
-        backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
+        justifyContent: 'flex-start',
+        backgroundColor: "#fff",
         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
 },
     
@@ -106,7 +113,7 @@ progressSection: {
   width: "90%",
   marginHorizontal: 'auto',
   gap: 8,
-  marginBottom: 'auto',
+  marginBottom: 24,
 },
 barContainer: {
   flexDirection: "row",
@@ -119,7 +126,7 @@ segment: {
   borderRadius: 3,
 },
 activeSegment: {
-  backgroundColor: "#209e3c",
+  backgroundColor: "#168A3A",
 },
 inactiveSegment: {
   backgroundColor: "#E2E8F0",
@@ -140,7 +147,7 @@ ButtonLeft: {
 },
 
 Button: {
-  backgroundColor: "#209e3c",
+  backgroundColor: "#168A3A",
   color: "#fff",
   width: "45%",
   textAlign: "center",
@@ -166,7 +173,7 @@ subtexto: {
   textAlign: "center",
   width: "86%",
   marginHorizontal: "auto",
-  marginBottom: 'auto',
+  marginBottom: 24,
 },
 
 pergunta: {
@@ -189,8 +196,8 @@ input: {
 },
 
 marcado: {
-  backgroundColor: "#078523",
-  borderColor: "#078523",
+  backgroundColor: "#168A3A",
+  borderColor: "#168A3A",
   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
 },
 
@@ -216,12 +223,12 @@ loginContainer: {
   marginHorizontal: 'auto',
 },
 aviso:{
-  width: '80%',
-  height: 90,
+  width: "100%",
+  minHeight: 90,
   backgroundColor: '#ffef96',
   padding: 20,
   marginHorizontal: 'auto',
-  marginBottom: 'auto',
+  marginBottom: 12,
   borderRadius: 10,
   borderWidth: 4,
   borderColor: '#ffdc19',

@@ -1,9 +1,9 @@
 import { Link } from 'expo-router';
-import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 
 export default function App() {
     return (
-      <View style={styles.fundo}>
+      <ScrollView style={styles.fundo} contentContainerStyle={styles.pagina}>
         <View>
           <Image
           style={styles.logo}
@@ -45,12 +45,12 @@ export default function App() {
                 <Text>Don´t have an account?</Text>
                 <Link href="./Criar conta">
                   <TouchableOpacity>
-                    <Text style={{ color: "#078523", fontWeight: "bold", cursor: "pointer" }}>Create One</Text>
+                    <Text style={{ color: "#168A3A", fontWeight: "bold", cursor: "pointer" }}>Create One</Text>
                   </TouchableOpacity>
                 </Link>
               </View>
         </View>
-      </View>
+      </ScrollView>
  
     );
 }
@@ -59,14 +59,21 @@ const styles = StyleSheet.create({
 
 fundo: {
   flex: 1,
-  backgroundColor: "rgb(248, 248, 248)"
+  backgroundColor: "#f4f8f4",
+},
+
+pagina: {
+  flexGrow: 1,
+  justifyContent: "center",
+  paddingHorizontal: 16,
+  paddingVertical: 24,
 },
 
 logo: {
   width: 90,
   height: 90,
   margin: "auto",
-  marginTop: 40,
+  marginTop: 12,
   marginBottom: 20,
   borderRadius: 20,
   cursor: "pointer",
@@ -89,7 +96,8 @@ container: {
   alignItems: "center",
   boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
   borderRadius: 10,
-  width: 400,
+  width: "100%",
+  maxWidth: 440,
   padding: 20,
   backgroundColor: "#fff",
   margin: "auto",
@@ -126,7 +134,8 @@ loginContainer: {
 },
 
 input: {
-  boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2) inset",
+  backgroundColor: "#fff",
+  boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.12) inset",
   borderRadius: 5,
   padding: 10,
   marginBottom: 10,
@@ -146,7 +155,7 @@ label: {
 
 forgotPassword: {
   fontSize: 14,
-  color: "#078523",
+  color: "#168A3A",
   textDecorationLine: "none",
   paddingBottom: 5,
   marginTop: 5,
@@ -154,7 +163,7 @@ forgotPassword: {
 },
 
 loginButton: {
-  backgroundColor: "#078523",
+  backgroundColor: "#168A3A",
   color: "#fff",
   width: "100%",
   textAlign: "center",
@@ -175,7 +184,3 @@ signUpContainer: {
 },
 
 });
-
-
-
-
