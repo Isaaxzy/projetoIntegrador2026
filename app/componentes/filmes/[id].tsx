@@ -3,6 +3,7 @@ import DadosDosFilmes, { type Receita } from '../coisas';
 import { Link, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { adicionarFavorito, listarFavoritos, removerFavorito } from '../../servicos/favoritos';
+import Carregamento from '../../../components/Carregamento';
 
 const itensIniciais = ['Favoritar', '✓ Já fiz essa receita'];
 
@@ -16,24 +17,40 @@ export default function Filme() {
   const item: Receita | undefined = categorias
     .flatMap(categoria => categoria.filmes)
     .find(f => f.id === id);
+  const itemId = item?.id;
   const [itensMarcados, setItensMarcados] = useState<boolean[]>(
     itensIniciais.map(() => false),
   );
   const [favorito, setFavorito] = useState(false);
   const [salvandoFavorito, setSalvandoFavorito] = useState(false);
+  const [carregandoFavorito, setCarregandoFavorito] = useState(true);
 
   useEffect(() => {
     let ativo = true;
 
+    if (!itemId) {
+      setCarregandoFavorito(false);
+      return () => {
+        ativo = false;
+      };
+    }
+
+    setCarregandoFavorito(true);
     async function verificarFavorito() {
       try {
         const favoritos = await listarFavoritos();
         if (ativo) {
-          setFavorito(favoritos.some(receita => receita.id === item?.id));
+          setFavorito(favoritos.some(receita => receita.id === itemId));
         }
       } catch (error) {
-        console.error('Não foi possível verificar os favoritos.', error);
-        Alert.alert('Erro', 'Não foi possível carregar o estado dos favoritos.');
+        if (ativo) {
+          console.error('Não foi possível verificar os favoritos.', error);
+          Alert.alert('Erro', 'Não foi possível carregar o estado dos favoritos.');
+        }
+      } finally {
+        if (ativo) {
+          setCarregandoFavorito(false);
+        }
       }
     }
 
@@ -41,7 +58,7 @@ export default function Filme() {
     return () => {
       ativo = false;
     };
-  }, [item?.id]);
+  }, [itemId]);
 
   function alternarItem(index: number) {
     setItensMarcados((marcados) =>
@@ -89,6 +106,10 @@ export default function Filme() {
   return (
     
     <View style={styles.fundo}>
+      <Carregamento
+        visivel={carregandoFavorito || salvandoFavorito}
+        mensagem={salvandoFavorito ? "Salvando favorito..." : "Carregando receita..."}
+      />
       <ScrollView>
       <View style={styles.container}>
       <Image
@@ -106,7 +127,7 @@ export default function Filme() {
         <View style={styles.reco}>
           <Image source={require("../../imagens/repowise-icon.png")} style={styles.image2}>
           </Image>
-          <View style={{}}>
+          <View style={{width: "90%"}}>
           <Text style={styles.texto1}>Por que recomendamos esta receita?</Text>
           <Text style={styles.texto2}>Você prefere receitas de até 30 minutos, gosta de receitas fácil, combina com seu tipo de alimentação.</Text>
          </View>
@@ -201,7 +222,7 @@ const styles = StyleSheet.create({
 
   ingre: {
     color: "#666666",
-    marginTop: 3
+    marginTop: 8
   },
 
   ingre1: {
@@ -215,7 +236,7 @@ const styles = StyleSheet.create({
   },
 
   informacoes2: {
-    width: "100%",
+    width: "96%",
     backgroundColor: "#ffffff",
     padding: 10,
     borderRadius: 20,
@@ -225,7 +246,7 @@ const styles = StyleSheet.create({
   },
 
   informacoes3: {
-    width: "100%",
+    width: "96%",
     backgroundColor: "#ffffff",
     padding: 10,
     borderRadius: 20,
@@ -256,21 +277,20 @@ const styles = StyleSheet.create({
     borderColor: "#00a316",
     borderRadius: 20,
     flexDirection: "row",
-    gap: 7
+    gap: 7,
   },
 
   texto1: {
     fontWeight: "bold",
     fontSize: 15,
     color: "#00a316",
-    marginBottom: 3
+    marginBottom: 3,
   },
 
   texto2: {
     fontSize: 13,
     marginBottom: 3,
     textAlign: "justify",
-    flex: 1,
   },
 
   titulo: {
@@ -296,7 +316,7 @@ const styles = StyleSheet.create({
   },
 
   informacoes: {
-    width: "100%",
+    width: "96%",
     backgroundColor: "#ffffff",
     padding: 10,
     borderRadius: 20,

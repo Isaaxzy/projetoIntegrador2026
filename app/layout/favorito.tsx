@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { Link, useFocusEffect } from 'expo-router';
 import { FlatList, Image, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import Carregamento from '../../components/Carregamento';
 import { listarFavoritos, type ReceitaFavorita } from '../servicos/favoritos';
 
 export default function App() {
@@ -63,6 +64,7 @@ export default function App() {
     };
 
     return (
+        <>
         <View style={[styles.backgroundd, { padding: horizontalPadding }]}>
             <View style={[styles.container, { padding: horizontalPadding }]}>
                 <View style={styles.UPbar}>
@@ -102,6 +104,8 @@ export default function App() {
                 />
             </View>
         </View>
+        <Carregamento visivel={carregando} mensagem="Carregando seus favoritos..." />
+        </>
     );
 }
  

@@ -78,7 +78,7 @@ container: {
   padding: 20,
   backgroundColor: "#fff",
   margin: "auto",
-  marginTop: 24,
+  marginTop: 100,
   gap: 10,
 },
 

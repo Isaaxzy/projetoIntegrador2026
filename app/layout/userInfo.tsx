@@ -386,8 +386,6 @@ const styles = StyleSheet.create({
     buttonIcon: {
     width: 30,
     height: 30,
-    marginLeft: '10%',
-    marginTop: -3,
     tintColor: '#fff',
     },
 
@@ -456,23 +454,23 @@ const styles = StyleSheet.create({
     },
 
     ButtonRota: {
-    backgroundColor: "#168A3A",
     color: "#fff",
-    width: "100%",
-    minHeight: 48,
     textAlign: "center",
-    paddingVertical: 10,
-    marginTop: 15,
-    marginLeft: 0,
-    borderRadius: 10,
     fontSize: 16,
-    boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
     flexDirection: 'row',
     gap: 15,
+    alignItems: "center",
+    margin: "auto"
     },
 
     botbox:{
+    width:" 95.5%",
+    marginTop: 10,
     flexDirection: 'row',
+    backgroundColor: "#168A3A",
+    boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
+    borderRadius: 10,
+    minHeight: 48,
     },
 
     bold:{
@@ -482,7 +480,7 @@ const styles = StyleSheet.create({
     buttonText: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 16, 
     textAlign: 'center',
     },
 
