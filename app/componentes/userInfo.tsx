@@ -197,11 +197,11 @@ export default function App() {
               <Text style={styles.label}>Idade</Text>
             </View>
 
-            <input style={styles.input} value={idade} onChange={(e) => setIdade(e.target.value)} placeholder="14+" />
+            <input style={styles.input} value={idade} type="number" onChange={(e) => setIdade(e.target.value)} placeholder="14+" />
 
             <Text style={styles.label}>Para quantas pessoas você costuma cozinhar?</Text>
 
-            <input style={styles.input} value={pessoas} onChange={(e) => setPessoas(e.target.value)} placeholder="Número de pessoas" />
+            <input style={styles.input} value={pessoas} type="number" onChange={(e) => setPessoas(e.target.value)} placeholder="Número de pessoas" />
 
             <Text style={styles.label}>Nivel de experiência na cozinha</Text>
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%", }}>
