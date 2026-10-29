@@ -4,32 +4,28 @@ import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextI
 import { etapa7 } from '../../login info'
 
 const itensIniciais = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada'];
-const itensIniciais2 = ['Até 10 min', 'Até 20 min', 'Até 30 min', 'Até 1 hora', 'Mais de 1 hora'];
+
 
 export default function App() {
     const totalSteps = 7;
     const currentStep = 7;
 
-    const [itemMarcado, setItemMarcado] = useState<number | null>(null);
-
-  const [tempoMarcados, setTempoMarcados] = useState<boolean[]>(
-      itensIniciais2.map(() => false),
-    )
-   
-
+    const [itensMarcados, setItensMarcados] = useState<boolean[]>(
+            itensIniciais.map(() => false),
+        );
+     
         function alternarItem(index: number) {
-          setItemMarcado((atual) => (atual === index ? null : index));
+            // Cria um novo array e inverte somente o item que foi pressionado.
+            setItensMarcados((marcados) =>
+                marcados.map((marcado, itemIndex) =>
+                    itemIndex === index ? !marcado : marcado,
+                ),
+            );
           }
-
-      function alternarTempo(index: number) {
-    setTempoMarcados((marcados) =>
-    marcados.map((marcado, i) => (i === index ? !marcado : marcado)),
-    );
-    }
-
     return (
       <View style={styles.backgroundd}>
           <View style={styles.container}>
+            {/* Barra de Progresso + Etapa */}
             <View style={styles.progressSection}>
               <View style={styles.barContainer}>
                 {Array.from({ length: totalSteps }).map((_, index) => {
@@ -51,49 +47,33 @@ export default function App() {
 
             <Text style={styles.texto}>Sua rotina</Text>
             <Text style={styles.subtexto}>Quanto tempo você tem e que tipo de receita prefere?</Text>
-
-            <View style={styles.loginContainer}>
             <Text style={styles.pergunta}>Tempo para cozinhar:</Text> 
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 30 }}>
-            {itensIniciais2.map((item, index) => (
-                        <TouchableOpacity
-                          key={item}
-                          onPress={() => alternarTempo(index)}
-                          style={[styles.checkbox, tempoMarcados[index] && styles.marcado,
-                          ]}
-                        >
-                          <Text style={[styles.item, tempoMarcados[index] && styles.concluido]}>
-                            {item}
-                          </Text>
-                        </TouchableOpacity>
-                      ))}
-            </View>
-
+            <View style={styles.loginContainer}>
+                  <input style={styles.input} id="tempo" type="time" placeholder="Tempo" />
+              </View> 
               <Text style={styles.pergunta}>Tipo de receita:</Text>
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 50}}>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 30}}>
                   {itensIniciais.map((item, index) => (
                     <Pressable
                     key={item}
                     onPress={() => alternarItem(index)}
                 >
                                     {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
-                <View style={[styles.checkbox, itemMarcado === index && styles.marcado]}>
-                  <Text style={[styles.item, itemMarcado === index && styles.concluido]}>{item}</Text>
+                <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
+                        {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
                 </View>
                                     {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
                 
                 </Pressable>
                 ))}
             </View>
-            </View>
-
              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
              <Text><Link href={'/componentes/intro_etapa_6'}>← Voltar</Link></Text>
             <TouchableOpacity
                                                 style={styles.Button}
                                                 onPress={() =>
                                                   etapa7(
-                                                    itensIniciais2.flatMap((marcado, index) => marcado ? [index] : [])
+                                                    itensMarcados.flatMap((marcado, index) => marcado ? [index] : [])
                                                   )
                                                 }
                                               >
@@ -152,16 +132,6 @@ stepText: {
   color: "gray",
 },
 
-ButtonLeft: {
-  width: "55%",
-  textAlign: "center",
-  paddingVertical: 10,
-  borderRadius: 20,
-  fontSize: 16,
-  marginTop: 10,
-  cursor: "pointer",
-},
-
 Button: {
   backgroundColor: "#209e3c",
   color: "#fff",
@@ -194,12 +164,12 @@ subtexto: {
 
 pergunta: {
   fontSize: 16,
-  fontWeight: "bold",
-  marginBottom: 10,
+  marginBottom: 5,
   flexDirection: "row",
   justifyContent: "space-between",
+  fontWeight: "400",
   paddingBottom: 5,
-  marginTop: 3,
+  marginTop: 7,
 },
 
 input: {
@@ -235,10 +205,8 @@ concluido: {
 
 loginContainer: {
   width: "80%",
-  marginBottom: 10,
   marginHorizontal: 'auto',
 },
-
 aviso:{
   width: '80%',
   height: 90,
