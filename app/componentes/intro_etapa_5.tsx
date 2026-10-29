@@ -1,6 +1,7 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
 import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { etapa5 } from '../../login info'
 
 const itensIniciais = ['🍗 Frango', '🥩 Carne', '🥔 Batata', '🧀 Queijo', '🍫 Chocolate', '🍓 Morango', '🍝 Massas', '🍚 Arroz', '🥚 Ovo', '🍅 Tomate', '🥕 Cenoura', '🥑 Abacate', '🐟 Salmão', '🍋 Limão', '🌽 Milho', '🫘 Feijão' ];
 
@@ -61,11 +62,20 @@ export default function App() {
                 ))}
             </View>
             <View style={styles.loginContainer}>
-                <TextInput style={styles.input} placeholder="Adicionar outro favorito" />
+                <TextInput style={styles.input} id="outros" placeholder="Adicionar outro favorito" />
             </View> 
              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
-             <Text><Link href={'./intro_etapa_4'}>← Voltar</Link></Text>
-            <Link href={'./intro_etapa_6'} style={styles.Button}><Text>Próximo →</Text></Link>
+             <Text><Link href={'/componentes/intro_etapa_4'}>← Voltar</Link></Text>
+            <TouchableOpacity
+                        style={styles.Button}
+                        onPress={() =>
+                          etapa5(
+                            itensMarcados.flatMap((marcado, index) => marcado ? [index] : [])
+                          )
+                        }
+                      >
+                        Próximo →
+                      </TouchableOpacity>
           </View>
         </View>
       </View>

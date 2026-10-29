@@ -1,5 +1,6 @@
 import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity,  } from 'react-native';
-import {register} from '../../create account'
+import { Link } from 'expo-router';
+import {register} from '../../login info'
 
 export default function App() {
     return (
@@ -37,14 +38,15 @@ export default function App() {
                   <Text style={styles.label}>Confirm Password: </Text>
                  </View>
                   <input style={styles.input} type="password" id='confpassw' placeholder="🔒︎ Confirm your password" />
-                  <View>
-                    <TouchableOpacity style={styles.loginButton}>Create Account</TouchableOpacity>
-                  </View>
+
+                  <TouchableOpacity onPress={() => register()}><Text style={styles.loginButton}>Create Account</Text></TouchableOpacity>
+
                 </View>   
               </View>
               <View style={styles.signUpContainer}>
+               
                 <Text>Already have an account?</Text>
-                <TouchableOpacity onPress={() => register()}><Text style={{ color: "#078523", fontWeight: "bold" }}>Log in</Text></TouchableOpacity>
+                <Link href="http://localhost:8081/"><TouchableOpacity><Text style={{ color: "#078523", fontWeight: "bold" }}>Log in</Text></TouchableOpacity></Link>
               </View>
         </View>
       </View>

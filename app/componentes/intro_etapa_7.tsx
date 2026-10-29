@@ -1,6 +1,7 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
 import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { etapa7 } from '../../login info'
 
 const itensIniciais = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada'];
 
@@ -48,7 +49,7 @@ export default function App() {
             <Text style={styles.subtexto}>Quanto tempo você tem e que tipo de receita prefere?</Text>
             <Text style={styles.pergunta}>Tempo para cozinhar:</Text> 
             <View style={styles.loginContainer}>
-                  <input style={styles.input} type="time" placeholder="Tempo" />
+                  <input style={styles.input} id="tempo" type="time" placeholder="Tempo" />
               </View> 
               <Text style={styles.pergunta}>Tipo de receita:</Text>
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 30}}>
@@ -67,8 +68,17 @@ export default function App() {
                 ))}
             </View>
              <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
-             <Text><Link href={'./intro_etapa_6'}>← Voltar</Link></Text>
-            <Link href={'../(tabs)/Criar conta'} style={styles.Button}><Text>Próximo →</Text></Link>
+             <Text><Link href={'/componentes/intro_etapa_6'}>← Voltar</Link></Text>
+            <TouchableOpacity
+                                                style={styles.Button}
+                                                onPress={() =>
+                                                  etapa7(
+                                                    itensMarcados.flatMap((marcado, index) => marcado ? [index] : [])
+                                                  )
+                                                }
+                                              >
+                                                Próximo →
+                                              </TouchableOpacity>
           </View>
         </View>
       </View>

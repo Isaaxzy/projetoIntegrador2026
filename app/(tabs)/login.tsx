@@ -43,7 +43,7 @@ export default function App() {
               </View>
               <View style={styles.signUpContainer}>
                 <Text>Don´t have an account?</Text>
-                <Link href="../(tabs)/Criar conta">
+                <Link href="./Criar conta">
                   <TouchableOpacity>
                     <Text style={{ color: "#078523", fontWeight: "bold", cursor: "pointer" }}>Create One</Text>
                   </TouchableOpacity>
@@ -131,7 +131,7 @@ input: {
   padding: 10,
   marginBottom: 10,
   height: 24,
-  border: "none",
+  borderWidth: 0,
 },
 
 label: {
