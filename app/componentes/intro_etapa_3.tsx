@@ -1,7 +1,8 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
-import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, TextInput, Pressable } from 'react-native';
 import { etapa3 } from '../../login info'
+import { IntroScreen, introStyles } from '../../components/intro-screen';
 
 const itensIniciais = ['🥛 Leite', '🥚 Ovo', '🥜 Amendoim', '🌰 Castanhas', '🫘 Soja', '🌾 Trigo', '🐟 Peixes', '🦐 Frutos do Mar'];
 
@@ -23,8 +24,7 @@ export default function App() {
             );
           }
     return (
-      <View style={styles.backgroundd}>
-          <View style={styles.container}>
+      <IntroScreen>
             {/* Barra de Progresso + Etapa */}
             <View style={styles.progressSection}>
               <View style={styles.barContainer}>
@@ -71,7 +71,7 @@ export default function App() {
                 <Text style={styles.pergunta}>Outros que você precisa evitar:</Text>
                 <TextInput style={styles.input} id='outros' placeholder="Ex: Corantes, gluten..." />
             </View> 
-             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
+             <View style={introStyles.footer}>
              <Text><Link href={'/componentes/intro_etapa_2'}>← Voltar</Link></Text>
             <TouchableOpacity
                         style={styles.Button}
@@ -84,36 +84,18 @@ export default function App() {
                         Próximo →
                       </TouchableOpacity>
           </View>
-        </View>
-      </View>
+        </IntroScreen>
     );
 }
 
 const styles = StyleSheet.create({
 
-backgroundd: {
-        paddingVertical: 20,
-        height: '100%',
-        margin: 'auto',
-},
-
-container: {
-        borderRadius: 25,
-        flex: 1,
-        width: 400,
-        margin: 'auto',
-        padding: 24,
-        justifyContent: 'center',
-        backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
-        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-},
-    
 /* Estilos adicionados para a barra de progresso */
 progressSection: {
   width: "90%",
   marginHorizontal: 'auto',
   gap: 8,
-  marginBottom: 'auto',
+  marginBottom: 24,
 },
 barContainer: {
   flexDirection: "row",
@@ -173,7 +155,7 @@ subtexto: {
   textAlign: "center",
   width: "86%",
   marginHorizontal: "auto",
-  marginBottom: 'auto',
+  marginBottom: 12,
 },
 
 pergunta: {
@@ -230,7 +212,7 @@ aviso:{
   backgroundColor: '#ffef96',
   padding: 20,
   marginHorizontal: 'auto',
-  marginBottom: 'auto',
+  marginBottom: 12,
   borderRadius: 10,
   borderWidth: 4,
   borderColor: '#ffdc19',

@@ -2,6 +2,7 @@ import { Link } from 'expo-router';
 import { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, TextInput } from 'react-native';
 import { etapa1 } from '../../login info'
+import { IntroScreen, introStyles } from '../../components/intro-screen';
 
 const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Avançado'];
 
@@ -18,8 +19,7 @@ export default function App() {
     setItensMarcados((atual) => (atual === index ? null : index));
   }
   return (
-    <View style={styles.backgroundd}>
-      <View style={styles.container}>
+    <IntroScreen>
         {/* Barra de Progresso + Etapa */}
         <View style={styles.progressSection}>
           <View style={styles.barContainer}>
@@ -102,7 +102,7 @@ export default function App() {
             ))}
           </View>
         </View>
-        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}>
+        <View style={introStyles.footer}>
           <Text><Link href={'/componentes/intro_comecar'}>← Voltar</Link></Text>
           <TouchableOpacity
             style={styles.Button}
@@ -115,31 +115,11 @@ export default function App() {
             Próximo →
           </TouchableOpacity>
         </View>
-      </View>
-    </View>
+      </IntroScreen>
   );
 }
 
 const styles = StyleSheet.create({
-
-  backgroundd: {
-    paddingVertical: 20,
-    height: '100%',
-    margin: 'auto',
-  },
-
-  container: {
-    borderRadius: 25,
-    flex: 1,
-    width: "100%",
-    maxWidth: 560,
-    alignSelf: "center",
-    minHeight: 440,
-    padding: 24,
-    justifyContent: 'flex-start',
-    backgroundColor: "#fff",
-    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-  },
 
   /* Estilos adicionados para a barra de progresso */
   progressSection: {

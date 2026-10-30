@@ -1,11 +1,11 @@
 import { Link } from 'expo-router';
 import { View, StyleSheet, Text, Image } from 'react-native';
+import { IntroScreen } from '../../components/intro-screen';
 
 export default function App() {
     return (
-      <View style={styles.fundo}>
-        <View>
-          <View style={styles.container}>
+      <IntroScreen>
+          <View style={styles.content}>
             <Image
               source={require('../imagens/2026_10_01_0mz_Kleki.png')}
               style={styles.logo}
@@ -16,18 +16,12 @@ export default function App() {
             </View>
             <Link href={'./intro_etapa_1'} style={styles.ButtonRota}><Text >Começar →</Text></Link>
           </View>
-        </View>
-      </View>
+      </IntroScreen>
  
     );
 }
 
 const styles = StyleSheet.create({
-
-fundo: {
-  flex: 1,
-  backgroundColor: "#f4f8f4",
-},
 
 logo: {
   width: 130,
@@ -66,19 +60,11 @@ subtexto: {
   marginTop: 10,
 },
 
-container: {
+content: {
+  flexGrow: 1,
   flex: 1,
   justifyContent: "center",
   alignItems: "center",
-  boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-  borderRadius: 10,
-  width: "100%",
-  maxWidth: 560,
-  alignSelf: "center",
-  padding: 20,
-  backgroundColor: "#fff",
-  margin: "auto",
-  marginTop: 100,
   gap: 10,
 },
 
@@ -153,4 +139,3 @@ signUpContainer: {
 },
 
 });
-

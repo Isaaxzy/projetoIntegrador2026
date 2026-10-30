@@ -1,7 +1,8 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
-import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Pressable } from 'react-native';
 import { etapa2 } from '../../login info'
+import { IntroScreen, introStyles } from '../../components/intro-screen';
 
 const itensIniciais = ['🍽️ Sem restrições', '🥕 Vegetariano', '🌱 Vegano', '🥗 Flexitariano', '🥑 Low crab', '✨ outra'];
 
@@ -23,8 +24,7 @@ export default function App() {
     );
   }
   return (
-    <View style={styles.backgroundd}>
-      <View style={styles.container}>
+    <IntroScreen>
         {/* Barra de Progresso + Etapa */}
         <View style={styles.progressSection}>
           <View style={styles.barContainer}>
@@ -49,7 +49,7 @@ export default function App() {
         <Text style={styles.subtexto}>Como você costuma se alimentar? Você pode marcer mais de uma opção.</Text>
         <View style={styles.loginContainer}>
 
-          <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: '50%' }}>
+          <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 24 }}>
             {itensIniciais.map((item, index) => (
               <Pressable
                 key={item}
@@ -66,7 +66,7 @@ export default function App() {
             ))}
           </View>
         </View>
-        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}>
+        <View style={introStyles.footer}>
           <Text><Link href={'/componentes/intro_etapa_1'}>← Voltar</Link></Text>
           <TouchableOpacity
                       style={styles.Button}
@@ -79,48 +79,11 @@ export default function App() {
                       Próximo →
                     </TouchableOpacity>
         </View>
-      </View>
-    </View>
+      </IntroScreen>
   );
 }
 
 const styles = StyleSheet.create({
-
-backgroundd: {
-
-        backgroundColor: "#f4f8f4",
-},
-
-backgroundContent: {
-        flexGrow: 1,
-        justifyContent: "center",
-        paddingVertical: 20,
-        paddingHorizontal: 16,
-},
-
-container: {
-        borderRadius: 25,
-        width: "100%",
-        maxWidth: 560,
-        minHeight: 440,
-        alignSelf: "center",
-        padding: 24,
-        justifyContent: 'flex-start',
-        backgroundColor: "#fff",
-        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-},
-
-footer: {
-  flexDirection: "row",
-  justifyContent: "space-between",
-  alignItems: "center",
-  width: "95%",
-  borderTopColor: "gray",
-  borderTopWidth: 1,
-  paddingTop: 10,
-  marginTop: "auto",
-},
-    
 
 progressSection: {
   width: "90%",
@@ -178,7 +141,7 @@ texto: {
   textAlign: "center",
   width: "70%",
   marginHorizontal: "auto",
-  marginTop: 60,
+  marginTop: 20,
 },
   
 subtexto: {
@@ -187,7 +150,7 @@ subtexto: {
   textAlign: "center",
   width: "86%",
   marginHorizontal: "auto",
-  marginBottom: 'auto',
+  marginBottom: 24,
 },
 
   pergunta: {

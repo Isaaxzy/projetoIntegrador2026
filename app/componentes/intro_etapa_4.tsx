@@ -1,7 +1,8 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
-import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, TextInput, Pressable } from 'react-native';
 import { etapa4 } from '../../login info'
+import { IntroScreen, introStyles } from '../../components/intro-screen';
 
 const itensIniciais = ['🧅 Cebola', '🧄 Alho', '🍅 Tomate', '🐟 Peixe', '🌿 Coentro', '🫑 Pimentão', '🥦 Brócolis', '🍄 Cogumelo', '🫒 Azeitona', '🌶️ Pimenta', '🫚 Gengibre', '🌿 Manjericão' ];
 
@@ -23,8 +24,7 @@ export default function App() {
             );
           }
     return (
-      <ScrollView style={styles.backgroundd} contentContainerStyle={styles.backgroundContent} keyboardShouldPersistTaps="handled">
-          <View style={styles.container}>
+      <IntroScreen>
             {/* Barra de Progresso + Etapa */}
             <View style={styles.progressSection}>
               <View style={styles.barContainer}>
@@ -65,7 +65,7 @@ export default function App() {
             <View style={styles.loginContainer}>
                 <TextInput style={styles.input} id='outros' placeholder="Adicionar outro ingrediente" />
             </View> 
-             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
+             <View style={introStyles.footer}>
              <Text><Link href={'/componentes/intro_etapa_3'}>← Voltar</Link></Text>
             <TouchableOpacity
             style={styles.Button}
@@ -78,37 +78,12 @@ export default function App() {
             Próximo →
           </TouchableOpacity>
           </View>
-        </View>
-      </ScrollView>
+      </IntroScreen>
     );
 }
 
 const styles = StyleSheet.create({
 
-backgroundd: {
-        flex: 1,
-        backgroundColor: "#f4f8f4",
-},
-
-backgroundContent: {
-        flexGrow: 1,
-        justifyContent: "center",
-        paddingVertical: 20,
-        paddingHorizontal: 16,
-},
-
-container: {
-        borderRadius: 25,
-        width: "100%",
-        maxWidth: 560,
-        minHeight: 440,
-        alignSelf: "center",
-        padding: 24,
-        justifyContent: 'flex-start',
-        backgroundColor: "#fff",
-        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-},
-    
 /* Estilos adicionados para a barra de progresso */
 progressSection: {
   width: "90%",

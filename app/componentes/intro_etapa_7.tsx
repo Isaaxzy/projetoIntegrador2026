@@ -1,7 +1,8 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
-import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Pressable } from 'react-native';
 import { etapa7 } from '../../login info'
+import { IntroScreen, introStyles } from '../../components/intro-screen';
 
 const itensIniciais = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada'];
 
@@ -23,8 +24,7 @@ export default function App() {
             );
           }
     return (
-      <View style={styles.backgroundd}>
-          <View style={styles.container}>
+      <IntroScreen>
             {/* Barra de Progresso + Etapa */}
             <View style={styles.progressSection}>
               <View style={styles.barContainer}>
@@ -67,7 +67,7 @@ export default function App() {
                 </Pressable>
                 ))}
             </View>
-             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
+             <View style={introStyles.footer}>
              <Text><Link href={'/componentes/intro_etapa_6'}>← Voltar</Link></Text>
             <TouchableOpacity
                                                 style={styles.Button}
@@ -80,36 +80,18 @@ export default function App() {
                                                 Próximo →
                                               </TouchableOpacity>
           </View>
-        </View>
-      </View>
+        </IntroScreen>
     );
 }
 
 const styles = StyleSheet.create({
 
-backgroundd: {
-        paddingVertical: 20,
-        height: '100%',
-        margin: 'auto',
-},
-
-container: {
-        borderRadius: 25,
-        flex: 1,
-        width: 400,
-        margin: 'auto',
-        padding: 24,
-        justifyContent: 'center',
-        backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
-        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-},
-    
 /* Estilos adicionados para a barra de progresso */
 progressSection: {
   width: "90%",
   marginHorizontal: 'auto',
   gap: 8,
-  marginBottom: 'auto',
+  marginBottom: 24,
 },
 barContainer: {
   flexDirection: "row",
@@ -159,7 +141,7 @@ subtexto: {
   textAlign: "center",
   width: "86%",
   marginHorizontal: "auto",
-  marginBottom: 'auto',
+  marginBottom: 24,
 },
 
 pergunta: {
@@ -176,8 +158,8 @@ input: {
   boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2) inset",
   borderRadius: 5,
   padding: 10,
-  marginBottom: 100,
-  height: 25,
+  marginBottom: 10,
+  height: 45,
   borderWidth: 0,
 },
 
