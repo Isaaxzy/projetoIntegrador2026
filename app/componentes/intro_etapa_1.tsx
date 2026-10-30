@@ -1,6 +1,6 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
-import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, TextInput } from 'react-native';
 import { etapa1 } from '../../login info'
 
 const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Avançado'];
@@ -10,16 +10,12 @@ export default function App() {
   const totalSteps = 7;
   const currentStep = 1;
 
-  const [itensMarcados, setItensMarcados] = useState<boolean[]>(
-    itensIniciais.map(() => false),
-  );
+  const [itensMarcados, setItensMarcados] = useState<number | null>(null);
+  const [numeroPessoas, setNumeroPessoas] = useState('');
+  const [idade, setIdade] = useState('');
 
-  function alternarItem(index: number) {
-    setItensMarcados((marcados) =>
-      marcados.map((marcado, itemIndex) =>
-        itemIndex === index ? !marcado : marcado,
-      ),
-    );
+  function alternarExperiencia(index: number) {
+    setItensMarcados((atual) => (atual === index ? null : index));
   }
   return (
     <View style={styles.backgroundd}>
@@ -53,24 +49,56 @@ export default function App() {
           <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
             <Text style={styles.pergunta}>Idade</Text>
           </View>
-          <TextInput style={styles.input} id="idade" placeholder="Ex: 28" />
+          <TextInput
+            style={styles.input}
+            id="idade"
+            placeholder="14+"
+            keyboardType="number-pad"
+            maxLength={2}
+            value={idade}
+            onChangeText={(texto) => {
+              const somenteDigitos = texto.replace(/\D/g, '');
+              if (somenteDigitos === '') {
+                setIdade('');
+                return;
+              }
+              setIdade(String(Math.min(Number(somenteDigitos), 75)));
+            }}
+            onBlur={() => {
+              if (idade !== '') {
+                setIdade(String(Math.max(Number(idade), 14)));
+              }
+            }}
+          />
           <Text style={styles.pergunta}>Para quantas pessoas você costuma cozinhar?</Text>
-          <TextInput style={styles.input} id="pessoas" placeholder="Número de pessoas" />
+          <TextInput
+            style={styles.input}
+            id="pessoas"
+            placeholder="Número de pessoas"
+            keyboardType="number-pad"
+            value={numeroPessoas}
+            onChangeText={(texto) => {
+              const somenteDigitos = texto.replace(/\D/g, '');
+              if (somenteDigitos === '') {
+                setNumeroPessoas('');
+                return;
+              }
+              setNumeroPessoas(String(Math.min(Number(somenteDigitos), 15)));
+            }}
+          />
 
-          <Text>Nivel de experiência na cozinha</Text>
-          <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10 }}>
+          <Text style={styles.pergunta}>Nivel de experiência na cozinha</Text>
+          <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%" }}>
             {itensIniciais.map((item, index) => (
-              <Pressable
+              <TouchableOpacity
                 key={item}
-                onPress={() => alternarItem(index)}
+                onPress={() => alternarExperiencia(index)}
+                style={[styles.checkbox, itensMarcados === index && styles.marcado]}
               >
-                {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
-                <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
-                  {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
-                </View>
-                {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
-
-              </Pressable>
+                <Text style={[styles.item, itensMarcados === index && styles.concluido]}>
+                  {item}
+                </Text>
+              </TouchableOpacity>
             ))}
           </View>
         </View>
@@ -80,7 +108,7 @@ export default function App() {
             style={styles.Button}
             onPress={() =>
               etapa1(
-                itensMarcados.flatMap((marcado, index) => marcado ? [index] : [])
+                itensMarcados === null ? [] : [itensMarcados]
               )
             }
           >
