@@ -53,7 +53,7 @@ export default function App() {
 
             <View style={styles.loginContainer}>
             <Text style={styles.pergunta}>Tempo para cozinhar:</Text> 
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 30 }}>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 50 }}>
             {itensIniciais2.map((item, index) => (
                         <TouchableOpacity
                           key={item}
