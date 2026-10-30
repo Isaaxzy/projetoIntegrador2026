@@ -223,8 +223,9 @@ loginContainer: {
   marginBottom: 30,
   marginTop: 30,
 },
+
 aviso:{
-  width: '80%',
+  width: '85%',
   height: 90,
   backgroundColor: '#ffef96',
   padding: 20,
@@ -238,12 +239,15 @@ aviso:{
   },
 
 icoav:{
+  width: 40,
+  height: 60,
   margin: 'auto',
-  fontSize: 20,
+  fontSize: 26,
+  marginLeft: -10,
   },
 teavs:{
-  width: '90%',
-  fontSize: 11,
+  width: '95%',
+  fontSize: 13,
   textAlign: 'justify',
 },
 
