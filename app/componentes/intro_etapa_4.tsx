@@ -1,6 +1,6 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
-import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { View, StyleSheet, Text, TextInput, Pressable, ScrollView } from 'react-native';
 
 const itensIniciais = ['🧅 Cebola', '🧄 Alho', '🍅 Tomate', '🐟 Peixe', '🌿 Coentro', '🫑 Pimentão', '🥦 Brócolis', '🍄 Cogumelo', '🫒 Azeitona', '🌶️ Pimenta', '🫚 Gengibre', '🌿 Manjericão' ];
 
@@ -22,7 +22,7 @@ export default function App() {
             );
           }
     return (
-      <View style={styles.backgroundd}>
+      <ScrollView style={styles.backgroundd} contentContainerStyle={styles.pageContent} keyboardShouldPersistTaps="handled">
           <View style={styles.container}>
             {/* Barra de Progresso + Etapa */}
             <View style={styles.progressSection}>
@@ -46,7 +46,7 @@ export default function App() {
 
             <Text style={styles.texto}>O que você não gosta?</Text>
             <Text style={styles.subtexto}>Quais ingredientes você prefere evitar?</Text>
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 30}}>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 20}}>
                   {itensIniciais.map((item, index) => (
                     <Pressable
                     key={item}
@@ -64,29 +64,35 @@ export default function App() {
             <View style={styles.loginContainer}>
                 <TextInput style={styles.input} placeholder="Adicionar outro ingrediente" />
             </View> 
-             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 10 }}> 
+             <View style={styles.footer}>
              <Text><Link href={'./intro_etapa_3'} style={styles.ButtonLeft}>← Voltar</Link></Text>
             <Link href={'./intro_etapa_5'} style={styles.Button}><Text>Próximo →</Text></Link>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
 
 backgroundd: {
-        paddingVertical: 20,
-        height: '100%',
-        margin: 'auto',
+  flex: 1,
+},
+
+pageContent: {
+  flexGrow: 1,
+  alignItems: 'center',
+  paddingHorizontal: 12,
+  paddingVertical: 16,
 },
 
 container: {
         borderRadius: 25,
-        flex: 1,
-        width: 400,
-        margin: 'auto',
-        padding: 24,
+        flexGrow: 1,
+        width: '100%',
+        maxWidth: 560,
+        alignSelf: 'center',
+        padding: 20,
         justifyContent: 'center',
         backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
@@ -94,7 +100,7 @@ container: {
     
 /* Estilos adicionados para a barra de progresso */
 progressSection: {
-  width: "90%",
+  width: "100%",
   marginHorizontal: 'auto',
   gap: 8,
   marginBottom: 'auto',
@@ -130,6 +136,17 @@ ButtonLeft:{
   cursor: "pointer",
 },
 
+footer: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  width: '100%',
+  borderTopColor: 'gray',
+  borderTopWidth: 1,
+  paddingTop: 10,
+  marginTop: 'auto',
+},
+
 Button: {
   backgroundColor: "#209e3c",
   color: "#fff",
@@ -147,7 +164,7 @@ texto: {
   fontSize: 30,
   fontWeight: "bold",
   textAlign: "center",
-  width: "70%",
+  width: "100%",
   marginHorizontal: "auto",
 },
   
@@ -155,9 +172,9 @@ subtexto: {
   fontSize: 16,
   color: "gray",
   textAlign: "center",
-  width: "86%",
+  width: "100%",
   marginHorizontal: "auto",
-  marginBottom: 'auto',
+  marginBottom: 16,
 },
 
 pergunta: {
@@ -202,7 +219,7 @@ concluido: {
 /*desta tela*/
 
 loginContainer: {
-  width: "80%",
+  width: "100%",
   marginBottom: 30,
   marginTop: 30,
   marginHorizontal: 'auto',

@@ -1,10 +1,9 @@
 import { Link } from 'expo-router';
-import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, Image, ScrollView } from 'react-native';
 
 export default function App() {
     return (
-      <View style={styles.fundo}>
-        <View>
+      <ScrollView style={styles.fundo} contentContainerStyle={styles.pageContent}>
           <View style={styles.container}>
             <Image
               source={require('../imagens/2026_10_01_0mz_Kleki.png')}
@@ -16,8 +15,7 @@ export default function App() {
             </View>
             <Link href={'./intro_etapa_1'} style={styles.ButtonRota}><Text >Começar →</Text></Link>
           </View>
-        </View>
-      </View>
+      </ScrollView>
  
     );
 }
@@ -27,6 +25,13 @@ const styles = StyleSheet.create({
 fundo: {
   flex: 1,
   backgroundColor: "rgb(248, 248, 248)"
+},
+
+pageContent: {
+  flexGrow: 1,
+  justifyContent: "center",
+  alignItems: "center",
+  padding: 16,
 },
 
 logo: {
@@ -52,8 +57,9 @@ texto: {
   fontWeight: "bold",
   marginBottom: 10,
   textAlign: "center",
-  width: "70%",
-  margin: "auto",
+  width: "100%",
+  maxWidth: 360,
+  alignSelf: "center",
   marginTop: 20,
 },
   
@@ -61,8 +67,9 @@ subtexto: {
   fontSize: 16,
   color: "gray",
   textAlign: "center",
-  width: "86%",
-  margin: "auto",
+  width: "100%",
+  maxWidth: 420,
+  alignSelf: "center",
   marginTop: 10,
 },
 
@@ -72,11 +79,12 @@ container: {
   alignItems: "center",
   boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
   borderRadius: 10,
-  width: 400,
+  width: "100%",
+  maxWidth: 480,
   padding: 20,
   backgroundColor: "#fff",
-  margin: "auto",
-  marginTop: 100,
+  alignSelf: "center",
+  marginVertical: 16,
   gap: 10,
 },
 

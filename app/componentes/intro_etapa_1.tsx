@@ -1,6 +1,6 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
-import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 
 const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Avançado'];
 
@@ -18,7 +18,7 @@ export default function App() {
   }
 
   return (
-    <View style={styles.backgroundd}>
+    <ScrollView style={styles.backgroundd} contentContainerStyle={styles.pageContent} keyboardShouldPersistTaps="handled">
       <View style={styles.container}>
         {/* Barra de Progresso + Etapa */}
         <View style={styles.progressSection}>
@@ -44,7 +44,7 @@ export default function App() {
         <Text style={styles.subtexto}>Vamos começar com o básico.</Text>
         <View style={styles.loginContainer}>
           <Text style={styles.pergunta}>Nome</Text>
-          <TextInput style={styles.input} placeholder="Seu nome" />
+          <TextInput style={styles.input} placeholder="Seu nome" maxLength={40} />
 
           <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", }}>
             <Text style={styles.pergunta}>Idade</Text>
@@ -106,34 +106,40 @@ export default function App() {
           <Link href={'./intro_etapa_2'} style={styles.Button}><Text>Próximo →</Text></Link>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 //flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "95%", borderTopColor: "gray", borderTopWidth: 1, paddingTop: 10, marginTop: 50}
 const styles = StyleSheet.create({
 
   backgroundd: {
-    paddingVertical: 20,
-    height: '100%',
-    margin: 'auto',
+    flex: 1,
+  },
+
+  pageContent: {
+    flexGrow: 1,
+    alignItems: 'center',
+    paddingHorizontal: 12,
+    paddingVertical: 16,
   },
 
   container: {
     borderRadius: 25,
-    flex: 1,
-    width: 400,
-    margin: 'auto',
-    padding: 24,
-    justifyContent: 'center',
+    flexGrow: 1,
+    width: '100%',
+    maxWidth: 560,
+    alignSelf: 'center',
+    padding: 20,
+    justifyContent: 'flex-start',
     backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
     boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
   },
 
   progressSection: {
-    width: "90%",
+    width: "100%",
     marginHorizontal: 'auto',
     gap: 8,
-    marginBottom: 'auto',
+    marginBottom: 24,
   },
   barContainer: {
     flexDirection: "row",
@@ -160,11 +166,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    width: "95%",
+    width: "100%",
     borderTopColor: "gray",
     borderTopWidth: 1,
     paddingTop: 10,
-    marginTop: 50
+    marginTop: 30,
   },
 
   ButtonLeft: {
@@ -195,8 +201,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
     textAlign: "center",
-    width: "70%",
-    margin: "auto",
+    width: "100%",
+    alignSelf: "center",
     marginTop: 20,
     justifyContent: "center",
   },
@@ -205,8 +211,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "gray",
     textAlign: "center",
-    width: "86%",
-    margin: "auto",
+    width: "100%",
+    alignSelf: "center",
     marginTop: 10,
     justifyContent: "center",
   },
@@ -251,7 +257,7 @@ const styles = StyleSheet.create({
   },
 
   loginContainer: {
-    width: "80%",
+    width: "100%",
     marginHorizontal: 'auto',
   },
 

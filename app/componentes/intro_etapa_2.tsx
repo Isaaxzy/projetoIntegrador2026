@@ -1,6 +1,6 @@
 import { Link } from 'expo-router';
 import { useState } from 'react';
-import { View, StyleSheet, Text, ImageBackground, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native';
 
 const itensIniciais = [
   { id: 1, label: '🍽️ Sem restrições' },
@@ -38,7 +38,7 @@ export default function App() {
     }
 
     return (
-      <View style={styles.backgroundd}>
+      <ScrollView style={styles.backgroundd} contentContainerStyle={styles.pageContent}>
           <View style={styles.container}>
             {/* Barra de Progresso + Etapa */}
             <View style={styles.progressSection}>
@@ -63,7 +63,7 @@ export default function App() {
             <Text style={styles.texto}>Sua alimentação</Text>
             <Text style={styles.subtexto}>Como você costuma se alimentar? Você pode marcar mais de uma opção.</Text>
             <View style={styles.loginContainer}> 
-                 <View style={{flexDirection: "row", flexWrap: "wrap", justifyContent: "center", gap: 12, marginTop: -50, width: "100%"}}>
+                 <View style={{flexDirection: "row", flexWrap: "wrap", justifyContent: "center", gap: 12, marginTop: 8, width: "100%"}}>
                        {itensIniciais.map((item) => {
                  const selecionada = restricoesSelecionadas.includes(item.id);
                  const bloqueada =
@@ -94,24 +94,30 @@ export default function App() {
             <Link href={'./intro_etapa_3'} style={styles.Button}><Text>Próximo →</Text></Link>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
 
 backgroundd: {
-    paddingVertical: 20,
-    height: '100%',
-    margin: 'auto',
+    flex: 1,
+},
+
+pageContent: {
+  flexGrow: 1,
+  alignItems: 'center',
+  paddingHorizontal: 12,
+  paddingVertical: 16,
 },
 
 container: {
   borderRadius: 25,
-  flex: 1,
-  width: 400,
-  margin: 'auto',
-  padding: 24,
+  flexGrow: 1,
+  width: '100%',
+  maxWidth: 560,
+  alignSelf: 'center',
+  padding: 20,
   justifyContent: 'flex-start',
   backgroundImage: 'linear-gradient(to bottom, #fff, #f1f7f2)',
   boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
@@ -121,7 +127,7 @@ footer: {
   flexDirection: "row",
   justifyContent: "space-between",
   alignItems: "center",
-  width: "95%",
+  width: "100%",
   borderTopColor: "gray",
   borderTopWidth: 1,
   paddingTop: 10,
@@ -130,7 +136,7 @@ footer: {
     
 
 progressSection: {
-  width: "90%",
+  width: "100%",
   marginHorizontal: 'auto',
   gap: 8,
   marginBottom: 24,
@@ -183,18 +189,18 @@ texto: {
   fontSize: 30,
   fontWeight: "bold",
   textAlign: "center",
-  width: "70%",
-  marginHorizontal: "auto",
-  marginTop: 60,
+  width: "100%",
+  alignSelf: "center",
+  marginTop: 24,
 },
   
 subtexto: {
   fontSize: 16,
   color: "gray",
   textAlign: "center",
-  width: "86%",
-  marginHorizontal: "auto",
-  marginBottom: 'auto',
+  width: "100%",
+  alignSelf: "center",
+  marginBottom: 24,
 },
 
 pergunta: {
@@ -239,7 +245,7 @@ concluido: {
 /*desta tela*/
 
 loginContainer: {
-  width: "80%",
+  width: "100%",
   marginHorizontal: 'auto',
 },
 
