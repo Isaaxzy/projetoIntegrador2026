@@ -15,7 +15,7 @@ import { infoSet } from '../../login info'
 
 const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Avançado'];
 
-const itensIniciais2 = [{ id: 1, label: '🍽️ Sem restrições' }, { id: 2, label: '🥕 Vegetariano' }, { id: 3, label: '🌱 Vegano' }, { id: 4, label: '🥗 Flexitariano' }, { id: 5, label: '🥑 Low crab' }, { id: 6, label: '✨ outra' }];
+const itensIniciais2 = [{ id: 1, label: '🍽️ Sem restrições' }, { id: 2, label: '🥕 Vegetariano' }, { id: 3, label: '🌱 Vegano' }, { id: 4, label: '🫒 Mediterrânea' }, { id: 5, label: '🍬 Low sugar' }, { id: 6, label: '🥗 Flexitariano' }, { id: 7, label: '🥑 Low crab' }, { id: 8, label: '🐟 Pescetariano' }, { id: 9, label: '🥚 Ovolactovegetariano' }, { id: 10, label: '🧈 Low fat' }, { id: 11, label: '💪 High protein' }];
 
 const itensIniciais3 = ['🥛 Leite', '🥚 Ovo', '🥜 Amendoim', '🌰 Castanhas', '🫘 Soja', '🌾 Trigo', '🐟 Peixes', '🦐 Frutos do Mar'];
 
@@ -24,6 +24,8 @@ const itensIniciais4 = ['Cebola', 'Alho', 'Tomate', 'Peixe', 'Coentro', 'Piment�
 const itensIniciais5 = ['Frango', 'Carne', 'Batata', 'Queijo', 'Chocolate', 'Morango', 'Massas', 'Arroz', 'Ovo', 'Tomate', 'Cenoura', 'Abacate', 'Salmão', 'Limão', 'Milho', 'Feijão'];
 
 const itensIniciais6 = ['💫 Comer melhor', '⚡ Encontrar receitas práticas', '💰 Economizar', '🌈 Variar minha alimentação', '🎓 Aprender a cozinhar', '📅 Encontrar receitas para minha rotina', '✨ Outro'];
+
+const itensIniciais7 = ['Até 15 min', 'Até 30 min', 'Até 45min', 'Até 1 hora', 'Até 1:30 horas', '2 horas ou mais'];
 
 const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada'];
 
@@ -64,7 +66,7 @@ export default function App() {
 
   const [experienciaSelecionada, setExperienciaSelecionada] = useState<number | null>(null);
 
-  const LIMITE_RESTRICOES = 3;
+  const LIMITE_RESTRICOES = 8;
   const [restricoesSelecionadas, setRestricoesSelecionadas] = useState<number[]>([]);
 
   const [alergiasMarcadas, setAlergiasMarcadas] = useState<boolean[]>(
@@ -81,6 +83,10 @@ export default function App() {
 
   const LIMITE_RESTRICOES2 = 7;
   const [objetivosMarcados, setObjetivosMarcados] = useState<number[]>([]);
+
+    const [tempoMarcados, setTempoMarcados] = useState<boolean[]>(
+        itensIniciais7.map(() => false),
+      )
 
   const [dificuldadeMarcados, setDificuldadeMarcados] = useState<number | null>(null);
 
@@ -153,6 +159,12 @@ export default function App() {
 
       return [...selecionadas, index];
     });
+  };
+
+ const alternarTempo = (index: number) => {
+    setTempoMarcados((marcados) =>
+      marcados.map((marcado, i) => (i === index ? !marcado : marcado)),
+    );
   };
 
   const alternarDificuldade = (index: number) => {
@@ -333,9 +345,17 @@ export default function App() {
               <Text style={styles.pritext}>Sua rotina</Text>
             </View>
             <Text style={styles.sobv}>Tempo disponivél para cozinhar</Text>
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%", }}>
-
-              <input style={styles.input} value={tempo} type="time" onChange={(e) => setTempo(e.target.value)} placeholder="Tempo (ex.: 00:30)" />
+             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%", }}>
+              {itensIniciais7.map((item, index) => (
+                <TouchableOpacity
+                  key={item}
+                  onPress={() => alternarTempo(index)}
+               style={[styles.checkbox,tempoMarcados[index] && styles.marcado,]}>
+                  <Text style={[styles.item,tempoMarcados[index] && styles.concluido,]}>
+                    {item}
+                  </Text>
+                </TouchableOpacity>
+              ))}
             </View>
 
             <View style={styles.bar}></View>
@@ -498,16 +518,26 @@ const styles = StyleSheet.create({
   },
 
   ButtonRota: {
+    width: '80%',
+    height: 50,
     backgroundColor: "#209e3c",
     color: "#fff",
     textAlign: "center",
-    fontSize: 16,
+    fontSize: 18,
+    padding: 6,
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     gap: 15,
+    borderRadius: 15,
   },
 
   botbox: {
+    width: '100%',
+    height: 50,
+    alignSelf: 'center',
     flexDirection: 'row',
+    justifyContent: 'center',
   },
 
   bold: {
@@ -517,8 +547,9 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 16, 
+    fontSize: 17, 
     textAlign: 'center',
+    justifyContent: 'center',
   },
 
   texto: {

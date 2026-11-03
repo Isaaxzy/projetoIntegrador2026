@@ -48,11 +48,14 @@ export default function App() {
             <Text style={styles.texto}>Alergias e intolerâncias</Text>
             <Text style={styles.subtexto}>Existe algum alimento que você não pode consumir?</Text>
             <View style={styles.aviso}>
-              <View style={styles.icoav}>⚠️</View><Text style={styles.teavs}>Confira sempre os ingredientes e rótulos dos produtos.
-                      As sugestões do aplicativo não substituem orientação médica ou nutricional.
+              <Text style={styles.icoav} accessibilityLabel="Atenção">⚠️</Text>
+              <Text style={styles.teavs}>
+                <Text style={styles.avisoTitulo}>Importante</Text>
+                {'\n'}
+                Confira sempre os ingredientes e rótulos dos produtos. As sugestões do aplicativo não substituem a orientação médica ou nutricional.
               </Text>
             </View>
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 15, marginTop: 5}}>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 15, marginTop: 5, justifyContent: "center" }}>
                   {itensIniciais.map((item, index) => (
                     <Pressable
                     key={item}
@@ -72,7 +75,7 @@ export default function App() {
                 <TextInput style={styles.input} id='outros' placeholder="Ex: Corantes, gluten..." />
             </View> 
              <View style={introStyles.footer}>
-             <Text><Link href={'/componentes/intro_etapa_2'}>← Voltar</Link></Text>
+             <Text style={styles.link}><Link href={'/componentes/intro_etapa_2'}>← Voltar</Link></Text>
             <TouchableOpacity
                         style={styles.Button}
                         onPress={() =>
@@ -118,6 +121,16 @@ stepText: {
   color: "gray",
 },
 
+  link: {
+    width: "45%",
+    textAlign: "center",
+    paddingVertical: 10,
+    borderRadius: 20,
+    fontSize: 18,
+    marginTop: 8,
+    cursor: "pointer",
+  },
+
 ButtonLeft: {
   width: "55%",
   textAlign: "center",
@@ -135,14 +148,14 @@ Button: {
   textAlign: "center",
   paddingVertical: 10,
   borderRadius: 20,
-  fontSize: 16,
+  fontSize: 18,
   marginTop: 10,
   boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
   cursor: "pointer",
 },
 
 texto: {
-  fontSize: 30,
+  fontSize: 35,
   fontWeight: "bold",
   textAlign: "center",
   width: "95%",
@@ -150,7 +163,7 @@ texto: {
 },
   
 subtexto: {
-  fontSize: 16,
+  fontSize: 18,
   color: "gray",
   textAlign: "center",
   width: "86%",
@@ -159,7 +172,7 @@ subtexto: {
 },
 
 pergunta: {
-  fontSize: 16,
+  fontSize: 18,
   marginBottom: 5,
   flexDirection: "row",
   justifyContent: "space-between",
@@ -173,7 +186,8 @@ input: {
   borderRadius: 5,
   padding: 10,
   marginBottom: 10,
-  height: 45,
+  height: 60,
+  fontSize: 18,
   borderWidth: 0,
 },
 
@@ -184,13 +198,15 @@ marcado: {
 },
 
 checkbox: {
-  padding: 11,
+  paddingVertical: 11,
+  paddingHorizontal: 6,
   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
   borderRadius: 25,
 },
 
 item: {
-  fontSize: 15,
+  fontSize: 19,
+  textAlign: "center",
 },
 
 concluido: {
@@ -202,35 +218,45 @@ concluido: {
 loginContainer: {
   width: "80%",
   marginHorizontal: 'auto',
-  marginBottom: 30,
-  marginTop: 30,
+  marginTop: 40,
 },
 
 aviso:{
-  width: '85%',
-  height: 90,
+  width: '100%',
+  minHeight: 120,
   backgroundColor: '#ffef96',
-  padding: 20,
+  padding: 16,
   marginHorizontal: 'auto',
-  marginBottom: 12,
-  borderRadius: 10,
-  borderWidth: 4,
+  marginTop: 24,
+  marginBottom: 24,
+  borderRadius: 14,
+  borderWidth: 2,
   borderColor: '#ffdc19',
-  alignItems: 'center',
+  alignItems: 'flex-start',
   flexDirection: 'row',
+  gap: 14,
   },
 
 icoav:{
-  width: 40,
-  height: 60,
-  margin: 'auto',
-  fontSize: 26,
-  marginLeft: -10,
+  width: 52,
+  height: 52,
+  lineHeight: 52,
+  borderRadius: 26,
+  fontSize: 40,
+  textAlign: 'center',
   },
+
 teavs:{
-  width: '95%',
-  fontSize: 13,
-  textAlign: 'justify',
+  flex: 1,
+  fontSize: 18,
+  lineHeight: 23,
+  color: '#493b00',
+  textAlign: 'left',
+},
+
+avisoTitulo: {
+  fontSize: 20,
+  fontWeight: 'bold',
 },
 
 });

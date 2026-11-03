@@ -48,35 +48,40 @@ export default function App() {
             <Text style={styles.texto}>Seu objetivo</Text>
             <Text style={styles.subtexto}>O que você procura no aplicativo?</Text>
           <View style={styles.loginContainer}> 
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 30}}>
+                <View style={{ flexDirection: "row",flexWrap: "wrap", gap: 34, marginTop: 25,}}>
                   {itensIniciais.map((item, index) => (
                     <Pressable
                     key={item}
                     onPress={() => alternarItem(index)}
                 >
-                                    {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
-                <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
-                        {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
+                <View style={[
+                  styles.checkbox,
+                  index === 5 && styles.checkboxLonga,
+                  itensMarcados[index] && styles.marcado,
+                ]}>
+                <Text style={[
+                  styles.item,
+                  index === 5 && styles.itemLongo,
+                  itensMarcados[index] && styles.concluido,
+                ]}>{item}</Text>
                 </View>
-                                    {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
-                
                 </Pressable>
                 ))}
             </View>
           </View>
              <View style={introStyles.footer}>
-             <Text><Link href={'/componentes/intro_etapa_5'}>← Voltar</Link></Text>
+             <Text style={styles.link}><Link href={'/componentes/intro_etapa_5'}>← Voltar</Link></Text>
             <TouchableOpacity
-                                    style={styles.Button}
-                                    onPress={() =>
-                                      etapa6(
-                                        itensMarcados.flatMap((marcado, index) => marcado ? [index] : [])
-                                      )
-                                    }
-                                  >
-                                    Próximo →
-                                  </TouchableOpacity>
-          </View>
+            style={styles.Button}
+            onPress={() =>
+              etapa6(
+                itensMarcados.flatMap((marcado, index) => marcado ? [index] : [])
+              )
+            }
+          >
+            Próximo →
+          </TouchableOpacity>
+    </View>
       </IntroScreen>
     );
 }
@@ -111,6 +116,16 @@ stepText: {
   color: "gray",
 },
 
+  link: {
+    width: "45%",
+    textAlign: "center",
+    paddingVertical: 10,
+    borderRadius: 20,
+    fontSize: 18,
+    marginTop: 8,
+    cursor: "pointer",
+  },
+
 ButtonLeft: {
   width: "55%",
   textAlign: "center",
@@ -128,14 +143,14 @@ Button: {
   textAlign: "center",
   paddingVertical: 10,
   borderRadius: 20,
-  fontSize: 16,
+  fontSize: 18,
   marginTop: 10,
   boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
   cursor: "pointer",
 },
 
 texto: {
-  fontSize: 30,
+  fontSize: 35,
   fontWeight: "bold",
   textAlign: "center",
   width: "70%",
@@ -143,7 +158,7 @@ texto: {
 },
   
 subtexto: {
-  fontSize: 16,
+  fontSize: 18,
   color: "gray",
   textAlign: "center",
   width: "86%",
@@ -177,48 +192,34 @@ marcado: {
 },
 
 checkbox: {
-  padding: 11,
+  paddingVertical: 11,
+  paddingHorizontal: 8,
   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
   borderRadius: 25,
+  marginLeft: -30,
+},
+
+checkboxLonga: {
+  width: '100%',
 },
 
 item: {
-  fontSize: 15,
+  fontSize: 19,
+  textAlign: "center",
+},
+
+itemLongo: {
+  flexShrink: 1,
 },
 
 concluido: {
   color: '#ffffff',
 },
 
-/*desta tela*/
-
 loginContainer: {
   width: "80%",
   marginBottom: 40,
   marginHorizontal: 'auto',
-},
-aviso:{
-  width: "100%",
-  minHeight: 90,
-  backgroundColor: '#ffef96',
-  padding: 20,
-  marginHorizontal: 'auto',
-  marginBottom: 12,
-  borderRadius: 10,
-  borderWidth: 4,
-  borderColor: '#ffdc19',
-  alignItems: 'center',
-  flexDirection: 'row',
-  },
-
-icoav:{
-  margin: 'auto',
-  fontSize: 20,
-  },
-teavs:{
-  width: '90%',
-  fontSize: 11,
-  textAlign: 'justify',
 },
 
 });

@@ -4,25 +4,34 @@ import { View, StyleSheet, Text, TouchableOpacity, Pressable } from 'react-nativ
 import { etapa2 } from '../../login info'
 import { IntroScreen, introStyles } from '../../components/intro-screen';
 
-const itensIniciais = ['🍽️ Sem restrições', '🥕 Vegetariano', '🌱 Vegano', '🥗 Flexitariano', '🥑 Low crab', '✨ outra'];
+const itensIniciais = [{ id: 1, label: '🍽️ Sem restrições' }, { id: 2, label: '🥕 Vegetariano' }, { id: 3, label: '🌱 Vegano' }, { id: 4, label: '🫒 Mediterrânea' }, { id: 5, label: '🍬 Low sugar' }, { id: 6, label: '🥗 Flexitariano' }, { id: 7, label: '🥑 Low crab' }, { id: 8, label: '🐟 Pescetariano' }, { id: 9, label: '🥚 Ovolactovegetariano' }, { id: 10, label: '🧈 Low fat' }, { id: 11, label: '💪 High protein' }];
 
 
 export default function App() {
   const totalSteps = 7;
   const currentStep = 2;
 
-  const [itensMarcados, setItensMarcados] = useState<boolean[]>(
-    itensIniciais.map(() => false),
-  );
+  const LIMITE_RESTRICOES = 8;
+  const [restricoesSelecionadas, setRestricoesSelecionadas] = useState<number[]>([]);
 
-  function alternarItem(index: number) {
-    // Cria um novo array e inverte somente o item que foi pressionado.
-    setItensMarcados((marcados) =>
-      marcados.map((marcado, itemIndex) =>
-        itemIndex === index ? !marcado : marcado,
-      ),
-    );
-  }
+  const alternarRestricao = (id: number) => {
+    setRestricoesSelecionadas((selecionadas) => {
+      if (selecionadas.includes(id)) {
+        return selecionadas.filter((item) => item !== id);
+      }
+
+      if (id === 1) {
+        return [1];
+      }
+
+      if (selecionadas.includes(1) || selecionadas.length >= LIMITE_RESTRICOES) {
+        return selecionadas;
+      }
+
+      return [...selecionadas, id];
+    });
+  };
+
   return (
     <IntroScreen>
         {/* Barra de Progresso + Etapa */}
@@ -49,30 +58,40 @@ export default function App() {
         <Text style={styles.subtexto}>Como você costuma se alimentar? Você pode marcer mais de uma opção.</Text>
         <View style={styles.loginContainer}>
 
-          <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 24 }}>
-            {itensIniciais.map((item, index) => (
-              <Pressable
-                key={item}
-                id='alimentation'
-                onPress={() => alternarItem(index)}
-              >
-                {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
-                <View style={[styles.checkbox, itensMarcados[index] && styles.marcado]}>
-                  {itensMarcados[index]}<Text style={[styles.item, itensMarcados[index] && styles.concluido]}>{item}</Text>
-                </View>
-                {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
-
-              </Pressable>
-            ))}
-          </View>
+             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%"}}>
+                      {itensIniciais.map((item) => {
+                        const selecionada = restricoesSelecionadas.includes(item.id);
+                        const bloqueada =
+                          item.id !== 1 && restricoesSelecionadas.includes(1);
+        
+                        return (
+                          <TouchableOpacity
+                            key={item.id}
+                            disabled={bloqueada}
+                            onPress={() => alternarRestricao(item.id)}
+                            style={[
+                              styles.checkbox,
+                              selecionada && styles.marcado,
+                              bloqueada && { opacity: 0.5 },
+                            ]}
+                          >
+                            <Text style={[styles.item, selecionada && styles.concluido]}>
+                              {item.label}
+                            </Text>
+                          </TouchableOpacity>
+                        );
+                      })}
+                    </View>
         </View>
         <View style={introStyles.footer}>
-          <Text><Link href={'/componentes/intro_etapa_1'}>← Voltar</Link></Text>
+          <Text style={styles.link}>
+            <Link href={'/componentes/intro_etapa_1'}>← Voltar</Link>
+          </Text>
           <TouchableOpacity
                       style={styles.Button}
                       onPress={() =>
                         etapa2(
-                          itensMarcados.flatMap((marcado, index) => marcado ? [index] : [])
+                          restricoesSelecionadas.flatMap((marcado, index) => marcado ? [index] : [])
                         )
                       }
                     >
@@ -112,12 +131,22 @@ stepText: {
   color: "gray",
 },
 
+ link: {
+    width: "45%",
+    textAlign: "center",
+    paddingVertical: 10,
+    borderRadius: 20,
+    fontSize: 18,
+    marginTop: 8,
+    cursor: "pointer",
+  },
+
 ButtonLeft: {
   width: "55%",
   textAlign: "center",
   paddingVertical: 10,
   borderRadius: 20,
-  fontSize: 16,
+  fontSize: 18,
   marginTop: 10,
   cursor: "pointer",
 },
@@ -129,28 +158,28 @@ Button: {
   textAlign: "center",
   paddingVertical: 10,
   borderRadius: 20,
-  fontSize: 16,
+  fontSize: 18,
   marginTop: 10,
   boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
   cursor: "pointer",
 },
 
 texto: {
-  fontSize: 30,
+  fontSize: 35,
   fontWeight: "bold",
   textAlign: "center",
-  width: "70%",
+  width: "85%",
   marginHorizontal: "auto",
   marginTop: 20,
 },
   
 subtexto: {
-  fontSize: 16,
+  fontSize: 18,
   color: "gray",
   textAlign: "center",
   width: "86%",
   marginHorizontal: "auto",
-  marginBottom: 24,
+  marginBottom: 30,
 },
 
   pergunta: {
@@ -178,15 +207,20 @@ marcado: {
   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
 },
 
-  checkbox: {
-    padding: 11,
-    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
-    borderRadius: 25,
+ checkbox: {
+  paddingVertical: 11,
+ paddingHorizontal: 5,
+  marginBottom: 10,
+  alignItems: 'center',
+  boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.2)',
+  borderRadius: 25,
   },
 
   item: {
-    fontSize: 15,
+  fontSize: 18,
+  textAlign: "center",
   },
+
 
   concluido: {
     color: '#ffffff',
@@ -196,7 +230,8 @@ marcado: {
 
 loginContainer: {
   width: "100%",
-  marginHorizontal: 'auto',
+  marginHorizontal: 0,
+  marginVertical: 20,
 },
 
 });

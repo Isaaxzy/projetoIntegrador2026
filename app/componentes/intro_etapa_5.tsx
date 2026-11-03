@@ -46,7 +46,7 @@ export default function App() {
 
             <Text style={styles.texto}>O que você ama?</Text>
             <Text style={styles.subtexto}>Quais ingredientes você adora? Eles vão priorizar suas recomendações.</Text>
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 40}}>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 50, marginTop: 40}}>
                   {itensIniciais.map((item, index) => (
                     <Pressable
                     key={item}
@@ -65,7 +65,7 @@ export default function App() {
                 <TextInput style={styles.input} id="outros" placeholder="Adicionar outro favorito" />
             </View> 
              <View style={introStyles.footer}>
-             <Text><Link href={'/componentes/intro_etapa_4'}>← Voltar</Link></Text>
+             <Text style={styles.link}><Link href={'/componentes/intro_etapa_4'}>← Voltar</Link></Text>
             <TouchableOpacity
                         style={styles.Button}
                         onPress={() =>
@@ -111,6 +111,16 @@ stepText: {
   color: "gray",
 },
 
+  link: {
+    width: "45%",
+    textAlign: "center",
+    paddingVertical: 10,
+    borderRadius: 20,
+    fontSize: 18,
+    marginTop: 8,
+    cursor: "pointer",
+  },
+
 ButtonLeft: {
   width: "55%",
   textAlign: "center",
@@ -128,14 +138,14 @@ Button: {
   textAlign: "center",
   paddingVertical: 10,
   borderRadius: 20,
-  fontSize: 16,
+  fontSize: 18,
   marginTop: 10,
   boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
   cursor: "pointer",
 },
 
 texto: {
-  fontSize: 30,
+  fontSize: 35,
   fontWeight: "bold",
   textAlign: "center",
   width: "70%",
@@ -143,7 +153,7 @@ texto: {
 },
   
 subtexto: {
-  fontSize: 16,
+  fontSize: 18,
   color: "gray",
   textAlign: "center",
   width: "86%",
@@ -166,7 +176,8 @@ input: {
   borderRadius: 5,
   padding: 10,
   marginBottom: 10,
-  height: 45,
+  height: 60,
+  fontSize: 18,
   borderWidth: 0,
 },
 
@@ -177,13 +188,15 @@ marcado: {
 },
 
 checkbox: {
-  padding: 11,
+  paddingVertical: 11,
+  paddingHorizontal: 5,
   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
   borderRadius: 25,
 },
 
 item: {
-  fontSize: 15,
+  fontSize: 19,
+  textAlign: "center",
 },
 
 concluido: {

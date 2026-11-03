@@ -81,13 +81,12 @@ export function etapa6(indicesMarcados = []) {
     }
 }
 
-export function etapa7(indicesMarcados = []) {
-    var tempo = document.getElementById('tempo').value;
+export function etapa7(indicesMarcados = [], indicesMarcados2 = []) {
 
     if (indicesMarcados.length == 0) {
         alert('Insira os dados corretamente');
     } else {
-        localStorage.setItem('Tempo', JSON.stringify(tempo));
+        localStorage.setItem('Tempo', JSON.stringify(indicesMarcados2));
         localStorage.setItem('Tipo', JSON.stringify(indicesMarcados));
         window.location.href = 'http://localhost:8081/layout/paginaInicial';
     }

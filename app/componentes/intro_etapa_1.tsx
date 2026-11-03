@@ -103,7 +103,9 @@ export default function App() {
           </View>
         </View>
         <View style={introStyles.footer}>
-          <Text><Link href={'/componentes/intro_comecar'}>← Voltar</Link></Text>
+          <Text style={styles.link}>
+            <Link href={'/componentes/intro_comecar'}>← Voltar</Link>
+          </Text>
           <TouchableOpacity
             style={styles.Button}
             onPress={() =>
@@ -149,6 +151,16 @@ const styles = StyleSheet.create({
     color: "gray",
   },
 
+  link: {
+    width: "45%",
+    textAlign: "center",
+    paddingVertical: 10,
+    borderRadius: 20,
+    fontSize: 18,
+    marginTop: 8,
+    cursor: "pointer",
+  },
+
   Button: {
     backgroundColor: "#168A3A",
     color: "#fff",
@@ -156,14 +168,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingVertical: 10,
     borderRadius: 20,
-    fontSize: 16,
+    fontSize: 18,
     marginTop: 10,
     boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
     cursor: "pointer",
   },
 
   texto: {
-    fontSize: 30,
+    fontSize: 35,
     fontWeight: "bold",
     marginBottom: 10,
     textAlign: "center",
@@ -174,7 +186,7 @@ const styles = StyleSheet.create({
   },
 
   subtexto: {
-    fontSize: 16,
+    fontSize: 18,
     color: "gray",
     textAlign: "center",
     width: "86%",
@@ -184,13 +196,13 @@ const styles = StyleSheet.create({
   },
 
   pergunta: {
-    fontSize: 16,
-    marginBottom: 5,
+    fontSize: 18,
+    marginBottom: 10,
     flexDirection: "row",
     justifyContent: "space-between",
-    fontWeight: "400",
+    fontWeight: "bold",
     paddingBottom: 5,
-    marginTop: 7,
+    marginTop: 10,
   },
 
   input: {
@@ -198,7 +210,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     marginBottom: 10,
-    height: 45,
+    height: 60,
+    fontSize: 18,
     borderWidth: 0,
   },
 
@@ -209,20 +222,22 @@ const styles = StyleSheet.create({
   },
 
   checkbox: {
-    padding: 11,
-    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
-    borderRadius: 25,
+  paddingVertical: 11,
+  paddingHorizontal: 5,
+  marginBottom: 10,
+  alignItems: 'center',
+  boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.2)',
+  borderRadius: 25,
   },
 
   item: {
-    fontSize: 15,
+  fontSize: 18,
+  textAlign: 'center',
   },
 
   concluido: {
     color: '#ffffff',
   },
-
-  /*desta tela*/
 
   loginContainer: {
     width: "80%",

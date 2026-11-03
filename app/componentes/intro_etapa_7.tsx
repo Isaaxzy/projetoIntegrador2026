@@ -6,6 +6,7 @@ import { IntroScreen, introStyles } from '../../components/intro-screen';
 
 const itensIniciais = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada'];
 
+const itensIniciais2 = ['Até 15 min', 'Até 30 min', 'Até 45min', 'Até 1 hora', 'Até 1:30 horas', '2 horas ou mais'];
 
 export default function App() {
     const totalSteps = 7;
@@ -14,10 +15,23 @@ export default function App() {
     const [itensMarcados, setItensMarcados] = useState<boolean[]>(
             itensIniciais.map(() => false),
         );
+
+        const [itensMarcados2, setTempoMarcados] = useState<boolean[]>(
+      itensIniciais2.map(() => false),
+    )
      
         function alternarItem(index: number) {
             // Cria um novo array e inverte somente o item que foi pressionado.
             setItensMarcados((marcados) =>
+                marcados.map((marcado, itemIndex) =>
+                    itemIndex === index ? !marcado : marcado,
+                ),
+            );
+          }
+
+        function alternarTempo(index: number) {
+            // Cria um novo array e inverte somente o item que foi pressionado.
+            setTempoMarcados((marcados) =>
                 marcados.map((marcado, itemIndex) =>
                     itemIndex === index ? !marcado : marcado,
                 ),
@@ -48,11 +62,23 @@ export default function App() {
             <Text style={styles.texto}>Sua rotina</Text>
             <Text style={styles.subtexto}>Quanto tempo você tem e que tipo de receita prefere?</Text>
             <Text style={styles.pergunta}>Tempo para cozinhar:</Text> 
-            <View style={styles.loginContainer}>
-                  <input style={styles.input} id="tempo" type="time" placeholder="Tempo" />
+                   <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 50, marginTop: 15}}>
+                  {itensIniciais2.map((item, index) => (
+                    <Pressable
+                    key={item}
+                    onPress={() => alternarTempo(index)}
+                >
+                                    {/* A cor e o simbolo aparecem apenas quando a tarefa esta marcada. */}
+                <View style={[styles.checkbox, itensMarcados2[index] && styles.marcado]}>
+                        {itensMarcados2[index]}<Text style={[styles.item, itensMarcados2[index] && styles.concluido]}>{item}</Text>
+                </View>
+                                    {/* Tarefas concluidas ficam visualmente riscadas e mais discretas. */}
+                
+                </Pressable>
+                ))}
               </View> 
               <Text style={styles.pergunta}>Tipo de receita:</Text>
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 50}}>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 50, marginTop: 15}}>
                   {itensIniciais.map((item, index) => (
                     <Pressable
                     key={item}
@@ -68,17 +94,18 @@ export default function App() {
                 ))}
             </View>
              <View style={introStyles.footer}>
-             <Text><Link href={'/componentes/intro_etapa_6'}>← Voltar</Link></Text>
+             <Text style={styles.link}><Link href={'/componentes/intro_etapa_6'}>← Voltar</Link></Text>
             <TouchableOpacity
-                                                style={styles.Button}
-                                                onPress={() =>
-                                                  etapa7(
-                                                    itensMarcados.flatMap((marcado, index) => marcado ? [index] : [])
-                                                  )
-                                                }
-                                              >
-                                                Próximo →
-                                              </TouchableOpacity>
+            style={styles.Button}
+            onPress={() =>
+              etapa7(
+                itensMarcados.flatMap((marcado, index) => marcado ? [index] : []),
+                itensMarcados2.flatMap((marcado, index) => marcado ? [index] : [])
+              )
+            }
+          >
+            Próximo →
+          </TouchableOpacity>
           </View>
         </IntroScreen>
     );
@@ -114,6 +141,16 @@ stepText: {
   color: "gray",
 },
 
+  link: {
+    width: "45%",
+    textAlign: "center",
+    paddingVertical: 10,
+    borderRadius: 20,
+    fontSize: 18,
+    marginTop: 8,
+    cursor: "pointer",
+  },
+
 Button: {
   backgroundColor: "#209e3c",
   color: "#fff",
@@ -121,14 +158,14 @@ Button: {
   textAlign: "center",
   paddingVertical: 10,
   borderRadius: 20,
-  fontSize: 16,
+  fontSize: 18,
   marginTop: 10,
   boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
   cursor: "pointer",
 },
 
 texto: {
-  fontSize: 30,
+  fontSize: 35,
   fontWeight: "bold",
   textAlign: "center",
   width: "70%",
@@ -136,7 +173,7 @@ texto: {
 },
   
 subtexto: {
-  fontSize: 16,
+  fontSize: 18,
   color: "gray",
   textAlign: "center",
   width: "86%",
@@ -145,13 +182,13 @@ subtexto: {
 },
 
 pergunta: {
-  fontSize: 16,
+  fontSize: 18,
   marginBottom: 5,
   flexDirection: "row",
   justifyContent: "space-between",
-  fontWeight: "400",
+  fontWeight: "bold",
   paddingBottom: 5,
-  marginTop: 7,
+  marginTop: 20,
 },
 
 input: {
@@ -170,13 +207,15 @@ marcado: {
 },
 
 checkbox: {
-  padding: 11,
+  paddingVertical: 11,
+  paddingHorizontal: 7,
   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
   borderRadius: 25,
 },
 
 item: {
-  fontSize: 15,
+  fontSize: 20,
+  textAlign: "center",
 },
 
 concluido: {
