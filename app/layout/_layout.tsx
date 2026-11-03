@@ -91,6 +91,15 @@ export default function TabLayout() {
         }}
       />
 
+      <Tabs.Screen
+        name="chat"
+        options={{
+          title: "Ajuda na cozinha",
+          href: null,
+          tabBarStyle: { display: "none" },
+        }}
+      />
+
       {/* Rota de Busca dentro das abas (oculta do menu inferior com href: null) */}
       <Tabs.Screen
         name="rotas/busca/[query]"
