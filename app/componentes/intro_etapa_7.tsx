@@ -52,7 +52,7 @@ export default function App() {
                   <input style={styles.input} id="tempo" type="time" placeholder="Tempo" />
               </View> 
               <Text style={styles.pergunta}>Tipo de receita:</Text>
-            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 30}}>
+            <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 50}}>
                   {itensIniciais.map((item, index) => (
                     <Pressable
                     key={item}
