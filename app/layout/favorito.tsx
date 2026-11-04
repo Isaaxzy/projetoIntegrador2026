@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
 
     UPbar:{
         width: '100%',
-        height: 60,
+        height: 75,
         borderBottomWidth: 2,
         borderColor: '#bebdbd',
         marginBottom: 12,
@@ -154,9 +154,11 @@ const styles = StyleSheet.create({
     },
 
       Uptext:{
-        fontSize: 22,
+        fontSize: 20,
         fontFamily: 'Arial, serif',
         fontWeight: 'bold',
+        color: "#168A3A",
+        marginTop: 10
     },
 
     logo: {

@@ -1,6 +1,7 @@
 import { View, StyleSheet, Text, Image, Pressable, FlatList, ScrollView, TextInput } from 'react-native';
 import { useState } from 'react';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 import {
     receitasMaisProcuradas,
     receitasRecomendadas,
@@ -21,6 +22,7 @@ const itensIniciais = [
 
 
 export default function App() {
+    const router = useRouter();
     // Hooks precisam ficar dentro do componente para que o React acompanhe seu estado.
     const [categoriaSelecionada, setCategoriaSelecionada] =
         useState<(typeof itensIniciais)[number]>(itensIniciais[0]);
@@ -79,14 +81,15 @@ export default function App() {
         maisProcuradasFiltradas.length;
 
     return(
+        <View style={styles.telaInicial}>
         <ScrollView>
     <View style={styles.fundo}>
         <View style={styles.container}>
             <View style={{flexDirection: "row", alignItems: "center", padding: 10, gap:8, borderBottomColor: "#cacaca", borderBottomWidth: 1, justifyContent: "space-between",}}>
-            <View style={{flexDirection: "row", alignItems: "center", gap:8, }}>
+            <View style={{flexDirection: "row", alignItems: "center", gap: 12, }}>
             <Image 
                 source={require("../imagens/2026_10_01_0mz_Kleki.png")} style={styles.image}></Image>
-            <Text style={{color: "#168A3A", fontSize: 18, fontWeight: "700",}}>Tempero de casa</Text>
+            <Text style={{color: "#168A3A", fontSize: 18, fontWeight: "700", marginTop: 10}}>Tempero de casa</Text>
             </View>
             <Link href="/login"><Image style={styles.image2} source={require("../imagens/seta.png")} /></Link>
             </View>
@@ -191,6 +194,15 @@ export default function App() {
                 </View>                          
         </View>
         </ScrollView>
+        <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Abrir chat de ajuda com receitas"
+            onPress={() => router.push('/layout/chat')}
+            style={styles.botaoChat}
+        >
+            <Ionicons name="chatbubble-ellipses" size={27} color="#ffffff" />
+        </Pressable>
+        </View>
     )
 }
 
@@ -205,6 +217,27 @@ function normalizar(texto: string) {
 
 
 const styles = StyleSheet.create({
+
+telaInicial: {
+    flex: 1,
+},
+
+botaoChat: {
+    position: "absolute",
+    right: 20,
+    bottom: 20,
+    width: 58,
+    height: 58,
+    borderRadius: 29,
+    backgroundColor: "#168A3A",
+    alignItems: "center",
+    justifyContent: "center",
+    elevation: 6,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+},
 
 fundo: {
     flex: 1,

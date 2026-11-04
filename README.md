@@ -82,6 +82,40 @@ EXPO_PUBLIC_API_TOKEN=seu_token_fornecido_pelo_professor
 
 ---
 
+## 🤖 Backend do chat com IA
+
+O serviço exclusivo do chat fica em `backend-ia/` e usa a API de Responses da OpenAI. Ele é separado do servidor de receitas e mantém a chave da OpenAI somente no backend.
+
+1. Copie `backend-ia/.env.example` para `backend-ia/.env` e preencha `OPENAI_API_KEY` com sua chave. O arquivo `.env.example` contém apenas um marcador e nunca deve receber uma chave real. Opcionalmente, ajuste `OPENAI_MODEL` e as origens web permitidas em `CHAT_ALLOWED_ORIGINS`.
+2. Em um terminal, inicie o serviço:
+   ```bash
+   npm run start:chat-api
+   ```
+   O backend usa Node.js 18 ou superior e inicia na porta `3001`.
+3. Verifique se está disponível:
+   ```text
+   GET http://localhost:3001/health
+   ```
+4. Envie mensagens para `POST http://localhost:3001/api/chat` como JSON:
+   ```json
+   {
+     "messages": [
+       { "role": "user", "content": "Como posso substituir o creme de leite?" }
+     ]
+   }
+   ```
+   A resposta tem o formato `{ "reply": "..." }`. O histórico aceita mensagens `user` e `assistant`; a última deve ser do usuário.
+
+Para testar o backend sem chamar a OpenAI, execute:
+
+```bash
+npm run test:chat-api
+```
+
+O app usa `EXPO_PUBLIC_CHAT_API_URL` como endereço do backend. Essa variável está no `.env.exemplo`; configure-a no `.env` local com `http://localhost:3001` para navegador ou simulador iOS, `http://10.0.2.2:3001` para emulador Android ou com o IP local do computador (por exemplo, `http://192.168.0.10:3001`) para celular físico na mesma rede. Reinicie o Expo após alterar variáveis de ambiente. Ao publicar o serviço, configure `OPENAI_API_KEY` como segredo no provedor de hospedagem, nunca no Expo nem no código cliente.
+
+---
+
 ### 4. Executar o Aplicativo
 
 Inicie o servidor de desenvolvimento do Expo:
