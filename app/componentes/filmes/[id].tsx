@@ -186,7 +186,7 @@ export default function Filme() {
       </ScrollView>
       <Link href={destinoVoltar} style={styles.botaoVoltar}>
       <TouchableOpacity>
-      <Text>←</Text>
+      <Text style={styles.setaVoltar}>←</Text>
      </TouchableOpacity>
      </Link>
     </View>
@@ -423,8 +423,12 @@ botaoVoltar: {
   borderRadius: 20,
   padding: 12,
   paddingHorizontal: 16,
-  backgroundColor: "#fff",
-  boxShadow: "0px 1px 3px rgba(0, 0, 0, 0.16)",
+  backgroundColor: "#168A3A",     
+  boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.16)",
+},
+
+setaVoltar: {
+  color: "#fff",
 },
 
 });

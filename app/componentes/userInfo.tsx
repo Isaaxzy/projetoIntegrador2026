@@ -25,6 +25,8 @@ const itensIniciais5 = ['Frango', 'Carne', 'Batata', 'Queijo', 'Chocolate', 'Mor
 
 const itensIniciais6 = ['💫 Comer melhor', '⚡ Encontrar receitas práticas', '💰 Economizar', '🌈 Variar minha alimentação', '🎓 Aprender a cozinhar', '📅 Encontrar receitas para minha rotina', '✨ Outro'];
 
+const itensIniciais7 = ['Até 15 min', 'Até 30 min', 'Até 45min', 'Até 1 hora', 'Até 1:30 horas', '2 horas ou mais'];
+
 const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada'];
 
 function lerIndices(key: string): number[] {
@@ -60,7 +62,6 @@ export default function App() {
   const [nome, setNome] = useState('');
   const [pessoas, setPessoas] = useState('');
   const [idade, setIdade] = useState('');
-  const [tempo, setTempo] = useState('');
 
   const [experienciaSelecionada, setExperienciaSelecionada] = useState<number | null>(null);
 
@@ -82,6 +83,10 @@ export default function App() {
   const LIMITE_RESTRICOES2 = 7;
   const [objetivosMarcados, setObjetivosMarcados] = useState<number[]>([]);
 
+  const [tempoMarcados, setTempoMarcados] = useState<boolean[]>(
+    itensIniciais7.map(() => false),
+  );
+
   const [dificuldadeMarcados, setDificuldadeMarcados] = useState<number | null>(null);
 
   useEffect(() => {
@@ -90,7 +95,6 @@ export default function App() {
     setNome(voce[0] ?? '');
     setPessoas(voce[1] ?? '');
     setIdade(voce[2] ?? '');
-    setTempo(lerValor('Tempo', ''));
 
     setExperienciaSelecionada(lerIndices('nivelExperienciaIndices')[0] ?? null);
     setRestricoesSelecionadas(restricoes);
@@ -98,6 +102,7 @@ export default function App() {
     setIngredientesMarcados(indicesParaBooleanos(lerIndices('Desgostos'), itensIniciais4.length));
     setIngredientesPrefereMarcados(indicesParaBooleanos(lerIndices('Gostos'), itensIniciais5.length));
     setObjetivosMarcados(lerIndices('Objetivos'));
+    setTempoMarcados(indicesParaBooleanos(lerIndices('Tempo'), itensIniciais7.length));
     setDificuldadeMarcados(lerIndices('Tipo')[0] ?? null);
   }, []);
 
@@ -155,6 +160,12 @@ export default function App() {
     });
   };
 
+  const alternarTempo = (index: number) => {
+    setTempoMarcados((marcados) =>
+      marcados.map((marcado, i) => (i === index ? !marcado : marcado)),
+    );
+  };
+
   const alternarDificuldade = (index: number) => {
     setDificuldadeMarcados(index === dificuldadeMarcados ? null : index);
   };
@@ -167,7 +178,7 @@ export default function App() {
     Desgostos: ingredientesEvitaMarcados.flatMap((marcado, index) => marcado ? [index] : []),
     Gostos: ingredientesPrefereMarcados.flatMap((marcado, index) => marcado ? [index] : []),
     Objetivos: objetivosMarcados,
-    Tempo: tempo,
+    Tempo: tempoMarcados.flatMap((marcado, index) => marcado ? [index] : []),
     Tipo: dificuldadeMarcados === null ? [] : [dificuldadeMarcados],
   });
 
@@ -334,8 +345,17 @@ export default function App() {
             </View>
             <Text style={styles.sobv}>Tempo disponivél para cozinhar</Text>
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%", }}>
-
-              <input style={styles.input} value={tempo} type="time" onChange={(e) => setTempo(e.target.value)} placeholder="Tempo (ex.: 00:30)" />
+              {itensIniciais7.map((item, index) => (
+                <TouchableOpacity
+                  key={item}
+                  onPress={() => alternarTempo(index)}
+                  style={[styles.checkbox, tempoMarcados[index] && styles.marcado]}
+                >
+                  <Text style={[styles.item, tempoMarcados[index] && styles.concluido]}>
+                    {item}
+                  </Text>
+                </TouchableOpacity>
+              ))}
             </View>
 
             <View style={styles.bar}></View>

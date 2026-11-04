@@ -62,7 +62,6 @@ export default function App() {
   const [nome, setNome] = useState('');
   const [pessoas, setPessoas] = useState('');
   const [idade, setIdade] = useState('');
-  const [tempo, setTempo] = useState('');
 
   const [experienciaSelecionada, setExperienciaSelecionada] = useState<number | null>(null);
 
@@ -84,9 +83,9 @@ export default function App() {
   const LIMITE_RESTRICOES2 = 7;
   const [objetivosMarcados, setObjetivosMarcados] = useState<number[]>([]);
 
-    const [tempoMarcados, setTempoMarcados] = useState<boolean[]>(
-        itensIniciais7.map(() => false),
-      )
+  const [tempoMarcados, setTempoMarcados] = useState<boolean[]>(
+    itensIniciais7.map(() => false),
+  );
 
   const [dificuldadeMarcados, setDificuldadeMarcados] = useState<number | null>(null);
 
@@ -96,7 +95,6 @@ export default function App() {
     setNome(voce[0] ?? '');
     setPessoas(voce[1] ?? '');
     setIdade(voce[2] ?? '');
-    setTempo(lerValor('Tempo', ''));
 
     setExperienciaSelecionada(lerIndices('nivelExperienciaIndices')[0] ?? null);
     setRestricoesSelecionadas(restricoes);
@@ -104,6 +102,7 @@ export default function App() {
     setIngredientesMarcados(indicesParaBooleanos(lerIndices('Desgostos'), itensIniciais4.length));
     setIngredientesPrefereMarcados(indicesParaBooleanos(lerIndices('Gostos'), itensIniciais5.length));
     setObjetivosMarcados(lerIndices('Objetivos'));
+    setTempoMarcados(indicesParaBooleanos(lerIndices('Tempo'), itensIniciais7.length));
     setDificuldadeMarcados(lerIndices('Tipo')[0] ?? null);
   }, []);
 
@@ -179,7 +178,7 @@ export default function App() {
     Desgostos: ingredientesEvitaMarcados.flatMap((marcado, index) => marcado ? [index] : []),
     Gostos: ingredientesPrefereMarcados.flatMap((marcado, index) => marcado ? [index] : []),
     Objetivos: objetivosMarcados,
-    Tempo: tempo,
+    Tempo: tempoMarcados.flatMap((marcado, index) => marcado ? [index] : []),
     Tipo: dificuldadeMarcados === null ? [] : [dificuldadeMarcados],
   });
 

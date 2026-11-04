@@ -45,7 +45,7 @@ export default function App() {
               <Text style={styles.stepText}>Etapa {currentStep} de {totalSteps}</Text>
             </View> 
 
-            <Text style={styles.texto}>O que você não gosta?</Text>
+            <Text style={styles.texto}>O que você NÃO gosta?</Text>
             <Text style={styles.subtexto}>Quais ingredientes você prefere evitar?</Text>
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginBottom: 50, marginTop: 40}}>
                   {itensIniciais.map((item, index) => (

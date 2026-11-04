@@ -91,7 +91,7 @@ export default function App() {
                       style={styles.Button}
                       onPress={() =>
                         etapa2(
-                          restricoesSelecionadas.flatMap((marcado, index) => marcado ? [index] : [])
+                          restricoesSelecionadas.map((id) => id - 1)
                         )
                       }
                     >
