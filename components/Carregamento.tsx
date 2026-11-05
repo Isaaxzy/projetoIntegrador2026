@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 24,
-    backgroundColor: "#000000",
+    backgroundColor: "#fcfcfc",
   },
   animacao: {
     width: "100%",
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   mensagem: {
     marginTop: 16,
-    color: "#ffffff",
+    color: "#029b0f",
     fontSize: 16,
     fontWeight: "600",
   },

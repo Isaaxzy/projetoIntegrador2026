@@ -48,7 +48,7 @@ export default function App() {
                         </View>
                         <View style={styles.descbox}>
                             <Text style={styles.upnome}>{item.nome}</Text>
-                            <Text style={styles.updec}>🕐 {item.tempo}  🍴 {item.dificuldade}</Text>
+                            <Text style={styles.updec}>{item.tempo}   {item.dificuldade}</Text>
                             <Text
                                 style={styles.upingred}
                                 numberOfLines={2}
@@ -104,7 +104,7 @@ export default function App() {
                 />
             </View>
         </View>
-        <Carregamento visivel={carregando} mensagem="Carregando seus favoritos..." />
+        <Carregamento visivel={carregando} mensagem="Carregando favoritos..." />
         </>
     );
 }
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
     },
 
     boxFav:{
-        width: '100%',
+        width: '96%',
         minHeight: 300,
         borderRadius: 30,
         alignItems: 'center',
