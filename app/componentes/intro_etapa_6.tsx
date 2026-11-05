@@ -4,7 +4,7 @@ import { View, StyleSheet, Text, TouchableOpacity, Pressable } from 'react-nativ
 import { etapa6 } from '../../login info'
 import { IntroScreen, introStyles } from '../../components/intro-screen';
 
-const itensIniciais = ['💫 Comer melhor', '⚡ Encontrar receitas práticas', '💰 Economizar', '🌈 Variar minha alimentação', '🎓 Aprender a cozinhar', '📅 Encontrar receitas para minha rotina', '✨ Outro'];
+const itensIniciais = ['💫 Comer melhor', '⚡ Encontrar receitas práticas', '💰 Economizar', '🌈 Variar minha alimentação', '🎓 Aprender a cozinhar', '📅 Encontrar receitas para rotina', '✨ Outro'];
 
 
 export default function App() {
@@ -136,18 +136,19 @@ ButtonLeft: {
   cursor: "pointer",
 },
 
-Button: {
-  backgroundColor: "#168A3A",
-  color: "#fff",
-  width: "45%",
-  textAlign: "center",
-  paddingVertical: 10,
-  borderRadius: 20,
-  fontSize: 18,
-  marginTop: 10,
-  boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
-  cursor: "pointer",
-},
+  Button: {
+    backgroundColor: "#168A3A",
+    color: "#fff",
+    width: "45%",
+    textAlign: "center",
+    paddingVertical: 10,
+    borderRadius: 20,
+    fontSize: 16,
+    marginTop: 10,
+    boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
+    cursor: "pointer",
+    fontFamily: "Arial, sans-serif",
+  },
 
 texto: {
   fontSize: 35,

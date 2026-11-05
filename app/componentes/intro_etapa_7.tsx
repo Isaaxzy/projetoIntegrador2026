@@ -151,18 +151,19 @@ stepText: {
     cursor: "pointer",
   },
 
-Button: {
-  backgroundColor: "#209e3c",
-  color: "#fff",
-  width: "45%",
-  textAlign: "center",
-  paddingVertical: 10,
-  borderRadius: 20,
-  fontSize: 18,
-  marginTop: 10,
-  boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
-  cursor: "pointer",
-},
+  Button: {
+    backgroundColor: "#168A3A",
+    color: "#fff",
+    width: "45%",
+    textAlign: "center",
+    paddingVertical: 10,
+    borderRadius: 20,
+    fontSize: 16,
+    marginTop: 10,
+    boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
+    cursor: "pointer",
+    fontFamily: "Arial, sans-serif",
+  },
 
 texto: {
   fontSize: 35,
