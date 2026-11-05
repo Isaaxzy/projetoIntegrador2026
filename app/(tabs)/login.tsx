@@ -1,5 +1,6 @@
 import { Link } from 'expo-router';
 import { View, StyleSheet, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { logar } from '../../login info'
 
 export default function App() {
     return (
@@ -10,8 +11,8 @@ export default function App() {
           source={require("../imagens/Projeto integrador (1).png")}
           />
           <View style={{ alignItems: "center", marginBottom: 20 }}>
-            <Text style={styles.texto}>Welcome back</Text>
-            <Text style={styles.subtexto}>Log in to your account</Text>
+            <Text style={styles.texto}>Bem Vindo de Volta!</Text>
+            <Text style={styles.subtexto}>Faça login na sua conta</Text>
           </View>
               <View style={styles.container}>
                 <View style={styles.googleContainer}>
@@ -19,33 +20,33 @@ export default function App() {
                   source={require("../imagens/720255.png")}
                   style={styles.google}
                   />
-                  <Text>Continue with Google</Text>
+                  <Text>Continue com Google</Text>
                 </View>
                 <View>
                   <Text style={styles.orText}>────────────── OR ──────────────</Text>
                 </View>
                 <View style={styles.loginContainer}>
                   <Text style={styles.label}>Email:</Text>
-                  <input style={styles.input} type="email" placeholder="✉︎ you@example.com" />
+                  <input style={styles.input} type="email" id="email" placeholder="✉︎ voce@exemplo.com" />
                   <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center",  }}>
-                  <Text style={styles.label}>Password: </Text>
+                  <Text style={styles.label}>Senha: </Text>
                   <Link href="/(tabs)/trocarSenha">
-                    <Text style={styles.forgotPassword}>Forgot password?</Text>
+                    <Text style={styles.forgotPassword}>Esqueceu a senha?</Text>
                   </Link>
                  </View>
-                  <input style={styles.input} type="password" placeholder="🔒︎ Enter your password" />
+                  <input style={styles.input} type="password" id="password" placeholder="🔒︎ Coloque sua senha" />
                   <View>
-                  <Link style={styles.loginButton} href="../layout/paginaInicial">
-                    <Text>Log in</Text>
-                  </Link>
+      
+                    <TouchableOpacity onPress={() => logar()}><Text style={styles.loginButton}>Login</Text></TouchableOpacity>
+  
                   </View>
                 </View>   
               </View>
               <View style={styles.signUpContainer}>
-                <Text>Don´t have an account?</Text>
+                <Text>Não tem uma conta?</Text>
                 <Link href="./Criar conta">
                   <TouchableOpacity>
-                    <Text style={{ color: "#168A3A", fontWeight: "bold", cursor: "pointer" }}>Create One</Text>
+                    <Text style={{ color: "#168A3A", fontWeight: "bold", cursor: "pointer" }}>Crie uma conta</Text>
                   </TouchableOpacity>
                 </Link>
               </View>

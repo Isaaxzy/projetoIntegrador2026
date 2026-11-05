@@ -10,24 +10,24 @@ export default function App() {
           source={require("../imagens/Projeto integrador (2).png")}
           />
           <View style={{ alignItems: "center", marginBottom: 20 }}>
-            <Text style={styles.texto}>Reset password</Text>
-            <Text style={styles.subtexto}>We´ll send you a link to reset it</Text>
+            <Text style={styles.texto}>Redefinir senha</Text>
+            <Text style={styles.subtexto}>Vamos redefinir sua senha enviando</Text>
           </View>
               <View style={styles.container}>
                 <View style={styles.loginContainer}>
                   <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center",  }}>
-                  <Text style={styles.label}>Email address </Text>
+                  <Text style={styles.label}>Endereço de email </Text>
                  </View>
-                  <input style={styles.input} type="email" placeholder="✉︎ you@example.com" />
+                  <input style={styles.input} type="email" placeholder="✉︎ você@exemplo.com" />
                   <View>
-                    <Text style={styles.loginButton}>Send reset link</Text>
+                    <Text style={styles.loginButton}>Enviar link de redefinição</Text>
                   </View>
                 </View>   
               </View>
               <View style={styles.signUpContainer}>
                 <Link href="/login">
                 <TouchableOpacity>
-                      <Text style={{ color: "#168A3A", fontWeight: "bold", cursor: "pointer" }}>← Back to log in</Text>
+                      <Text style={{ color: "#168A3A", fontWeight: "bold", cursor: "pointer" }}>← Voltar ao login</Text>
                 </TouchableOpacity>
                 </Link>
               </View>
