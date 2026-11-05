@@ -208,11 +208,41 @@ export default function App() {
               <Text style={styles.label}>Idade</Text>
             </View>
 
-            <input style={styles.input} value={idade} type="number" onChange={(e) => setIdade(e.target.value)} placeholder="14+" />
+            <input
+              style={styles.input}
+              value={idade}
+              type="number"
+              min={14}
+              max={75}
+              onChange={(e) => {
+                const valor = e.target.value;
+                if (valor === '') setIdade('');
+                else if (/^\d+$/.test(valor)) setIdade(String(Math.min(Number(valor), 75)));
+              }}
+              onBlur={() => {
+                if (idade !== '') setIdade(String(Math.max(14, Math.min(Number(idade), 75))));
+              }}
+              placeholder="14+"
+            />
 
             <Text style={styles.label}>Para quantas pessoas você costuma cozinhar?</Text>
 
-            <input style={styles.input} value={pessoas} type="number" onChange={(e) => setPessoas(e.target.value)} placeholder="Número de pessoas" />
+            <input
+              style={styles.input}
+              value={pessoas}
+              min={1}
+              max={15}
+              type="number"
+              onChange={(e) => {
+                const valor = e.target.value;
+                if (valor === '') setPessoas('');
+                else if (/^\d+$/.test(valor)) setPessoas(String(Math.min(Number(valor), 15)));
+              }}
+              onBlur={() => {
+                if (pessoas !== '') setPessoas(String(Math.max(1, Math.min(Number(pessoas), 15))));
+              }}
+              placeholder="Número de pessoas"
+            />
 
             <Text style={styles.label}>Nivel de experiência na cozinha</Text>
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%", }}>
@@ -601,7 +631,7 @@ const styles = StyleSheet.create({
     },
 
   subtexto: {
-    fontSize: 16,
+    fontSize: 18,
     color: "gray",
     width: "86%",
     marginBottom: 10,
