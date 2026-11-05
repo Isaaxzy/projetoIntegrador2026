@@ -208,11 +208,39 @@ export default function App() {
               <Text style={styles.label}>Idade</Text>
             </View>
 
-            <input style={styles.input} value={idade} type="number" onChange={(e) => setIdade(e.target.value)} placeholder="14+" />
+            <input
+              style={styles.input}
+              value={idade}
+              type="text"
+              inputMode="numeric"
+              maxLength={2}
+              onChange={(e) => {
+                const valor = e.target.value.replace(/\D/g, '');
+                setIdade(valor === '' ? '' : String(Math.min(Number(valor), 75)));
+              }}
+              onBlur={() => {
+                if (idade !== '') setIdade(String(Math.max(14, Math.min(Number(idade), 75))));
+              }}
+              placeholder="14+"
+            />
 
             <Text style={styles.label}>Para quantas pessoas você costuma cozinhar?</Text>
 
-            <input style={styles.input} value={pessoas} type="number" onChange={(e) => setPessoas(e.target.value)} placeholder="Número de pessoas" />
+            <input
+              style={styles.input}
+              value={pessoas}
+              type="text"
+              inputMode="numeric"
+              maxLength={2}
+              onChange={(e) => {
+                const valor = e.target.value.replace(/\D/g, '');
+                setPessoas(valor === '' ? '' : String(Math.min(Number(valor), 15)));
+              }}
+              onBlur={() => {
+                if (pessoas !== '') setPessoas(String(Math.max(1, Math.min(Number(pessoas), 15))));
+              }}
+              placeholder="Número de pessoas"
+            />
 
             <Text style={styles.label}>Nivel de experiência na cozinha</Text>
             <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 10, width: "100%", }}>
@@ -375,16 +403,21 @@ export default function App() {
             </View>
           </View>
 
-          <View style={styles.botbox}>
-            <TouchableOpacity style={styles.ButtonRota} onPress={salvarInformacoes}
-            ><Image
-                style={styles.buttonIcon}
-                source={require("../imagens/save.png")}
-              /> <Text style={styles.buttonText}>Salvar todas as informações</Text></TouchableOpacity>
-          </View>
-
         </ScrollView>
 
+        <View style={styles.botbox}>
+          <TouchableOpacity
+            style={styles.ButtonRota}
+            onPress={salvarInformacoes}
+            accessibilityRole="button"
+          >
+            <Image
+              style={styles.buttonIcon}
+              source={require("../imagens/save.png")}
+            />
+            <Text style={styles.buttonText}>Salvar todas as informações</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -517,12 +550,9 @@ const styles = StyleSheet.create({
   },
 
   ButtonRota: {
-    width: '80%',
+    width: '100%',
     height: 50,
     backgroundColor: "#209e3c",
-    color: "#fff",
-    textAlign: "center",
-    fontSize: 18,
     padding: 6,
     flexDirection: 'row',
     alignItems: 'center',
@@ -533,10 +563,13 @@ const styles = StyleSheet.create({
 
   botbox: {
     width: '100%',
-    height: 50,
+    paddingHorizontal: 10,
+    paddingTop: 8,
+    paddingBottom: 12,
     alignSelf: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
+
   },
 
   bold: {
@@ -544,11 +577,9 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 17, 
-    textAlign: 'center',
-    justifyContent: 'center',
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "600",
   },
 
   texto: {
@@ -560,7 +591,7 @@ const styles = StyleSheet.create({
   },
 
   subtexto: {
-    fontSize: 16,
+    fontSize: 18,
     color: "gray",
     width: "86%",
     marginBottom: 10,

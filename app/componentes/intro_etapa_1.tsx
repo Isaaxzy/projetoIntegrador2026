@@ -66,7 +66,7 @@ export default function App() {
             }}
             onBlur={() => {
               if (idade !== '') {
-                setIdade(String(Math.max(Number(idade), 14)));
+                setIdade(String(Math.max(14, Math.min(Number(idade), 75))));
               }
             }}
           />
@@ -76,6 +76,7 @@ export default function App() {
             id="pessoas"
             placeholder="Número de pessoas"
             keyboardType="number-pad"
+            maxLength={2}
             value={numeroPessoas}
             onChangeText={(texto) => {
               const somenteDigitos = texto.replace(/\D/g, '');
@@ -84,6 +85,11 @@ export default function App() {
                 return;
               }
               setNumeroPessoas(String(Math.min(Number(somenteDigitos), 15)));
+            }}
+            onBlur={() => {
+              if (numeroPessoas !== '') {
+                setNumeroPessoas(String(Math.max(1, Math.min(Number(numeroPessoas), 15))));
+              }
             }}
           />
 

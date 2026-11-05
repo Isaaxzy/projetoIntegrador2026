@@ -1,5 +1,5 @@
 import { View, StyleSheet, Text, Image, Pressable, FlatList, ScrollView, TextInput } from 'react-native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import {
@@ -24,10 +24,26 @@ const itensIniciais = [
 export default function App() {
     const router = useRouter();
     // Hooks precisam ficar dentro do componente para que o React acompanhe seu estado.
+    const [nomeUsuario, setNomeUsuario] = useState('');
     const [categoriaSelecionada, setCategoriaSelecionada] =
         useState<(typeof itensIniciais)[number]>(itensIniciais[0]);
     const [textoIngredientes, setTextoIngredientes] = useState('');
     const [ingredientesBusca, setIngredientesBusca] = useState<string[]>([]);
+
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+
+        try {
+            const dadosUsuario: unknown = JSON.parse(
+                window.localStorage.getItem('voce') ?? '[]',
+            );
+            if (Array.isArray(dadosUsuario) && typeof dadosUsuario[0] === 'string') {
+                setNomeUsuario(dadosUsuario[0]);
+            }
+        } catch (error) {
+            console.error('Não foi possível carregar o nome do usuário.', error);
+        }
+    }, []);
 
     function filtrarPorCategoria(categoria: (typeof itensIniciais)[number]) {
         setCategoriaSelecionada(categoria);
@@ -78,7 +94,7 @@ export default function App() {
     const quantidadeReceitas =
         recomendadasFiltradas.length +
         sobremesasFiltradas.length +
-        maisProcuradasFiltradas.length;
+        maisProcuradasFiltradas.length;     
 
     return(
         <View style={styles.telaInicial}>
@@ -94,7 +110,7 @@ export default function App() {
             <Link href="/login"><Image style={styles.image2} source={require("../imagens/seta.png")} /></Link>
             </View>
                     <View style={{flexDirection: "row", padding: 10, gap: 20, width: "95%", margin: "auto"}}>
-                    <Text style={styles.textoApresentacao}><Text style={styles.titulo}>Pronto, nome do usuário! 🥦</Text> Agora já sei um pouquinho mais sobre seus gostos. separei algumas receitas que combinam com você</Text>
+                    <Text style={styles.textoApresentacao}><Text style={styles.titulo}>Pronto, {nomeUsuario || 'nome do usuário'}! 🥦</Text> Agora já sei um pouquinho mais sobre seus gostos. separei algumas receitas que combinam com você</Text>
                 </View>
                    <ScrollView horizontal>
                 <View style={{flexDirection: "row", gap: 10, marginLeft: 8, padding: 8,}}>
