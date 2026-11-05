@@ -43,7 +43,7 @@ export default function App() {
                 </View>   
               </View>
               <View style={styles.signUpContainer}>
-                <Text>Não tem uma conta?</Text>
+                <Text>Não possui uma conta?</Text>
                 <Link href="./Criar conta">
                   <TouchableOpacity>
                     <Text style={{ color: "#168A3A", fontWeight: "bold", cursor: "pointer" }}>Crie uma conta</Text>
