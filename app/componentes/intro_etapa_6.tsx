@@ -4,7 +4,7 @@ import { View, StyleSheet, Text, TouchableOpacity, Pressable } from 'react-nativ
 import { etapa6 } from '../../login info'
 import { IntroScreen, introStyles } from '../../components/intro-screen';
 
-const itensIniciais = ['💫 Comer melhor', '⚡ Encontrar receitas práticas', '💰 Economizar', '🌈 Variar minha alimentação', '🎓 Aprender a cozinhar', '📅 Encontrar receitas para minha rotina', '✨ Outro'];
+const itensIniciais = ['💫 Comer melhor', '⚡ Encontrar receitas práticas', '💰 Economizar', '🌈 Variar minha alimentação', '🎓 Aprender a cozinhar', '📅 Encontrar receitas para rotina', '✨ Outro'];
 
 
 export default function App() {
