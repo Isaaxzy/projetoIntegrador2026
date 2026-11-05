@@ -562,7 +562,7 @@ const styles = StyleSheet.create({
   },
 
   botbox: {
-    width: '100%',
+    width: '90%',
     paddingHorizontal: 10,
     paddingTop: 8,
     paddingBottom: 12,
