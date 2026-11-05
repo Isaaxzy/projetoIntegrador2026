@@ -168,10 +168,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingVertical: 10,
     borderRadius: 20,
-    fontSize: 18,
+    fontSize: 16,
     marginTop: 10,
     boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
     cursor: "pointer",
+    fontFamily: "Arial, sans-serif",
   },
 
   texto: {
