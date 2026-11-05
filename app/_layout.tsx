@@ -7,7 +7,7 @@ export default function RootLayout() {
   const [carregando, setCarregando] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setCarregando(false), 1900);
+    const timer = setTimeout(() => setCarregando(false), 1800);
     return () => clearTimeout(timer);
   }, []);
 
