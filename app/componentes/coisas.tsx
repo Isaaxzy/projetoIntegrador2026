@@ -90,7 +90,7 @@ export const receitasRecomendadas: Receita[] = [
  
     dificuldade: '👨‍🍳 Fácil',
  
-    duracao: '⏳ 30min',
+    duracao: '30min',
  
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🥗 Saudáveis', '🌱 Vegetarianas'],
  
@@ -134,7 +134,7 @@ export const receitasRecomendadas: Receita[] = [
  
     cor: '#0f3460',
  
-    Imagem: 'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=800&q=80',
+    Imagem: 'https://th.bing.com/th/id/OSK.46f112c44ddd4c901153aaed3dc715df?w=424&h=424&c=7&rs=1&qlt=90&o=6&pid=16.1%27',
  
     descrição: 'Espaguete simples com molho de tomate, alho e manjericão.',
  
@@ -142,7 +142,7 @@ export const receitasRecomendadas: Receita[] = [
  
     dificuldade: '👨‍🍳 Fácil',
  
-    duracao: '⏳ 30min',
+    duracao: '30min',
  
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
  
@@ -202,7 +202,7 @@ export const receitasRecomendadas: Receita[] = [
  
     dificuldade: '👨‍🍳 Fácil',
  
-    duracao: '⏳ 1h',
+    duracao: '1h',
  
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
  
@@ -258,7 +258,7 @@ export const receitasRecomendadas: Receita[] = [
  
     dificuldade: '👨‍🍳 Fácil',
  
-    duracao: '⏳ 45min',
+    duracao: '45min',
  
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🥗 Saudáveis', '💰 Econômicas', '🌱 Vegetarianas'],
     condicoes: [
@@ -318,7 +318,7 @@ export const receitasRecomendadas: Receita[] = [
  
     dificuldade: '👨‍🍳 Fácil',
  
-    duracao: '⏳ 15min',
+    duracao: '15min',
  
     categorias: ['⭐ Todas', '🍳 Café da manhã', '🥗 Saudáveis', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
  
@@ -369,7 +369,7 @@ export const receitasSobremesas: Receita[] = [
  
     cor: '#f4a261',
  
-    Imagem: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=800&q=80',
+    Imagem: 'https://ciclovivo.com.br/wp-content/uploads/2024/02/sorvete-simples-banana.jpg',
  
     descrição: 'Sorvete cremoso de banana feito com poucos ingredientes.',
  
@@ -377,7 +377,7 @@ export const receitasSobremesas: Receita[] = [
  
     dificuldade: '👨‍🍳 Fácil',
  
-    duracao: '⏳ 15min',
+    duracao: '15min',
  
     categorias: ['⭐ Todas', '🍰 Sobremesas', '⚡ Rápidas', '🌱 Vegetarianas'],
  
@@ -427,7 +427,7 @@ export const receitasSobremesas: Receita[] = [
  
     dificuldade: '👨‍🍳 Médio',
  
-    duracao: '⏳ 45min',
+    duracao: '45min',
  
     categorias: ['⭐ Todas', '🍰 Sobremesas', '💰 Econômicas', '🌱 Vegetarianas'],
  
@@ -476,7 +476,7 @@ export const receitasSobremesas: Receita[] = [
  
     cor: '#d4a373',
  
-    Imagem: 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=800&q=80',
+    Imagem: 'https://th.bing.com/th/id/R.9bca87536215b1a0ba2b702c6fac9598?rik=ciygBz5umOx7Yg&riu=http%3a%2f%2f1.bp.blogspot.com%2f-ZoDh7zILX6A%2fVi6DwM1EOZI%2fAAAAAAAAD5A%2ffu8zQEOCQvE%2fs1600%2fpudim-de-leite-condensado.png&ehk=g9mpRHnOkZXfVRHPMdZDJXf5g%2bM0roX%2b%2b2oMTMtW7%2fY%3d&risl=&pid=ImgRaw&r=0%27',
  
     descrição: 'Pudim clássico, macio e servido com calda de caramelo.',
  
@@ -484,7 +484,7 @@ export const receitasSobremesas: Receita[] = [
  
     dificuldade: '👨‍🍳 Médio',
  
-    duracao: '⏳ 1h',
+    duracao: '1h',
  
     categorias: ['⭐ Todas', '🍰 Sobremesas', '🌱 Vegetarianas'],
  
@@ -529,7 +529,7 @@ export const receitasSobremesas: Receita[] = [
  
     cor: '#6d4c41',
  
-    Imagem: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80',
+    Imagem: 'https://canaldareceita.com.br/wp-content/uploads/2025/09/Brigadeiro-Tradicional.jpg.webp',
  
     descrição: 'Docinho brasileiro de chocolate para qualquer ocasião.',
  
@@ -537,7 +537,7 @@ export const receitasSobremesas: Receita[] = [
  
     dificuldade: '👨‍🍳 Fácil',
  
-    duracao: '⏳ 30min',
+    duracao: '30min',
  
     categorias: ['⭐ Todas', '🍰 Sobremesas', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
  
@@ -580,7 +580,7 @@ export const receitasSobremesas: Receita[] = [
  
     cor: '#f4a261',
  
-    Imagem: 'https://images.unsplash.com/photo-1585647347384-2593bc35786b?auto=format&fit=crop&w=800&q=80',
+    Imagem: 'https://naminhapanela.com/wp-content/uploads/2022/07/Pipoca-doce-com-chocolate-2-1536x1024.jpg',
  
     descrição: 'Pipoca doce caramelizada para dividir na hora do filme.',
  
@@ -588,7 +588,7 @@ export const receitasSobremesas: Receita[] = [
  
     dificuldade: '👨‍🍳 Fácil',
  
-    duracao: '⏳ 15min',
+    duracao: '15min',
  
     categorias: ['⭐ Todas', '🍰 Sobremesas', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
  
@@ -648,7 +648,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
     dificuldade: '👨‍🍳 Fácil',
  
-    duracao: '⏳ 30min',
+    duracao: '30min',
  
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
  
@@ -695,7 +695,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
     cor: '#e9c46a',
  
-    Imagem: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80',
+    Imagem: 'https://essareceitafunciona.com.br/wp-content/uploads/2022/07/Pao-de-queijo-Essa-Receita-Funciona-9.jpg%27',
  
     descrição: 'Pão de queijo douradinho para acompanhar o café.',
  
@@ -703,7 +703,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
     dificuldade: '👨‍🍳 Fácil',
  
-    duracao: '⏳ 30min',
+    duracao: '30min',
  
     categorias: ['⭐ Todas', '🍳 Café da manhã', '🌱 Vegetarianas'],
  
@@ -749,7 +749,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
     cor: '#606c38',
  
-    Imagem: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&q=80',
+    Imagem: 'https://d135llbe2j366l.cloudfront.net/compressed/macarrao-ao-alho-e-oleo-com-5-ingredientes-google.webp%27',
  
     descrição: 'Receita rápida de macarrão com alho dourado e azeite.',
  
@@ -757,7 +757,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
     dificuldade: '👨‍🍳 Fácil',
  
-    duracao: '⏳ 15min',
+    duracao: '15min',
  
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
  
@@ -805,7 +805,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
     cor: '#588157',
  
-    Imagem: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80',
+    Imagem: 'https://guiadacozinha.com.br/wp-content/uploads/2019/10/arroz-de-forno-natalino.jpg',
  
     descrição: 'Arroz gratinado com frango, legumes e queijo.',
  
@@ -813,7 +813,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
     dificuldade: '👨‍🍳 Fácil',
  
-    duracao: '⏳ 45min',
+    duracao: '45min',
  
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
  
@@ -857,7 +857,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
   cor: '#d4a373',
  
-  Imagem: 'https://images.unsplash.com/photo-1619531040576-f9416740661c?auto=format&fit=crop&w=800&q=80',
+  Imagem: 'https://visaocidade.com.br/wp-content/uploads/2025/05/Pao-de-Alho.jpg',
  
   descrição: 'Pão francês amanhecido com pasta cremosa de alho, ervas e queijo parmesão.',
  
@@ -865,7 +865,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
   dificuldade: '👨‍🍳 Muito Fácil',
  
-  duracao: '⏳ 15min',
+  duracao: '15min',
  
   categorias: ['⭐ Todas', '⚡ Rápidas', '🌱 Vegetarianas'],
  
@@ -924,7 +924,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
   cor: '#d97736',
  
-  Imagem: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=800&q=80',
+  Imagem: 'https://guiadacozinha.com.br/wp-content/uploads/2011/01/Camarao-na-moranga-com-catupiry%C2%AE-768x619.jpg%27',
  
   descrição: 'Camarões cremosos com Catupiry e leite de coco, servidos dentro de uma moranga assada.',
  
@@ -932,7 +932,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
   dificuldade: '👨‍🍳 Elaborado',
  
-  duracao: '⏳ 1h',
+  duracao: '1h',
  
   categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
  
@@ -1015,7 +1015,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
   cor: '#dda15e',
  
-  Imagem: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&q=80',
+  Imagem: 'https://canaldareceita.com.br/wp-content/uploads/2025/08/Receita-de-Macarrao-com-Molho-Branco-e-Presunto-Simples.webp%27',
  
   descrição: 'Macarrão com presunto refogado e molho branco cremoso.',
  
@@ -1023,7 +1023,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
   dificuldade: '👨‍🍳 Fácil',
  
-  duracao: '⏳ 30min',
+  duracao: '30min',
  
   categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
  
@@ -1089,7 +1089,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
   cor: '#6f4e37',
  
-  Imagem: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80',
+  Imagem: 'https://belitaraujo.com.br/wp-content/uploads/2023/05/receita-de-cafe-cremoso.jpg',
  
   descrição: 'Café cremoso e espumoso para misturar com leite quente.',
  
@@ -1097,7 +1097,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
   dificuldade: '👨‍🍳 Fácil',
  
-  duracao: '⏳ 30min',
+  duracao: '30min',
  
   categorias: ['⭐ Todas', '🍳 Café da manhã','⚡ Rápidas'],
  
@@ -1154,7 +1154,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
   cor: '#588157',
  
-  Imagem: 'https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?auto=format&fit=crop&w=800&q=80',
+  Imagem: 'https://receitatodahora.com.br/wp-content/uploads/2024/03/sunomono-19031-1024x683.jpg',
  
   descrição: 'Salada japonesa refrescante de pepino com molho agridoce e gergelim.',
  
@@ -1162,7 +1162,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
   dificuldade: '👨‍🍳 Média',
  
-  duracao: '⏳ 30min',
+  duracao: '30min',
  
   categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🌱 Vegetarianas'],
  
@@ -1225,7 +1225,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
   cor: '#6f4e37',
  
-  Imagem: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80',
+  Imagem: 'https://tse2.mm.bing.net/th/id/OIP.xwYcFfyFg4Zf7MASvtRDSQHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
  
   descrição: 'Bolo de chocolate fofinho com uma cobertura cremosa de mousse.',
  
@@ -1233,7 +1233,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
   dificuldade: '👨‍🍳 Elaborada',
  
-  duracao: '⏳ Mais de 1h30min',
+  duracao: 'Mais de 1h30min',
  
   categorias: ['⭐ Todas', '🍰 Sobremesas'],
  
@@ -1306,7 +1306,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
   cor: '#dda15e',
  
-  Imagem: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80',
+  Imagem: 'https://receitasgalo.com.br/images/receitas/398/galo-imagem-receitas-sopa-de-macarrao-com-acem-e-legumes-share.jpg%27',
  
   descrição: 'Sopa quentinha com carne, macarrão e legumes variados.',
  
@@ -1314,7 +1314,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
   dificuldade: '👨‍🍳 Fácil',
  
-  duracao: '⏳ 45min',
+  duracao: '45min',
  
   categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
  
@@ -1392,7 +1392,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
   cor: '#bc4749',
  
-  Imagem: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80',
+  Imagem: 'https://norecipes.com/wp-content/uploads/2018/02/mapo-tofu-recipe-011.jpg',
  
   descrição: 'Prato chinês com tofu, carne moída e molho apimentado.',
  
@@ -1400,7 +1400,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
   dificuldade: '👨‍🍳 Elaborado',
  
-  duracao: '⏳ 30min',
+  duracao: '30min',
  
   categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
  
@@ -1475,7 +1475,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
     cor: '#588157',
  
-    Imagem: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80',
+    Imagem: 'https://th.bing.com/th/id/R.2f9b9ca0549a86009f7266c4962b69a9?rik=CDFbxjyqmkBUcw&pid=ImgRaw&r=0',
  
     descrição: 'Salada fresca e colorida com verduras e legumes.',
  
@@ -1483,7 +1483,7 @@ export const receitasMaisProcuradas: Receita[] = [
  
     dificuldade: '👨‍🍳 Fácil',
  
-    duracao: '⏳ 15min',
+    duracao: '15min',
  
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🌱 Vegetarianas'],
  
@@ -1544,11 +1544,11 @@ export const receitasMaisProcuradas: Receita[] = [
   id: '3n',
   titulo: 'Enroladinho de queijo e presunto',
   cor: '#d4a373',
-  Imagem: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80',
+  Imagem: 'https://receitatodahora.com.br/wp-content/uploads/2023/04/enroladinho-de-presunto-e-queijo-empanado-31-03.jpg%27',
   descrição: 'Massa macia recheada com presunto, queijo mussarela e requeijão.',
   info: 'Farinha de trigo, fermento, presunto e mussarela',
   dificuldade: '👨‍🍳 Média',
-  duracao: '⏳ 45min',
+  duracao: '45min',
   categorias: ['⭐ Todas', '🍳 Café da manhã', '🥖 Lanches'],
  
   condicoes: [
@@ -1590,11 +1590,11 @@ export const receitasMaisProcuradas: Receita[] = [
   id: '3o',
   titulo: 'Enroladinho de queijo',
   cor: '#e9c46a',
-  Imagem: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80',
+  Imagem: 'https://horareceita.com/wp-content/uploads/2022/11/Enroladinho-de-queijo.png',
   descrição: 'Enroladinho de massa macia recheado com queijo, finalizado com leite condensado e coco ralado.',
   info: 'Farinha de trigo, fermento, queijo e coco ralado',
   dificuldade: '👨‍🍳 Média',
-  duracao: '⏳ 1h',
+  duracao: '1h',
   categorias: ['⭐ Todas', '🍳 Café da manhã', '🥖 Lanches'],
  
   condicoes: [
@@ -1640,11 +1640,11 @@ export const receitasMaisProcuradas: Receita[] = [
   id: '3q',
   titulo: 'Pão de batata-doce',
   cor: '#d4a373',
-  Imagem: 'https://images.unsplash.com/photo-1608198093002-ad4e0054843d?auto=format&fit=crop&w=800&q=80',
+  Imagem: 'https://momentosdocesesalgados.com/wp-content/uploads/2020/12/Receita-de-Pao-de-Batata-Doce-1024x576.jpg%27',
   descrição: 'Pão fofinho de batata-doce, com sabor suave e levemente adocicado.',
   info: 'Batata-doce, farinha de trigo, leite e manteiga',
   dificuldade: '👨‍🍳 Média',
-  duracao: '⏳ Mais de 1h30min',
+  duracao: 'Mais de 1h30min',
   categorias: ['⭐ Todas', '🍳 Café da manhã', '🥖 Lanches'],
  
   condicoes: [
@@ -1688,7 +1688,7 @@ export const receitasMaisProcuradas: Receita[] = [
   descrição: 'Macarrão integral com molho de tomate caseiro, abobrinha e um toque de carne moída.',
   info: 'Macarrão integral, tomate, abobrinha e carne moída',
   dificuldade: '👨‍🍳 Fácil',
-  duracao: '⏳ 30min',
+  duracao: '30min',
   categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
  
   condicoes: [
@@ -1734,11 +1734,11 @@ export const receitasMaisProcuradas: Receita[] = [
   id: '3s',
   titulo: 'Brigadeiro cremoso de colher',
   cor: '#6f4e37',
-  Imagem: 'https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=800&q=80',
+  Imagem: 'https://tudodelicious.com/wp-content/uploads/2025/03/Brigadeiro-de-Colher.jpeg',
   descrição: 'Brigadeiro de chocolate bem cremoso, perfeito para servir em pequenos potinhos.',
   info: 'Leite condensado, creme de leite e chocolate em pó',
   dificuldade: '👨‍🍳 Fácil',
-  duracao: '⏳ 30min',
+  duracao: '30min',
   categorias: ['⭐ Todas', '🍰 Sobremesas'],
  
   condicoes: [

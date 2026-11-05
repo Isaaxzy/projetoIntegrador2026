@@ -12,6 +12,7 @@ import {
   ScrollView
 } from 'react-native';
 import { infoSet } from '../../login info'
+import Carregamento from '../../components/Carregamento';
 
 const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Avançado'];
 
@@ -59,6 +60,7 @@ function lerValor<T>(key: string, valorPadrao: T): T {
 
 export default function App() {
 
+  const [carregando, setCarregando] = useState(true);
   const [nome, setNome] = useState('');
   const [pessoas, setPessoas] = useState('');
   const [idade, setIdade] = useState('');
@@ -90,20 +92,26 @@ export default function App() {
   const [dificuldadeMarcados, setDificuldadeMarcados] = useState<number | null>(null);
 
   useEffect(() => {
-    const voce = lerValor<string[]>('voce', ['', '', '']);
-    const restricoes = lerIndices('Alimentacao').map((indice) => indice + 1);
-    setNome(voce[0] ?? '');
-    setPessoas(voce[1] ?? '');
-    setIdade(voce[2] ?? '');
+    try {
+      const voce = lerValor<string[]>('voce', ['', '', '']);
+      const restricoes = lerIndices('Alimentacao').map((indice) => indice + 1);
+      setNome(voce[0] ?? '');
+      setPessoas(voce[1] ?? '');
+      setIdade(voce[2] ?? '');
 
-    setExperienciaSelecionada(lerIndices('nivelExperienciaIndices')[0] ?? null);
-    setRestricoesSelecionadas(restricoes);
-    setAlergiasMarcadas(indicesParaBooleanos(lerIndices('Alergias'), itensIniciais3.length));
-    setIngredientesMarcados(indicesParaBooleanos(lerIndices('Desgostos'), itensIniciais4.length));
-    setIngredientesPrefereMarcados(indicesParaBooleanos(lerIndices('Gostos'), itensIniciais5.length));
-    setObjetivosMarcados(lerIndices('Objetivos'));
-    setTempoMarcados(indicesParaBooleanos(lerIndices('Tempo'), itensIniciais7.length));
-    setDificuldadeMarcados(lerIndices('Tipo')[0] ?? null);
+      setExperienciaSelecionada(lerIndices('nivelExperienciaIndices')[0] ?? null);
+      setRestricoesSelecionadas(restricoes);
+      setAlergiasMarcadas(indicesParaBooleanos(lerIndices('Alergias'), itensIniciais3.length));
+      setIngredientesMarcados(indicesParaBooleanos(lerIndices('Desgostos'), itensIniciais4.length));
+      setIngredientesPrefereMarcados(indicesParaBooleanos(lerIndices('Gostos'), itensIniciais5.length));
+      setObjetivosMarcados(lerIndices('Objetivos'));
+      setTempoMarcados(indicesParaBooleanos(lerIndices('Tempo'), itensIniciais7.length));
+      setDificuldadeMarcados(lerIndices('Tipo')[0] ?? null);
+    } catch (error) {
+      console.error('Não foi possível carregar as informações do perfil.', error);
+    } finally {
+      setCarregando(false);
+    }
   }, []);
 
   const alternarExperiencia = (index: number) => {
@@ -183,6 +191,7 @@ export default function App() {
   });
 
   return (
+    <>
     <View style={styles.fundo}>
       <View style={styles.container}>
 
@@ -420,6 +429,8 @@ export default function App() {
         </View>
       </View>
     </View>
+    <Carregamento visivel={carregando} mensagem="Carregando seu perfil..." />
+    </>
   );
 }
 
