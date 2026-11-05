@@ -21,8 +21,7 @@ export function logar() {
         
     }
     else{
-        localStorage.setItem('conta', JSON.stringify(conta));
-        window.location.href = 'http://localhost:8081/componentes/intro_comecar';
+        window.location.href = 'http://localhost:8081/layout/paginaInicial';
     }
 
 }
