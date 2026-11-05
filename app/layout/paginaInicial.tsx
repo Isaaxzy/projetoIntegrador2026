@@ -7,6 +7,7 @@ import {
     receitasMaisProcuradas,
     receitasRecomendadas,
     receitasSobremesas,
+    removerReceitasDuplicadas,
 } from '../componentes/coisas';
 import renderCategoria from '../componentes/cardCategorias';
 
@@ -81,7 +82,22 @@ export default function App() {
         receita.categorias.includes(categoriaSelecionada);
     const correspondeAosFiltros = (receita: (typeof receitasRecomendadas)[number]) =>
         correspondeACategoria(receita) && correspondeAIngredientes(receita);
-    const recomendadasFiltradas = receitasRecomendadas
+    const receitasUnicas = removerReceitasDuplicadas([
+        ...receitasRecomendadas,
+        ...receitasSobremesas,
+        ...receitasMaisProcuradas,
+    ]);
+    const idsRecomendadas = new Set(
+        receitasUnicas.filter((receita) => receitasRecomendadas.includes(receita)).map((receita) => receita.id),
+    );
+    const idsSobremesas = new Set(
+        receitasUnicas.filter((receita) => receitasSobremesas.includes(receita)).map((receita) => receita.id),
+    );
+    const idsMaisProcuradas = new Set(
+        receitasUnicas.filter((receita) => receitasMaisProcuradas.includes(receita)).map((receita) => receita.id),
+    );
+    const recomendadasFiltradas = receitasUnicas
+        .filter((receita) => idsRecomendadas.has(receita.id))
         .filter(correspondeAosFiltros)
         .sort((a, b) => {
             const correspondencias = (receita: (typeof receitasRecomendadas)[number]) =>
@@ -93,8 +109,12 @@ export default function App() {
 
             return correspondencias(b) - correspondencias(a);
         });
-    const sobremesasFiltradas = receitasSobremesas.filter(correspondeAosFiltros);
-    const maisProcuradasFiltradas = receitasMaisProcuradas.filter(correspondeAosFiltros);
+    const sobremesasFiltradas = receitasUnicas
+        .filter((receita) => idsSobremesas.has(receita.id))
+        .filter(correspondeAosFiltros);
+    const maisProcuradasFiltradas = receitasUnicas
+        .filter((receita) => idsMaisProcuradas.has(receita.id))
+        .filter(correspondeAosFiltros);
     const quantidadeReceitas =
         recomendadasFiltradas.length +
         sobremesasFiltradas.length +
