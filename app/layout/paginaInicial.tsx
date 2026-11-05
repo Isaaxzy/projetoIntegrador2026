@@ -2,6 +2,7 @@ import { View, StyleSheet, Text, Image, Pressable, FlatList, ScrollView, TextInp
 import { useEffect, useState } from 'react';
 import { Link, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import Carregamento from '../../components/Carregamento';
 import {
     receitasMaisProcuradas,
     receitasRecomendadas,
@@ -24,6 +25,7 @@ const itensIniciais = [
 export default function App() {
     const router = useRouter();
     // Hooks precisam ficar dentro do componente para que o React acompanhe seu estado.
+    const [carregando, setCarregando] = useState(true);
     const [nomeUsuario, setNomeUsuario] = useState('');
     const [categoriaSelecionada, setCategoriaSelecionada] =
         useState<(typeof itensIniciais)[number]>(itensIniciais[0]);
@@ -31,17 +33,19 @@ export default function App() {
     const [ingredientesBusca, setIngredientesBusca] = useState<string[]>([]);
 
     useEffect(() => {
-        if (typeof window === 'undefined') return;
-
         try {
-            const dadosUsuario: unknown = JSON.parse(
-                window.localStorage.getItem('voce') ?? '[]',
-            );
-            if (Array.isArray(dadosUsuario) && typeof dadosUsuario[0] === 'string') {
-                setNomeUsuario(dadosUsuario[0]);
+            if (typeof window !== 'undefined') {
+                const dadosUsuario: unknown = JSON.parse(
+                    window.localStorage.getItem('voce') ?? '[]',
+                );
+                if (Array.isArray(dadosUsuario) && typeof dadosUsuario[0] === 'string') {
+                    setNomeUsuario(dadosUsuario[0]);
+                }
             }
         } catch (error) {
             console.error('Não foi possível carregar o nome do usuário.', error);
+        } finally {
+            setCarregando(false);
         }
     }, []);
 
@@ -97,6 +101,7 @@ export default function App() {
         maisProcuradasFiltradas.length;     
 
     return(
+        <>
         <View style={styles.telaInicial}>
         <ScrollView>
     <View style={styles.fundo}>
@@ -105,7 +110,7 @@ export default function App() {
             <View style={{flexDirection: "row", alignItems: "center", gap: 12, }}>
             <Image 
                 source={require("../imagens/2026_10_01_0mz_Kleki.png")} style={styles.image}></Image>
-            <Text style={{color: "#168A3A", fontSize: 18, fontWeight: "700", marginTop: 10}}>Tempero de casa</Text>
+            <Text style={{color: "#168A3A", fontSize: 24, fontWeight: "bold", marginTop: 10}}>Tempero de casa</Text>
             </View>
             <Link href="/login"><Image style={styles.image2} source={require("../imagens/seta.png")} /></Link>
             </View>
@@ -219,6 +224,8 @@ export default function App() {
             <Ionicons name="chatbubble-ellipses" size={27} color="#ffffff" />
         </Pressable>
         </View>
+        <Carregamento visivel={carregando} mensagem="Carregando seus dados..." />
+        </>
     )
 }
 
@@ -306,7 +313,7 @@ imagef: {
 image: {
     maxWidth: 40,
     height: 60,
-    marginTop: -15,
+    marginTop: -6,
     marginLeft: 10,
     alignSelf: 'center',
     position: 'relative',

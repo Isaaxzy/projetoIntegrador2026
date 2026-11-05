@@ -567,7 +567,7 @@ const styles = StyleSheet.create({
   Uptext: {
     fontSize: 24,
     fontWeight: "bold",
-    fontFamily: 'Times New Roman',
+  
   },
 
   UPbar: {

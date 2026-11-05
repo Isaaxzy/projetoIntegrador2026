@@ -154,8 +154,7 @@ const styles = StyleSheet.create({
     },
 
     Uptext:{
-        fontSize: 20,
-        fontFamily: 'Arial, serif',
+        fontSize: 24,
         fontWeight: 'bold',
         color: "#168A3A",
         marginTop: 10

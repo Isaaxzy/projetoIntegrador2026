@@ -1680,6 +1680,7 @@ export const receitasMaisProcuradas: Receita[] = [
   info: 'Farinha de trigo, fermento, presunto e mussarela',
   dificuldade: '👨‍🍳 Média',
   duracao: '45min',
+  duracao: '45min',
   categorias: ['⭐ Todas', '🍳 Café da manhã', '🥖 Lanches'],
 
   condicoes: [
@@ -1722,9 +1723,11 @@ export const receitasMaisProcuradas: Receita[] = [
   titulo: 'Enroladinho de queijo',
   cor: '#e9c46a',
   Imagem: 'https://horareceita.com/wp-content/uploads/2022/11/Enroladinho-de-queijo.png',
+  Imagem: 'https://horareceita.com/wp-content/uploads/2022/11/Enroladinho-de-queijo.png',
   descrição: 'Enroladinho de massa macia recheado com queijo, finalizado com leite condensado e coco ralado.',
   info: 'Farinha de trigo, fermento, queijo e coco ralado',
   dificuldade: '👨‍🍳 Média',
+  duracao: '1h',
   duracao: '1h',
   categorias: ['⭐ Todas', '🍳 Café da manhã', '🥖 Lanches'],
 
@@ -1776,6 +1779,7 @@ export const receitasMaisProcuradas: Receita[] = [
   info: 'Batata-doce, farinha de trigo, leite e manteiga',
   dificuldade: '👨‍🍳 Média',
   duracao: 'Mais de 1h30min',
+  duracao: 'Mais de 1h30min',
   categorias: ['⭐ Todas', '🍳 Café da manhã', '🥖 Lanches'],
 
   condicoes: [
@@ -1819,6 +1823,7 @@ export const receitasMaisProcuradas: Receita[] = [
   descrição: 'Macarrão integral com molho de tomate caseiro, abobrinha e um toque de carne moída.',
   info: 'Macarrão integral, tomate, abobrinha e carne moída',
   dificuldade: '👨‍🍳 Fácil',
+  duracao: '30min',
   duracao: '30min',
   categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
 
@@ -3003,9 +3008,11 @@ export const receitasMaisProcuradas: Receita[] = [
   titulo: 'Brigadeiro cremoso de colher',
   cor: '#6f4e37',
   Imagem: 'https://tudodelicious.com/wp-content/uploads/2025/03/Brigadeiro-de-Colher.jpeg',
+  Imagem: 'https://tudodelicious.com/wp-content/uploads/2025/03/Brigadeiro-de-Colher.jpeg',
   descrição: 'Brigadeiro de chocolate bem cremoso, perfeito para servir em pequenos potinhos.',
   info: 'Leite condensado, creme de leite e chocolate em pó',
   dificuldade: '👨‍🍳 Fácil',
+  duracao: '30min',
   duracao: '30min',
   categorias: ['⭐ Todas', '🍰 Sobremesas'],
 

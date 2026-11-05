@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useFocusEffect } from "expo-router";
 import {
     Image,
     Modal,
@@ -25,6 +26,7 @@ import {
     type PlanoSemanal,
 } from "../servicos/planejamento";
 import Carregamento from "../../components/Carregamento";
+import { listarFavoritos } from "../servicos/favoritos";
 
 const receitasDisponiveis = [
     ...receitasRecomendadas,
@@ -41,6 +43,8 @@ export default function Planejar() {
     const [carregando, setCarregando] = useState(true);
     const [salvando, setSalvando] = useState(false);
     const [erro, setErro] = useState<string | null>(null);
+    const [idsFavoritos, setIdsFavoritos] = useState<string[]>([]);
+    const [erroFavoritos, setErroFavoritos] = useState<string | null>(null);
 
     useEffect(() => {
         let ativo = true;
@@ -67,6 +71,32 @@ export default function Planejar() {
             ativo = false;
         };
     }, []);
+
+    useFocusEffect(
+        useCallback(() => {
+            let ativo = true;
+
+            async function carregarFavoritos() {
+                try {
+                    const favoritos = await listarFavoritos();
+                    if (ativo) {
+                        setIdsFavoritos(favoritos.map((favorito) => favorito.id));
+                        setErroFavoritos(null);
+                    }
+                } catch (erroCarregamento) {
+                    if (ativo) {
+                        console.error("Não foi possível carregar os favoritos para o planejamento.", erroCarregamento);
+                        setErroFavoritos("Não foi possível carregar seus favoritos para priorizar as receitas.");
+                    }
+                }
+            }
+
+            void carregarFavoritos();
+            return () => {
+                ativo = false;
+            };
+        }, []),
+    );
 
     async function atualizarPlano(atualizado: PlanoSemanal) {
         setSalvando(true);
@@ -108,6 +138,22 @@ export default function Planejar() {
             });
     const diaModal = diasDaSemana.find((dia) => dia.id === diaSelecionado);
     const totalRefeicoes = diasDaSemana.reduce((total, dia) => total + plano[dia.id].length, 0);
+    const posicaoFavorito = new Map(idsFavoritos.map((id, indice) => [id, indice]));
+    const receitasParaSelecao = [...receitasDisponiveis].sort((a, b) => {
+        const posicaoA = posicaoFavorito.get(a.id);
+        const posicaoB = posicaoFavorito.get(b.id);
+
+        if (posicaoA !== undefined && posicaoB !== undefined) {
+            return posicaoA - posicaoB;
+        }
+        if (posicaoA !== undefined) {
+            return -1;
+        }
+        if (posicaoB !== undefined) {
+            return 1;
+        }
+        return 0;
+    });
 
     return (
         <>
@@ -280,21 +326,38 @@ export default function Planejar() {
                                         <Ionicons name="add-circle" size={24} color="#168A3A" />
                                     </Pressable>
                                 ))
-                                : receitasDisponiveis.map((receita) => (
-                                <Pressable
-                                    key={receita.id}
-                                    style={styles.opcaoReceita}
-                                    onPress={() => diaSelecionado && adicionarReceita(diaSelecionado, receita)}
-                                    disabled={salvando}
-                                >
-                                    <Image source={{ uri: receita.Imagem }} style={styles.imagemOpcao} />
-                                    <View style={styles.detalheOpcao}>
-                                        <Text style={styles.nomeOpcao}>{receita.titulo}</Text>
-                                        <Text style={styles.tempoOpcao}>{receita.duracao.replace("⏳ ", "")}</Text>
-                                    </View>
-                                    <Ionicons name="add-circle" size={24} color="#168A3A" />
-                                </Pressable>
-                            ))}
+                                : (
+                                    <>
+                                        {erroFavoritos && (
+                                            <View style={styles.avisoErro}>
+                                                <Text style={styles.textoErro}>{erroFavoritos}</Text>
+                                            </View>
+                                        )}
+                                        {receitasParaSelecao.map((receita) => (
+                                            <Pressable
+                                                key={receita.id}
+                                                style={styles.opcaoReceita}
+                                                onPress={() => diaSelecionado && adicionarReceita(diaSelecionado, receita)}
+                                                disabled={salvando}
+                                            >
+                                                <Image source={{ uri: receita.Imagem }} style={styles.imagemOpcao} />
+                                                <View style={styles.detalheOpcao}>
+                                                    <Text style={styles.nomeOpcao}>{receita.titulo}</Text>
+                                                    <Text style={styles.tempoOpcao}>{receita.duracao.replace("⏳ ", "")}</Text>
+                                                </View>
+                                                {idsFavoritos.includes(receita.id) && (
+                                                    <Ionicons
+                                                        name="heart"
+                                                        size={20}
+                                                        color="#e85d75"
+                                                        accessibilityLabel="Receita favorita"
+                                                    />
+                                                )}
+                                                <Ionicons name="add-circle" size={24} color="#168A3A" />
+                                            </Pressable>
+                                        ))}
+                                    </>
+                                )}
                         </ScrollView>
                     </View>
                 </View>
@@ -344,8 +407,8 @@ const styles = StyleSheet.create({
     },
     nomeMarca: {
         color: "#168A3A",
-        fontSize: 18,
-        fontWeight: "700",
+        fontSize: 24,
+        fontWeight: "bold",
         marginTop: 10,
     },
     cabecalho: {
