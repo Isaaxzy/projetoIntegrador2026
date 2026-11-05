@@ -335,9 +335,12 @@ const styles = StyleSheet.create({
         borderBottomColor: "#e1e9e2",
     },
     logo: {
-        width: 32,
-        height: 40,
-        resizeMode: "contain",
+        maxWidth: 40,
+        height: 60,
+        marginTop: -15,
+        marginLeft: 10,
+        alignSelf: 'center',
+        position: 'relative',
     },
     nomeMarca: {
         color: "#168A3A",

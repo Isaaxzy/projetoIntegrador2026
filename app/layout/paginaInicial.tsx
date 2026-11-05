@@ -311,8 +311,12 @@ imagef: {
 },
 
 image: {
-    width: 30,
-    height: 45,
+    maxWidth: 40,
+    height: 60,
+    marginTop: -15,
+    marginLeft: 10,
+    alignSelf: 'center',
+    position: 'relative',
 },
 
 image1: {
@@ -321,8 +325,9 @@ image1: {
 },
 
 image2: {
-    width: 25,
-    height: 25,
+    width: 30,
+    height: 30,
+    marginTop: 10,
     cursor: "pointer"
 },
 
