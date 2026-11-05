@@ -6,7 +6,7 @@ import { IntroScreen, introStyles } from '../../components/intro-screen';
 
 const itensIniciais = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada'];
 
-const itensIniciais2 = ['Até 15 min', 'Até 30 min', 'Até 45min', 'Até 1 hora', 'Até 1:30 horas', '2 horas ou mais'];
+const itensIniciais2 = ['Até 15 min', 'Até 30 min', 'Até 45min', 'Até 1 hora', 'Até 1h30', '2 horas ou mais'];
 
 export default function App() {
     const totalSteps = 7;

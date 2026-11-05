@@ -25,7 +25,7 @@ const itensIniciais5 = ['🍗 Frango', '🥩 Carne', '🥔 Batata', '🧀 Queijo
 
 const itensIniciais6 = ['💫 Comer melhor', '⚡ Encontrar receitas práticas', '💰 Economizar', '🌈 Variar minha alimentação', '🎓 Aprender a cozinhar', '📅 Encontrar receitas para rotina', '✨ Outro'];
 
-const itensIniciais7 = ['Até 15 min', 'Até 30 min', 'Até 45min', 'Até 1 hora', 'Até 1:30 horas', '2 horas ou mais'];
+const itensIniciais7 = ['Até 15 min', 'Até 30 min', 'Até 45min', 'Até 1 hora', 'Até 1h30', '2 horas ou mais'];
 
 const itensIniciais8 = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada'];
 
