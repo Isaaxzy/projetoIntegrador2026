@@ -26,6 +26,19 @@ export function logar() {
 
 }
 
+export function link() {
+
+    if (document.getElementById('email').value == '') {
+        alert('coloque seu e-mail para enviarmos o link de recuperação de senha');
+        
+    }
+    
+    else{
+        alert('Link de redefinição de senha enviado com sucesso! Aguardamos sua confirmação')
+}
+
+}
+
 export function etapa1(indicesMarcados = []) {
     var voce = [
         document.getElementById('nome').value,
