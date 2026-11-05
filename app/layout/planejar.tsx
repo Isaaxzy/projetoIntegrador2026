@@ -344,8 +344,8 @@ const styles = StyleSheet.create({
     },
     nomeMarca: {
         color: "#168A3A",
-        fontSize: 18,
-        fontWeight: "700",
+        fontSize: 24,
+        fontWeight: "bold",
         marginTop: 10,
     },
     cabecalho: {
