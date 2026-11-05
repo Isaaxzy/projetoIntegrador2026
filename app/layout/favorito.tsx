@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
 
-      Uptext:{
+    Uptext:{
         fontSize: 20,
         fontFamily: 'Arial, serif',
         fontWeight: 'bold',
@@ -162,12 +162,13 @@ const styles = StyleSheet.create({
     },
 
     logo: {
-        width: 40,
         maxWidth: 40,
         height: 60,
+        marginTop: -15,
         marginLeft: 10,
         alignSelf: 'center',
-    },
+        position: 'relative',
+        },
 
     prato:{
         width: '100%',
