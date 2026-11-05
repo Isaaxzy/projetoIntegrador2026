@@ -28,7 +28,7 @@ export function logar() {
 
 export function link() {
 
-    if (document.getElementById('email').value == '') {
+    if (document.getElementById('emai').value == '') {
         alert('coloque seu e-mail para enviarmos o link de recuperação de senha');
         
     }

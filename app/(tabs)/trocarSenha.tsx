@@ -1,4 +1,4 @@
-import { link } from '@/login info';
+import {link} from '@/login info'
 import { Link } from 'expo-router';
 import { View, StyleSheet, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 
@@ -19,7 +19,7 @@ export default function App() {
                   <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center",  }}>
                   <Text style={styles.label}>Endereço de email </Text>
                  </View>
-                  <input style={styles.input} type="email" id="email" placeholder="✉︎ você@exemplo.com" />
+                  <input style={styles.input} type="email" id="emai" placeholder="✉︎ você@exemplo.com" />
                   <View>
 
                     <Text onPress={() => link()} style={styles.loginButton}>Enviar link de redefinição</Text>
