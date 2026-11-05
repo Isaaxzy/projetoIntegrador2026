@@ -13,8 +13,8 @@ export default function App() {
             />
           </View>
           <View style={{ alignItems: "center", marginBottom: 20 }}>
-            <Text style={styles.texto}>Create your account</Text>
-            <Text style={styles.subtexto}>Sign up to get started</Text>
+            <Text style={styles.texto}>Crie sua conta</Text>
+            <Text style={styles.subtexto}>Registre-se para começar</Text>
           </View>
               <View style={styles.container}>
                 <TouchableOpacity style={styles.googleContainer}>
@@ -22,31 +22,31 @@ export default function App() {
                   source={require("../imagens/720255.png")}
                   style={styles.google}
                   />
-                  <Text>Continue with Google</Text>
+                  <Text>Continue com Google</Text>
                 </TouchableOpacity>
                 <View>
                   <Text style={styles.orText}>──────────── OR ────────────</Text>
                 </View>
                 <View style={styles.loginContainer}>
                   <Text style={styles.label}>Email:</Text>
-                  <input style={styles.input} type="email" id='email' placeholder="✉︎ you@example.com" />
+                  <input style={styles.input} type="email" id='email' placeholder="✉︎ voce@exemplo.com" />
                   <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center",  }}>
-                  <Text style={styles.label}>Password: </Text>
+                  <Text style={styles.label}>Senha: </Text>
                  </View>
-                  <input style={styles.input} type="password" id='password' placeholder="🔒︎ Enter your password" />
+                  <input style={styles.input} type="password" id='password' placeholder="🔒︎ Coloque sua senha" />
                   <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center",  }}>
-                  <Text style={styles.label}>Confirm Password: </Text>
+                  <Text style={styles.label}>Confirmar senha: </Text>
                  </View>
-                  <input style={styles.input} type="password" id='confpassw' placeholder="🔒︎ Confirm your password" />
+                  <input style={styles.input} type="password" id='confpassw' placeholder="🔒︎ Confirme sua senha" />
 
-                  <TouchableOpacity onPress={() => register()}><Text style={styles.loginButton}>Create Account</Text></TouchableOpacity>
+                  <TouchableOpacity onPress={() => register()}><Text style={styles.loginButton}>Criar conta</Text></TouchableOpacity>
 
                 </View>   
               </View>
               <View style={styles.signUpContainer}>
                
-                <Text>Already have an account?</Text>
-                <Link href="http://localhost:8081/"><TouchableOpacity><Text style={{ color: "#078523", fontWeight: "bold" }}>Log in</Text></TouchableOpacity></Link>
+                <Text>Já tem uma conta?</Text>
+                <Link href="/login"><TouchableOpacity><Text style={{ color: "#078523", fontWeight: "bold" }}>Login</Text></TouchableOpacity></Link>
               </View>
         </View>
       </View>

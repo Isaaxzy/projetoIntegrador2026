@@ -14,7 +14,18 @@ export function register() {
 
 }
 
-// ...existing code...
+export function logar() {
+
+    if (document.getElementById('email').value == '' || document.getElementById('password').value == '' || localStorage.getItem('conta') == null) {
+        alert('Não foi possivél efetuar seu login, verifique se os dados estão corretos');
+        
+    }
+    else{
+        localStorage.setItem('conta', JSON.stringify(conta));
+        window.location.href = 'http://localhost:8081/componentes/intro_comecar';
+    }
+
+}
 
 export function etapa1(indicesMarcados = []) {
     var voce = [

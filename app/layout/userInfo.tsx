@@ -23,7 +23,7 @@ const itensIniciais4 = ['🧅 Cebola', '🧄 Alho', '🍅 Tomate', '🐟 Peixe',
 
 const itensIniciais5 = ['🍗 Frango', '🥩 Carne', '🥔 Batata', '🧀 Queijo', '🍫 Chocolate', '🍓 Morango', '🍝 Massas', '🍚 Arroz', '🥚 Ovo', '🍅 Tomate', '🥕 Cenoura', '🥑 Abacate', '🐟 Salmão', '🍋 Limão', '🌽 Milho', '🫘 Feijão' ];
 
-const itensIniciais6 = ['💫 Comer melhor', '⚡ Encontrar receitas práticas', '💰 Economizar', '🌈 Variar minha alimentação', '🎓 Aprender a cozinhar', '📅 Encontrar receitas para minha rotina', '✨ Outro'];
+const itensIniciais6 = ['💫 Comer melhor', '⚡ Encontrar receitas práticas', '💰 Economizar', '🌈 Variar minha alimentação', '🎓 Aprender a cozinhar', '📅 Encontrar receitas para rotina', '✨ Outro'];
 
 const itensIniciais7 = ['Até 15 min', 'Até 30 min', 'Até 45min', 'Até 1 hora', 'Até 1:30 horas', '2 horas ou mais'];
 
@@ -503,7 +503,7 @@ const styles = StyleSheet.create({
   },
 
   item: {
-    fontSize: 15,
+    fontSize: 18,
   },
 
   concluido: {
