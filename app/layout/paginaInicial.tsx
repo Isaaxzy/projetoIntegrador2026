@@ -313,7 +313,7 @@ imagef: {
 image: {
     maxWidth: 40,
     height: 60,
-    marginTop: -15,
+    marginTop: -6,
     marginLeft: 10,
     alignSelf: 'center',
     position: 'relative',
