@@ -3661,6 +3661,586 @@ export const receitasMaisProcuradas: Receita[] = [
 
   },
 
+
+  {
+
+    id: '3pp',
+
+    titulo: 'Crepe suíço',
+
+    cor: '#d6a65d',
+
+    Imagem: 'https://tse3.mm.bing.net/th/id/OIP.8JdhWZqNgdFj-OUWpmXrlAHaEs?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+
+    descrição: 'Crepe suíço feito com uma massa macia e levemente dourada, preparado na crepeira e servido no palito.',
+
+    info: 'Leite, farinha de trigo, ovo e queijo parmesão ralado',
+
+    dificuldade: '👨‍🍳 Fácil',
+
+    duracao: '30min',
+
+    categorias: ['⭐ Todas', '🍳 Café da manhã', '🥖 Lanches', '⚡ Rápidas'],
+
+    condicoes: ['Ovolactovegetariano'],
+
+    ingredientes: [
+
+      { nome: 'Leite', unidade: '2 copos' },
+
+      { nome: 'Margarina', unidade: '1 colher (sopa)' },
+
+      { nome: 'Farinha de trigo', unidade: '2 copos' },
+
+      { nome: 'Amido de milho', unidade: '1 e 1/2 colher' },
+
+      { nome: 'Fermento em pó químico', unidade: '1 colher' },
+
+      { nome: 'Queijo parmesão ralado', unidade: '1/2 colher' },
+
+      { nome: 'Sal', unidade: '1/2 colher (sobremesa)' },
+
+      { nome: 'Ovo', unidade: '1 unidade' },
+
+    ],
+
+    modoDePreparo: [
+
+      'Coloque todos os ingredientes no liquidificador.',
+
+      'Bata até obter uma massa homogênea.',
+
+      'Deixe a massa descansar por 15 minutos.',
+
+      'Aqueça e unte a forma própria para crepe suíço.',
+
+      'Coloque uma porção de massa na forma.',
+
+      'Se desejar, acrescente o recheio de sua preferência.',
+
+      'Cubra com mais um pouco de massa.',
+
+      'Feche a forma e leve ao fogo até o crepe ficar dourado.',
+
+      'Retire com cuidado e sirva.',
+
+    ],
+
+  },
+
+  {
+
+    id: '3rr',
+
+    titulo: 'Ovos mexidos',
+
+    cor: '#e8bd54',
+
+    Imagem: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80',
+
+    descrição: 'Ovos mexidos cremosos preparados com manteiga e leite, perfeitos para um café da manhã simples e saboroso.',
+
+    info: 'Ovos, manteiga, leite e sal',
+
+    dificuldade: '👨‍🍳 Muito Fácil',
+
+    duracao: '5min',
+
+    categorias: ['⭐ Todas', '🍳 Café da manhã', '⚡ Rápidas', '💰 Econômicas'],
+
+    condicoes: ['Ovolactovegetariano', 'Low carb'],
+
+    ingredientes: [
+
+      { nome: 'Ovos', unidade: '4 unidades' },
+
+      { nome: 'Manteiga', unidade: '1 colher (sopa)' },
+
+      { nome: 'Leite', unidade: '100 ml' },
+
+      { nome: 'Sal', unidade: 'A gosto' },
+
+    ],
+
+    modoDePreparo: [
+
+      'Passe toda a manteiga no fundo de uma frigideira.',
+
+      'Quebre os ovos diretamente na frigideira, sobre a manteiga.',
+
+      'Quebre as gemas com cuidado, sem mexer completamente os ovos.',
+
+      'Leve a frigideira ao fogo baixo.',
+
+      'Espere a clara começar a cozinhar antes de mexer.',
+
+      'Quando a gema começar a ficar cozida, acrescente o leite.',
+
+      'Mexa vigorosamente para misturar o leite e a manteiga do fundo da frigideira.',
+
+      'Não deixe cozinhar demais: os ovos devem ficar úmidos e cremosos.',
+
+      'Adicione o sal a gosto e sirva imediatamente.',
+
+    ],
+
+  },
+
+  {
+
+    id: '3ss',
+
+    titulo: 'Massa de pastel de forno',
+
+    cor: '#d9b47c',
+
+    Imagem: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80',
+
+    descrição: 'Massa caseira de pastel de forno, macia e fácil de preparar, que pode receber diferentes tipos de recheio.',
+
+    info: 'Farinha de trigo, leite, ovos e manteiga',
+
+    dificuldade: '👨‍🍳 Fácil',
+
+    duracao: '30min',
+
+    categorias: ['⭐ Todas', '🥖 Lanches', '💰 Econômicas'],
+
+    condicoes: ['Ovolactovegetariano'],
+
+    ingredientes: [
+
+      { nome: 'Farinha de trigo', unidade: '2 xícaras (chá)' },
+
+      { nome: 'Leite', unidade: '1/2 xícara (chá)' },
+
+      { nome: 'Ovos', unidade: '2 unidades (1 para a massa e 1 para pincelar)' },
+
+      { nome: 'Manteiga', unidade: '2 colheres (sopa)' },
+
+      { nome: 'Fermento em pó químico', unidade: '1 colher (sopa)' },
+
+      { nome: 'Sal', unidade: 'A gosto' },
+
+      { nome: 'Recheio de sua preferência', unidade: 'A gosto' },
+
+    ],
+
+    modoDePreparo: [
+
+      'Coloque a farinha de trigo, o leite, 1 ovo, a manteiga, o fermento e o sal em uma tigela.',
+
+      'Misture todos os ingredientes e amasse com as mãos até formar uma massa uniforme.',
+
+      'Deixe a massa descansar por alguns minutos.',
+
+      'Abra a massa com um rolo sobre uma superfície limpa e enfarinhada.',
+
+      'Corte a massa no formato desejado para os pastéis.',
+
+      'Coloque o recheio de sua preferência no centro de cada pedaço.',
+
+      'Pincele clara de ovo nas bordas para ajudar a fechar os pastéis.',
+
+      'Dobre a massa e pressione as bordas para fechar.',
+
+      'Pincele a gema do segundo ovo sobre os pastéis.',
+
+      'Coloque em uma assadeira e leve ao forno moderado até ficarem dourados.',
+
+    ],
+
+  },
+
+  {
+
+    id: '3tt',
+
+    titulo: 'Empada de frango',
+
+    cor: '#d6a36a',
+
+    Imagem: 'https://tse4.mm.bing.net/th/id/OIP.Bx12cDK7ynm2u6swtRkEtAHaDz?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+
+    descrição: 'Empadinhas de massa leve e amanteigada, recheadas com frango cremoso, legumes e azeitonas.',
+
+    info: 'Frango desfiado, farinha de trigo, manteiga, ervilha e leite',
+
+    dificuldade: '👨‍🍳 Média',
+
+    duracao: '40min',
+
+    categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🥖 Lanches'],
+
+    condicoes: ['Flexitariano', 'High protein'],
+
+    ingredientes: [
+
+      { nome: 'Farinha de trigo', unidade: '4 xícaras (chá) + 1 e 1/2 colheres (sopa)' },
+
+      { nome: 'Ovo', unidade: '1 unidade' },
+
+      { nome: 'Gemas de ovo', unidade: '3 unidades' },
+
+      { nome: 'Manteiga ou margarina', unidade: '4 colheres (sopa)' },
+
+      { nome: 'Gordura vegetal', unidade: '1 xícara (chá)' },
+
+      { nome: 'Sal', unidade: 'A gosto' },
+
+      { nome: 'Peito de frango cozido e desfiado', unidade: '500 g' },
+
+      { nome: 'Tomates grandes', unidade: '2 unidades' },
+
+      { nome: 'Cebola média', unidade: '1 unidade' },
+
+      { nome: 'Alho', unidade: '2 dentes' },
+
+      { nome: 'Pimentão verde picado', unidade: '1 colher (sobremesa)' },
+
+      { nome: 'Azeite', unidade: '1 colher (sopa)' },
+
+      { nome: 'Ervilha', unidade: '1 lata' },
+
+      { nome: 'Salsinha', unidade: 'A gosto' },
+
+      { nome: 'Azeitonas verdes sem caroço', unidade: '14 unidades' },
+
+      { nome: 'Leite', unidade: '250 ml' },
+
+    ],
+
+    modoDePreparo: [
+
+      'Em uma tigela grande, coloque os ingredientes da massa: a farinha de trigo, o ovo, 1 gema, a manteiga ou margarina, a gordura vegetal e o sal.',
+
+      'Misture bem até formar uma massa homogênea, adicionando a farinha aos poucos.',
+
+      'Se a massa ficar muito grudenta, acrescente um pouco mais de farinha. Se ficar ressecada, adicione um pouco mais de manteiga ou margarina.',
+
+      'Embrulhe a massa em plástico-filme e deixe descansar enquanto prepara o recheio.',
+
+      'Em uma panela, refogue no azeite a cebola, o alho, os tomates e o pimentão picados.',
+
+      'Acrescente o frango cozido e desfiado e refogue por mais alguns minutos.',
+
+      'Adicione a farinha de trigo e misture bem.',
+
+      'Acrescente o leite de uma só vez, mexendo rapidamente para formar um creme.',
+
+      'Junte as ervilhas, tempere com sal e acrescente a salsinha.',
+
+      'Quando o recheio engrossar, desligue o fogo e deixe esfriar.',
+
+      'Forre as forminhas de empada com pequenas porções de massa, pressionando contra o fundo e as laterais sem deixar a camada muito grossa.',
+
+      'Reserve um pouco de massa para fazer as tampinhas.',
+
+      'Abra o restante da massa entre duas folhas de plástico-filme com a ajuda de um rolo.',
+
+      'Corte discos um pouco maiores que o diâmetro das forminhas.',
+
+      'Coloque o recheio já frio nas forminhas e acrescente uma azeitona em cada empada.',
+
+      'Cubra com os discos de massa e pressione as bordas com os dedos para fechar.',
+
+      'Bata as gemas restantes e pincele sobre as empadas.',
+
+      'Leve ao forno preaquecido até ficarem douradas, por aproximadamente 20 minutos.',
+
+      'Espere esfriar antes de desenformar.',
+
+    ],
+
+  },
+
+  {
+
+    id: '3uu',
+
+    titulo: 'Chá de hortelã com limão e mel',
+
+    cor: '#8ba77b',
+
+    Imagem: 'https://i.pinimg.com/originals/b8/7f/c4/b87fc4f73a3b27cec0127e0c0b83d653.jpg',
+
+    descrição: 'Chá aromático de hortelã com limão e mel, uma bebida quentinha, levemente cítrica e naturalmente adocicada.',
+
+    info: 'Água, hortelã fresca, limão e mel',
+
+    dificuldade: '👨‍🍳 Fácil',
+
+    duracao: '15min',
+
+    categorias: ['⭐ Todas', '🥗 Saudáveis', '⚡ Rápidas', '💰 Econômicas'],
+
+    condicoes: ['Vegano'],
+
+    ingredientes: [
+
+      { nome: 'Água', unidade: '1 xícara (chá)' },
+
+      { nome: 'Hortelã fresca', unidade: '8 folhas' },
+
+      { nome: 'Limão', unidade: '1/2 unidade' },
+
+      { nome: 'Mel', unidade: '2 colheres (chá)' },
+
+    ],
+
+    modoDePreparo: [
+
+      'Coloque a água em uma panela e leve ao fogo até ferver.',
+
+      'Desligue o fogo e adicione as folhas de hortelã.',
+
+      'Tampe a panela e deixe em infusão por 5 a 10 minutos.',
+
+      'Esprema metade do limão no chá.',
+
+      'Acrescente o mel e misture bem.',
+
+      'Sirva quente, mantendo as folhas de hortelã ou retirando-as antes de beber.',
+
+    ],
+
+  },
+
+  {
+
+    id: '3vv',
+
+    titulo: 'Chocolate quente sem leite ou leite condensado',
+
+    cor: '#70452f',
+
+    Imagem: 'https://assets.unileversolutions.com/recipes-v2/54812.jpg',
+
+    descrição: 'Chocolate quente cremoso preparado com água e poucos ingredientes, ideal para aquecer os dias frios.',
+
+    info: 'Achocolatado em pó, margarina, água e amido de milho',
+
+    dificuldade: '👨‍🍳 Muito Fácil',
+
+    duracao: '5min',
+
+    categorias: ['⭐ Todas', '🥖 Lanches', '⚡ Rápidas', '💰 Econômicas'],
+
+    condicoes: ['Ovolactovegetariano'],
+
+    ingredientes: [
+
+      { nome: 'Achocolatado em pó', unidade: '2 colheres (sopa)' },
+
+      { nome: 'Margarina', unidade: '1 colher (sopa)' },
+
+      { nome: 'Água filtrada ou fervida', unidade: '1/2 copo' },
+
+      { nome: 'Amido de milho', unidade: '1 colher (sopa) rasa' },
+
+    ],
+
+    modoDePreparo: [
+
+      'Coloque o achocolatado em pó e a margarina em uma panela.',
+
+      'Leve ao fogo e misture os ingredientes.',
+
+      'Em outro recipiente, dissolva o amido de milho na água.',
+
+      'Quando a mistura de chocolate e margarina começar a ferver, acrescente a água com o amido dissolvido.',
+
+      'Mexa continuamente até a mistura engrossar e atingir uma consistência semelhante à de brigadeiro mole.',
+
+      'Desligue o fogo.',
+
+      'Coloque o chocolate quente em uma caneca e sirva.',
+
+    ],
+
+  },
+
+  {
+
+    id: '3ww',
+
+    titulo: 'Piña Colada sem álcool',
+
+    cor: '#e8d6a0',
+
+    Imagem: 'https://tse3.mm.bing.net/th/id/OIP.iPg5m7K2YbB4dL9hslR2hgHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+
+    descrição: 'Bebida tropical, cremosa e refrescante, preparada com abacaxi e leite de coco.',
+
+    info: 'Abacaxi, leite de coco, leite condensado e gelo',
+
+    dificuldade: '👨‍🍳 Muito Fácil',
+
+    duracao: '5min',
+
+    categorias: ['⭐ Todas', '⚡ Rápidas'],
+
+    condicoes: ['Ovolactovegetariano'],
+
+    ingredientes: [
+
+      { nome: 'Abacaxi picado', unidade: '1 xícara (chá)' },
+
+      { nome: 'Leite de coco', unidade: '100 ml' },
+
+      { nome: 'Leite condensado', unidade: '3 colheres (sopa)' },
+
+      { nome: 'Gelo', unidade: 'A gosto' },
+
+    ],
+
+    modoDePreparo: [
+
+      'Descasque o abacaxi e corte em pedaços pequenos.',
+
+      'Coloque o abacaxi no liquidificador.',
+
+      'Acrescente o leite de coco e o leite condensado.',
+
+      'Adicione o gelo a gosto.',
+
+      'Bata todos os ingredientes até obter uma mistura cremosa e homogênea.',
+
+      'Despeje em copos ou taças.',
+
+      'Se desejar, decore com um pedaço de abacaxi e sirva imediatamente.',
+
+    ],
+
+  },
+
+  {
+
+    id: '3xx',
+
+    titulo: 'Suco de milho',
+
+    cor: '#e6c65c',
+
+    Imagem: 'https://www.portalumami.com.br/app/uploads/2023/11/Suco-de-milho01crop.jpg',
+
+    descrição: 'Suco cremoso de milho verde, preparado com leite e leite condensado, ideal para servir bem gelado.',
+
+    info: 'Milho verde, leite, açúcar, água e leite condensado',
+
+    dificuldade: '👨‍🍳 Média',
+
+    duracao: '1h',
+
+    categorias: ['⭐ Todas', '🍳 Café da manhã', '🥖 Lanches'],
+
+    condicoes: ['Ovolactovegetariano'],
+
+    ingredientes: [
+
+      { nome: 'Espigas de milho', unidade: '5 unidades' },
+
+      { nome: 'Açúcar', unidade: '1 xícara (chá)' },
+
+      { nome: 'Leite', unidade: '6 xícaras (chá)' },
+
+      { nome: 'Água', unidade: '3 xícaras (chá)' },
+
+      { nome: 'Leite condensado', unidade: '1/4 de lata' },
+
+    ],
+
+    modoDePreparo: [
+
+      'Retire os grãos de milho das espigas com uma faca.',
+
+      'Coloque no liquidificador o milho, 3 xícaras de leite, 1 e 1/2 xícara de água e o açúcar.',
+
+      'Bata até obter uma mistura homogênea.',
+
+      'Se desejar, passe a mistura por uma peneira.',
+
+      'Transfira para uma panela e leve ao fogo, mexendo até engrossar bem.',
+
+      'Desligue o fogo e deixe esfriar completamente.',
+
+      'Coloque a mistura já fria no liquidificador.',
+
+      'Acrescente o restante do leite, da água e o leite condensado.',
+
+      'Bata novamente até ficar cremoso.',
+
+      'Leve à geladeira até ficar bem gelado.',
+
+      'Sirva gelado.',
+
+    ],
+
+  },
+
+  {
+
+    id: '3yy',
+
+    titulo: 'Espetinho de legumes vegetariano',
+
+    cor: '#75a66b',
+
+    Imagem: 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/10/Espetinho-legumes.jpg',
+
+    descrição: 'Espetinhos coloridos de legumes com queijo coalho, empanados e preparados até ficarem douradinhos.',
+
+    info: 'Cebola, pimentão, tomate, queijo coalho, ovo e farinha de rosca',
+
+    dificuldade: '👨‍🍳 Fácil',
+
+    duracao: '20min',
+
+    categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🥗 Saudáveis'],
+
+    condicoes: ['Ovolactovegetariano'],
+
+    ingredientes: [
+
+      { nome: 'Cebola grande', unidade: '1 unidade' },
+
+      { nome: 'Pimentões médios', unidade: '2 unidades' },
+
+      { nome: 'Queijo coalho', unidade: '1/3 de peça' },
+
+      { nome: 'Tomate sem miolo', unidade: '1 unidade' },
+
+      { nome: 'Ovo', unidade: '1 unidade' },
+
+      { nome: 'Farinha de rosca', unidade: 'A gosto' },
+
+      { nome: 'Óleo', unidade: 'Para fritar' },
+
+    ],
+
+    modoDePreparo: [
+
+      'Corte a cebola em quatro partes.',
+
+      'Corte os pimentões em pedaços compridos.',
+
+      'Corte o tomate em quatro partes e retire o miolo.',
+
+      'Corte o queijo coalho em quadradinhos.',
+
+      'Monte os espetinhos nos palitos, intercalando a cebola, o tomate, o queijo e o pimentão.',
+
+      'Passe os espetinhos no ovo batido.',
+
+      'Em seguida, passe na farinha de rosca, cobrindo os ingredientes.',
+
+      'Ajuste o tamanho dos palitos para que caibam no recipiente utilizado no preparo.',
+
+      'Prepare até ficarem douradinhos e sirva.',
+
+    ],
+
+  },
 ];
 
 
