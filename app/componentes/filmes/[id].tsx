@@ -146,8 +146,8 @@ export default function Filme() {
               >
                 <View style={[
                   styles.checkbox,
-                  (index === 0 ? favorito : itensMarcados[index]) &&
-                    (index === 0 ? styles.marcado : styles.jaFeitoMarcado),
+                  index === 0 && favorito && styles.marcado,
+                  index !== 0 && itensMarcados[index] && styles.feito,
                 ]}>
                   <Text style={[
                     styles.item,
@@ -417,15 +417,14 @@ concluido: {
 },
 
 marcado: {
-  backgroundColor: "#d61a1a",
+  backgroundColor: "#eb3c25",
   borderColor: "#168A3A",
   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
 },
 
-jaFeitoMarcado: {
+feito: {
   backgroundColor: "#168A3A",
-  borderColor: "#168A3A",
-  boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2) inset",
+  boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
 },
 
 checkbox: {

@@ -15,6 +15,7 @@ import {
     receitasMaisProcuradas,
     receitasRecomendadas,
     receitasSobremesas,
+    removerReceitasDuplicadas,
     type Receita,
 } from "../componentes/coisas";
 import {
@@ -28,11 +29,12 @@ import {
 import Carregamento from "../../components/Carregamento";
 import { listarFavoritos } from "../servicos/favoritos";
 
-const receitasDisponiveis = [
+const receitasDisponiveis = removerReceitasDuplicadas([
     ...receitasRecomendadas,
     ...receitasSobremesas,
     ...receitasMaisProcuradas,
-];
+]);
+const receitasRecomendadasUnicas = removerReceitasDuplicadas(receitasRecomendadas);
 
 export default function Planejar() {
     const { width } = useWindowDimensions();
@@ -187,7 +189,7 @@ export default function Planejar() {
 
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                     <View style={styles.listaReceitas}>
-                        {receitasRecomendadas.map((receita) => (
+                        {receitasRecomendadasUnicas.map((receita) => (
                             <View key={receita.id} style={styles.cartaoReceita}>
                                 <Image source={{ uri: receita.Imagem }} style={styles.imagemReceita} />
                                 <Text style={styles.nomeReceita} numberOfLines={2}>

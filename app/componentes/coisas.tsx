@@ -70,8 +70,30 @@ export type Receita = {
 
 };
 
+export function removerReceitasDuplicadas(receitas: Receita[]): Receita[] {
+  const ids = new Set<string>();
+  const titulos = new Set<string>();
 
+  return receitas.filter((receita) => {
+    const tituloNormalizado = receita.titulo
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .toLocaleLowerCase('pt-BR');
 
+    if (ids.has(receita.id) || titulos.has(tituloNormalizado)) {
+      return false;
+    }
+
+    ids.add(receita.id);
+    titulos.add(tituloNormalizado);
+    return true;
+  });
+}
+ 
+ 
+ 
 export const receitasRecomendadas: Receita[] = [
 
   {
