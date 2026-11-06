@@ -16,7 +16,7 @@ export function register() {
 
 export function logar() {
 
-    if (document.getElementById('email').value == '' || document.getElementById('password').value == '' || localStorage.getItem('conta') == null) {
+    if (document.getElementById('email').value == '' || document.getElementById('password').value == '' || localStorage.getItem('conta') == null || document.getElementById('email').value != JSON.parse(localStorage.getItem('conta'))[0] || document.getElementById('password').value != JSON.parse(localStorage.getItem('conta'))[1]) {
         alert('Não foi possivél efetuar seu login, verifique se os dados estão corretos');
         
     }
