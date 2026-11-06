@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
   TextInput,
   Pressable,
-  ScrollView
+  ScrollView,
+  Alert,
 } from 'react-native';
 import { infoSet } from '../../login info'
 import Carregamento from '../../components/Carregamento';
@@ -61,6 +62,7 @@ function lerValor<T>(key: string, valorPadrao: T): T {
 export default function App() {
 
   const [carregando, setCarregando] = useState(true);
+  const [salvando, setSalvando] = useState(false);
   const [nome, setNome] = useState('');
   const [pessoas, setPessoas] = useState('');
   const [idade, setIdade] = useState('');
@@ -178,17 +180,30 @@ export default function App() {
     setDificuldadeMarcados(index === dificuldadeMarcados ? null : index);
   };
 
-  const salvarInformacoes = () => infoSet({
-    voce: [nome, pessoas, idade],
-    nivelExperienciaIndices: experienciaSelecionada === null ? [] : [experienciaSelecionada],
-    Alimentacao: restricoesSelecionadas.map((id) => id - 1),
-    Alergias: alergiasMarcadas.flatMap((marcada, index) => marcada ? [index] : []),
-    Desgostos: ingredientesEvitaMarcados.flatMap((marcado, index) => marcado ? [index] : []),
-    Gostos: ingredientesPrefereMarcados.flatMap((marcado, index) => marcado ? [index] : []),
-    Objetivos: objetivosMarcados,
-    Tempo: tempoMarcados.flatMap((marcado, index) => marcado ? [index] : []),
-    Tipo: dificuldadeMarcados === null ? [] : [dificuldadeMarcados],
-  });
+  const salvarInformacoes = async () => {
+    if (salvando) return;
+
+    setSalvando(true);
+    try {
+      await new Promise<void>((resolver) => setTimeout(resolver, 450));
+      infoSet({
+        voce: [nome, pessoas, idade],
+        nivelExperienciaIndices: experienciaSelecionada === null ? [] : [experienciaSelecionada],
+        Alimentacao: restricoesSelecionadas.map((id) => id - 1),
+        Alergias: alergiasMarcadas.flatMap((marcada, index) => marcada ? [index] : []),
+        Desgostos: ingredientesEvitaMarcados.flatMap((marcado, index) => marcado ? [index] : []),
+        Gostos: ingredientesPrefereMarcados.flatMap((marcado, index) => marcado ? [index] : []),
+        Objetivos: objetivosMarcados,
+        Tempo: tempoMarcados.flatMap((marcado, index) => marcado ? [index] : []),
+        Tipo: dificuldadeMarcados === null ? [] : [dificuldadeMarcados],
+      });
+    } catch (error) {
+      console.error('Não foi possível salvar as informações do perfil.', error);
+      Alert.alert('Erro ao salvar', 'Não foi possível salvar suas informações. Tente novamente.');
+    } finally {
+      setSalvando(false);
+    }
+  };
 
   return (
     <>
@@ -419,6 +434,8 @@ export default function App() {
             style={styles.ButtonRota}
             onPress={salvarInformacoes}
             accessibilityRole="button"
+            disabled={salvando}
+            accessibilityState={{ busy: salvando, disabled: salvando }}
           >
             <Image
               style={styles.buttonIcon}
@@ -429,7 +446,10 @@ export default function App() {
         </View>
       </View>
     </View>
-    <Carregamento visivel={carregando} mensagem="Carregando seu perfil..." />
+    <Carregamento
+      visivel={carregando || salvando}
+      mensagem={salvando ? "Salvando suas informações..." : "Carregando seu perfil..."}
+    />
     </>
   );
 }

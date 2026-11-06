@@ -30,7 +30,7 @@ export default function Carregamento({
           contentFit="contain"
           accessibilityLabel="Animação de um cronômetro verde carregando"
         />
-        <Text style={styles.mensagem}>Carregando...</Text>
+        <Text style={styles.mensagem}>{mensagem}</Text>
       </View>
     </Modal>
   );
