@@ -1,13 +1,15 @@
 import { View, StyleSheet, Text, TouchableOpacity, Image, ScrollView, Pressable, Alert } from 'react-native';
 import DadosDosFilmes, { type Receita } from '../coisas';
-import { Link, useLocalSearchParams } from 'expo-router';
+import { Link, useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { adicionarFavorito, listarFavoritos, removerFavorito } from '../../servicos/favoritos';
 import Carregamento from '../../../components/Carregamento';
-
+import { Ionicons } from '@expo/vector-icons';
 const itensIniciais = ['Favoritar', '✓ Já fiz essa receita'];
 
 export default function Filme() {
+  const router = useRouter();
+
   const { id, origem } = useLocalSearchParams<{ id: string; origem?: string }>();
   const destinoVoltar = origem === 'favorito'
     ? '../../layout/favorito'
@@ -144,7 +146,8 @@ export default function Filme() {
               >
                 <View style={[
                   styles.checkbox,
-                  (index === 0 ? favorito : itensMarcados[index]) && styles.marcado,
+                  index === 0 && favorito && styles.marcado,
+                  index !== 0 && itensMarcados[index] && styles.feito,
                 ]}>
                   <Text style={[
                     styles.item,
@@ -189,6 +192,14 @@ export default function Filme() {
       <Text style={styles.setaVoltar}>←</Text>
      </TouchableOpacity>
      </Link>
+        <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Abrir chat de ajuda com receitas"
+            onPress={() => router.push('/layout/chat')}
+            style={styles.botaoChat}
+        >
+            <Ionicons name="chatbubble-ellipses" size={27} color="#ffffff" />
+        </Pressable>
     </View>
     
   );
@@ -210,6 +221,23 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingBottom: 20,
   },
+
+    botaoChat:{
+    position: "absolute",
+    right: 20,
+    bottom: 10,
+    width: 58,
+    height: 58,
+    borderRadius: 29,
+    backgroundColor: "#168A3A",
+    alignItems: "center",
+    justifyContent: "center",
+    elevation: 6,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    },
 
   container2: {
     marginTop: 15,
@@ -385,12 +413,17 @@ item: {
 },
 
 concluido: {
-  color: '#ffffff',
+  color: '#f5f5f5',
 },
 
 marcado: {
-  backgroundColor: "#168A3A",
+  backgroundColor: "#eb3c25",
   borderColor: "#168A3A",
+  boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
+},
+
+feito: {
+  backgroundColor: "#168A3A",
   boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.8) inset",
 },
 

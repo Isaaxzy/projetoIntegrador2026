@@ -21,13 +21,14 @@ export default function renderCategoria({ item } : {item:any}) {
             >
              <Text style={{width: "70%", alignSelf: "flex-end", textAlign: "center", padding: 5, fontSize: 10,              backgroundColor: "#168A3Ab0", margin: 7, borderRadius: 20, color: "#ffffff"}}>☆ Combina com você</Text>
             </ImageBackground>
-              <Text style={styles.filmeTitulo}>{item.titulo}
+              <Text style={styles.filmeTitulo} numberOfLines={2} ellipsizeMode="tail">
+                {item.titulo}
               </Text>
-              <View style={{flexDirection: "row", flexWrap: "wrap"}}>
-              <Text style={styles.filmedescricao}>{item.duracao}</Text>
-              <Text style={styles.filmedescricao}>{item.dificuldade}</Text>
+              <View style={styles.detalhesReceita}>
+              <Text style={styles.filmedescricao} numberOfLines={1} ellipsizeMode="tail">{item.duracao}</Text>
+              <Text style={styles.filmedescricao} numberOfLines={1} ellipsizeMode="tail">{item.dificuldade}</Text>
               </View>
-              <Text style={styles.info}>{item.info}</Text>
+              <Text style={styles.info} numberOfLines={2} ellipsizeMode="tail">{item.info}</Text>
               </View>
            </View>
            </TouchableOpacity>
@@ -57,11 +58,6 @@ const styles = StyleSheet.create({
 
   },
 
-  info:{
-    color: "#5a5a5a",
-    padding: 5
-  },
-
   imagem: {
     width: 154,
     height: 110,
@@ -82,7 +78,7 @@ const styles = StyleSheet.create({
   },
   filme:{
     width: 175,
-    minHeight: 240,
+    height: 260,
     backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: '#e1e9e2',
@@ -95,11 +91,24 @@ const styles = StyleSheet.create({
     color: '#0f0f0f',
     fontSize: 20,
     padding: 3, 
+    height: 52,
+    lineHeight: 22,
 
   },
+  detalhesReceita: {
+    flexDirection: 'row',
+  },
   filmedescricao: {
+    flex: 1,
+    minWidth: 0,
     padding: 2,
     color: "#6d6d6d"
+  },
+  info: {
+    color: "#5a5a5a",
+    padding: 5,
+    height: 42,
+    lineHeight: 18,
   },
        
 });
