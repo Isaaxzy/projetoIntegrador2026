@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text, Image, Pressable, FlatList, ScrollView, TextInput } from 'react-native';
 import { useEffect, useState } from 'react';
-import { Link, useRouter } from 'expo-router';
+import { Link, useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import Carregamento from '../../components/Carregamento';
 import {
@@ -25,6 +25,12 @@ const itensIniciais = [
 
 export default function App() {
     const router = useRouter();
+    const parametrosBusca = useLocalSearchParams<{
+        restaurarPesquisa?: string;
+        ingredientes?: string;
+        textoIngredientes?: string;
+        categoria?: string;
+    }>();
     // Hooks precisam ficar dentro do componente para que o React acompanhe seu estado.
     const [carregando, setCarregando] = useState(true);
     const [nomeUsuario, setNomeUsuario] = useState('');
@@ -32,6 +38,29 @@ export default function App() {
         useState<(typeof itensIniciais)[number]>(itensIniciais[0]);
     const [textoIngredientes, setTextoIngredientes] = useState('');
     const [ingredientesBusca, setIngredientesBusca] = useState<string[]>([]);
+
+    useEffect(() => {
+        if (parametrosBusca.restaurarPesquisa !== '1') {
+            return;
+        }
+
+        const ingredientesRestaurados = (parametrosBusca.ingredientes ?? '')
+            .split(',')
+            .map((ingrediente) => ingrediente.trim())
+            .filter((ingrediente) => ingrediente.length > 0);
+        const categoriaRestaurada = itensIniciais.find(
+            (categoria) => categoria === parametrosBusca.categoria,
+        );
+
+        setIngredientesBusca(ingredientesRestaurados);
+        setTextoIngredientes(parametrosBusca.textoIngredientes ?? ingredientesRestaurados.join(', '));
+        setCategoriaSelecionada(categoriaRestaurada ?? itensIniciais[0]);
+    }, [
+        parametrosBusca.restaurarPesquisa,
+        parametrosBusca.ingredientes,
+        parametrosBusca.textoIngredientes,
+        parametrosBusca.categoria,
+    ]);
 
     useEffect(() => {
         try {
@@ -208,7 +237,14 @@ export default function App() {
                             <FlatList
                                 data={[{ id: 'recomendadas', filmes: recomendadasFiltradas }]}
                                 keyExtractor={(item) => item.id}
-                                renderItem={renderCategoria}
+                                renderItem={({ item }) => renderCategoria({
+                                    item,
+                                    returnState: {
+                                        ingredientes: ingredientesBusca.join(','),
+                                        textoIngredientes,
+                                        categoria: categoriaSelecionada,
+                                    },
+                                })}
                             />
                         </>
                     )}
@@ -218,7 +254,14 @@ export default function App() {
                             <FlatList
                                 data={[{ id: 'sobremesas', filmes: sobremesasFiltradas }]}
                                 keyExtractor={(item) => item.id}
-                                renderItem={renderCategoria}
+                                renderItem={({ item }) => renderCategoria({
+                                    item,
+                                    returnState: {
+                                        ingredientes: ingredientesBusca.join(','),
+                                        textoIngredientes,
+                                        categoria: categoriaSelecionada,
+                                    },
+                                })}
                             />
                         </>
                     )}
@@ -228,7 +271,14 @@ export default function App() {
                             <FlatList
                                 data={[{ id: 'mais-procuradas', filmes: maisProcuradasFiltradas }]}
                                 keyExtractor={(item) => item.id}
-                                renderItem={renderCategoria}
+                                renderItem={({ item }) => renderCategoria({
+                                    item,
+                                    returnState: {
+                                        ingredientes: ingredientesBusca.join(','),
+                                        textoIngredientes,
+                                        categoria: categoriaSelecionada,
+                                    },
+                                })}
                             />
                         </>
                     )}

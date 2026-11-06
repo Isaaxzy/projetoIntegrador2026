@@ -1,6 +1,6 @@
-import { View, StyleSheet, Text, TouchableOpacity, Image, ScrollView, Pressable, Alert } from 'react-native';
+import { View, StyleSheet, Text, Image, ScrollView, Pressable, Alert } from 'react-native';
 import DadosDosFilmes, { type Receita } from '../coisas';
-import { Link, useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { adicionarFavorito, listarFavoritos, removerFavorito } from '../../servicos/favoritos';
 import Carregamento from '../../../components/Carregamento';
@@ -10,10 +10,19 @@ const itensIniciais = ['Favoritar', '✓ Já fiz essa receita'];
 export default function Filme() {
   const router = useRouter();
 
-  const { id, origem } = useLocalSearchParams<{ id: string; origem?: string }>();
-  const destinoVoltar = origem === 'favorito'
-    ? '../../layout/favorito'
-    : '../../layout/paginaInicial';
+  const {
+    id,
+    origem,
+    ingredientes,
+    textoIngredientes,
+    categoria,
+  } = useLocalSearchParams<{
+    id: string;
+    origem?: string;
+    ingredientes?: string;
+    textoIngredientes?: string;
+    categoria?: string;
+  }>();
     
   const categorias = DadosDosFilmes();
   const item: Receita | undefined = categorias
@@ -105,6 +114,28 @@ export default function Filme() {
     return <Text>Receita não encontrada.</Text>;
   }
 
+  function voltar() {
+    if (origem === 'pesquisa') {
+      router.replace({
+        pathname: '/layout/paginaInicial',
+        params: {
+          restaurarPesquisa: '1',
+          ingredientes: ingredientes ?? '',
+          textoIngredientes: textoIngredientes ?? '',
+          categoria: categoria ?? '⭐ Todas',
+        },
+      });
+      return;
+    }
+
+    if (router.canGoBack()) {
+      router.back();
+      return;
+    }
+
+    router.replace(origem === 'favorito' ? '/layout/favorito' : '/layout/paginaInicial');
+  }
+
   return (
     
     <View style={styles.fundo}>
@@ -187,11 +218,14 @@ export default function Filme() {
       </View>
       
       </ScrollView>
-      <Link href={destinoVoltar} style={styles.botaoVoltar}>
-      <TouchableOpacity>
-      <Text style={styles.setaVoltar}>←</Text>
-     </TouchableOpacity>
-     </Link>
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel="Voltar para a tela anterior"
+        onPress={voltar}
+        style={styles.botaoVoltar}
+      >
+        <Text style={styles.setaVoltar}>←</Text>
+      </Pressable>
         <Pressable
             accessibilityRole="button"
             accessibilityLabel="Abrir chat de ajuda com receitas"

@@ -1,7 +1,25 @@
 import { Link } from 'expo-router';
 import { View, StyleSheet, FlatList, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import type { Receita } from './coisas';
 
-export default function renderCategoria({ item } : {item:any}) {
+interface EstadoRetorno {
+  ingredientes: string;
+  textoIngredientes: string;
+  categoria: string;
+}
+
+interface CategoriaReceitas {
+  id: string;
+  filmes: Receita[];
+}
+
+export default function renderCategoria({
+  item,
+  returnState,
+}: {
+  item: CategoriaReceitas;
+  returnState?: EstadoRetorno;
+}) {
   return (
     <View>
       <FlatList
@@ -11,7 +29,20 @@ export default function renderCategoria({ item } : {item:any}) {
       // showsHorizontalScrollIndicator = {false}
       // contentContainerStyle={{ paddingBottom: 40 }}
       renderItem={({ item }) => (
-        <Link href={`../../componentes/filmes/${item.id}`}>
+        <Link
+          href={returnState
+            ? {
+                pathname: '/componentes/filmes/[id]',
+                params: {
+                  id: item.id,
+                  origem: 'pesquisa',
+                  ingredientes: returnState.ingredientes,
+                  textoIngredientes: returnState.textoIngredientes,
+                  categoria: returnState.categoria,
+                },
+              }
+            : `../../componentes/filmes/${item.id}`}
+        >
        <TouchableOpacity style={styles.bott}>    
           <View style={styles.filme}>
             <View>
