@@ -218,7 +218,7 @@ export default function App() {
           <Text style={styles.Uptext}>Tempero de casa</Text>
         </View>
 
-        <Text style={styles.texto}>{nome || '[Nome do usuario!]'}</Text>
+        <Text style={styles.texto}>{nome || '[Seu nome!]'}</Text>
         <Text style={styles.subtexto}>Edite suas preferencias alimentares</Text>
 
         <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>

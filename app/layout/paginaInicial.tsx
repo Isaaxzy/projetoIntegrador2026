@@ -14,6 +14,7 @@ import renderCategoria from '../componentes/cardCategorias';
 const itensIniciais = [
     '⭐ Todas',
     '🍳 Café da manhã',
+    '🥖 Lanches',
     '👩‍🍳 Almoço',
     '👩‍🍳 Janta',
     '🍰 Sobremesas',
