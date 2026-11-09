@@ -15,13 +15,13 @@ export default function App() {
             <Text style={styles.subtexto}>Faça login na sua conta</Text>
           </View>
               <View style={styles.container}>
-                <View style={styles.googleContainer}>
+                <TouchableOpacity style={styles.googleContainer}>
                   <Image
                   source={require("../imagens/720255.png")}
                   style={styles.google}
                   />
                   <Text>Continue com Google</Text>
-                </View>
+                </TouchableOpacity>
                 <View>
                   <Text style={styles.orText}>────────────── OR ──────────────</Text>
                 </View>

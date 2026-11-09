@@ -50,7 +50,6 @@ export default function App() {
               </View>
         </View>
       </View>
- 
     );
 }
 
@@ -95,7 +94,7 @@ container: {
   alignItems: "center",
   boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
   borderRadius: 10,
-  width: 400,
+  width: 420,
   padding: 20,
   backgroundColor: "#fff",
   margin: "auto",
@@ -166,7 +165,7 @@ loginButton: {
   paddingVertical: 10,
   borderRadius: 5,
   fontSize: 16,
-  marginTop: 5,
+  marginTop: 15,
   boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
 },
 
