@@ -25,7 +25,7 @@ export default function App() {
                   <Text>Continue com Google</Text>
                 </TouchableOpacity>
                 <View>
-                  <Text style={styles.orText}>──────────── OR ────────────</Text>
+                  <Text style={styles.orText}>──────────── Ou ────────────</Text>
                 </View>
                 <View style={styles.loginContainer}>
                   <Text style={styles.label}>Email:</Text>
