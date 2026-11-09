@@ -23,6 +23,99 @@ const itensIniciais = [
     '🌱 Vegetarianas',
 ] as const;
 
+const mapaCondicoesPorIndice = [
+    'Sem restrições',
+    'Vegetariano',
+    'Vegano',
+    'Mediterrânea',
+    'Low sugar',
+    'Flexitariano',
+    'Low carb',
+    'Pescetariano',
+    'Ovolactovegetariano',
+    'Low fat',
+    'High protein',
+] as const;
+
+const mapaObjetivosPorIndice = [
+    'Comer melhor',
+    'Encontrar receitas práticas',
+    'Economizar',
+    'Variar minha alimentação',
+    'Aprender a cozinhar',
+    'Encontrar receitas para rotina',
+    'Outro',
+] as const;
+
+const listaAlergias = ['Leite', 'Ovo', 'Amendoim', 'Castanhas', 'Soja', 'Trigo', 'Peixes', 'Frutos do Mar'];
+const listaDesgostos = ['Cebola', 'Alho', 'Tomate', 'Peixe', 'Coentro', 'Pimentão', 'Brócolis', 'Cogumelo', 'Azeitona', 'Pimenta', 'Gengibre', 'Manjericão'];
+const listaGostos = ['Frango', 'Carne', 'Batata', 'Queijo', 'Chocolate', 'Morango', 'Massas', 'Arroz', 'Ovo', 'Tomate', 'Cenoura', 'Abacate', 'Salmão', 'Limão', 'Milho', 'Feijão'];
+const listaDificuldades = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada'] as const;
+
+function lerListaNumerica(chave: string): number[] {
+    if (typeof window === 'undefined') return [];
+
+    try {
+        const valor = JSON.parse(window.localStorage.getItem(chave) ?? '[]');
+        return Array.isArray(valor)
+            ? valor.filter((item): item is number => Number.isInteger(item))
+            : [];
+    } catch {
+        return [];
+    }
+}
+
+function lerPerfilUsuario() {
+    if (typeof window === 'undefined') {
+        return {
+            condicoes: [] as string[],
+            ingredientesEvita: [] as string[],
+            ingredientesFavoritos: [] as string[],
+            categoriasPreferidas: [] as string[],
+            dificuldadePreferida: null as string | null,
+        };
+    }
+
+    const alimentacao = lerListaNumerica('Alimentacao');
+    const alergias = lerListaNumerica('Alergias');
+    const desgostos = lerListaNumerica('Desgostos');
+    const gostos = lerListaNumerica('Gostos');
+    const objetivos = lerListaNumerica('Objetivos');
+    const tipo = lerListaNumerica('Tipo');
+
+    const condicoes = alimentacao.flatMap((indice) => {
+        const condicao = mapaCondicoesPorIndice[indice];
+        return condicao && condicao !== 'Sem restrições' ? [condicao] : [];
+    });
+
+    const ingredientesEvita = alergias.flatMap((indice) => listaAlergias[indice] ? [listaAlergias[indice]] : []);
+    const ingredientesFavoritos = gostos.flatMap((indice) => listaGostos[indice] ? [listaGostos[indice]] : []);
+    const categoriasPreferidas = objetivos.flatMap((indice) => {
+        const objetivo = mapaObjetivosPorIndice[indice];
+
+        const mapaCategorias: Record<string, string[]> = {
+            'Comer melhor': ['🥗 Saudáveis'],
+            'Encontrar receitas práticas': ['⚡ Rápidas'],
+            'Economizar': ['💰 Econômicas'],
+            'Variar minha alimentação': ['⭐ Todas'],
+            'Aprender a cozinhar': ['⭐ Todas'],
+            'Encontrar receitas para rotina': ['⚡ Rápidas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
+            Outro: [],
+        };
+
+        return objetivo ? mapaCategorias[objetivo] ?? [] : [];
+    });
+
+    const dificuldadePreferida = tipo.length > 0 ? listaDificuldades[tipo[0]] ?? null : null;
+
+    return {
+        condicoes,
+        ingredientesEvita: [...ingredientesEvita, ...desgostos.flatMap((indice) => listaDesgostos[indice] ? [listaDesgostos[indice]] : [])],
+        ingredientesFavoritos,
+        categoriasPreferidas,
+        dificuldadePreferida,
+    };
+}
 
 export default function App() {
     const router = useRouter();
@@ -35,6 +128,7 @@ export default function App() {
     // Hooks precisam ficar dentro do componente para que o React acompanhe seu estado.
     const [carregando, setCarregando] = useState(true);
     const [nomeUsuario, setNomeUsuario] = useState('');
+    const [perfilUsuario, setPerfilUsuario] = useState(() => lerPerfilUsuario());
     const [categoriaSelecionada, setCategoriaSelecionada] =
         useState<(typeof itensIniciais)[number]>(itensIniciais[0]);
     const [textoIngredientes, setTextoIngredientes] = useState('');
@@ -72,6 +166,8 @@ export default function App() {
                 if (Array.isArray(dadosUsuario) && typeof dadosUsuario[0] === 'string') {
                     setNomeUsuario(dadosUsuario[0]);
                 }
+
+                setPerfilUsuario(lerPerfilUsuario());
             }
         } catch (error) {
             console.error('Não foi possível carregar o nome do usuário.', error);
@@ -126,9 +222,50 @@ export default function App() {
     const idsMaisProcuradas = new Set(
         receitasUnicas.filter((receita) => receitasMaisProcuradas.includes(receita)).map((receita) => receita.id),
     );
-    const recomendadasFiltradas = receitasUnicas
-        .filter((receita) => idsRecomendadas.has(receita.id))
+    const receitasOrdenadasPorPerfil = receitasUnicas
         .filter(correspondeAosFiltros)
+        .map((receita) => {
+            let pontuacao = 0;
+            const condicoesReceita = receita.condicoes.map((condicao) => normalizar(condicao));
+            const condicoesUsuario = perfilUsuario.condicoes.map((condicao) => normalizar(condicao));
+            pontuacao += condicoesUsuario.filter((condicao) => condicoesReceita.includes(condicao)).length * 90;
+
+            const ingredientesReceita = receita.ingredientes.map((ingrediente) => normalizar(ingrediente.nome));
+            const ingredientesFavoritos = perfilUsuario.ingredientesFavoritos.map((ingrediente) => normalizar(ingrediente));
+            const ingredientesEvita = perfilUsuario.ingredientesEvita.map((ingrediente) => normalizar(ingrediente));
+
+            pontuacao += ingredientesFavoritos.filter((ingrediente) =>
+                ingredientesReceita.some((nomeReceita) => nomeReceita.includes(ingrediente)),
+            ).length * 35;
+
+            const temIngredienteEvitado = ingredientesEvita.some((ingrediente) =>
+                ingredientesReceita.some((nomeReceita) => nomeReceita.includes(ingrediente)),
+            );
+            if (temIngredienteEvitado) {
+                pontuacao = Number.NEGATIVE_INFINITY;
+            }
+
+            const categoriasPreferidas = perfilUsuario.categoriasPreferidas.map((categoria) => normalizar(categoria));
+            pontuacao += receita.categorias.filter((categoria) =>
+                categoriasPreferidas.includes(normalizar(categoria)),
+            ).length * 25;
+
+            if (perfilUsuario.dificuldadePreferida) {
+                const dificuldadeReceita = normalizar(receita.dificuldade);
+                const dificuldadeUsuario = normalizar(perfilUsuario.dificuldadePreferida);
+                if (dificuldadeReceita.includes(dificuldadeUsuario)) {
+                    pontuacao += 15;
+                }
+            }
+
+            return { receita, pontuacao };
+        })
+        .filter(({ pontuacao }) => Number.isFinite(pontuacao))
+        .sort((a, b) => b.pontuacao - a.pontuacao);
+
+    const recomendadasFiltradas = receitasOrdenadasPorPerfil
+        .filter(({ receita }) => idsRecomendadas.has(receita.id))
+        .map(({ receita }) => receita)
         .sort((a, b) => {
             const correspondencias = (receita: (typeof receitasRecomendadas)[number]) =>
                 receita.ingredientes.filter((ingrediente) =>
