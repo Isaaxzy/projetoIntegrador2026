@@ -1,8 +1,9 @@
 import { Link } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Pressable } from 'react-native';
 import { etapa7 } from '../../login info'
 import { IntroScreen, introStyles } from '../../components/intro-screen';
+import { lerIndicesSalvos } from './introStorage';
 
 const itensIniciais = ['Muito fácil', 'Fácil', 'Intermediária', 'Elaborada'];
 
@@ -19,6 +20,13 @@ export default function App() {
         const [itensMarcados2, setTempoMarcados] = useState<boolean[]>(
       itensIniciais2.map(() => false),
     )
+
+    useEffect(() => {
+      const tiposSalvos = lerIndicesSalvos('Tipo', itensIniciais.length);
+      const temposSalvos = lerIndicesSalvos('Tempo', itensIniciais2.length);
+      setItensMarcados(itensIniciais.map((_, index) => tiposSalvos.includes(index)));
+      setTempoMarcados(itensIniciais2.map((_, index) => temposSalvos.includes(index)));
+    }, []);
      
         function alternarItem(index: number) {
             // Cria um novo array e inverte somente o item que foi pressionado.

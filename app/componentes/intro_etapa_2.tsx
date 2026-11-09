@@ -1,8 +1,9 @@
 import { Link } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Pressable } from 'react-native';
 import { etapa2 } from '../../login info'
 import { IntroScreen, introStyles } from '../../components/intro-screen';
+import { lerIndicesSalvos } from './introStorage';
 
 const itensIniciais = [{ id: 1, label: '🍽️ Sem restrições' }, { id: 2, label: '🥕 Vegetariano' }, { id: 3, label: '🌱 Vegano' }, { id: 4, label: '🫒 Mediterrânea' }, { id: 5, label: '🍬 Low sugar' }, { id: 6, label: '🥗 Flexitariano' }, { id: 7, label: '🥑 Low crab' }, { id: 8, label: '🐟 Pescetariano' }, { id: 9, label: '🥚 Ovolactovegetariano' }, { id: 10, label: '🧈 Low fat' }, { id: 11, label: '💪 High protein' }];
 
@@ -13,6 +14,13 @@ export default function App() {
 
   const LIMITE_RESTRICOES = 8;
   const [restricoesSelecionadas, setRestricoesSelecionadas] = useState<number[]>([]);
+
+  useEffect(() => {
+    const indices = lerIndicesSalvos('Alimentacao', itensIniciais.length);
+    setRestricoesSelecionadas(
+      indices.includes(0) ? [1] : indices.slice(0, LIMITE_RESTRICOES).map((indice) => indice + 1),
+    );
+  }, []);
 
   const alternarRestricao = (id: number) => {
     setRestricoesSelecionadas((selecionadas) => {

@@ -1,8 +1,9 @@
 import { Link } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, TextInput, Pressable } from 'react-native';
 import { etapa5 } from '../../login info'
 import { IntroScreen, introStyles } from '../../components/intro-screen';
+import { lerIndicesSalvos, lerTextoSalvo } from './introStorage';
 
 const itensIniciais = ['🍗 Frango', '🥩 Carne', '🥔 Batata', '🧀 Queijo', '🍫 Chocolate', '🍓 Morango', '🍝 Massas', '🍚 Arroz', '🥚 Ovo', '🍅 Tomate', '🥕 Cenoura', '🥑 Abacate', '🐟 Salmão', '🍋 Limão', '🌽 Milho', '🫘 Feijão' ];
 
@@ -13,6 +14,13 @@ export default function App() {
     const [itensMarcados, setItensMarcados] = useState<boolean[]>(
             itensIniciais.map(() => false),
         );
+    const [outros, setOutros] = useState('');
+
+    useEffect(() => {
+      const indicesSalvos = lerIndicesSalvos('Gostos', itensIniciais.length);
+      setItensMarcados(itensIniciais.map((_, index) => indicesSalvos.includes(index)));
+      setOutros(lerTextoSalvo('OutrosG'));
+    }, []);
      
         function alternarItem(index: number) {
             // Cria um novo array e inverte somente o item que foi pressionado.
@@ -62,7 +70,13 @@ export default function App() {
                 ))}
             </View>
             <View style={styles.loginContainer}>
-                <TextInput style={styles.input} id="outros" placeholder="Adicionar outro favorito" />
+                <TextInput
+                  style={styles.input}
+                  id="outros"
+                  placeholder="Adicionar outro favorito"
+                  value={outros}
+                  onChangeText={setOutros}
+                />
             </View> 
              <View style={introStyles.footer}>
              <Text style={styles.link}><Link href={'/componentes/intro_etapa_4'}>← Voltar</Link></Text>
