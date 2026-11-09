@@ -5,9 +5,9 @@ export function register() {
         alert('Insira os dados corretamente');
         document.getElementById('password').value = '';
         document.getElementById('confpassw').value = '';
-        
+
     }
-    else{
+    else {
         localStorage.setItem('conta', JSON.stringify(conta));
         window.location.href = 'http://localhost:8081/componentes/intro_comecar';
     }
@@ -18,9 +18,9 @@ export function logar() {
 
     if (document.getElementById('email').value == '' || document.getElementById('password').value == '' || localStorage.getItem('conta') == null || document.getElementById('email').value != JSON.parse(localStorage.getItem('conta'))[0] || document.getElementById('password').value != JSON.parse(localStorage.getItem('conta'))[1]) {
         alert('Não foi possivél efetuar seu login, verifique se os dados estão corretos');
-        
+
     }
-    else{
+    else {
         window.location.href = 'http://localhost:8081/layout/paginaInicial';
     }
 
@@ -30,12 +30,12 @@ export function link() {
 
     if (document.getElementById('emai').value == '') {
         alert('coloque seu e-mail para enviarmos o link de recuperação de senha');
-        
+
     }
-    
-    else{
+
+    else {
         alert('Link de redefinição de senha enviado com sucesso! Aguardamos sua confirmação')
-}
+    }
 
 }
 
@@ -56,15 +56,33 @@ export function etapa1(indicesMarcados = []) {
     }
 }
 
+export function etapa1volta(indicesMarcados = []) {
+    var voce = [
+        document.getElementById('nome').value,
+        document.getElementById('pessoas').value,
+        document.getElementById('idade').value
+    ];
+
+    localStorage.setItem('voce', JSON.stringify(voce));
+    localStorage.setItem('nivelExperienciaIndices', JSON.stringify(indicesMarcados));
+    window.location.href = 'http://localhost:8081/componentes/intro_comecar';
+}
+
 export function etapa2(indicesMarcados = []) {
 
     if (indicesMarcados.length == 0) {
         alert('Insira os dados corretamente');
     }
-    else{
+    else {
         localStorage.setItem('Alimentacao', JSON.stringify(indicesMarcados));
         window.location.href = 'http://localhost:8081/componentes/intro_etapa_3';
     }
+}
+
+export function etapa2volta(indicesMarcados = []) {
+
+    localStorage.setItem('Alimentacao', JSON.stringify(indicesMarcados));
+    window.location.href = 'http://localhost:8081/componentes/intro_etapa_1';
 }
 
 export function etapa3(indicesMarcados = []) {
@@ -73,6 +91,15 @@ export function etapa3(indicesMarcados = []) {
     localStorage.setItem('Alergias', JSON.stringify(indicesMarcados));
     localStorage.setItem('OutrosA', JSON.stringify(outros));
     window.location.href = 'http://localhost:8081/componentes/intro_etapa_4';
+
+}
+
+export function etapa3volta(indicesMarcados = []) {
+    var outros = document.getElementById('outros').value;
+
+    localStorage.setItem('Alergias', JSON.stringify(indicesMarcados));
+    localStorage.setItem('OutrosA', JSON.stringify(outros));
+    window.location.href = 'http://localhost:8081/componentes/intro_etapa_2';
 
 }
 
@@ -85,12 +112,30 @@ export function etapa4(indicesMarcados = []) {
 
 }
 
+export function etapa4volta(indicesMarcados = []) {
+    var outros = document.getElementById('outros').value;
+
+    localStorage.setItem('Desgostos', JSON.stringify(indicesMarcados));
+    localStorage.setItem('OutrosD', JSON.stringify(outros));
+    window.location.href = 'http://localhost:8081/componentes/intro_etapa_3';
+
+}
+
 export function etapa5(indicesMarcados = []) {
     var outros = document.getElementById('outros').value;
 
     localStorage.setItem('Gostos', JSON.stringify(indicesMarcados));
     localStorage.setItem('OutrosG', JSON.stringify(outros));
     window.location.href = 'http://localhost:8081/componentes/intro_etapa_6';
+
+}
+
+export function etapa5volta(indicesMarcados = []) {
+    var outros = document.getElementById('outros').value;
+
+    localStorage.setItem('Gostos', JSON.stringify(indicesMarcados));
+    localStorage.setItem('OutrosG', JSON.stringify(outros));
+    window.location.href = 'http://localhost:8081/componentes/intro_etapa_4';
 
 }
 
@@ -104,6 +149,11 @@ export function etapa6(indicesMarcados = []) {
     }
 }
 
+export function etapa6volta(indicesMarcados = []) {
+    localStorage.setItem('Objetivos', JSON.stringify(indicesMarcados));
+    window.location.href = 'http://localhost:8081/componentes/intro_etapa_5';
+}
+
 export function etapa7(indicesMarcados = [], indicesMarcados2 = []) {
 
     if (indicesMarcados.length == 0) {
@@ -113,6 +163,12 @@ export function etapa7(indicesMarcados = [], indicesMarcados2 = []) {
         localStorage.setItem('Tipo', JSON.stringify(indicesMarcados));
         window.location.href = 'http://localhost:8081/layout/paginaInicial';
     }
+}
+
+export function etapa7volta(indicesMarcados = [], indicesMarcados2 = []) {
+    localStorage.setItem('Tempo', JSON.stringify(indicesMarcados2));
+    localStorage.setItem('Tipo', JSON.stringify(indicesMarcados));
+    window.location.href = 'http://localhost:8081/componentes/intro_etapa_6';
 }
 
 export function infoSet(dados = {}) {

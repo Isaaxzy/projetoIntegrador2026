@@ -23,11 +23,11 @@ export default function App() {
                   <Text>Continue com Google</Text>
                 </TouchableOpacity>
                 <View>
-                  <Text style={styles.orText}>────────────── OR ──────────────</Text>
+                  <Text style={styles.orText}>────────────── Ou ──────────────</Text>
                 </View>
                 <View style={styles.loginContainer}>
                   <Text style={styles.label}>Email:</Text>
-                  <input style={styles.input} type="email" id="email" placeholder="✉︎ voce@exemplo.com" />
+                  <input style={styles.input} type="email" id="email" placeholder="✉︎ você@exemplo.com" />
                   <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center",  }}>
                   <Text style={styles.label}>Senha: </Text>
                   <Link href="/(tabs)/trocarSenha">

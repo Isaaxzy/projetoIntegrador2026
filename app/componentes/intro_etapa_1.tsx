@@ -1,7 +1,7 @@
 import { Link } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, TextInput } from 'react-native';
-import { etapa1 } from '../../login info'
+import { etapa1, etapa1volta } from '../../login info'
 import { IntroScreen, introStyles } from '../../components/intro-screen';
 
 const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Avançado'];
@@ -12,8 +12,39 @@ export default function App() {
   const currentStep = 1;
 
   const [itensMarcados, setItensMarcados] = useState<number | null>(null);
+  const [nome, setNome] = useState('');
   const [numeroPessoas, setNumeroPessoas] = useState('');
   const [idade, setIdade] = useState('');
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    try {
+      const dadosVoce = window.localStorage.getItem('voce');
+      if (dadosVoce) {
+        const voce: unknown = JSON.parse(dadosVoce);
+        if (Array.isArray(voce)) {
+          setNome(typeof voce[0] === 'string' ? voce[0] : '');
+          setNumeroPessoas(typeof voce[1] === 'string' ? voce[1] : '');
+          setIdade(typeof voce[2] === 'string' ? voce[2] : '');
+        }
+      }
+
+      const dadosExperiencia = window.localStorage.getItem('nivelExperienciaIndices');
+      if (dadosExperiencia) {
+        const indices: unknown = JSON.parse(dadosExperiencia);
+        if (Array.isArray(indices)) {
+          const indiceValido = indices.find(
+            (indice): indice is number =>
+              Number.isInteger(indice) && indice >= 0 && indice < itensIniciais.length,
+          );
+          if (indiceValido !== undefined) setItensMarcados(indiceValido);
+        }
+      }
+    } catch (erro) {
+      console.warn('Não foi possível carregar os dados salvos da etapa 1.', erro);
+    }
+  }, []);
 
   function alternarExperiencia(index: number) {
     setItensMarcados((atual) => (atual === index ? null : index));
@@ -44,7 +75,13 @@ export default function App() {
         <Text style={styles.subtexto}>Vamos começar com o básico.</Text>
         <View style={styles.loginContainer}>
           <Text style={styles.pergunta}>Nome</Text>
-          <TextInput style={styles.input} id="nome" placeholder="Seu nome" />
+          <TextInput
+            style={styles.input}
+            id="nome"
+            placeholder="Seu nome"
+            value={nome}
+            onChangeText={setNome}
+          />
 
           <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
             <Text style={styles.pergunta}>Idade</Text>
@@ -109,9 +146,16 @@ export default function App() {
           </View>
         </View>
         <View style={introStyles.footer}>
-          <Text style={styles.link}>
-            <Link href={'/componentes/intro_comecar'}>← Voltar</Link>
-          </Text>
+          <TouchableOpacity
+            style={styles.link}
+            onPress={() =>
+              etapa1volta(
+                itensMarcados === null ? [] : [itensMarcados]
+              )
+            }
+          >
+            ← Voltar
+          </TouchableOpacity>
           <TouchableOpacity
             style={styles.Button}
             onPress={() =>
