@@ -1,7 +1,7 @@
 import { Link } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, TextInput } from 'react-native';
-import { etapa1 } from '../../login info'
+import { etapa1, etapa1volta } from '../../login info'
 import { IntroScreen, introStyles } from '../../components/intro-screen';
 
 const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Avançado'];
@@ -146,9 +146,16 @@ export default function App() {
           </View>
         </View>
         <View style={introStyles.footer}>
-          <Text style={styles.link}>
-            <Link href={'/componentes/intro_comecar'}>← Voltar</Link>
-          </Text>
+          <TouchableOpacity
+            style={styles.link}
+            onPress={() =>
+              etapa1volta(
+                itensMarcados === null ? [] : [itensMarcados]
+              )
+            }
+          >
+            ← Voltar
+          </TouchableOpacity>
           <TouchableOpacity
             style={styles.Button}
             onPress={() =>

@@ -1,7 +1,7 @@
 import { Link } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Pressable } from 'react-native';
-import { etapa2 } from '../../login info'
+import { etapa2, etapa2volta } from '../../login info'
 import { IntroScreen, introStyles } from '../../components/intro-screen';
 import { lerIndicesSalvos } from './introStorage';
 
@@ -92,9 +92,16 @@ export default function App() {
                     </View>
         </View>
         <View style={introStyles.footer}>
-          <Text style={styles.link}>
-            <Link href={'/componentes/intro_etapa_1'}>← Voltar</Link>
-          </Text>
+                  <TouchableOpacity
+                    style={styles.link}
+                    onPress={() =>
+                      etapa2volta(
+                        restricoesSelecionadas.map((id) => id - 1)
+                      )
+                    }
+                  >
+                    ← Voltar
+                  </TouchableOpacity>
           <TouchableOpacity
                       style={styles.Button}
                       onPress={() =>
