@@ -5,7 +5,26 @@ import { useEffect, useState } from 'react';
 import { adicionarFavorito, listarFavoritos, removerFavorito } from '../../servicos/favoritos';
 import Carregamento from '../../../components/Carregamento';
 import { Ionicons } from '@expo/vector-icons';
+import { lerIndicesSalvos, lerTextoSalvo } from '../introStorage';
+import {
+  encontrarAlimentosPreferidos,
+  opcoesAlergias,
+  opcoesAlimentosEvitados,
+  opcoesAlimentosPreferidos,
+  opcoesRestricoesAlimentares,
+  receitaCombinaComUsuario,
+} from '../preferencias';
+
 const itensIniciais = ['Favoritar', '✓ Já fiz essa receita'];
+const opcoesTempo = ['Até 15 min', 'Até 30 min', 'Até 45min', 'Até 1 hora', 'Até 1h30', '2 horas ou mais'];
+
+function formatarLista(itens: string[]): string {
+  if (itens.length < 2) {
+    return itens[0] ?? '';
+  }
+
+  return `${itens.slice(0, -1).join(', ')} e ${itens[itens.length - 1]}`;
+}
 
 export default function Filme() {
   const router = useRouter();
@@ -35,6 +54,38 @@ export default function Filme() {
   const [favorito, setFavorito] = useState(false);
   const [salvandoFavorito, setSalvandoFavorito] = useState(false);
   const [carregandoFavorito, setCarregandoFavorito] = useState(true);
+  const [temposPreferidos, setTemposPreferidos] = useState<string[]>([]);
+  const [alimentosPreferidos, setAlimentosPreferidos] = useState<string[]>([]);
+  const [alimentosEvitados, setAlimentosEvitados] = useState<string[]>([]);
+  const [alergias, setAlergias] = useState<string[]>([]);
+  const [restricoesAlimentares, setRestricoesAlimentares] = useState<string[]>([]);
+
+  useEffect(() => {
+    const temposSalvos = lerIndicesSalvos('Tempo', opcoesTempo.length);
+    const alimentosSalvos = lerIndicesSalvos('Gostos', opcoesAlimentosPreferidos.length);
+    const alimentosEvitadosSalvos = lerIndicesSalvos('Desgostos', opcoesAlimentosEvitados.length);
+    const alergiasSalvas = lerIndicesSalvos('Alergias', opcoesAlergias.length);
+    const alergiasPersonalizadas = lerTextoSalvo('OutrosA')
+      .split(/[,;\n]+/)
+      .map((alergia) => alergia.trim())
+      .filter(Boolean);
+    const restricoesSalvas = lerIndicesSalvos(
+      'Alimentacao',
+      opcoesRestricoesAlimentares.length,
+    );
+    setTemposPreferidos(temposSalvos.map((index) => opcoesTempo[index]));
+    setAlimentosPreferidos(alimentosSalvos.map((index) => opcoesAlimentosPreferidos[index]));
+    setAlimentosEvitados(alimentosEvitadosSalvos.map((index) => opcoesAlimentosEvitados[index]));
+    setAlergias([
+      ...alergiasSalvas.map((index) => opcoesAlergias[index]),
+      ...alergiasPersonalizadas,
+    ]);
+    setRestricoesAlimentares(
+      restricoesSalvas
+        .filter((index) => index !== 0)
+        .map((index) => opcoesRestricoesAlimentares[index]),
+    );
+  }, []);
 
   useEffect(() => {
     let ativo = true;
@@ -114,6 +165,38 @@ export default function Filme() {
     return <Text>Receita não encontrada.</Text>;
   }
 
+  const alimentosCorrespondentes = encontrarAlimentosPreferidos(
+    item.ingredientes.map(({ nome }) => nome),
+    alimentosPreferidos,
+  );
+  const combinaComUsuario = receitaCombinaComUsuario(
+    item.ingredientes.map(({ nome }) => nome),
+    alimentosPreferidos,
+    alimentosEvitados,
+    alergias,
+    restricoesAlimentares,
+    item.condicoes,
+  );
+  const motivosRecomendacao: string[] = [];
+
+  if (alimentosCorrespondentes.length > 0 && combinaComUsuario) {
+    motivosRecomendacao.push(
+      `Você gosta de ${formatarLista(alimentosCorrespondentes.map((alimento) => alimento.toLocaleLowerCase('pt-BR')))}.`,
+    );
+  }
+
+  if (temposPreferidos.length > 0) {
+    motivosRecomendacao.push(
+      `Você tem tempo de, ${formatarLista(temposPreferidos.map((tempo) => tempo.toLocaleLowerCase('pt-BR')))}.`,
+    );
+  }
+
+  const textoRecomendacao = motivosRecomendacao.length > 0
+    ? motivosRecomendacao.join(' ')
+    : combinaComUsuario
+      ? 'Esta receita pode ser uma boa opção para você.'
+      : 'Esta receita não corresponde a algum gosto ou restrição alimentar informada.';
+
   function voltar() {
     if (origem === 'pesquisa') {
       router.replace({
@@ -153,7 +236,7 @@ export default function Filme() {
         <Text style={styles.titulo}>{item.titulo}</Text>
         <Text style={styles.descricao}>{item.descrição}</Text>
         <View style={{flexDirection: "row",}}>
-        <Text style={styles.duracao}>{item.duracao}</Text>
+        <Text style={styles.duracao}>🕐 {item.duracao}</Text>
         <Text style={styles.duracao}>{item.dificuldade}</Text>
         <Text style={styles.avaliacao}>👥 2 Porções</Text>
         </View>
@@ -162,7 +245,7 @@ export default function Filme() {
           </Image>
           <View style={{width: "90%"}}>
           <Text style={styles.texto1}>Por que recomendamos esta receita?</Text>
-          <Text style={styles.texto2}>Você prefere receitas de até 30 minutos, gosta de receitas fácil, combina com seu tipo de alimentação.</Text>
+          <Text style={styles.texto2}>{textoRecomendacao}</Text>
          </View>
         </View>
           <View style={{flexDirection: "row", gap: 15, padding: 8, margin: "auto"}}>

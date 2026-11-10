@@ -1,6 +1,8 @@
 import { Link } from 'expo-router';
 import { View, StyleSheet, FlatList, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import type { Receita } from './coisas';
+import { receitaCombinaComUsuario } from './preferencias';
 
 interface EstadoRetorno {
   ingredientes: string;
@@ -16,9 +18,17 @@ interface CategoriaReceitas {
 export default function renderCategoria({
   item,
   returnState,
+  alimentosPreferidos = [],
+  alimentosEvitados = [],
+  alergias = [],
+  restricoesAlimentares = [],
 }: {
   item: CategoriaReceitas;
   returnState?: EstadoRetorno;
+  alimentosPreferidos?: string[];
+  alimentosEvitados?: string[];
+  alergias?: string[];
+  restricoesAlimentares?: string[];
 }) {
   return (
     <View>
@@ -50,13 +60,25 @@ export default function renderCategoria({
             source={{uri:item.Imagem}}
             style={styles.imagem}
             >
-             <Text style={{width: "70%", alignSelf: "flex-end", textAlign: "center", padding: 5, fontSize: 10,              backgroundColor: "#168A3Ab0", margin: 7, borderRadius: 20, color: "#ffffff"}}>☆ Combina com você</Text>
+             {receitaCombinaComUsuario(
+               item.ingredientes.map((ingrediente) => ingrediente.nome),
+               alimentosPreferidos,
+               alimentosEvitados,
+               alergias,
+               restricoesAlimentares,
+               item.condicoes,
+             ) && (
+               <Text style={styles.seloRecomendacao}>☆ Combina com você</Text>
+             )}
             </ImageBackground>
               <Text style={styles.filmeTitulo} numberOfLines={2} ellipsizeMode="tail">
                 {item.titulo}
               </Text>
               <View style={styles.detalhesReceita}>
-              <Text style={styles.filmedescricao} numberOfLines={1} ellipsizeMode="tail">{item.duracao}</Text>
+              <View style={styles.tempoReceita}>
+                <Ionicons name="time-outline" size={14} color="#6d6d6d" />
+                <Text style={styles.filmedescricao} numberOfLines={1} ellipsizeMode="tail">{item.duracao}</Text>
+              </View>
               <Text style={styles.filmedescricao} numberOfLines={1} ellipsizeMode="tail">{item.dificuldade}</Text>
               </View>
               <Text style={styles.info} numberOfLines={2} ellipsizeMode="tail">{item.info}</Text>
@@ -96,6 +118,18 @@ const styles = StyleSheet.create({
     margin: 5,
   },
 
+  seloRecomendacao: {
+    width: "70%",
+    alignSelf: "flex-end",
+    textAlign: "center",
+    padding: 5,
+    fontSize: 10,
+    backgroundColor: "#168A3Ab0",
+    margin: 7,
+    borderRadius: 20,
+    color: "#ffffff",
+  },
+
   titulo:{
     width: 180,
     color:'#ffff',
@@ -128,6 +162,14 @@ const styles = StyleSheet.create({
   },
   detalhesReceita: {
     flexDirection: 'row',
+    alignItems: 'center',
+  },
+  tempoReceita: {
+    flex: 1,
+    minWidth: 0,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 3,
   },
   filmedescricao: {
     flex: 1,
