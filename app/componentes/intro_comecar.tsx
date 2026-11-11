@@ -14,7 +14,8 @@ export default function App() {
               <Text style={styles.texto}>Olá, Eu sou seu companheiro de cozinha</Text>
               <Text style={styles.subtexto}>Antes de começarmos, quero conhecer um pouquinho dos seus gostos para encontrar receitas que realmente combinem com você.</Text>
             </View>
-            <Link href={'./intro_etapa_1'} style={styles.ButtonRota}><Text >Começar →</Text></Link>
+            <Link href={'/(tabs)/Criar conta'} style={styles.ButtonRota}><Text >Começar →</Text></Link>
+            <Link href={'/(tabs)/login'} style={styles.ButtonRota}><Text >Entrar novamente →</Text></Link>
           </View>
       </IntroScreen>
  

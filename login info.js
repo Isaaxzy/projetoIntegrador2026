@@ -9,7 +9,7 @@ export function register() {
     }
     else {
         localStorage.setItem('conta', JSON.stringify(conta));
-        window.location.href = 'http://localhost:8081/componentes/intro_comecar';
+        window.location.href = 'http://localhost:8081/componentes/intro_etapa_1';
     }
 
 }
@@ -65,7 +65,7 @@ export function etapa1volta(indicesMarcados = []) {
 
     localStorage.setItem('voce', JSON.stringify(voce));
     localStorage.setItem('nivelExperienciaIndices', JSON.stringify(indicesMarcados));
-    window.location.href = 'http://localhost:8081/componentes/intro_comecar';
+    window.location.href = 'http://localhost:8081/Criar%20conta';
 }
 
 export function etapa2(indicesMarcados = []) {
