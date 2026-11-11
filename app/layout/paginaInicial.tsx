@@ -16,9 +16,8 @@ import {
     opcoesAlimentosEvitados,
     opcoesAlimentosPreferidos,
     opcoesRestricoesAlimentares,
-    encontrarAlimentosPreferidos,
+    filtrarReceitasPorPreferencias,
     receitaAtendeDificuldade,
-    receitaAtendeTempo,
     receitaRespeitaRestricoes,
 } from '../componentes/preferencias';
 
@@ -176,7 +175,13 @@ export default function App() {
         ...receitasMaisProcuradas,
     ]);
     const idsRecomendadas = new Set(
-        receitasUnicas.filter((receita) => receitasRecomendadas.includes(receita)).map((receita) => receita.id),
+        receitasUnicas
+            .filter((receita) =>
+                receitasRecomendadas.includes(receita)
+                || (receitasMaisProcuradas.includes(receita)
+                    && receitaAtendeDificuldade(receita.dificuldade, [0])),
+            )
+            .map((receita) => receita.id),
     );
     const idsSobremesas = new Set(
         receitasUnicas.filter((receita) => receitasSobremesas.includes(receita)).map((receita) => receita.id),
@@ -184,20 +189,20 @@ export default function App() {
     const idsMaisProcuradas = new Set(
         receitasUnicas.filter((receita) => receitasMaisProcuradas.includes(receita)).map((receita) => receita.id),
     );
-    const recomendadasFiltradas = receitasUnicas
+    const recomendadasFiltradas = filtrarReceitasPorPreferencias(
+        receitasUnicas
         .filter((receita) => idsRecomendadas.has(receita.id))
-        .filter(correspondeAosFiltros)
-        .filter((receita) =>
-            alimentosPreferidos.length === 0
-            || encontrarAlimentosPreferidos(
-                receita.ingredientes.map(({ nome }) => nome),
-                alimentosPreferidos,
-            ).length > 0,
-        )
-        .filter((receita) => receitaAtendeTempo(receita.duracao, temposPreferidos))
-        .filter((receita) =>
-            receitaAtendeDificuldade(receita.dificuldade, dificuldadesPreferidas),
-        )
+        .filter(correspondeACategoria)
+        .filter(correspondeAIngredientes),
+        {
+            alimentosPreferidos,
+            alimentosEvitados,
+            alergias,
+            restricoesAlimentares,
+            temposPreferidos,
+            dificuldadesPreferidas,
+        },
+    )
         .sort((a, b) => {
             const correspondencias = (receita: (typeof receitasRecomendadas)[number]) =>
                 receita.ingredientes.filter((ingrediente) =>
@@ -213,6 +218,7 @@ export default function App() {
         .filter(correspondeAosFiltros);
     const maisProcuradasFiltradas = receitasUnicas
         .filter((receita) => idsMaisProcuradas.has(receita.id))
+        .filter((receita) => !idsRecomendadas.has(receita.id))
         .filter(correspondeAosFiltros);
     const quantidadeReceitas =
         recomendadasFiltradas.length +
@@ -586,9 +592,10 @@ semResultados: {
     paddingVertical: 11,
     marginTop: 15,
     backgroundColor: "#03a51e",
+    fontSize: 16,
     color: "white",
     borderRadius: 10,
-    width: "38%",
+    width: "85%",
     textAlign: "center",
     margin: "auto",
 },

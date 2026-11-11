@@ -1,3 +1,5 @@
+import type { Receita } from './coisas';
+
 export const opcoesAlimentosPreferidos = [
   'Frango', 'Carne', 'Batata', 'Queijo', 'Chocolate', 'Morango', 'Massas', 'Arroz',
   'Ovo', 'Tomate', 'Cenoura', 'Abacate', 'Salmão', 'Limão', 'Milho', 'Feijão',
@@ -190,5 +192,36 @@ export function receitaAtendeDificuldade(
   }
 
   const nivelReceita = nivelDificuldade(dificuldade);
-  return nivelReceita !== undefined && dificuldadesPreferidas.includes(nivelReceita);
+  const nivelMaximo = Math.max(...dificuldadesPreferidas);
+  return nivelReceita !== undefined && nivelReceita <= nivelMaximo;
+}
+
+export type FiltrosPreferenciasReceitas = {
+  alimentosPreferidos: readonly string[];
+  alimentosEvitados: readonly string[];
+  alergias: readonly string[];
+  restricoesAlimentares: readonly string[];
+  temposPreferidos: readonly number[];
+  dificuldadesPreferidas: readonly number[];
+};
+
+export function filtrarReceitasPorPreferencias(
+  receitas: readonly Receita[],
+  filtros: FiltrosPreferenciasReceitas,
+): Receita[] {
+  return receitas.filter((receita) => {
+    const ingredientes = receita.ingredientes.map(({ nome }) => nome);
+
+    return receitaRespeitaRestricoes(
+      ingredientes,
+      filtros.alimentosEvitados,
+      filtros.alergias,
+      filtros.restricoesAlimentares,
+      receita.condicoes,
+    )
+      && (filtros.alimentosPreferidos.length === 0
+        || encontrarAlimentosPreferidos(ingredientes, filtros.alimentosPreferidos).length > 0)
+      && receitaAtendeTempo(receita.duracao, filtros.temposPreferidos)
+      && receitaAtendeDificuldade(receita.dificuldade, filtros.dificuldadesPreferidas);
+  });
 }
