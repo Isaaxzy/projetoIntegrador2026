@@ -166,7 +166,7 @@ export default function Planejar() {
                         source={require("../imagens/2026_10_01_0mz_Kleki.png")}
                         style={styles.logo}
                     />
-                    <Text style={styles.nomeMarca}>Tempero de casa</Text>
+                    <Text style={styles.nomeMarca}>Brotô</Text>
                 </View>
 
                 <View style={styles.cabecalho}>
@@ -402,7 +402,6 @@ const styles = StyleSheet.create({
     logo: {
         maxWidth: 40,
         height: 60,
-        marginTop: -15,
         marginLeft: 10,
         alignSelf: 'center',
         position: 'relative',
@@ -411,7 +410,7 @@ const styles = StyleSheet.create({
         color: "#168A3A",
         fontSize: 24,
         fontWeight: "bold",
-        marginTop: 10,
+        marginTop: 15,
     },
     cabecalho: {
         flexDirection: "row",

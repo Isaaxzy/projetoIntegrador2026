@@ -1,8 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
 import { useRef, useState } from "react";
 import {
     ActivityIndicator,
+    Image,
     KeyboardAvoidingView,
     Platform,
     Pressable,
@@ -19,7 +21,17 @@ type Mensagem = {
     id: number;
     texto: string;
     autor: "usuario" | "assistente";
+    imagemUri?: string;
+    imagemDataUrl?: string;
 };
+
+type FotoSelecionada = {
+    uri: string;
+    dataUrl: string;
+};
+
+const PERGUNTA_PADRAO_FOTO = "O que você vê nesta foto? Se for um alimento ou prato, descreva e me ajude com uma sugestão culinária.";
+const MAX_FOTO_BASE64_LENGTH = 8 * 1024 * 1024;
 
 const sugestoes = [
     "Como posso substituir um ingrediente?",
@@ -34,37 +46,88 @@ export default function Chat() {
     const [mensagens, setMensagens] = useState<Mensagem[]>([]);
     const [enviando, setEnviando] = useState(false);
     const [erro, setErro] = useState<string | null>(null);
+    const [imagemSelecionada, setImagemSelecionada] = useState<FotoSelecionada | null>(null);
 
     async function enviarMensagem(mensagem = texto) {
         const conteudo = mensagem.trim();
-        if (!conteudo || enviando) return;
+        const foto = imagemSelecionada;
+        if ((!conteudo && !foto) || enviando) return;
+
+        const textoEnviado = conteudo || PERGUNTA_PADRAO_FOTO;
 
         setTexto("");
+        setImagemSelecionada(null);
         setErro(null);
         setEnviando(true);
 
         try {
+            const imagemDeContextoId = foto
+                ? null
+                : [...mensagens].reverse().find((item) => item.imagemDataUrl)?.id;
             const historico = [
                 ...mensagens.map((item) => ({
                     role: item.autor === "usuario" ? "user" as const : "assistant" as const,
-                    content: item.texto,
+                    content: item.id === imagemDeContextoId && item.imagemDataUrl
+                        ? [
+                            { type: "input_text" as const, text: item.texto },
+                            { type: "input_image" as const, image_url: item.imagemDataUrl, detail: "auto" as const },
+                        ]
+                        : item.texto,
                 })),
             ].slice(-11);
-            historico.push(
-                { role: "user" as const, content: conteudo },
-            );
+            historico.push({
+                role: "user" as const,
+                content: foto
+                    ? [
+                        { type: "input_text", text: textoEnviado },
+                        { type: "input_image", image_url: foto.dataUrl, detail: "auto" },
+                    ]
+                    : textoEnviado,
+            });
             const resposta = await perguntarAoAssistente(historico);
             const id = Date.now();
             setMensagens((atuais) => [
-                ...atuais,
-                { id, texto: conteudo, autor: "usuario" },
+                ...(foto ? atuais.map((item) => ({ ...item, imagemDataUrl: undefined })) : atuais),
+                { id, texto: textoEnviado, autor: "usuario", imagemUri: foto?.uri, imagemDataUrl: foto?.dataUrl },
                 { id: id + 1, texto: resposta, autor: "assistente" },
             ]);
         } catch (error) {
             setTexto(conteudo);
+            setImagemSelecionada(foto);
             setErro(error instanceof Error ? error.message : "Não foi possível enviar sua mensagem.");
         } finally {
             setEnviando(false);
+        }
+    }
+
+    async function selecionarFoto() {
+        if (enviando) return;
+        setErro(null);
+
+        try {
+            const resultado = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ["images"],
+                base64: true,
+                quality: 0.6,
+            });
+            if (resultado.canceled) return;
+
+            const foto = resultado.assets[0];
+            if (!foto.base64) {
+                throw new Error("Não foi possível carregar os dados da foto. Tente escolher outra imagem.");
+            }
+            if (foto.base64.length > MAX_FOTO_BASE64_LENGTH) {
+                throw new Error("A foto é muito grande. Escolha uma imagem menor.");
+            }
+
+            const tipo = foto.mimeType || "image/jpeg";
+            if (!["image/jpeg", "image/png", "image/webp", "image/gif"].includes(tipo)) {
+                throw new Error("Este formato de imagem não é compatível. Escolha uma foto JPEG, PNG ou WEBP.");
+            }
+
+            setImagemSelecionada({ uri: foto.uri, dataUrl: `data:${tipo};base64,${foto.base64}` });
+        } catch (error) {
+            setErro(error instanceof Error ? error.message : "Não foi possível selecionar a foto.");
         }
     }
 
@@ -133,6 +196,9 @@ export default function Chat() {
                                     mensagem.autor === "usuario" ? styles.bolhaUsuario : styles.bolhaAssistente,
                                 ]}
                             >
+                                {mensagem.imagemUri && (
+                                    <Image source={{ uri: mensagem.imagemUri }} style={styles.fotoMensagem} />
+                                )}
                                 <Text style={mensagem.autor === "usuario" ? styles.textoUsuario : styles.textoAssistente}>
                                     {mensagem.texto}
                                 </Text>
@@ -154,30 +220,55 @@ export default function Chat() {
                     </View>
                 )}
                 <View style={styles.compositor}>
-                    <TextInput
-                        value={texto}
-                        onChangeText={setTexto}
-                        onSubmitEditing={() => void enviarMensagem()}
-                        editable={!enviando}
-                        placeholder="Escreva sua dúvida..."
-                        placeholderTextColor="#858585"
-                        accessibilityLabel="Digite sua dúvida sobre receitas"
-                        maxLength={2000}
-                        returnKeyType="send"
-                        multiline
-                        style={styles.campoTexto}
-                    />
-                    <Pressable
-                        accessibilityRole="button"
-                        accessibilityLabel="Enviar mensagem"
-                        disabled={!texto.trim() || enviando}
-                        onPress={() => void enviarMensagem()}
-                        style={[styles.botaoEnviar, (!texto.trim() || enviando) && styles.botaoEnviarDesativado]}
-                    >
-                        {enviando
-                            ? <ActivityIndicator size="small" color="#ffffff" />
-                            : <Ionicons name="arrow-up" size={23} color="#ffffff" />}
-                    </Pressable>
+                    {imagemSelecionada && (
+                        <View style={styles.previaFoto}>
+                            <Image source={{ uri: imagemSelecionada.uri }} style={styles.fotoPrevia} />
+                            <Pressable
+                                accessibilityRole="button"
+                                accessibilityLabel="Remover foto selecionada"
+                                disabled={enviando}
+                                onPress={() => setImagemSelecionada(null)}
+                                style={styles.botaoRemoverFoto}
+                            >
+                                <Ionicons name="close-circle" size={23} color="#65736a" />
+                            </Pressable>
+                        </View>
+                    )}
+                    <View style={styles.linhaCompositor}>
+                        <Pressable
+                            accessibilityRole="button"
+                            accessibilityLabel="Selecionar foto para enviar à inteligência artificial"
+                            disabled={enviando}
+                            onPress={() => void selecionarFoto()}
+                            style={[styles.botaoFoto, enviando && styles.botaoEnviarDesativado]}
+                        >
+                            <Ionicons name="image-outline" size={22} color="#168A3A" />
+                        </Pressable>
+                        <TextInput
+                            value={texto}
+                            onChangeText={setTexto}
+                            onSubmitEditing={() => void enviarMensagem()}
+                            editable={!enviando}
+                            placeholder="Escreva sua dúvida..."
+                            placeholderTextColor="#858585"
+                            accessibilityLabel="Digite sua dúvida sobre receitas"
+                            maxLength={2000}
+                            returnKeyType="send"
+                            multiline
+                            style={styles.campoTexto}
+                        />
+                        <Pressable
+                            accessibilityRole="button"
+                            accessibilityLabel="Enviar mensagem"
+                            disabled={(!texto.trim() && !imagemSelecionada) || enviando}
+                            onPress={() => void enviarMensagem()}
+                            style={[styles.botaoEnviar, (!texto.trim() && !imagemSelecionada || enviando) && styles.botaoEnviarDesativado]}
+                        >
+                            {enviando
+                                ? <ActivityIndicator size="small" color="#ffffff" />
+                                : <Ionicons name="arrow-up" size={23} color="#ffffff" />}
+                        </Pressable>
+                    </View>
                 </View>
             </KeyboardAvoidingView>
         </SafeAreaView>
@@ -300,6 +391,12 @@ const styles = StyleSheet.create({
         paddingVertical: 11,
         marginBottom: 12,
     },
+    fotoMensagem: {
+        width: 210,
+        height: 150,
+        borderRadius: 12,
+        marginBottom: 8,
+    },
     bolhaUsuario: {
         alignSelf: "flex-end",
         backgroundColor: "#168A3A",
@@ -342,15 +439,49 @@ const styles = StyleSheet.create({
         lineHeight: 19,
     },
     compositor: {
-        flexDirection: "row",
-        alignItems: "flex-end",
-        gap: 10,
+        gap: 9,
         paddingHorizontal: 14,
         paddingTop: 11,
         paddingBottom: 10,
         backgroundColor: "#ffffff",
         borderTopWidth: 1,
         borderTopColor: "#e5ece5",
+    },
+    previaFoto: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 9,
+        padding: 8,
+        width: 95,
+        borderRadius: 12,
+        backgroundColor: "#f1f5f1",
+    },
+    fotoPrevia: {
+        width: 42,
+        height: 42,
+        borderRadius: 8,
+    },
+    rotuloFoto: {
+        flex: 1,
+        color: "#31543a",
+        fontSize: 13,
+    },
+    botaoRemoverFoto: {
+        padding: 3,
+    },
+    linhaCompositor: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 10,
+    },
+    botaoFoto: {
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        borderWidth: 1,
+        borderColor: "#dce8dd",
+        alignItems: "center",
+        justifyContent: "center",
     },
     campoTexto: {
         flex: 1,

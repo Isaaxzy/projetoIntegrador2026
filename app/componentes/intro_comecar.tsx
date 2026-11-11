@@ -11,7 +11,7 @@ export default function App() {
               style={styles.logo}
               />
             <View>
-              <Text style={styles.texto}>Olá, Eu sou seu companheiro de cozinha</Text>
+              <Text style={styles.texto}>Olá, eu sou o Bróco, seu companheiro de cozinha</Text>
               <Text style={styles.subtexto}>Antes de começarmos, quero conhecer um pouquinho dos seus gostos para encontrar receitas que realmente combinem com você.</Text>
             </View>
             <Link href={'./intro_etapa_1'} style={styles.ButtonRota}><Text >Começar →</Text></Link>
@@ -46,7 +46,7 @@ texto: {
   fontWeight: "bold",
   marginBottom: 10,
   textAlign: "center",
-  width: "70%",
+  width: "90%",
   margin: "auto",
   marginTop: 20,
 },

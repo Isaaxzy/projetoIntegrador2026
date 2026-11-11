@@ -160,7 +160,7 @@ export default function App() {
             <View style={{flexDirection: "row", alignItems: "center", gap: 12, }}>
             <Image 
                 source={require("../imagens/2026_10_01_0mz_Kleki.png")} style={styles.image}></Image>
-            <Text style={{color: "#168A3A", fontSize: 24, fontWeight: "bold", marginTop: 10}}>Tempero de casa</Text>
+            <Text style={{color: "#168A3A", fontSize: 24, fontWeight: "bold", marginTop: 10}}>Brotô</Text>
             </View>
             <Link href="/login"><Image style={styles.image2} source={require("../imagens/seta.png")} /></Link>
             </View>

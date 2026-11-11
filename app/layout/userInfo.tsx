@@ -215,7 +215,7 @@ export default function App() {
             style={styles.logo1}
             source={require("../imagens/2026_10_01_0mz_Kleki.png")}
           />
-          <Text style={styles.Uptext}>Tempero de casa</Text>
+          <Text style={styles.Uptext}>Brotô</Text>
         </View>
 
         <Text style={styles.texto}>{nome || '[Seu nome!]'}</Text>

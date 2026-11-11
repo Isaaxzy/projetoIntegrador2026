@@ -1,6 +1,10 @@
+type ConteudoMultimodal =
+    | { type: "input_text"; text: string }
+    | { type: "input_image"; image_url: string; detail: "auto" };
+
 export type MensagemChat = {
     role: "user" | "assistant";
-    content: string;
+    content: string | ConteudoMultimodal[];
 };
 
 type RespostaChat = {

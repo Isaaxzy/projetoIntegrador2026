@@ -72,7 +72,7 @@ export default function App() {
                         style={styles.logo}
                         source={require("../imagens/2026_10_01_0mz_Kleki.png")}
                     />
-                    <Text style={styles.Uptext}>Tempero de casa</Text>
+                    <Text style={styles.Uptext}>Brotô</Text>
                 </View>
 
                 <Text style={styles.titulo}>🧡 Favoritos</Text>
@@ -163,7 +163,6 @@ const styles = StyleSheet.create({
     logo: {
         maxWidth: 40,
         height: 60,
-        marginTop: -15,
         marginLeft: 10,
         alignSelf: 'center',
         position: 'relative',
