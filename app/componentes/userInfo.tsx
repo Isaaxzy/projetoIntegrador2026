@@ -12,6 +12,10 @@ import {
   ScrollView
 } from 'react-native';
 import { infoSet } from '../../login info'
+import {
+  lerRestricoesAntesSemRestricoes,
+  salvarRestricoesAntesSemRestricoes,
+} from './introStorage';
 
 const itensIniciais = ['🌱 Iniciante', '🍳 Intermediário', '👩‍🍳 Avançado'];
 
@@ -67,6 +71,7 @@ export default function App() {
 
   const LIMITE_RESTRICOES = 3;
   const [restricoesSelecionadas, setRestricoesSelecionadas] = useState<number[]>([]);
+  const [restricoesAntesSemRestricoes, setRestricoesAntesSemRestricoes] = useState<number[]>([]);
 
   const [alergiasMarcadas, setAlergiasMarcadas] = useState<boolean[]>(
     itensIniciais3.map(() => false),
@@ -92,12 +97,20 @@ export default function App() {
   useEffect(() => {
     const voce = lerValor<string[]>('voce', ['', '', '']);
     const restricoes = lerIndices('Alimentacao').map((indice) => indice + 1);
+    const restricoesSelecionadasSalvas = restricoes.includes(1)
+      ? [1]
+      : restricoes;
     setNome(voce[0] ?? '');
     setPessoas(voce[1] ?? '');
     setIdade(voce[2] ?? '');
 
     setExperienciaSelecionada(lerIndices('nivelExperienciaIndices')[0] ?? null);
-    setRestricoesSelecionadas(restricoes);
+    setRestricoesSelecionadas(restricoesSelecionadasSalvas);
+    setRestricoesAntesSemRestricoes(
+      restricoes.includes(1)
+        ? lerRestricoesAntesSemRestricoes(itensIniciais2.length)
+        : restricoes.filter((id) => id !== 1),
+    );
     setAlergiasMarcadas(indicesParaBooleanos(lerIndices('Alergias'), itensIniciais3.length));
     setIngredientesMarcados(indicesParaBooleanos(lerIndices('Desgostos'), itensIniciais4.length));
     setIngredientesPrefereMarcados(indicesParaBooleanos(lerIndices('Gostos'), itensIniciais5.length));
@@ -111,13 +124,21 @@ export default function App() {
   };
 
   const alternarRestricao = (id: number) => {
+    if (id === 1) {
+      if (restricoesSelecionadas.includes(1)) {
+        setRestricoesSelecionadas(restricoesAntesSemRestricoes);
+      } else {
+        const restricoesAnteriores = restricoesSelecionadas.filter((item) => item !== 1);
+        salvarRestricoesAntesSemRestricoes(restricoesAnteriores);
+        setRestricoesAntesSemRestricoes(restricoesAnteriores);
+        setRestricoesSelecionadas([1]);
+      }
+      return;
+    }
+
     setRestricoesSelecionadas((selecionadas) => {
       if (selecionadas.includes(id)) {
         return selecionadas.filter((item) => item !== id);
-      }
-
-      if (id === 1) {
-        return [1];
       }
 
       if (selecionadas.includes(1) || selecionadas.length >= LIMITE_RESTRICOES) {

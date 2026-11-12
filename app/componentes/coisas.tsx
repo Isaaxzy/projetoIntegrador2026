@@ -2448,7 +2448,7 @@ export const receitasMaisProcuradas: Receita[] = [
     descrição: 'Panetone caseiro fofinho, recheado com bastante ganache de chocolate e finalizado com uma cobertura cremosa.',
     info: 'Farinha de trigo, chocolate meio-amargo, creme de leite e manteiga',
     dificuldade: '👨‍🍳 Média',
-    duracao: '⏳ 3h',
+    duracao: '3h',
     categorias: ['⭐ Todas', '🍰 Sobremesas'],
     condicoes: ['Flexitariano'],
     ingredientes: [

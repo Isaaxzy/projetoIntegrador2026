@@ -3,7 +3,11 @@ import { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Pressable } from 'react-native';
 import { etapa2, etapa2volta } from '../../login info'
 import { IntroScreen, introStyles } from '../../components/intro-screen';
-import { lerIndicesSalvos } from './introStorage';
+import {
+  lerRestricoesAntesSemRestricoes,
+  lerIndicesSalvos,
+  salvarRestricoesAntesSemRestricoes,
+} from './introStorage';
 
 const itensIniciais = [{ id: 1, label: '🍽️ Sem restrições' }, { id: 2, label: '🥕 Vegetariano' }, { id: 3, label: '🌱 Vegano' }, { id: 4, label: '🫒 Mediterrânea' }, { id: 5, label: '🍬 Low sugar' }, { id: 6, label: '🥗 Flexitariano' }, { id: 7, label: '🥑 Low carb' }, { id: 8, label: '🐟 Pescetariano' }, { id: 9, label: '🥚 Ovolactovegetariano' }, { id: 10, label: '🧈 Low fat' }, { id: 11, label: '💪 High protein' }];
 
@@ -14,22 +18,37 @@ export default function App() {
 
   const LIMITE_RESTRICOES = 8;
   const [restricoesSelecionadas, setRestricoesSelecionadas] = useState<number[]>([]);
+  const [restricoesAntesSemRestricoes, setRestricoesAntesSemRestricoes] = useState<number[]>([]);
 
   useEffect(() => {
     const indices = lerIndicesSalvos('Alimentacao', itensIniciais.length);
-    setRestricoesSelecionadas(
-      indices.includes(0) ? [1] : indices.slice(0, LIMITE_RESTRICOES).map((indice) => indice + 1),
+    const restricoes = indices.includes(0)
+      ? [1]
+      : indices.slice(0, LIMITE_RESTRICOES).map((indice) => indice + 1);
+    setRestricoesSelecionadas(restricoes);
+    setRestricoesAntesSemRestricoes(
+      indices.includes(0)
+        ? lerRestricoesAntesSemRestricoes(itensIniciais.length)
+        : restricoes.filter((id) => id !== 1),
     );
   }, []);
 
   const alternarRestricao = (id: number) => {
+    if (id === 1) {
+      if (restricoesSelecionadas.includes(1)) {
+        setRestricoesSelecionadas(restricoesAntesSemRestricoes);
+      } else {
+        const restricoesAnteriores = restricoesSelecionadas.filter((item) => item !== 1);
+        salvarRestricoesAntesSemRestricoes(restricoesAnteriores);
+        setRestricoesAntesSemRestricoes(restricoesAnteriores);
+        setRestricoesSelecionadas([1]);
+      }
+      return;
+    }
+
     setRestricoesSelecionadas((selecionadas) => {
       if (selecionadas.includes(id)) {
         return selecionadas.filter((item) => item !== id);
-      }
-
-      if (id === 1) {
-        return [1];
       }
 
       if (selecionadas.includes(1) || selecionadas.length >= LIMITE_RESTRICOES) {

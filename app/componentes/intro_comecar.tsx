@@ -1,5 +1,5 @@
 import { Link } from 'expo-router';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import { IntroScreen } from '../../components/intro-screen';
 
 export default function App() {
@@ -11,11 +11,13 @@ export default function App() {
               style={styles.logo}
               />
             <View>
-              <Text style={styles.texto}>Olá, Eu sou seu companheiro de cozinha</Text>
+              <Text style={styles.texto}>Olá, eu sou o Bróco, seu companheiro de cozinha</Text>
               <Text style={styles.subtexto}>Antes de começarmos, quero conhecer um pouquinho dos seus gostos para encontrar receitas que realmente combinem com você.</Text>
             </View>
             <Link href={'/(tabs)/Criar conta'} style={styles.ButtonRota}><Text >Começar →</Text></Link>
-            <Link href={'/(tabs)/login'} style={styles.ButtonRota}><Text >Entrar novamente →</Text></Link>
+
+             <Text style={styles.hipet}><TouchableOpacity><Link href={'/(tabs)/login'}><Text style={styles.cadst}>Já possui cadastro? </Text></Link></TouchableOpacity>
+              Entre com seu login e senha para acessar sua conta clickando no botão abaixo</Text>
           </View>
       </IntroScreen>
  
@@ -32,7 +34,7 @@ logo: {
 ButtonRota: {
   backgroundColor: "#168A3A",
   color: "#fff",
-  width: "45%",
+  width: "55%",
   textAlign: "center",
   paddingVertical: 10,
   borderRadius: 20,
@@ -42,12 +44,32 @@ ButtonRota: {
   cursor: "pointer",
 },
 
+hipet: {
+  fontSize: 16,
+  color: "gray",
+  textAlign: "center",
+  marginTop: 15,
+  width: "92%",
+},
+
+cadst: {
+  fontSize: 18,
+  fontWeight: "bold",
+  color: "#168A3A",
+  borderBottomColor: "#168A3A",
+},
+
+arrow: {
+  fontSize: 20,
+  color: "#168A3A",
+},
+
 texto: {
   fontSize: 30,
   fontWeight: "bold",
   marginBottom: 10,
   textAlign: "center",
-  width: "70%",
+  width: "90%",
   margin: "auto",
   marginTop: 20,
 },
@@ -55,8 +77,8 @@ texto: {
 subtexto: {
   fontSize: 16,
   color: "gray",
-  textAlign: "center",
-  width: "86%",
+  textAlign: "justify",
+  width: "90%",
   margin: "auto",
   marginTop: 10,
 },

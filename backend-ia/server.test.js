@@ -70,6 +70,41 @@ test("envia o contexto culinário e retorna a resposta da OpenAI", async () => {
     assert.match(payload.instructions, /assistente de cozinha/);
 });
 
+test("encaminha texto e foto para a OpenAI", async () => {
+    const messages = [{
+        role: "user",
+        content: [
+            { type: "input_text", text: "O que posso fazer com isso?" },
+            { type: "input_image", image_url: "data:image/jpeg;base64,Zm9v", detail: "auto" },
+        ],
+    }];
+    const response = await fetch(`${baseUrl}/api/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages }),
+    });
+
+    assert.equal(response.status, 200);
+    const payload = JSON.parse(openAiRequest.options.body);
+    assert.deepEqual(payload.input, messages);
+});
+
+test("rejeita imagem com formato de dados inválido", async () => {
+    const response = await fetch(`${baseUrl}/api/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            messages: [{
+                role: "user",
+                content: [{ type: "input_image", image_url: "https://example.com/foto.jpg" }],
+            }],
+        }),
+    });
+
+    assert.equal(response.status, 400);
+    assert.match((await response.json()).error, /imagem compatível/);
+});
+
 test("bloqueia origens web não autorizadas", async () => {
     const response = await fetch(`${baseUrl}/api/chat`, {
         method: "POST",

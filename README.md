@@ -104,7 +104,7 @@ O serviço exclusivo do chat fica em `backend-ia/` e usa a API de Responses da O
      ]
    }
    ```
-   A resposta tem o formato `{ "reply": "..." }`. O histórico aceita mensagens `user` e `assistant`; a última deve ser do usuário.
+   A resposta tem o formato `{ "reply": "..." }`. O histórico aceita mensagens `user` e `assistant`; a última deve ser do usuário. Para enviar uma imagem, use o conteúdo multimodal da API Responses, com itens `input_text` e `input_image` (imagem em uma data URL base64 JPEG, PNG, WEBP ou GIF). O chat do app permite escolher uma foto da galeria e enviá-la junto com uma pergunta.
 
 Para testar o backend sem chamar a OpenAI, execute:
 

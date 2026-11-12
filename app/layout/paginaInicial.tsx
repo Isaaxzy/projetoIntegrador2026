@@ -16,9 +16,8 @@ import {
     opcoesAlimentosEvitados,
     opcoesAlimentosPreferidos,
     opcoesRestricoesAlimentares,
-    encontrarAlimentosPreferidos,
+    filtrarReceitasPorPreferencias,
     receitaAtendeDificuldade,
-    receitaAtendeTempo,
     receitaRespeitaRestricoes,
 } from '../componentes/preferencias';
 
@@ -176,7 +175,13 @@ export default function App() {
         ...receitasMaisProcuradas,
     ]);
     const idsRecomendadas = new Set(
-        receitasUnicas.filter((receita) => receitasRecomendadas.includes(receita)).map((receita) => receita.id),
+        receitasUnicas
+            .filter((receita) =>
+                receitasRecomendadas.includes(receita)
+                || (receitasMaisProcuradas.includes(receita)
+                    && receitaAtendeDificuldade(receita.dificuldade, [0])),
+            )
+            .map((receita) => receita.id),
     );
     const idsSobremesas = new Set(
         receitasUnicas.filter((receita) => receitasSobremesas.includes(receita)).map((receita) => receita.id),
@@ -184,20 +189,20 @@ export default function App() {
     const idsMaisProcuradas = new Set(
         receitasUnicas.filter((receita) => receitasMaisProcuradas.includes(receita)).map((receita) => receita.id),
     );
-    const recomendadasFiltradas = receitasUnicas
+    const recomendadasFiltradas = filtrarReceitasPorPreferencias(
+        receitasUnicas
         .filter((receita) => idsRecomendadas.has(receita.id))
-        .filter(correspondeAosFiltros)
-        .filter((receita) =>
-            alimentosPreferidos.length === 0
-            || encontrarAlimentosPreferidos(
-                receita.ingredientes.map(({ nome }) => nome),
-                alimentosPreferidos,
-            ).length > 0,
-        )
-        .filter((receita) => receitaAtendeTempo(receita.duracao, temposPreferidos))
-        .filter((receita) =>
-            receitaAtendeDificuldade(receita.dificuldade, dificuldadesPreferidas),
-        )
+        .filter(correspondeACategoria)
+        .filter(correspondeAIngredientes),
+        {
+            alimentosPreferidos,
+            alimentosEvitados,
+            alergias,
+            restricoesAlimentares,
+            temposPreferidos,
+            dificuldadesPreferidas,
+        },
+    )
         .sort((a, b) => {
             const correspondencias = (receita: (typeof receitasRecomendadas)[number]) =>
                 receita.ingredientes.filter((ingrediente) =>
@@ -213,6 +218,7 @@ export default function App() {
         .filter(correspondeAosFiltros);
     const maisProcuradasFiltradas = receitasUnicas
         .filter((receita) => idsMaisProcuradas.has(receita.id))
+        .filter((receita) => !idsRecomendadas.has(receita.id))
         .filter(correspondeAosFiltros);
     const quantidadeReceitas =
         recomendadasFiltradas.length +
@@ -225,12 +231,10 @@ export default function App() {
         <ScrollView>
     <View style={styles.fundo}>
         <View style={styles.container}>
-            <View style={{flexDirection: "row", alignItems: "center", padding: 10, gap:8, borderBottomColor: "#cacaca", borderBottomWidth: 1, justifyContent: "space-between",}}>
-            <View style={{flexDirection: "row", alignItems: "center", gap: 12, }}>
+            <View style={{flexDirection: "row", alignItems: "center", padding: 10, gap:8, borderBottomColor: "#cacaca", borderBottomWidth: 1, justifyContent: "space-between", width: "90%", margin: "auto"}}>
             <Image 
                 source={require("../imagens/2026_10_01_0mz_Kleki.png")} style={styles.image}></Image>
-            <Text style={{color: "#168A3A", fontSize: 24, fontWeight: "bold", marginTop: 10}}>Tempero de casa</Text>
-            </View>
+            <Text style={{color: "#168A3A", fontSize: 24, fontWeight: "bold", marginTop: 2}}>Brocô</Text>
             <Link href="/login"><Image style={styles.image2} source={require("../imagens/seta.png")} /></Link>
             </View>
                     <View style={{flexDirection: "row", padding: 10, gap: 20, width: "95%", margin: "auto"}}>
@@ -322,7 +326,9 @@ export default function App() {
                             />
                         </>
                     )}
-                    {recomendadasFiltradas.length === 0 && ingredientesBusca.length === 0 && (
+                   {recomendadasFiltradas.length === 0
+                        && ingredientesBusca.length === 0
+                        && categoriaSelecionada !== '🍰 Sobremesas' && (
                         <Text style={styles.semResultados}>
                             Não encontramos receitas que atendam às suas preferências e restrições. Ajuste os filtros no seu perfil e tente novamente.
                         </Text>
@@ -440,6 +446,7 @@ container: {
     boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.14)",
     margin: "auto",
     borderRadius: 10,
+    padding: 10,
 },
 
 listaReceitas: {
@@ -586,9 +593,10 @@ semResultados: {
     paddingVertical: 11,
     marginTop: 15,
     backgroundColor: "#03a51e",
+    fontSize: 16,
     color: "white",
     borderRadius: 10,
-    width: "38%",
+    width: "85%",
     textAlign: "center",
     margin: "auto",
 },

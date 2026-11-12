@@ -14,9 +14,10 @@ const SYSTEM_INSTRUCTIONS = [
     "Se a pergunta não for relacionada a cozinha ou alimentação, explique gentilmente seu foco.",
 ].join(" ");
 
-const MAX_BODY_BYTES = 16 * 1024;
+const MAX_BODY_BYTES = 12 * 1024 * 1024;
 const MAX_MESSAGES = 12;
 const MAX_MESSAGE_LENGTH = 2000;
+const MAX_IMAGE_DATA_URL_LENGTH = 10 * 1024 * 1024;
 const MAX_REQUESTS_PER_MINUTE = 15;
 const RATE_LIMIT_WINDOW_MS = 60 * 1000;
 
@@ -84,11 +85,9 @@ function validateMessages(value) {
         if (
             !message ||
             !["user", "assistant"].includes(message.role) ||
-            typeof message.content !== "string" ||
-            !message.content.trim() ||
-            message.content.length > MAX_MESSAGE_LENGTH
+            !isValidMessageContent(message.content)
         ) {
-            return "Cada mensagem deve ter um papel válido e texto de até 2.000 caracteres.";
+            return "Cada mensagem deve ter um papel válido e texto de até 2.000 caracteres ou uma imagem compatível.";
         }
     }
 
@@ -97,6 +96,47 @@ function validateMessages(value) {
     }
 
     return null;
+}
+
+function isValidMessageContent(content) {
+    if (typeof content === "string") {
+        return Boolean(content.trim()) && content.length <= MAX_MESSAGE_LENGTH;
+    }
+
+    if (!Array.isArray(content) || content.length === 0 || content.length > 2) {
+        return false;
+    }
+
+    let hasContent = false;
+    let hasImage = false;
+    for (const part of content) {
+        if (part?.type === "input_text") {
+            if (
+                typeof part.text !== "string" ||
+                !part.text.trim() ||
+                part.text.length > MAX_MESSAGE_LENGTH
+            ) {
+                return false;
+            }
+            hasContent = true;
+        } else if (part?.type === "input_image") {
+            if (
+                hasImage ||
+                typeof part.image_url !== "string" ||
+                part.image_url.length > MAX_IMAGE_DATA_URL_LENGTH ||
+                !/^data:image\/(?:jpeg|png|webp|gif);base64,[A-Za-z0-9+/]+={0,2}$/.test(part.image_url) ||
+                (part.detail !== undefined && part.detail !== "auto")
+            ) {
+                return false;
+            }
+            hasImage = true;
+            hasContent = true;
+        } else {
+            return false;
+        }
+    }
+
+    return hasContent;
 }
 
 function extractOutputText(data) {
@@ -216,7 +256,11 @@ function createServer({ env = process.env, fetchImpl = fetch } = {}) {
                     instructions: SYSTEM_INSTRUCTIONS,
                     input: body.messages.map(({ role, content }) => ({
                         role,
-                        content: content.trim(),
+                        content: typeof content === "string"
+                            ? content.trim()
+                            : content.map((part) => part.type === "input_text"
+                                ? { ...part, text: part.text.trim() }
+                                : part),
                     })),
                     max_output_tokens: 600,
                 }),
