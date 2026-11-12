@@ -112,7 +112,7 @@ export const receitasRecomendadas: Receita[] = [
 
     dificuldade: '👨‍🍳 Fácil',
 
-    duracao: '30min',
+    duracao: '⏳ 30min',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🥗 Saudáveis', '🌱 Vegetarianas'],
 
@@ -164,7 +164,7 @@ export const receitasRecomendadas: Receita[] = [
 
     dificuldade: '👨‍🍳 Fácil',
 
-    duracao: '30min',
+    duracao: '⏳ 30min',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
 
@@ -222,9 +222,9 @@ export const receitasRecomendadas: Receita[] = [
 
     info: 'Frango, batata e alho',
 
-    dificuldade: '👨‍🍳 Fácil',
+    dificuldade: '👨‍🍳 Média',
 
-    duracao: '1h',
+    duracao: '⏳ 1h',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
 
@@ -278,9 +278,9 @@ export const receitasRecomendadas: Receita[] = [
 
     info: 'Batata, cenoura e tomate',
 
-    dificuldade: '👨‍🍳 Fácil',
+    dificuldade: '👨‍🍳 Média',
 
-    duracao: '45min',
+    duracao: '⏳ 45min',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🥗 Saudáveis', '💰 Econômicas', '🌱 Vegetarianas'],
     condicoes: [
@@ -338,9 +338,9 @@ export const receitasRecomendadas: Receita[] = [
 
     info: 'Banana, ovo e aveia',
 
-    dificuldade: '👨‍🍳 Fácil',
+    dificuldade: '👨‍🍳 Muito Fácil',
 
-    duracao: '15min',
+    duracao: '⏳ 15min',
 
     categorias: ['⭐ Todas', '🍳 Café da manhã', '🥗 Saudáveis', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
 
@@ -385,7 +385,7 @@ export const receitasRecomendadas: Receita[] = [
     descrição: 'Purê de batatas cremoso recheado com frango temperado e gratinado.',
     info: 'Frango, batata e queijo',
     dificuldade: '👨‍🍳 Médio',
-    duracao: '50min',
+    duracao: '⏳ 50min',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
     condicoes: ['Flexitariano', 'High protein'],
     ingredientes: [
@@ -415,7 +415,7 @@ export const receitasRecomendadas: Receita[] = [
     descrição: 'Risoto cremoso preparado com cogumelos frescos e queijo parmesão.',
     info: 'Arroz arbóreo e cogumelos',
     dificuldade: '👨‍🍳 Médio',
-    duracao: '40min',
+    duracao: '⏳ 40min',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🌱 Vegetarianas'],
     condicoes: ['Vegetariano', 'Flexitariano', 'Pescetariano', 'Ovolactovegetariano'],
     ingredientes: [
@@ -445,7 +445,7 @@ export const receitasRecomendadas: Receita[] = [
     descrição: 'Massa envolvida em um molho cremoso de abóbora com temperos naturais.',
     info: 'Macarrão, abóbora e creme de leite',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '30min',
+    duracao: '⏳ 30min',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🌱 Vegetarianas'],
     condicoes: ['Vegetariano', 'Flexitariano', 'Pescetariano', 'Ovolactovegetariano'],
     ingredientes: [
@@ -474,8 +474,8 @@ export const receitasRecomendadas: Receita[] = [
     Imagem: 'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=800&q=80',
     descrição: 'Torta fofinha com recheio colorido de legumes e queijo.',
     info: 'Farinha, ovos e legumes',
-    dificuldade: '👨‍🍳 Fácil',
-    duracao: '45min',
+    dificuldade: '👨‍🍳 Média',
+    duracao: '⏳ 45min',
     categorias: ['⭐ Todas', '👩‍🍳 Janta', '🌱 Vegetarianas'],
     condicoes: ['Vegetariano', 'Flexitariano', 'Pescetariano', 'Ovolactovegetariano'],
     ingredientes: [
@@ -507,7 +507,7 @@ export const receitasRecomendadas: Receita[] = [
     descrição: 'Filé de frango suculento acompanhado de legumes salteados.',
     info: 'Frango, brócolis e cenoura',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '25min',
+    duracao: '⏳ 25min',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🥗 Saudáveis'],
     condicoes: ['Flexitariano', 'High protein', 'Low carb', 'Low fat', 'Low sugar'],
     ingredientes: [
@@ -536,7 +536,7 @@ export const receitasRecomendadas: Receita[] = [
     descrição: 'Crepioca leve e prática, recheada com queijo derretido.',
     info: 'Tapioca, ovos e queijo',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '10min',
+    duracao: '⏳ 10min',
     categorias: ['⭐ Todas', '🍳 Café da manhã', '🥖 Lanches', '🥗 Saudáveis', '🌱 Vegetarianas'],
     condicoes: ['Vegetariano', 'Flexitariano', 'Pescetariano', 'Ovolactovegetariano', 'Low sugar'],
     ingredientes: [
@@ -563,7 +563,7 @@ export const receitasRecomendadas: Receita[] = [
     descrição: 'Sopa quentinha e aveludada de mandioquinha com temperos suaves.',
     info: 'Mandioquinha, cebola e creme de leite',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '35min',
+    duracao: '⏳ 35min',
     categorias: ['⭐ Todas', '👩‍🍳 Janta', '🥗 Saudáveis', '🌱 Vegetarianas'],
     condicoes: ['Vegetariano', 'Flexitariano', 'Pescetariano', 'Ovolactovegetariano'],
     ingredientes: [
@@ -593,7 +593,7 @@ export const receitasRecomendadas: Receita[] = [
     descrição: 'Hambúrguer artesanal preparado com carne temperada e acompanhado de queijo e salada.',
     info: 'Carne moída, pão e queijo',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '25min',
+    duracao: '⏳ 25min',
     categorias: ['⭐ Todas', '👩‍🍳 Janta'],
     condicoes: ['Flexitariano', 'High protein'],
     ingredientes: [
@@ -622,7 +622,7 @@ export const receitasRecomendadas: Receita[] = [
     descrição: 'Salada refrescante de macarrão com atum, vegetais e molho leve.',
     info: 'Macarrão, atum e legumes',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '20min',
+    duracao: '⏳ 20min',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '🥗 Saudáveis'],
     condicoes: ['Pescetariano', 'Flexitariano', 'High protein'],
     ingredientes: [
@@ -651,7 +651,7 @@ export const receitasRecomendadas: Receita[] = [
     descrição: 'Versão vegetariana da lasanha, com camadas de berinjela, molho e queijo.',
     info: 'Berinjela, molho de tomate e queijo',
     dificuldade: '👨‍🍳 Médio',
-    duracao: '45min',
+    duracao: '⏳ 45min',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🌱 Vegetarianas'],
     condicoes: ['Vegetariano', 'Flexitariano', 'Pescetariano', 'Ovolactovegetariano', 'Low carb'],
     ingredientes: [
@@ -679,8 +679,8 @@ export const receitasRecomendadas: Receita[] = [
     Imagem: 'https://images.unsplash.com/photo-1505252585461-04db1eb84625?auto=format&fit=crop&w=800&q=80',
     descrição: 'Bebida cremosa e refrescante feita com frutas e iogurte natural.',
     info: 'Morango, banana e iogurte',
-    dificuldade: '👨‍🍳 Fácil',
-    duracao: '5min',
+    dificuldade: '👨‍🍳 Muito Fácil',
+    duracao: '⏳ 5min',
     categorias: ['⭐ Todas', '🍳 Café da manhã', '🥗 Saudáveis', '🌱 Vegetarianas'],
     condicoes: ['Vegetariano', 'Flexitariano', 'Pescetariano', 'Ovolactovegetariano'],
     ingredientes: [
@@ -707,7 +707,7 @@ export const receitasRecomendadas: Receita[] = [
     descrição: 'Filé de peixe assado com batatas, limão e ervas aromáticas.',
     info: 'Peixe, batata e limão',
     dificuldade: '👨‍🍳 Médio',
-    duracao: '40min',
+    duracao: '⏳ 40min',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🥗 Saudáveis'],
     condicoes: ['Pescetariano', 'Flexitariano', 'High protein', 'Low sugar'],
     ingredientes: [
@@ -737,7 +737,7 @@ export const receitasRecomendadas: Receita[] = [
     descrição: 'Quibe assado temperado com hortelã e recheado com queijo cremoso.',
     info: 'Carne moída, trigo para quibe e queijo',
     dificuldade: '👨‍🍳 Médio',
-    duracao: '50min',
+    duracao: '⏳ 50min',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
     condicoes: ['Flexitariano', 'High protein'],
     ingredientes: [
@@ -767,7 +767,7 @@ export const receitasRecomendadas: Receita[] = [
     descrição: 'Arroz cremoso com brócolis e queijo, uma opção prática para acompanhar as refeições.',
     info: 'Arroz, brócolis e queijo',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '25min',
+    duracao: '⏳ 25min',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🌱 Vegetarianas'],
     condicoes: ['Vegetariano', 'Flexitariano', 'Pescetariano', 'Ovolactovegetariano'],
     ingredientes: [
@@ -795,7 +795,7 @@ export const receitasRecomendadas: Receita[] = [
     descrição: 'Panquecas macias recheadas com frango desfiado e cobertas com molho de tomate e queijo.',
     info: 'Frango, farinha e queijo',
     dificuldade: '👨‍🍳 Médio',
-    duracao: '45min',
+    duracao: '⏳ 45min',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
     condicoes: ['Flexitariano', 'High protein'],
     ingredientes: [
@@ -824,8 +824,8 @@ export const receitasRecomendadas: Receita[] = [
     Imagem: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80',
     descrição: 'Cuscuz de milho fofinho acompanhado de ovos mexidos e manteiga.',
     info: 'Flocão de milho e ovos',
-    dificuldade: '👨‍🍳 Fácil',
-    duracao: '15min',
+    dificuldade: '👨‍🍳 Muito Fácil',
+    duracao: '⏳ 15min',
     categorias: ['⭐ Todas', '🍳 Café da manhã', '🥗 Saudáveis', '🌱 Vegetarianas'],
     condicoes: ['Vegetariano', 'Flexitariano', 'Pescetariano', 'Ovolactovegetariano'],
     ingredientes: [
@@ -864,9 +864,9 @@ export const receitasSobremesas: Receita[] = [
 
     info: 'Banana, creme de leite e mel',
 
-    dificuldade: '👨‍🍳 Fácil',
+    dificuldade: '👨‍🍳 Muito Fácil',
 
-    duracao: '15min',
+    duracao: '⏳ 15min',
 
     categorias: ['⭐ Todas', '🍰 Sobremesas', '⚡ Rápidas', '🌱 Vegetarianas'],
 
@@ -916,7 +916,7 @@ export const receitasSobremesas: Receita[] = [
 
     dificuldade: '👨‍🍳 Médio',
 
-    duracao: '45min',
+    duracao: '⏳ 45min',
 
     categorias: ['⭐ Todas', '🍰 Sobremesas', '💰 Econômicas', '🌱 Vegetarianas'],
 
@@ -973,7 +973,7 @@ export const receitasSobremesas: Receita[] = [
 
     dificuldade: '👨‍🍳 Médio',
 
-    duracao: '1h',
+    duracao: '⏳ 1h',
 
     categorias: ['⭐ Todas', '🍰 Sobremesas', '🌱 Vegetarianas'],
 
@@ -1026,7 +1026,7 @@ export const receitasSobremesas: Receita[] = [
 
     dificuldade: '👨‍🍳 Fácil',
 
-    duracao: '30min',
+    duracao: '⏳ 30min',
 
     categorias: ['⭐ Todas', '🍰 Sobremesas', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
 
@@ -1075,9 +1075,9 @@ export const receitasSobremesas: Receita[] = [
 
     info: 'Milho de pipoca, açúcar e óleo',
 
-    dificuldade: '👨‍🍳 Fácil',
+    dificuldade: '👨‍🍳 Muito Fácil',
 
-    duracao: '15min',
+    duracao: '⏳ 15min',
 
     categorias: ['⭐ Todas', '🍰 Sobremesas', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
 
@@ -1132,7 +1132,7 @@ export const receitasSobremesas: Receita[] = [
 
     dificuldade: '👨‍🍳 Fácil',
 
-    duracao: '30min',
+    duracao: '⏳ 30min',
 
     categorias: ['⭐ Todas', '🍳 Café da manhã', '⚡ Rápidas'],
 
@@ -1188,7 +1188,7 @@ export const receitasSobremesas: Receita[] = [
     descrição: 'Brigadeiro de chocolate bem cremoso, perfeito para servir em pequenos potinhos.',
     info: 'Leite condensado, creme de leite e chocolate em pó',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '30min',
+    duracao: '⏳ 30min',
     categorias: ['⭐ Todas', '🍰 Sobremesas'],
 
     condicoes: [
@@ -1235,7 +1235,7 @@ export const receitasSobremesas: Receita[] = [
 
     dificuldade: '👨‍🍳 Elaborada',
 
-    duracao: 'Mais de 1h30min',
+    duracao: '⏳ Mais de 1h30min',
 
     categorias: ['⭐ Todas', '🍰 Sobremesas'],
 
@@ -1306,7 +1306,7 @@ export const receitasSobremesas: Receita[] = [
     descrição: 'Sobremesa cremosa com sabor de morango, feita com poucos ingredientes e preparada no liquidificador.',
     info: 'Leite condensado, creme de leite, iogurte natural e suco em pó de morango',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '10min + geladeira',
+    duracao: '⏳ 10min + geladeira',
     categorias: ['⭐ Todas', '🍰 Sobremesas', '⚡ Rápidas', '💰 Econômicas'],
     condicoes: ['Flexitariano'],
     ingredientes: [
@@ -1331,8 +1331,8 @@ export const receitasSobremesas: Receita[] = [
     Imagem: 'https://nsmoldes.com.br/wp-content/uploads/2025/11/Pave-Classico-de-Chocolate-2048x1152.jpg',
     descrição: 'Sobremesa gelada feita com camadas de biscoito maisena, creme branco, creme de chocolate e cobertura cremosa.',
     info: 'Biscoito maisena, leite condensado, leite, chocolate em pó e creme de leite',
-    dificuldade: '👨‍🍳 Fácil',
-    duracao: '55min',
+    dificuldade: '👨‍🍳 Média',
+    duracao: '⏳ 55min',
     categorias: ['⭐ Todas', '🍰 Sobremesas'],
     condicoes: ['Flexitariano'],
     ingredientes: [
@@ -1372,7 +1372,7 @@ export const receitasSobremesas: Receita[] = [
     descrição: 'Brigadeiros macios e docinhos feitos com leite condensado e leite em pó, finalizados com uma camada de leite em pó.',
     info: 'Leite condensado, leite em pó e manteiga',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '10min',
+    duracao: '⏳ 10min',
     categorias: ['⭐ Todas', '🍰 Sobremesas', '⚡ Rápidas'],
     condicoes: ['Flexitariano'],
     ingredientes: [
@@ -1402,8 +1402,8 @@ export const receitasSobremesas: Receita[] = [
     Imagem: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80',
     descrição: 'Brigadeiro cremoso de chocolate, perfeito para servir em pequenas porções.',
     info: 'Leite condensado, chocolate e manteiga',
-    dificuldade: '👨‍🍳 Fácil',
-    duracao: '15min',
+    dificuldade: '👨‍🍳 Muito Fácil',
+    duracao: '⏳ 15min',
     categorias: ['⭐ Todas', '🥖 Lanches', '🍰 Sobremesas'],
     condicoes: ['Vegetariano', 'Flexitariano', 'Ovolactovegetariano'],
     ingredientes: [
@@ -1430,7 +1430,7 @@ export const receitasSobremesas: Receita[] = [
     descrição: 'Sobremesa simples de maçãs assadas com canela e mel.',
     info: 'Maçã, canela e mel',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '25min',
+    duracao: '⏳ 25min',
     categorias: ['⭐ Todas', '🍳 Café da manhã', '🥖 Lanches', '🍰 Sobremesas', '🥗 Saudáveis', '🌱 Vegetarianas'],
     condicoes: ['Vegetariano', 'Flexitariano', 'Pescetariano', 'Vegano', 'Ovolactovegetariano', 'Low fat'],
     ingredientes: [
@@ -1471,7 +1471,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Fácil',
 
-    duracao: '30min',
+    duracao: '⏳ 30min',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
 
@@ -1526,7 +1526,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Fácil',
 
-    duracao: '30min',
+    duracao: '⏳ 30min',
 
     categorias: ['⭐ Todas', '🍳 Café da manhã', '🌱 Vegetarianas'],
 
@@ -1578,9 +1578,9 @@ export const receitasMaisProcuradas: Receita[] = [
 
     info: 'Macarrão, alho e azeite',
 
-    dificuldade: '👨‍🍳 Fácil',
+    dificuldade: '👨‍🍳 Muito Fácil',
 
-    duracao: '15min',
+    duracao: '⏳ 15min',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
 
@@ -1634,9 +1634,9 @@ export const receitasMaisProcuradas: Receita[] = [
 
     info: 'Arroz, frango e queijo',
 
-    dificuldade: '👨‍🍳 Fácil',
+    dificuldade: '👨‍🍳 média',
 
-    duracao: '45min',
+    duracao: '⏳ 45min',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
 
@@ -1688,7 +1688,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Muito Fácil',
 
-    duracao: '15min',
+    duracao: '⏳ 15min',
 
     categorias: ['⭐ Todas', '⚡ Rápidas', '🌱 Vegetarianas'],
 
@@ -1755,7 +1755,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Elaborado',
 
-    duracao: '1h',
+    duracao: '⏳ 1h',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
 
@@ -1846,7 +1846,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Fácil',
 
-    duracao: '30min',
+    duracao: '⏳ 30min',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
 
@@ -1919,7 +1919,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Média',
 
-    duracao: '30min',
+    duracao: '⏳ 30min',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🌱 Vegetarianas'],
 
@@ -1987,9 +1987,9 @@ export const receitasMaisProcuradas: Receita[] = [
 
     info: 'Carne bovina, batata, cenoura e macarrão',
 
-    dificuldade: '👨‍🍳 Fácil',
+    dificuldade: '👨‍🍳 Média',
 
-    duracao: '45min',
+    duracao: '⏳ 45min',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
 
@@ -2075,7 +2075,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Elaborado',
 
-    duracao: '30min',
+    duracao: '⏳ 30min',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
 
@@ -2156,9 +2156,9 @@ export const receitasMaisProcuradas: Receita[] = [
 
     info: 'Alface, cenoura, beterraba e tomate',
 
-    dificuldade: '👨‍🍳 Fácil',
+    dificuldade: '👨‍🍳 Muito Fácil',
 
-    duracao: '15min',
+    duracao: '⏳ 15min',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🌱 Vegetarianas'],
 
@@ -2223,7 +2223,7 @@ export const receitasMaisProcuradas: Receita[] = [
     descrição: 'Massa macia recheada com presunto, queijo mussarela e requeijão.',
     info: 'Farinha de trigo, fermento, presunto e mussarela',
     dificuldade: '👨‍🍳 Média',
-    duracao: '45min',
+    duracao: '⏳ 45min',
     categorias: ['⭐ Todas', '🍳 Café da manhã', '🥖 Lanches'],
 
     condicoes: [
@@ -2269,7 +2269,7 @@ export const receitasMaisProcuradas: Receita[] = [
     descrição: 'Enroladinho de massa macia recheado com queijo, finalizado com leite condensado e coco ralado.',
     info: 'Farinha de trigo, fermento, queijo e coco ralado',
     dificuldade: '👨‍🍳 Média',
-    duracao: '1h',
+    duracao: '⏳ 1h',
     categorias: ['⭐ Todas', '🍳 Café da manhã', '🥖 Lanches'],
 
     condicoes: [
@@ -2318,8 +2318,8 @@ export const receitasMaisProcuradas: Receita[] = [
     Imagem: 'https://momentosdocesesalgados.com/wp-content/uploads/2020/12/Receita-de-Pao-de-Batata-Doce-1024x576.jpg',
     descrição: 'Pão fofinho de batata-doce, com sabor suave e levemente adocicado.',
     info: 'Batata-doce, farinha de trigo, leite e manteiga',
-    dificuldade: '👨‍🍳 Média',
-    duracao: 'Mais de 1h30min',
+    dificuldade: '👨‍🍳 Elaborada',
+    duracao: '⏳ Mais de 1h30min',
     categorias: ['⭐ Todas', '🍳 Café da manhã', '🥖 Lanches'],
 
     condicoes: [
@@ -2363,7 +2363,7 @@ export const receitasMaisProcuradas: Receita[] = [
     descrição: 'Macarrão integral com molho de tomate caseiro, abobrinha e um toque de carne moída.',
     info: 'Macarrão integral, tomate, abobrinha e carne moída',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '30min',
+    duracao: '⏳ 30min',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
 
@@ -2413,7 +2413,7 @@ export const receitasMaisProcuradas: Receita[] = [
     Imagem: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80',
     descrição: 'Frango inteiro assado e temperado com limão, alho, cebola e ervas frescas.',
     info: 'Frango inteiro, limão, alho, cebola e temperos',
-    dificuldade: '👨‍🍳 Fácil',
+    dificuldade: '👨‍🍳 Média',
     duracao: '⏳ 1h',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
     condicoes: ['Flexitariano', 'High protein', 'Low carb', 'Low sugar'],
@@ -2496,8 +2496,8 @@ export const receitasMaisProcuradas: Receita[] = [
     Imagem: 'https://tse4.mm.bing.net/th/id/OIP.-LvApD6ripVbRn36x9cP9gHaD4?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
     descrição: 'Batatas cortadas em formato de canoa, temperadas com ervas e assadas na airfryer até ficarem douradas e crocantes.',
     info: 'Batata, alecrim, tomilho, salsinha e azeite',
-    dificuldade: '👨‍🍳 Fácil',
-    duracao: '35min',
+    dificuldade: '👨‍🍳 Facil',
+    duracao: '⏳ 35min',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🥗 Saudáveis', '⚡ Rápidas', '💰 Econômicas'],
     condicoes: ['Vegetariano', 'Vegano', 'Flexitariano', 'Pescetariano', 'Ovolactovegetariano', 'Low fat', 'Low sugar', 'Mediterrânea'],
     ingredientes: [
@@ -2533,7 +2533,7 @@ export const receitasMaisProcuradas: Receita[] = [
     descrição: 'Sobremesa cremosa com sabor de morango, feita com poucos ingredientes e preparada no liquidificador.',
     info: 'Leite condensado, creme de leite, iogurte natural e suco em pó de morango',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '10min + geladeira',
+    duracao: '⏳ 10min + geladeira',
     categorias: ['⭐ Todas', '🍰 Sobremesas', '⚡ Rápidas', '💰 Econômicas'],
     condicoes: ['Flexitariano'],
     ingredientes: [
@@ -2558,8 +2558,8 @@ export const receitasMaisProcuradas: Receita[] = [
     Imagem: 'https://nsmoldes.com.br/wp-content/uploads/2025/11/Pave-Classico-de-Chocolate-2048x1152.jpg',
     descrição: 'Sobremesa gelada feita com camadas de biscoito maisena, creme branco, creme de chocolate e cobertura cremosa.',
     info: 'Biscoito maisena, leite condensado, leite, chocolate em pó e creme de leite',
-    dificuldade: '👨‍🍳 Fácil',
-    duracao: '55min',
+    dificuldade: '👨‍🍳 Média',
+    duracao: '⏳ 55min',
     categorias: ['⭐ Todas', '🍰 Sobremesas'],
     condicoes: ['Flexitariano'],
     ingredientes: [
@@ -2599,7 +2599,7 @@ export const receitasMaisProcuradas: Receita[] = [
     descrição: 'Brigadeiros macios e docinhos feitos com leite condensado e leite em pó, finalizados com uma camada de leite em pó.',
     info: 'Leite condensado, leite em pó e manteiga',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '10min',
+    duracao: '⏳ 10min',
     categorias: ['⭐ Todas', '🍰 Sobremesas', '⚡ Rápidas'],
     condicoes: ['Flexitariano'],
     ingredientes: [
@@ -2628,7 +2628,7 @@ export const receitasMaisProcuradas: Receita[] = [
     descrição: 'Torta com base crocante de biscoito, recheio de maçã caramelizada com canela e uma camada cremosa de baunilha.',
     info: 'Maçã, biscoito maisena, leite condensado, creme de leite e canela',
     dificuldade: '👨‍🍳 Média',
-    duracao: '40min + forno',
+    duracao: '⏳ 40min + forno',
     categorias: ['⭐ Todas', '🍰 Sobremesas'],
     condicoes: ['Flexitariano'],
     ingredientes: [
@@ -2669,7 +2669,7 @@ export const receitasMaisProcuradas: Receita[] = [
     descrição: 'Coxinhas caseiras com massa macia de farinha de trigo e batata, recheadas com frango temperado.',
     info: 'Farinha de trigo, batata, frango desfiado e temperos',
     dificuldade: '👨‍🍳 Média',
-    duracao: '2h',
+    duracao: '⏳ 2h',
     categorias: ['⭐ Todas', '🥖 Lanches', '💰 Econômicas'],
     condicoes: ['Flexitariano', 'High protein'],
     ingredientes: [
@@ -2716,7 +2716,7 @@ export const receitasMaisProcuradas: Receita[] = [
     Imagem: 'https://tse1.mm.bing.net/th/id/OIP.37ZS8UJsYHqB99Rl_K5KVwHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
     descrição: 'Caldo cremoso e encorpado feito com frango desfiado, mandioca, mandioquinha, cenoura e bacon.',
     info: 'Frango, mandioca, mandioquinha, cenoura e bacon',
-    dificuldade: '👨‍🍳 Média',
+    dificuldade: '👨‍🍳 Elaborada',
     duracao: '⏳ 1h30min',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🥗 Saudáveis'],
     condicoes: ['Flexitariano', 'High protein'],
@@ -2763,7 +2763,7 @@ export const receitasMaisProcuradas: Receita[] = [
     descrição: 'Estrogonofe cremoso de frango em cubinhos, preparado com molho de tomate, mostarda, ketchup e champignon.',
     info: 'Frango, creme de leite, champignon, extrato de tomate e mostarda',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '30min',
+    duracao: '⏳ 30min',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
     condicoes: ['Flexitariano', 'High protein'],
     ingredientes: [
@@ -2798,7 +2798,7 @@ export const receitasMaisProcuradas: Receita[] = [
     descrição: 'Tiras de carne bovina fritas e cobertas com um molho cremoso de queijo gorgonzola.',
     info: 'Carne bovina, queijo gorgonzola e creme de leite',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '40min',
+    duracao: '⏳ 40min',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
     condicoes: ['Flexitariano', 'High protein'],
     ingredientes: [
@@ -2834,7 +2834,7 @@ export const receitasMaisProcuradas: Receita[] = [
     descrição: 'Picanha assada no forno, temperada com alho, sal grosso, pimenta calabresa e azeite.',
     info: 'Picanha bovina, alho, sal grosso, pimenta calabresa e azeite',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '2h20min',
+    duracao: '⏳ 2h20min',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
     condicoes: ['Flexitariano', 'High protein', 'Low carb', 'Low sugar'],
     ingredientes: [
@@ -2864,7 +2864,7 @@ export const receitasMaisProcuradas: Receita[] = [
     descrição: 'Macarrão com carne em tiras, legumes variados e molho shoyu, formando um prato oriental saboroso e colorido.',
     info: 'Macarrão espaguete, carne bovina, brócolis, couve-flor, cenoura e molho shoyu',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '40min',
+    duracao: '⏳ 40min',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
     condicoes: ['Flexitariano', 'High protein'],
     ingredientes: [
@@ -2905,7 +2905,7 @@ export const receitasMaisProcuradas: Receita[] = [
     descrição: 'Rocambole de carne moída recheado com presunto e queijo, temperado e assado até ficar dourado.',
     info: 'Carne moída, sopa de cebola, presunto e queijo',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '50min',
+    duracao: '⏳ 50min',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
     condicoes: ['Flexitariano', 'High protein'],
     ingredientes: [
@@ -2948,7 +2948,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Fácil',
 
-    duracao: '30min',
+    duracao: '⏳ 30min',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🥗 Saudáveis', '🌱 Vegetarianas'],
 
@@ -3000,7 +3000,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Fácil',
 
-    duracao: '30min',
+    duracao: '⏳ 30min',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
 
@@ -3058,9 +3058,9 @@ export const receitasMaisProcuradas: Receita[] = [
 
     info: 'Frango, batata e alho',
 
-    dificuldade: '👨‍🍳 Fácil',
+    dificuldade: '👨‍🍳 Média',
 
-    duracao: '1h',
+    duracao: '⏳ 1h',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
 
@@ -3114,9 +3114,9 @@ export const receitasMaisProcuradas: Receita[] = [
 
     info: 'Batata, cenoura e tomate',
 
-    dificuldade: '👨‍🍳 Fácil',
+    dificuldade: '👨‍🍳 Média',
 
-    duracao: '45min',
+    duracao: '⏳ 45min',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🥗 Saudáveis', '💰 Econômicas', '🌱 Vegetarianas'],
     condicoes: [
@@ -3174,9 +3174,9 @@ export const receitasMaisProcuradas: Receita[] = [
 
     info: 'Banana, ovo e aveia',
 
-    dificuldade: '👨‍🍳 Fácil',
+    dificuldade: '👨‍🍳 Muito Fácil',
 
-    duracao: '15min',
+    duracao: '⏳ 15min',
 
     categorias: ['⭐ Todas', '🍳 Café da manhã', '🥗 Saudáveis', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
 
@@ -3227,9 +3227,9 @@ export const receitasMaisProcuradas: Receita[] = [
 
     info: 'Banana, creme de leite e mel',
 
-    dificuldade: '👨‍🍳 Fácil',
+    dificuldade: '👨‍🍳 Muito Fácil',
 
-    duracao: '15min',
+    duracao: '⏳ 15min',
 
     categorias: ['⭐ Todas', '🍰 Sobremesas', '⚡ Rápidas', '🌱 Vegetarianas'],
 
@@ -3279,7 +3279,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Médio',
 
-    duracao: '45min',
+    duracao: '⏳ 45min',
 
     categorias: ['⭐ Todas', '🍰 Sobremesas', '💰 Econômicas', '🌱 Vegetarianas'],
 
@@ -3336,7 +3336,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Médio',
 
-    duracao: '1h',
+    duracao: '⏳ 1h',
 
     categorias: ['⭐ Todas', '🍰 Sobremesas', '🌱 Vegetarianas'],
 
@@ -3389,7 +3389,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Fácil',
 
-    duracao: '30min',
+    duracao: '⏳ 30min',
 
     categorias: ['⭐ Todas', '🍰 Sobremesas', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
 
@@ -3438,9 +3438,9 @@ export const receitasMaisProcuradas: Receita[] = [
 
     info: 'Milho de pipoca, açúcar e óleo',
 
-    dificuldade: '👨‍🍳 Fácil',
+    dificuldade: '👨‍🍳 Muito Fácil',
 
-    duracao: '15min',
+    duracao: '⏳ 15min',
 
     categorias: ['⭐ Todas', '🍰 Sobremesas', '⚡ Rápidas', '💰 Econômicas', '🌱 Vegetarianas'],
 
@@ -3495,7 +3495,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Fácil',
 
-    duracao: '30min',
+    duracao: '⏳ 30min',
 
     categorias: ['⭐ Todas', '🍳 Café da manhã', '⚡ Rápidas'],
 
@@ -3551,7 +3551,7 @@ export const receitasMaisProcuradas: Receita[] = [
     descrição: 'Brigadeiro de chocolate bem cremoso, perfeito para servir em pequenos potinhos.',
     info: 'Leite condensado, creme de leite e chocolate em pó',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '30min',
+    duracao: '⏳ 30min',
     categorias: ['⭐ Todas', '🍰 Sobremesas'],
 
     condicoes: [
@@ -3598,7 +3598,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Elaborada',
 
-    duracao: 'Mais de 1h30min',
+    duracao: '⏳ Mais de 1h30min',
 
     categorias: ['⭐ Todas', '🍰 Sobremesas'],
 
@@ -3678,7 +3678,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Fácil',
 
-    duracao: '30min',
+    duracao: '⏳ 30min',
 
     categorias: ['⭐ Todas', '🍳 Café da manhã', '🥖 Lanches', '⚡ Rápidas'],
 
@@ -3744,7 +3744,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Muito Fácil',
 
-    duracao: '5min',
+    duracao: '⏳ 5min',
 
     categorias: ['⭐ Todas', '🍳 Café da manhã', '⚡ Rápidas', '💰 Econômicas'],
 
@@ -3802,7 +3802,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Fácil',
 
-    duracao: '30min',
+    duracao: '⏳ 30min',
 
     categorias: ['⭐ Todas', '🥖 Lanches', '💰 Econômicas'],
 
@@ -3868,7 +3868,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Média',
 
-    duracao: '40min',
+    duracao: '⏳ 40min',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🥖 Lanches'],
 
@@ -3968,9 +3968,9 @@ export const receitasMaisProcuradas: Receita[] = [
 
     info: 'Água, hortelã fresca, limão e mel',
 
-    dificuldade: '👨‍🍳 Fácil',
+    dificuldade: '👨‍🍳 Muito Fácil',
 
-    duracao: '15min',
+    duracao: '⏳ 15min',
 
     categorias: ['⭐ Todas', '🥗 Saudáveis', '⚡ Rápidas', '💰 Econômicas'],
 
@@ -4022,7 +4022,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Muito Fácil',
 
-    duracao: '5min',
+    duracao: '⏳ 5min',
 
     categorias: ['⭐ Todas', '🥖 Lanches', '⚡ Rápidas', '💰 Econômicas'],
 
@@ -4076,7 +4076,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Muito Fácil',
 
-    duracao: '5min',
+    duracao: '⏳ 5min',
 
     categorias: ['⭐ Todas', '⚡ Rápidas'],
 
@@ -4130,7 +4130,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Média',
 
-    duracao: '1h',
+    duracao: '⏳ 1h',
 
     categorias: ['⭐ Todas', '🍳 Café da manhã', '🥖 Lanches'],
 
@@ -4194,7 +4194,7 @@ export const receitasMaisProcuradas: Receita[] = [
 
     dificuldade: '👨‍🍳 Fácil',
 
-    duracao: '20min',
+    duracao: '⏳ 20min',
 
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🥗 Saudáveis'],
 
@@ -4244,14 +4244,14 @@ export const receitasMaisProcuradas: Receita[] = [
 
 
   {
-  id: '4f',
+  id: '3zz',
   titulo: 'Batata recheada',
   cor: '#c99b5b',
   Imagem: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=800&q=80',
   descrição: 'Batatas cozidas e recheadas com uma mistura cremosa de queijo mussarela, bacon, ovo e creme de leite, finalizadas no forno.',
   info: 'Batata, queijo mussarela, bacon, creme de leite e ovo',
   dificuldade: '👨‍🍳 Fácil',
-  duracao: '30min',
+  duracao: '⏳ 30min',
   categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
   condicoes: ['Flexitariano', 'High protein'],
   ingredientes: [
@@ -4281,14 +4281,14 @@ export const receitasMaisProcuradas: Receita[] = [
 },
 
 {
-  id: '50',
+  id: '3aaa',
   titulo: 'Ovo frito no micro-ondas',
   cor: '#f4c542',
   Imagem: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80',
   descrição: 'Ovos preparados no micro-ondas com margarina ou azeite, uma opção prática para o café da manhã.',
   info: 'Ovos, margarina ou azeite',
   dificuldade: 'Muito fácil',
-  duracao: '5min',
+  duracao: '⏳ 5min',
   categorias: [
     '⭐ Todas',
     '🍳 Café da manhã',
@@ -4316,17 +4316,17 @@ export const receitasMaisProcuradas: Receita[] = [
     'Aqueça até os ovos ficarem cozidos, verificando o ponto e seguindo as orientações de segurança do aparelho.',
     'Retire com cuidado, pois o recipiente estará quente, e sirva.',
   ],
-}
+},
 
 {
-  id: '51',
+  id: '3bbb',
   titulo: 'Strogonoff de cogumelos',
   cor: '#a17b55',
   Imagem: 'https://images.unsplash.com/photo-1505576399275-565b52d4ac71?auto=format&fit=crop&w=800&q=80',
   descrição: 'Strogonoff cremoso de shimeji e shitake com molho de tomate, cream cheese e temperos especiais.',
   info: 'Shimeji, shitake, cream cheese, cebola e molho inglês',
   dificuldade: '👨‍🍳 Fácil',
-  duracao: '25min',
+  duracao: '⏳ 25min',
   categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🌱 Vegetarianas'],
   condicoes: [
   'Vegetariano',
@@ -4375,7 +4375,7 @@ export const receitasMaisProcuradas: Receita[] = [
   descrição: 'Lasanha com camadas de massa, legumes assados e molhos caseiros de tomate e queijo.',
   info: 'Pepino, abobrinha, cenoura, molho de tomate, leite e queijos',
   dificuldade: 'Média',
-  duracao: '40min',
+  duracao: '⏳ 40min',
   categorias: [
     '⭐ Todas',
     '👩‍🍳 Almoço',
@@ -4428,7 +4428,7 @@ export const receitasMaisProcuradas: Receita[] = [
     'Salpique queijo parmesão ralado por cima.',
     'Leve ao forno por 30 a 35 minutos.',
   ],
-}
+},
 
 {
   id: '54',
@@ -4438,7 +4438,7 @@ export const receitasMaisProcuradas: Receita[] = [
   descrição: 'Quiche salgada com massa amanteigada e recheio cremoso de ricota, espinafre, queijo parmesão e ervas.',
   info: 'Ricota, espinafre, creme de leite, ovos e queijo parmesão',
   dificuldade: 'Média',
-  duracao: '1h',
+  duracao: '⏳ 1h',
   categorias: [
     '⭐ Todas',
     '👩‍🍳 Almoço',
@@ -4488,7 +4488,884 @@ export const receitasMaisProcuradas: Receita[] = [
     'Leve ao forno preaquecido por aproximadamente 40 minutos ou até ficar dourada.',
     'Sirva quente ou fria.',
   ],
-}
+},
+
+{
+  id: '55',
+  titulo: 'Canjica vegana',
+  cor: '#e8dfc9',
+  Imagem: 'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Canjica doce e cremosa preparada com leite de coco, coco ralado e especiarias, sem ingredientes de origem animal.',
+  info: 'Canjica branca, leite de coco, coco ralado e açúcar demerara',
+  dificuldade: 'Elaborada',
+  duracao: '⏳ 1h 15min',
+  categorias: [
+    '⭐ Todas',
+    '🍰 Sobremesas',
+  ],
+  condicoes: [
+    'Vegetariano',
+    'Vegano',
+    'Flexitariano',
+    'Pescetariano',
+    'Ovolactovegetariano',
+  ],
+  ingredientes: [
+    { nome: 'Canjica branca', unidade: '1 xícara' },
+    { nome: 'Água', unidade: '2 litros' },
+    { nome: 'Leite de coco', unidade: '1 vidro (200 ml)' },
+    { nome: 'Coco ralado fino', unidade: '1/2 xícara' },
+    { nome: 'Açúcar demerara', unidade: '1/2 xícara' },
+    { nome: 'Canela em pau', unidade: '3 unidades' },
+    { nome: 'Cravo-da-índia', unidade: '4 unidades' },
+    { nome: 'Canela em pó', unidade: 'A gosto' },
+  ],
+  modoDePreparo: [
+    'Deixe a canjica de molho na água por 24 horas.',
+    'Coloque a canjica e a água em uma panela de pressão.',
+    'Cozinhe por aproximadamente 1 hora em fogo baixo, contando após o início da pressão.',
+    'Depois do cozimento, acrescente o leite de coco, o coco ralado, o açúcar demerara, a canela em pau e o cravo-da-índia.',
+    'Cozinhe em fogo baixo por mais 15 minutos ou até engrossar.',
+    'Experimente e verifique se precisa de mais açúcar.',
+    'Finalize polvilhando canela em pó.',
+    'Sirva quente ou fria.',
+  ],
+},
+
+{
+  id: '56',
+  titulo: 'Brigadeiro vegano',
+  cor: '#70402d',
+  Imagem: 'https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Brigadeiro vegano feito com batata-doce, cacau e açúcar mascavo, com textura macia e sabor de chocolate.',
+  info: 'Batata-doce, cacau em pó, açúcar mascavo e óleo de coco',
+  dificuldade: 'Medio',
+  duracao: '⏳ 50min',
+  categorias: [
+    '⭐ Todas',
+    '🍰 Sobremesas',
+    '🥖 Lanches',
+  ],
+  condicoes: [
+    'Vegetariano',
+    'Vegano',
+    'Flexitariano',
+    'Pescetariano',
+    'Ovolactovegetariano',
+  ],
+  ingredientes: [
+    { nome: 'Batata-doce cozida e amassada', unidade: '1 e 1/2 xícara (chá)' },
+    { nome: 'Cacau em pó', unidade: '2 colheres (sopa)' },
+    { nome: 'Açúcar mascavo', unidade: '1/3 de xícara (chá)' },
+    { nome: 'Óleo de coco', unidade: '1 colher (sobremesa)' },
+    { nome: 'Granulado vegano', unidade: 'A gosto' },
+  ],
+  modoDePreparo: [
+    'Cozinhe a batata-doce até ficar macia e amasse bem.',
+    'Em uma panela, misture a batata-doce amassada com o cacau em pó, o açúcar mascavo e o óleo de coco.',
+    'Leve ao fogo médio, mexendo até a mistura começar a desgrudar do fundo da panela.',
+    'Transfira a mistura para um prato e espere esfriar completamente.',
+    'Leve à geladeira por alguns minutos, aproximadamente 20 minutos, para facilitar a modelagem.',
+    'Com as mãos limpas, modele pequenas bolinhas.',
+    'Passe os brigadeiros no granulado vegano e sirva.',
+    'Se preferir, utilize castanhas, avelãs, nozes ou pistache triturados para decorar.',
+  ],
+},
+
+{
+  id: '57',
+  titulo: 'Pão de queijo vegano',
+  cor: '#d9ad69',
+  Imagem: 'https://images.unsplash.com/photo-1600628422019-5e9a5a9f1f7d?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Pãezinhos veganos feitos com mandioquinha e polvilhos doce e azedo, com casquinha crocante e interior macio.',
+  info: 'Mandioquinha, polvilho doce, polvilho azedo e óleo',
+  dificuldade: 'Fácil',
+  duracao: '⏳ 45min',
+  categorias: [
+    '⭐ Todas',
+    '🍳 Café da manhã',
+    '🥖 Lanches',
+    '⚡ Rápidas',
+    '💰 Econômicas',
+  ],
+  condicoes: [
+    'Vegetariano',
+    'Vegano',
+    'Flexitariano',
+    'Pescetariano',
+    'Ovolactovegetariano',
+  ],
+  ingredientes: [
+    { nome: 'Polvilho doce', unidade: '2 xícaras' },
+    { nome: 'Polvilho azedo', unidade: '1 xícara' },
+    { nome: 'Óleo', unidade: '1/3 de xícara' },
+    { nome: 'Batata-salsa (mandioquinha) amassada', unidade: '2 xícaras' },
+    { nome: 'Água quente do cozimento da batata', unidade: '1 xícara' },
+    { nome: 'Sal', unidade: 'A gosto' },
+    { nome: 'Temperos (salsinha desidratada, ervas finas, alho desidratado, gergelim ou linhaça)', unidade: 'A gosto' },
+  ],
+  modoDePreparo: [
+    'Descasque a batata-salsa e cozinhe em água fervente até ficar macia.',
+    'Reserve uma xícara da água utilizada no cozimento.',
+    'Amasse as batatas até obter a consistência de um purê.',
+    'Em uma tigela, coloque o polvilho azedo, o polvilho doce, o óleo, o sal e a água quente reservada.',
+    'Misture bem, utilizando uma espátula ou as mãos, até formar uma massa uniforme.',
+    'Acrescente os temperos de sua preferência e misture novamente.',
+    'Se desejar, divida a massa em porções e utilize temperos diferentes em cada uma.',
+    'Modele pequenas bolinhas e coloque-as em uma assadeira antiaderente, deixando espaço entre elas.',
+    'Preaqueça o forno a 180°C.',
+    'Asse por aproximadamente 20 minutos ou até atingir a textura desejada.',
+  ],
+},
+
+{
+  id: '58',
+  titulo: 'Bolinho de chuva vegano',
+  cor: '#bd8b55',
+  Imagem: 'https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Bolinho de chuva vegano, preparado sem leite e ovos, com massa simples, cobertura de açúcar e canela.',
+  info: 'Farinha de trigo, açúcar, água, fermento e canela',
+  dificuldade: 'Muito fácil',
+  duracao: '⏳ 15min',
+  categorias: [
+    '⭐ Todas',
+    '🍳 Café da manhã',
+    '🥖 Lanches',
+    '🍰 Sobremesas',
+    '⚡ Rápidas',
+    '💰 Econômicas',
+  ],
+  condicoes: [
+    'Vegetariano',
+    'Vegano',
+    'Flexitariano',
+    'Pescetariano',
+    'Ovolactovegetariano',
+  ],
+  ingredientes: [
+    { nome: 'Farinha de trigo', unidade: '1/2 xícara' },
+    { nome: 'Açúcar', unidade: '1/4 de xícara' },
+    { nome: 'Chocolate granulado vegano', unidade: 'A gosto' },
+    { nome: 'Sal', unidade: '1 pitada' },
+    { nome: 'Fermento químico em pó', unidade: '1/2 colher' },
+    { nome: 'Água', unidade: 'Aproximadamente 1/4 de xícara' },
+    { nome: 'Óleo para fritar', unidade: 'Quantidade suficiente' },
+    { nome: 'Açúcar para finalizar', unidade: 'A gosto' },
+    { nome: 'Canela em pó', unidade: 'A gosto' },
+  ],
+  modoDePreparo: [
+    'Em uma tigela, misture a farinha de trigo, o açúcar, o sal e o fermento em pó.',
+    'Adicione a água aos poucos, misturando até obter uma massa com consistência adequada para formar os bolinhos.',
+    'Aqueça o óleo em uma panela.',
+    'Com o auxílio de uma colher, coloque pequenas porções da massa no óleo quente.',
+    'Frite os bolinhos até ficarem dourados.',
+    'Retire os bolinhos e coloque-os sobre papel absorvente.',
+    'Misture açúcar e canela em um recipiente.',
+    'Passe os bolinhos ainda mornos na mistura de açúcar e canela.',
+    'Finalize com chocolate granulado vegano, se desejar.',
+  ],
+},
+
+{
+  id: '59',
+  titulo: 'Maionese vegana',
+  cor: '#e8dfc9',
+  Imagem: 'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Maionese cremosa feita com extrato de soja, mostarda e limão, sem ingredientes de origem animal.',
+  info: 'Água, extrato de soja em pó, mostarda, limão e óleo',
+  dificuldade: 'Muito fácil',
+  duracao: '⏳ 15min',
+  categorias: [
+    '⭐ Todas',
+    '🥗 Saudáveis',
+    '⚡ Rápidas',
+    '💰 Econômicas',
+  ],
+  condicoes: [
+    'Vegetariano',
+    'Vegano',
+    'Flexitariano',
+    'Pescetariano',
+    'Ovolactovegetariano',
+  ],
+  ingredientes: [
+    { nome: 'Água', unidade: '1 xícara' },
+    { nome: 'Extrato de soja em pó', unidade: '3 colheres (sopa)' },
+    { nome: 'Sal marinho fino', unidade: '1 colher (chá)' },
+    { nome: 'Mostarda', unidade: '1 colher (sobremesa)' },
+    { nome: 'Suco de limão', unidade: '1 colher (café)' },
+    { nome: 'Óleo', unidade: '1 e 1/2 xícara' },
+    { nome: 'Água do cozimento da beterraba ou suco de cenoura coado', unidade: '1 colher (sopa), opcional' },
+  ],
+  modoDePreparo: [
+    'Coloque a água, o extrato de soja em pó, o sal marinho, a mostarda e o suco de limão no liquidificador.',
+    'Bata bem os ingredientes.',
+    'Com o liquidificador ligado, adicione o óleo em fio pelo orifício menor da tampa.',
+    'Continue batendo até obter uma consistência cremosa, semelhante à maionese.',
+    'Transfira para um pote de vidro com tampa.',
+    'Mantenha refrigerada.',
+    'Se desejar colorir a maionese, acrescente uma colher de água do cozimento da beterraba ou suco de cenoura coado.',
+  ],
+},
+
+
+{
+  id: '60',
+  titulo: 'Hambúrguer vegano de feijão preto',
+  cor: '#59402f',
+  Imagem: 'https://images.unsplash.com/photo-1520072959219-c595dc870360?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Hambúrguer vegetal feito com feijão-preto, aveia, farinha e temperos, com textura consistente e sabor marcante.',
+  info: 'Feijão-preto, cebola, alho, aveia, farinha de trigo e salsinha',
+  dificuldade: 'Elaborada',
+  duracao: '⏳ 12h',
+  categorias: [
+    '⭐ Todas',
+    '👩‍🍳 Almoço',
+    '👩‍🍳 Janta',
+    '🥖 Lanches',
+    '🌱 Vegetarianas',
+  ],
+  condicoes: [
+    'Vegetariano',
+    'Vegano',
+    'Flexitariano',
+    'Pescetariano',
+    'Ovolactovegetariano',
+  ],
+  ingredientes: [
+    { nome: 'Feijão-preto cru', unidade: '1 xícara' },
+    { nome: 'Cebola picada', unidade: '1/3 de xícara' },
+    { nome: 'Alho amassado ou picado', unidade: '2 dentes' },
+    { nome: 'Orégano seco', unidade: '1 colher (sopa)' },
+    { nome: 'Óleo', unidade: '2 colheres (sopa)' },
+    { nome: 'Salsinha picada', unidade: '1/2 xícara' },
+    { nome: 'Suco de limão', unidade: '1 colher (sopa)' },
+    { nome: 'Sal', unidade: 'A gosto' },
+    { nome: 'Pimenta-do-reino', unidade: 'A gosto' },
+    { nome: 'Aveia em flocos finos', unidade: '1/3 de xícara' },
+    { nome: 'Farinha de trigo ou farinha de arroz', unidade: '1/3 de xícara de trigo ou 1/2 xícara de arroz' },
+  ],
+  modoDePreparo: [
+    'Coloque o feijão-preto cru em uma tigela, cubra com água e deixe de molho por 12 horas.',
+    'Escorra, lave e cozinhe o feijão na panela de pressão até ficar macio.',
+    'Escorra bem o feijão, reservando os grãos sem o caldo.',
+    'Amasse o feijão com um garfo ou utilize um processador.',
+    'Acrescente a cebola, o alho, o orégano, o óleo, a salsinha e o suco de limão.',
+    'Tempere com sal e pimenta-do-reino e misture.',
+    'Adicione a aveia em flocos finos e a farinha escolhida.',
+    'Misture bem até obter uma massa que possa ser modelada. Se necessário, acrescente um pouco mais de farinha.',
+    'Leve a massa à geladeira por 4 horas.',
+    'Modele os hambúrgueres no tamanho desejado.',
+    'Aqueça uma frigideira antiaderente com um fio de óleo.',
+    'Doure os hambúrgueres em fogo médio, dos dois lados.',
+    'Sirva como preferir.',
+  ],
+},
+
+{
+  id: '61',
+  titulo: 'Bolinho de atum',
+  cor: '#c99b65',
+  Imagem: 'https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Bolinho salgado de atum com cebola e cheiro-verde, preparado com uma massa simples e temperada.',
+  info: 'Atum, ovo, farinha de rosca, maionese e cebola',
+  dificuldade: 'Muito fácil',
+  duracao: '⏳ 10min',
+  categorias: [
+    '⭐ Todas',
+    '👩‍🍳 Almoço',
+    '👩‍🍳 Janta',
+    '🥖 Lanches',
+  ],
+  condicoes: [
+    'Flexitariano',
+    'Pescetariano',
+    'High protein',
+  ],
+  ingredientes: [
+    { nome: 'Atum escorrido', unidade: '1 lata' },
+    { nome: 'Ovo ligeiramente batido', unidade: '1 unidade' },
+    { nome: 'Farinha de rosca', unidade: '1 xícara' },
+    { nome: 'Maionese', unidade: '1 colher (sopa)' },
+    { nome: 'Cebola ralada', unidade: '1 unidade' },
+    { nome: 'Cheiro-verde', unidade: 'A gosto' },
+  ],
+  modoDePreparo: [
+    'Escorra o atum e coloque-o em uma tigela.',
+    'Acrescente o ovo ligeiramente batido, a farinha de rosca, a maionese e a cebola ralada.',
+    'Adicione o cheiro-verde a gosto.',
+    'Misture todos os ingredientes até formar uma massa uniforme.',
+    'Com o auxílio de uma colher, modele pequenas porções da massa.',
+    'Coloque os bolinhos em uma assadeira e leve ao forno preaquecido até ficarem dourados e completamente cozidos.',
+    'Sirva em seguida.',
+  ],
+},
+
+
+{
+  id: '62',
+  titulo: 'Moqueca de peixe',
+  cor: '#e58b45',
+  Imagem: 'https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Moqueca de peixe com pimentões, tomate, cebola, leite de coco e azeite de dendê, formando um caldo saboroso e aromático.',
+  info: 'Peixe, limão, cebola, pimentões, tomate, leite de coco e azeite de dendê',
+  dificuldade: 'Elaborada',
+  duracao: '⏳ 1h 10min',
+  categorias: [
+    '⭐ Todas',
+    '👩‍🍳 Almoço',
+    '👩‍🍳 Janta',
+  ],
+  condicoes: [
+    'Flexitariano',
+    'Pescetariano',
+    'High protein',
+  ],
+  ingredientes: [
+    { nome: 'Postas de cação ou garoupa', unidade: '4 unidades (700 g)' },
+    { nome: 'Suco de limão', unidade: '1 unidade' },
+    { nome: 'Cebola grande cortada em rodelas', unidade: '1 unidade' },
+    { nome: 'Pimentão vermelho cortado em rodelas', unidade: '1 unidade' },
+    { nome: 'Pimentão verde cortado em rodelas', unidade: '1 unidade' },
+    { nome: 'Tomates maduros cortados em rodelas', unidade: '2 unidades' },
+    { nome: 'Coentro', unidade: '2 colheres (sopa)' },
+    { nome: 'Leite de coco', unidade: '200 ml' },
+    { nome: 'Azeite de dendê', unidade: '1 colher (sopa)' },
+    { nome: 'Caldo de camarão', unidade: '2 tabletes' },
+    { nome: 'Sal', unidade: 'A gosto, se necessário' },
+  ],
+  modoDePreparo: [
+    'Lave bem as postas de peixe e regue com o suco de limão.',
+    'Deixe o peixe descansar por aproximadamente 1 hora.',
+    'Em uma panela grande, coloque as postas de peixe.',
+    'Distribua a cebola, os pimentões e os tomates sobre o peixe.',
+    'Polvilhe o coentro por cima.',
+    'Esfarele os tabletes de caldo de camarão e misture ao leite de coco.',
+    'Regue o peixe e os legumes com essa mistura.',
+    'Leve ao fogo baixo, com a panela parcialmente tampada, por aproximadamente 20 minutos.',
+    'Durante o cozimento, mexa cuidadosamente algumas vezes para não desmanchar as postas.',
+    'Acrescente o azeite de dendê e verifique se precisa de mais sal.',
+    'Retire do fogo e sirva.',
+  ],
+},
+
+{
+  id: '63',
+  titulo: 'Macarrão com atum e creme de leite',
+  cor: '#e8b56a',
+  Imagem: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Macarrão com molho cremoso de atum, creme de leite, maionese e extrato de tomate, finalizado com queijo parmesão gratinado.',
+  info: 'Macarrão, atum, cebola, alho, maionese, creme de leite e extrato de tomate',
+  dificuldade: 'Médio',
+  duracao: '⏳ 40min',
+  categorias: [
+    '⭐ Todas',
+    '👩‍🍳 Almoço',
+    '👩‍🍳 Janta',
+  ],
+  condicoes: [
+    'Flexitariano',
+    'Pescetariano',
+  ],
+  ingredientes: [
+    { nome: 'Macarrão espaguete', unidade: '1/2 kg' },
+    { nome: 'Atum', unidade: '1 lata' },
+    { nome: 'Cebola', unidade: '1 unidade' },
+    { nome: 'Alho', unidade: '4 dentes' },
+    { nome: 'Maionese', unidade: '3 colheres (sopa)' },
+    { nome: 'Creme de leite', unidade: '1 lata (ou 1 copo de leite)' },
+    { nome: 'Extrato de tomate', unidade: '1 colher (chá)' },
+    { nome: 'Margarina', unidade: '2 colheres' },
+    { nome: 'Sal', unidade: 'A gosto' },
+    { nome: 'Pimenta', unidade: 'A gosto' },
+    { nome: 'Queijo parmesão ralado', unidade: 'A gosto' },
+  ],
+  modoDePreparo: [
+    'Cozinhe o macarrão no ponto de sua preferência.',
+    'Refogue a cebola e o alho na margarina.',
+    'Acrescente o atum, o extrato de tomate, o sal, a pimenta e a maionese.',
+    'Adicione o creme de leite por último e misture bem.',
+    'Despeje o molho sobre o macarrão cozido.',
+    'Polvilhe queijo parmesão ralado por cima.',
+    'Leve ao forno por aproximadamente 10 minutos para gratinar.',
+  ],
+},
+
+{
+  id: '64',
+  titulo: 'Cheesecake de morango',
+  cor: '#e88b9b',
+  Imagem: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Cheesecake cremoso com base crocante de biscoito e cobertura de morangos.',
+  info: 'Biscoito maisena, manteiga, cream cheese, leite condensado, creme de leite e morangos',
+  dificuldade: 'Elaborada',
+  duracao: '⏳ 5h (incluindo refrigeração)',
+  categorias: [
+    '⭐ Todas',
+    '🍰 Sobremesas',
+  ],
+  condicoes: [
+    'Ovolactovegetariano',
+  ],
+  ingredientes: [
+    { nome: 'Biscoito maisena', unidade: '200 g' },
+    { nome: 'Manteiga derretida', unidade: '100 g' },
+    { nome: 'Cream cheese', unidade: '600 g' },
+    { nome: 'Leite condensado', unidade: '1 lata' },
+    { nome: 'Creme de leite', unidade: '1 caixa' },
+    { nome: 'Ovos', unidade: '3 unidades' },
+    { nome: 'Essência de baunilha', unidade: '1 colher (chá)' },
+    { nome: 'Morangos', unidade: '300 g' },
+    { nome: 'Açúcar', unidade: '4 colheres (sopa)' },
+    { nome: 'Suco de limão', unidade: '1 colher (sopa)' },
+  ],
+  modoDePreparo: [
+    'Triture os biscoitos até formar uma farofa fina.',
+    'Misture a farofa com a manteiga derretida.',
+    'Forre o fundo de uma forma de fundo removível com essa mistura, pressionando bem.',
+    'Leve à geladeira enquanto prepara o recheio.',
+    'Bata o cream cheese até ficar cremoso.',
+    'Acrescente o leite condensado, o creme de leite, os ovos e a essência de baunilha. Misture até ficar homogêneo.',
+    'Despeje o recheio sobre a base de biscoito.',
+    'Asse em forno preaquecido a 160 °C por aproximadamente 50 a 60 minutos, até as bordas firmarem.',
+    'Deixe esfriar e leve à geladeira por pelo menos 4 horas.',
+    'Para a cobertura, coloque os morangos picados, o açúcar e o suco de limão em uma panela.',
+    'Cozinhe em fogo baixo até formar uma calda levemente espessa.',
+    'Espere a cobertura esfriar e espalhe sobre o cheesecake antes de servir.',
+  ],
+},
+
+{
+  id: '65',
+  titulo: 'Brócolis com queijo',
+  cor: '#79a66a',
+  Imagem: 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Brócolis cozido no vapor, coberto com um creme de leite e farinha integral, queijo ralado e ovo, finalizado no forno.',
+  info: 'Brócolis, alho, leite, farinha de trigo integral, queijo light e ovo',
+  dificuldade: '👨‍🍳 Média',
+  duracao: '⏳ 40min',
+  categorias: [
+    '⭐ Todas',
+    '👩‍🍳 Almoço',
+    '👩‍🍳 Janta',
+    '🌱 Vegetarianas',
+  ],
+  condicoes: [
+    'Vegetariano',
+    'Ovolactovegetariano',
+  ],
+  ingredientes: [
+    { nome: 'Brócolis limpos e picados', unidade: '1 maço' },
+    { nome: 'Pasta de alho', unidade: '1 colher (sopa)' },
+    { nome: 'Ovo batido', unidade: '1 unidade' },
+    { nome: 'Leite desnatado ou zero lactose', unidade: '1 e 1/4 xícara (chá)' },
+    { nome: 'Farinha de trigo integral', unidade: '2 colheres (sopa)' },
+    { nome: 'Queijo light ralado', unidade: '2 xícaras (chá)' },
+    { nome: 'Azeite', unidade: '3 colheres (sopa)' },
+  ],
+  modoDePreparo: [
+    'Cozinhe o brócolis no vapor até ficar al dente.',
+    'Em uma panela, coloque o azeite e a pasta de alho. Deixe dourar levemente.',
+    'Acrescente a farinha de trigo integral e continue mexendo.',
+    'Adicione o leite e misture com um garfo até formar um creme.',
+    'Coloque o brócolis em um refratário.',
+    'Despeje o creme sobre o brócolis.',
+    'Espalhe o queijo ralado por cima.',
+    'Finalize colocando o ovo batido.',
+    'Leve ao forno quente para gratinar.',
+    'Sirva acompanhado de arroz, se desejar.',
+  ],
+},
+
+{
+  id: '66',
+  titulo: 'Lasanha de abobrinha',
+  cor: '#8b9b55',
+  Imagem: 'https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Lasanha feita com fatias de abobrinha no lugar da massa tradicional, intercaladas com molho de carne moída, creme de leite e queijo mussarela.',
+  info: 'Abobrinha, carne moída, mussarela, creme de leite, tomate e molho de tomate',
+  dificuldade: '👨‍🍳 Elaborada',
+  duracao: '⏳ 1h 20min',
+  categorias: [
+    '⭐ Todas',
+    '👩‍🍳 Almoço',
+    '👩‍🍳 Janta',
+  ],
+  condicoes: [
+    'Flexitariano',
+  ],
+  ingredientes: [
+    { nome: 'Abobrinhas médias', unidade: '2 unidades' },
+    { nome: 'Queijo mussarela fatiado', unidade: '400 g' },
+    { nome: 'Creme de leite', unidade: '1 caixa' },
+    { nome: 'Sal', unidade: 'A gosto' },
+    { nome: 'Orégano', unidade: 'A gosto' },
+    { nome: 'Carne moída', unidade: '500 g' },
+    { nome: 'Óleo', unidade: '2 colheres (sopa)' },
+    { nome: 'Cebola picada', unidade: '1 unidade' },
+    { nome: 'Tomate picado', unidade: '1 unidade' },
+    { nome: 'Pimentão picado', unidade: '1/2 unidade' },
+    { nome: 'Extrato de tomate', unidade: '1 xícara' },
+    { nome: 'Água', unidade: 'Quantidade necessária para o molho' },
+  ],
+  modoDePreparo: [
+    'Lave bem as abobrinhas e corte-as no sentido do comprimento, formando tiras finas.',
+    'Salpique sal nas fatias e deixe descansar por aproximadamente 40 minutos.',
+    'Enquanto isso, aqueça o óleo e frite a carne moída até dourar.',
+    'Acrescente a cebola, o tomate e o pimentão. Refogue por cerca de 5 minutos.',
+    'Adicione o extrato de tomate e um pouco de água. Deixe o molho encorpar.',
+    'Tempere o molho a gosto, tomando cuidado para não deixá-lo muito aguado.',
+    'Retire a água que se formou nas abobrinhas e escorra bem.',
+    'Em um refratário, coloque um pouco de molho no fundo.',
+    'Faça uma camada de abobrinha e outra de molho.',
+    'Acrescente uma camada de queijo mussarela e espalhe todo o creme de leite.',
+    'Faça outra camada de abobrinha, molho e queijo.',
+    'Decore com fatias de tomate e salpique orégano a gosto.',
+    'Leve ao forno preaquecido por aproximadamente 15 a 20 minutos.',
+    'Retire do forno e sirva.',
+  ],
+},
+
+{
+  id: '67',
+  titulo: 'Quiche de espinafre',
+  cor: '#8b9b65',
+  Imagem: 'https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Quiche de massa amanteigada com recheio cremoso de espinafre, requeijão, creme de leite e queijo parmesão.',
+  info: 'Farinha de trigo, margarina, espinafre, requeijão, creme de leite, ovos e parmesão',
+  dificuldade: '👨‍🍳 Elaborada',
+  duracao: '⏳ 1h 30min',
+  categorias: [
+    '⭐ Todas',
+    '🍳 Café da manhã',
+    '👩‍🍳 Almoço',
+    '👩‍🍳 Janta',
+    '🥖 Lanches',
+  ],
+  condicoes: [
+    'Vegetariano',
+    'Ovolactovegetariano',
+    'Flexitariano',
+    'Pescetariano',
+  ],
+  ingredientes: [
+    { nome: 'Farinha de trigo peneirada', unidade: '250 g' },
+    { nome: 'Margarina gelada (não light)', unidade: '125 g' },
+    { nome: 'Água gelada', unidade: '2 colheres (sopa)' },
+    { nome: 'Espinafre', unidade: '1 maço' },
+    { nome: 'Requeijão', unidade: '1 vidro' },
+    { nome: 'Creme de leite', unidade: '1 caixinha (200 g)' },
+    { nome: 'Ovos', unidade: '3 unidades' },
+    { nome: 'Cebola grande picadinha', unidade: '1/2 unidade' },
+    { nome: 'Tempero pronto', unidade: '1 colher (chá)' },
+    { nome: 'Queijo parmesão ralado fresco', unidade: '150 g' },
+    { nome: 'Sal', unidade: 'A gosto' },
+  ],
+  modoDePreparo: [
+    'Misture a farinha de trigo, a margarina gelada e a água até formar uma massa lisa.',
+    'Forre uma forma ou um refratário redondo de aproximadamente 25 cm com a massa.',
+    'Leve a massa à geladeira enquanto prepara o recheio.',
+    'Cozinhe o espinafre em pouca água e sal.',
+    'Escorra bem e aperte o espinafre com as mãos para retirar toda a água.',
+    'Pique o espinafre.',
+    'Misture o requeijão, o creme de leite, os ovos, a cebola picada e o tempero pronto.',
+    'Acrescente o espinafre à mistura e mexa bem.',
+    'Coloque o recheio sobre a massa.',
+    'Cubra com o queijo parmesão ralado.',
+    'Asse em forno médio por aproximadamente 40 minutos.',
+  ],
+},
+
+
+{
+  id: '68',
+  titulo: 'Couve-flor gratinada',
+  cor: '#d9c6a5',
+  Imagem: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Couve-flor macia gratinada com requeijão, ovos, tomate, cheiro-verde e queijo mussarela.',
+  info: 'Couve-flor, requeijão, ovos, queijo ralado, mussarela e tomate',
+  dificuldade: '👨‍🍳 Fácil',
+  duracao: '⏳ 30min',
+  categorias: [
+    '⭐ Todas',
+    '👩‍🍳 Almoço',
+    '👩‍🍳 Janta',
+    '🥗 Saudáveis',
+  ],
+  condicoes: [
+    'Vegetariano',
+    'Ovolactovegetariano',
+    'Flexitariano',
+    'Pescetariano',
+    'Low carb',
+    'Low sugar',
+  ],
+  ingredientes: [
+    { nome: 'Couve-flor média', unidade: '1 unidade' },
+    { nome: 'Requeijão', unidade: '1 copo' },
+    { nome: 'Ovos', unidade: '2 unidades' },
+    { nome: 'Queijo ralado', unidade: '50 g' },
+    { nome: 'Queijo mussarela', unidade: '200 g' },
+    { nome: 'Cheiro-verde', unidade: 'A gosto' },
+    { nome: 'Tomate picadinho', unidade: '1 unidade' },
+    { nome: 'Margarina para untar', unidade: 'Quantidade necessária' },
+    { nome: 'Sal', unidade: 'A gosto' },
+  ],
+  modoDePreparo: [
+    'Cozinhe a couve-flor com sal até ficar bem macia.',
+    'Escorra a água e coloque a couve-flor em uma forma untada com margarina.',
+    'Espalhe colheradas de requeijão sobre a couve-flor.',
+    'Bata os ovos e misture com metade do queijo ralado, o cheiro-verde e o tomate picado.',
+    'Despeje a mistura de ovos sobre a couve-flor.',
+    'Cubra com a mussarela e polvilhe o restante do queijo ralado.',
+    'Leve ao forno até gratinar.',
+  ],
+},
+
+{
+  id: '69',
+  titulo: 'Arroz de couve-flor',
+  cor: '#a5b87c',
+  Imagem: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Couve-flor triturada em pequenos grãos, refogada com alho, cebola e azeite, formando uma alternativa leve ao arroz tradicional.',
+  info: 'Couve-flor, azeite, alho e cebola',
+  dificuldade: '👨‍🍳 Fácil',
+  duracao: '⏳ 40min',
+  categorias: [
+    '⭐ Todas',
+    '👩‍🍳 Almoço',
+    '👩‍🍳 Janta',
+    '🥗 Saudáveis',
+    '⚡ Rápidas',
+    '💰 Econômicas',
+    '🌱 Vegetarianas',
+  ],
+  condicoes: [
+    'Vegetariano',
+    'Vegano',
+    'Flexitariano',
+    'Pescetariano',
+    'Ovolactovegetariano',
+    'Low carb',
+    'Low fat',
+    'Low sugar',
+    'Mediterrânea',
+  ],
+  ingredientes: [
+    { nome: 'Couve-flor limpa separada em buquês', unidade: '700 g (7 xícaras de chá)' },
+    { nome: 'Azeite', unidade: '1/2 colher (sopa)' },
+    { nome: 'Alho picado', unidade: '1/2 colher (sopa)' },
+    { nome: 'Cebola picada', unidade: '1/2 xícara (chá) (80 g)' },
+    { nome: 'Água fervente', unidade: '3/4 xícara (chá)' },
+    { nome: 'Sal', unidade: 'A gosto' },
+  ],
+  modoDePreparo: [
+    'Coloque os buquês de couve-flor em um processador e pulse até ficarem com aparência de grãos de arroz.',
+    'Em uma panela, aqueça o azeite em fogo médio.',
+    'Acrescente o alho e a cebola e refogue por aproximadamente 2 minutos.',
+    'Adicione a couve-flor processada, a água fervente e o sal.',
+    'Tampe a panela, abaixe o fogo e deixe cozinhar por aproximadamente 10 minutos ou até a água secar.',
+    'Sirva em seguida.',
+  ],
+},
+
+{
+  id: '70',
+  titulo: 'Frango grelhado com legumes',
+  cor: '#d99b57',
+  Imagem: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Filés de frango grelhados e temperados, acompanhados de cenoura, batata e vagem cozidas no vapor.',
+  info: 'Peito de frango, cenoura, batata, vagem, coentro, limão e temperos',
+  dificuldade: '👨‍🍳 Elaborado',
+  duracao: '⏳ 2h',
+  categorias: [
+    '⭐ Todas',
+    '👩‍🍳 Almoço',
+    '👩‍🍳 Janta',
+    '🥗 Saudáveis',
+  ],
+  condicoes: [
+    'Flexitariano',
+    'Low carb',
+    'Low fat',
+    'High protein',
+    'Low sugar',
+  ],
+  ingredientes: [
+    { nome: 'Filé de peito de frango', unidade: '2 kg' },
+    { nome: 'Cenouras médias', unidade: '3 unidades' },
+    { nome: 'Batatas inglesas médias', unidade: '4 unidades' },
+    { nome: 'Vagens médias', unidade: '18 unidades' },
+    { nome: 'Tempero completo', unidade: '2 colheres (chá) rasas' },
+    { nome: 'Sazón para carnes', unidade: '2 sachês' },
+    { nome: 'Pimenta-do-reino', unidade: '1 colher (chá) rasa' },
+    { nome: 'Coentro', unidade: 'A gosto' },
+    { nome: 'Margarina', unidade: 'Quantidade necessária' },
+    { nome: 'Azeite de oliva', unidade: 'Quantidade necessária' },
+    { nome: 'Limão', unidade: '1 unidade' },
+    { nome: 'Sal', unidade: 'A gosto' },
+  ],
+  modoDePreparo: [
+    'Corte o peito de frango em fatias finas.',
+    'Lave as fatias de frango com limão.',
+    'Misture o tempero completo, os sachês de Sazón e a pimenta-do-reino em um recipiente pequeno.',
+    'Passe a mistura de temperos nos dois lados das fatias de frango.',
+    'Coloque o frango temperado em um recipiente e deixe descansar enquanto prepara os legumes.',
+    'Limpe as cenouras e corte em fatias.',
+    'Descasque as batatas e corte em fatias.',
+    'Lave as vagens e corte cada uma em três partes.',
+    'Cozinhe a cenoura, a batata e a vagem separadamente no vapor, sem deixar que fiquem muito moles.',
+    'Coloque os legumes cozidos em recipientes separados e tempere com uma pitada de sal e coentro picado.',
+    'Aqueça uma frigideira antiaderente com um fio de azeite e uma colher de margarina.',
+    'Grelhe o frango até dourar.',
+    'Ao preparar uma nova porção de frango, limpe a frigideira e acrescente novamente azeite e margarina.',
+    'Monte o prato e regue os legumes com um fio de azeite.',
+    'Sirva acompanhado de arroz branco e feijão, se desejar.',
+  ],
+},
+
+{
+  id: '71',
+  titulo: 'Omelete de espinafre',
+  cor: '#779b65',
+  Imagem: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Omelete preparada com espinafre, tomate, queijo mussarela e cebola, formando uma refeição simples e saborosa.',
+  info: 'Ovos, espinafre, tomate, queijo mussarela e cebola',
+  dificuldade: '👨‍🍳 Muito fácil',
+  duracao: '⏳ 10min',
+  categorias: [
+    '⭐ Todas',
+    '🍳 Café da manhã',
+    '👩‍🍳 Almoço',
+    '👩‍🍳 Janta',
+    '🥗 Saudáveis',
+    '⚡ Rápidas',
+    '🌱 Vegetarianas',
+  ],
+  condicoes: [
+    'Vegetariano',
+    'Flexitariano',
+    'Pescetariano',
+    'Ovolactovegetariano',
+    'Low carb',
+    'High protein',
+    'Low sugar',
+  ],
+  ingredientes: [
+    { nome: 'Ovos', unidade: '2 unidades' },
+    { nome: 'Espinafre', unidade: '1/2 maço' },
+    { nome: 'Tomate', unidade: '1/2 unidade' },
+    { nome: 'Queijo mussarela', unidade: '1 fatia' },
+    { nome: 'Cebola', unidade: '1 colher (sopa)' },
+    { nome: 'Óleo', unidade: '1 colher (chá)' },
+    { nome: 'Sal', unidade: 'A gosto' },
+  ],
+  modoDePreparo: [
+    'Higienize o espinafre e o tomate.',
+    'Corte em cubos pequenos o tomate, a mussarela, a cebola e o espinafre.',
+    'Em uma tigela, bata os ovos junto com todos os ingredientes picados, exceto o óleo.',
+    'Aqueça o óleo em uma frigideira.',
+    'Acrescente a mistura e deixe cozinhar de um lado.',
+    'Vire a omelete e deixe cozinhar do outro lado.',
+    'Quando estiver dourada dos dois lados, desligue o fogo e sirva.',
+  ],
+},
+
+
+{
+  id: '72',
+  titulo: 'Almôndegas de frango recheadas com queijo',
+  cor: '#d69b68',
+  Imagem: 'https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Almôndegas feitas com frango desfiado e temperos, recheadas com cubinhos de queijo mussarela e douradas no preparo.',
+  info: 'Peito de frango, pão de forma, leite, cebola, alho, ervas finas e queijo mussarela',
+  dificuldade: '👨‍🍳 Média',
+  duracao: '⏳ 45min',
+  categorias: [
+    '⭐ Todas',
+    '👩‍🍳 Almoço',
+    '👩‍🍳 Janta',
+  ],
+  condicoes: [
+    'Flexitariano',
+    'High protein',
+  ],
+  ingredientes: [
+    { nome: 'Pão de forma', unidade: '1 fatia' },
+    { nome: 'Leite', unidade: '1/2 xícara' },
+    { nome: 'Peito de frango desfiado', unidade: '300 g' },
+    { nome: 'Cebola', unidade: '1 unidade' },
+    { nome: 'Alho', unidade: '1 dente' },
+    { nome: 'Ervas finas', unidade: '2 colheres (sopa)' },
+    { nome: 'Pimenta-do-reino', unidade: 'A gosto' },
+    { nome: 'Sal', unidade: 'A gosto' },
+    { nome: 'Azeite', unidade: 'A gosto' },
+    { nome: 'Queijo mussarela', unidade: '100 g' },
+    { nome: 'Óleo para fritar', unidade: 'Quantidade necessária' },
+  ],
+  modoDePreparo: [
+    'Coloque o leite em um recipiente e umedeça a fatia de pão.',
+    'Deixe descansar por aproximadamente 5 minutos e esprema bem o pão.',
+    'Cozinhe o peito de frango e desfie.',
+    'Coloque o frango desfiado no processador.',
+    'Adicione o pão, a cebola, as ervas finas, o sal, a pimenta-do-reino, o alho e o azeite.',
+    'Bata tudo no processador até obter uma mistura homogênea.',
+    'Divida a massa em porções iguais.',
+    'Coloque um cubinho de mussarela no centro de cada porção.',
+    'Modele as almôndegas, fechando bem para que o queijo não escape.',
+    'Prepare em óleo quente até ficarem douradas.',
+  ],
+},
+
+{
+  id: '73',
+  titulo: 'Bolinho de abobrinha',
+  cor: '#91a96b',
+  Imagem: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80',
+  descrição: 'Bolinhos de abobrinha ralada com cebola, alho e cheiro-verde, temperados e dourados até ficarem crocantes por fora.',
+  info: 'Abobrinha, cebola, alho, farinha de grão-de-bico, ovo e cheiro-verde',
+  dificuldade: '👨‍🍳 Fácil',
+  duracao: '⏳ 45min',
+  categorias: [
+    '⭐ Todas',
+    '👩‍🍳 Almoço',
+    '👩‍🍳 Janta',
+    '🥖 Lanches',
+    '🌱 Vegetarianas',
+  ],
+  condicoes: [
+    'Vegetariano',
+    'Flexitariano',
+    'Pescetariano',
+    'Ovolactovegetariano',
+    'High protein',
+  ],
+  ingredientes: [
+    { nome: 'Abobrinhas italianas médias', unidade: '2 unidades' },
+    { nome: 'Cebola pequena picada', unidade: '1/2 unidade' },
+    { nome: 'Alho picado', unidade: '2 dentes' },
+    { nome: 'Cheiro-verde picado', unidade: '2 colheres (sopa)' },
+    { nome: 'Farinha de grão-de-bico', unidade: '1 xícara (chá)' },
+    { nome: 'Ovo', unidade: '1 unidade' },
+    { nome: 'Sal', unidade: 'A gosto' },
+    { nome: 'Pimenta-do-reino', unidade: 'A gosto' },
+    { nome: 'Óleo para fritar', unidade: 'Quantidade necessária' },
+  ],
+  modoDePreparo: [
+    'Rale as abobrinhas no lado grosso do ralador.',
+    'Esprema bem a abobrinha ralada para retirar o excesso de água.',
+    'Coloque a abobrinha em uma tigela grande.',
+    'Acrescente a cebola, o alho e o cheiro-verde.',
+    'Adicione a farinha de grão-de-bico e o ovo.',
+    'Tempere com sal e pimenta-do-reino.',
+    'Misture até obter uma massa uniforme.',
+    'Aqueça o óleo em uma panela.',
+    'Com o auxílio de duas colheres, modele pequenas porções da massa.',
+    'Frite os bolinhos até ficarem dourados dos dois lados.',
+    'Retire e coloque sobre papel absorvente para retirar o excesso de óleo.',
+    'Sirva ainda quentinhos.',
+  ],
+},
 
 ];
 
@@ -4518,5 +5395,3 @@ export default function DadosDosFilmes(): { id: string; filmes: Receita[] }[] {
   ];
 
 }
-
-
