@@ -156,12 +156,10 @@ export default function App() {
         <ScrollView>
     <View style={styles.fundo}>
         <View style={styles.container}>
-            <View style={{flexDirection: "row", alignItems: "center", padding: 10, gap:8, borderBottomColor: "#cacaca", borderBottomWidth: 1, justifyContent: "space-between",}}>
-            <View style={{flexDirection: "row", alignItems: "center", gap: 12, }}>
+            <View style={{flexDirection: "row", alignItems: "center", padding: 15, borderBottomColor: "#e1e9e2", borderBottomWidth: 1, justifyContent: "space-between", width: "95%", margin: "auto"}}>
             <Image 
                 source={require("../imagens/2026_10_01_0mz_Kleki.png")} style={styles.image}></Image>
-            <Text style={{color: "#168A3A", fontSize: 24, fontWeight: "bold", marginTop: 10}}>Brotô</Text>
-            </View>
+            <Text style={{color: "#168A3A", fontSize: 24, fontWeight: "bold", marginTop: 2}}>Brotô</Text>
             <Link href="/login"><Image style={styles.image2} source={require("../imagens/seta.png")} /></Link>
             </View>
                     <View style={{flexDirection: "row", padding: 10, gap: 20, width: "95%", margin: "auto"}}>
@@ -354,6 +352,7 @@ container: {
     boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.14)",
     margin: "auto",
     borderRadius: 10,
+    padding: 10,
 },
 
 listaReceitas: {

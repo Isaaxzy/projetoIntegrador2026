@@ -129,12 +129,13 @@ const styles = StyleSheet.create({
     UPbar:{
         width: '100%',
         height: 75,
-        borderBottomWidth: 2,
+        borderBottomWidth: 1,
         borderColor: '#bebdbd',
         marginBottom: 12,
         gap: 15,
         flexDirection: 'row',
         alignItems: 'center',
+        padding: 12,
     },
 
     iconeAtivo: {
@@ -157,13 +158,12 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         color: "#168A3A",
-        marginTop: 10
+        marginTop: 11
     },
 
     logo: {
         maxWidth: 40,
         height: 60,
-        marginLeft: 10,
         alignSelf: 'center',
         position: 'relative',
         },

@@ -560,15 +560,15 @@ const styles = StyleSheet.create({
   },
 
   UPbar: {
-    width: '100%',
-    height: '5%',
-    borderBottomWidth: 2,
+    width: '95%',
+    borderBottomWidth: 1,
     borderColor: '#bebdbd',
     marginTop: 10,
-    paddingBottom: 15,
+    paddingBottom: 10,
     gap: 15,
     flexDirection: 'row',
     alignItems: 'center',
+    margin: 'auto',
   },
 
   logo1: {

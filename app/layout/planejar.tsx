@@ -168,7 +168,6 @@ export default function Planejar() {
                     />
                     <Text style={styles.nomeMarca}>Brotô</Text>
                 </View>
-
                 <View style={styles.cabecalho}>
                     <View style={styles.iconeCabecalho}>
                         <Ionicons name="calendar-outline" size={30} color="#168A3A" />
@@ -394,7 +393,7 @@ const styles = StyleSheet.create({
     marca: {
         flexDirection: "row",
         alignItems: "center",
-        gap: 10,
+        gap: 15,
         paddingBottom: 12,
         borderBottomWidth: 1,
         borderBottomColor: "#e1e9e2",
@@ -410,7 +409,7 @@ const styles = StyleSheet.create({
         color: "#168A3A",
         fontSize: 24,
         fontWeight: "bold",
-        marginTop: 15,
+        marginTop: 11,
     },
     cabecalho: {
         flexDirection: "row",
