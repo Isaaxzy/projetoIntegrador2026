@@ -1,5 +1,5 @@
 import { Link } from 'expo-router';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import { IntroScreen } from '../../components/intro-screen';
 
 export default function App() {
@@ -16,11 +16,8 @@ export default function App() {
             </View>
             <Link href={'/(tabs)/Criar conta'} style={styles.ButtonRota}><Text >Começar →</Text></Link>
 
-             <Text style={styles.hipet}><Text style={styles.cadst}>Já possui cadastro? </Text>
-              Entre com seu login e senha para acessar sua conta clickando no botão abaixo <Text style={styles.arrow}>↓</Text>.</Text>
-
-            <Link href={'/(tabs)/login'} style={styles.ButtonRota}><Text >Entrar novamente →</Text></Link>
-           
+             <Text style={styles.hipet}><TouchableOpacity><Link href={'/(tabs)/login'}><Text style={styles.cadst}>Já possui cadastro? </Text></Link></TouchableOpacity>
+              Entre com seu login e senha para acessar sua conta clickando no botão abaixo</Text>
           </View>
       </IntroScreen>
  
@@ -51,21 +48,20 @@ hipet: {
   fontSize: 16,
   color: "gray",
   textAlign: "center",
-  marginTop: 10,
+  marginTop: 15,
+  width: "92%",
 },
 
 cadst: {
   fontSize: 18,
   fontWeight: "bold",
   color: "#168A3A",
-  borderBottomWidth: 1,
   borderBottomColor: "#168A3A",
 },
 
 arrow: {
   fontSize: 20,
   color: "#168A3A",
-
 },
 
 texto: {
