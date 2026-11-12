@@ -37,7 +37,7 @@ logo: {
 ButtonRota: {
   backgroundColor: "#168A3A",
   color: "#fff",
-  width: "45%",
+  width: "55%",
   textAlign: "center",
   paddingVertical: 10,
   borderRadius: 20,
@@ -48,7 +48,7 @@ ButtonRota: {
 },
 
 hipet: {
-  fontSize: 18,
+  fontSize: 16,
   color: "gray",
   textAlign: "center",
   marginTop: 10,
@@ -56,6 +56,7 @@ hipet: {
 
 cadst: {
   fontSize: 18,
+  fontWeight: "bold",
   color: "#168A3A",
   borderBottomWidth: 1,
   borderBottomColor: "#168A3A",
@@ -80,8 +81,8 @@ texto: {
 subtexto: {
   fontSize: 16,
   color: "gray",
-  textAlign: "center",
-  width: "86%",
+  textAlign: "justify",
+  width: "90%",
   margin: "auto",
   marginTop: 10,
 },

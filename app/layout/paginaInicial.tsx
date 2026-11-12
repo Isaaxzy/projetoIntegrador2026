@@ -231,10 +231,12 @@ export default function App() {
         <ScrollView>
     <View style={styles.fundo}>
         <View style={styles.container}>
-            <View style={{flexDirection: "row", alignItems: "center", padding: 15, borderBottomColor: "#e1e9e2", borderBottomWidth: 1, justifyContent: "space-between", width: "95%", margin: "auto"}}>
+            <View style={{flexDirection: "row", alignItems: "center", padding: 10, gap:8, borderBottomColor: "#cacaca", borderBottomWidth: 1, justifyContent: "space-between",}}>
+            <View style={{flexDirection: "row", alignItems: "center", gap: 12, }}>
             <Image 
                 source={require("../imagens/2026_10_01_0mz_Kleki.png")} style={styles.image}></Image>
-            <Text style={{color: "#168A3A", fontSize: 24, fontWeight: "bold", marginTop: 2}}>Brotô</Text>
+            <Text style={{color: "#168A3A", fontSize: 24, fontWeight: "bold", marginTop: 10}}>Tempero de casa</Text>
+            </View>
             <Link href="/login"><Image style={styles.image2} source={require("../imagens/seta.png")} /></Link>
             </View>
                     <View style={{flexDirection: "row", padding: 10, gap: 20, width: "95%", margin: "auto"}}>
@@ -326,7 +328,9 @@ export default function App() {
                             />
                         </>
                     )}
-                    {recomendadasFiltradas.length === 0 && ingredientesBusca.length === 0 && (
+                   {recomendadasFiltradas.length === 0
+                        && ingredientesBusca.length === 0
+                        && categoriaSelecionada !== '🍰 Sobremesas' && (
                         <Text style={styles.semResultados}>
                             Não encontramos receitas que atendam às suas preferências e restrições. Ajuste os filtros no seu perfil e tente novamente.
                         </Text>
@@ -444,7 +448,6 @@ container: {
     boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.14)",
     margin: "auto",
     borderRadius: 10,
-    padding: 10,
 },
 
 listaReceitas: {
