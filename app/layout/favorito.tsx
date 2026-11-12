@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { Link, useFocusEffect } from 'expo-router';
 import { FlatList, Image, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Carregamento from '../../components/Carregamento';
 import { listarFavoritos, type ReceitaFavorita } from '../servicos/favoritos';
 
@@ -48,7 +49,13 @@ export default function App() {
                         </View>
                         <View style={styles.descbox}>
                             <Text style={styles.upnome}>{item.nome}</Text>
-                            <Text style={styles.updec}>{item.tempo}   {item.dificuldade}</Text>
+                            <View style={styles.detalhesReceita}>
+                                <View style={styles.tempoReceita}>
+                                    <Ionicons name="time-outline" size={16} color="#313131" />
+                                    <Text style={styles.updec}>{item.tempo}</Text>
+                                </View>
+                                <Text style={styles.updec}>{item.dificuldade}</Text>
+                            </View>
                             <Text
                                 style={styles.upingred}
                                 numberOfLines={2}
@@ -225,6 +232,18 @@ const styles = StyleSheet.create({
     updec:{
         fontSize: 16,
      },
+
+    detalhesReceita: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+    },
+
+    tempoReceita: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 4,
+    },
 
     descbox: {
         width: '90%',

@@ -14,7 +14,13 @@ export default function App() {
               <Text style={styles.texto}>Olá, eu sou o Bróco, seu companheiro de cozinha</Text>
               <Text style={styles.subtexto}>Antes de começarmos, quero conhecer um pouquinho dos seus gostos para encontrar receitas que realmente combinem com você.</Text>
             </View>
-            <Link href={'./intro_etapa_1'} style={styles.ButtonRota}><Text >Começar →</Text></Link>
+            <Link href={'/(tabs)/Criar conta'} style={styles.ButtonRota}><Text >Começar →</Text></Link>
+
+             <Text style={styles.hipet}><Text style={styles.cadst}>Já possui cadastro? </Text>
+              Entre com seu login e senha para acessar sua conta clickando no botão abaixo <Text style={styles.arrow}>↓</Text>.</Text>
+
+            <Link href={'/(tabs)/login'} style={styles.ButtonRota}><Text >Entrar novamente →</Text></Link>
+           
           </View>
       </IntroScreen>
  
@@ -39,6 +45,26 @@ ButtonRota: {
   marginTop: 10,
   boxShadow: "0px 1px 6px rgba(0, 0, 0, 0.2)",
   cursor: "pointer",
+},
+
+hipet: {
+  fontSize: 18,
+  color: "gray",
+  textAlign: "center",
+  marginTop: 10,
+},
+
+cadst: {
+  fontSize: 18,
+  color: "#168A3A",
+  borderBottomWidth: 1,
+  borderBottomColor: "#168A3A",
+},
+
+arrow: {
+  fontSize: 20,
+  color: "#168A3A",
+
 },
 
 texto: {

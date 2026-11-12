@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text, Image, Pressable, FlatList, ScrollView, TextInput } from 'react-native';
-import { useEffect, useState } from 'react';
-import { Link, useLocalSearchParams, useRouter } from 'expo-router';
+import { useCallback, useEffect, useState } from 'react';
+import { Link, useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import Carregamento from '../../components/Carregamento';
 import {
@@ -10,6 +10,16 @@ import {
     removerReceitasDuplicadas,
 } from '../componentes/coisas';
 import renderCategoria from '../componentes/cardCategorias';
+import { lerIndicesSalvos, lerTextoSalvo } from '../componentes/introStorage';
+import {
+    opcoesAlergias,
+    opcoesAlimentosEvitados,
+    opcoesAlimentosPreferidos,
+    opcoesRestricoesAlimentares,
+    filtrarReceitasPorPreferencias,
+    receitaAtendeDificuldade,
+    receitaRespeitaRestricoes,
+} from '../componentes/preferencias';
 
 const itensIniciais = [
     '⭐ Todas',
@@ -35,6 +45,12 @@ export default function App() {
     // Hooks precisam ficar dentro do componente para que o React acompanhe seu estado.
     const [carregando, setCarregando] = useState(true);
     const [nomeUsuario, setNomeUsuario] = useState('');
+    const [alimentosPreferidos, setAlimentosPreferidos] = useState<string[]>([]);
+    const [alimentosEvitados, setAlimentosEvitados] = useState<string[]>([]);
+    const [alergias, setAlergias] = useState<string[]>([]);
+    const [restricoesAlimentares, setRestricoesAlimentares] = useState<string[]>([]);
+    const [temposPreferidos, setTemposPreferidos] = useState<number[]>([]);
+    const [dificuldadesPreferidas, setDificuldadesPreferidas] = useState<number[]>([]);
     const [categoriaSelecionada, setCategoriaSelecionada] =
         useState<(typeof itensIniciais)[number]>(itensIniciais[0]);
     const [textoIngredientes, setTextoIngredientes] = useState('');
@@ -80,6 +96,37 @@ export default function App() {
         }
     }, []);
 
+    useFocusEffect(
+        useCallback(() => {
+            const indicesPreferidos = lerIndicesSalvos('Gostos', opcoesAlimentosPreferidos.length);
+            const indicesEvitados = lerIndicesSalvos('Desgostos', opcoesAlimentosEvitados.length);
+            const indicesAlergias = lerIndicesSalvos('Alergias', opcoesAlergias.length);
+            const alergiasPersonalizadas = lerTextoSalvo('OutrosA')
+                .split(/[,;\n]+/)
+                .map((alergia) => alergia.trim())
+                .filter(Boolean);
+            const indicesRestricoes = lerIndicesSalvos(
+                'Alimentacao',
+                opcoesRestricoesAlimentares.length,
+            );
+            const indicesTempo = lerIndicesSalvos('Tempo', 6);
+            const indicesDificuldade = lerIndicesSalvos('Tipo', 4);
+            setAlimentosPreferidos(indicesPreferidos.map((index) => opcoesAlimentosPreferidos[index]));
+            setAlimentosEvitados(indicesEvitados.map((index) => opcoesAlimentosEvitados[index]));
+            setAlergias([
+                ...indicesAlergias.map((index) => opcoesAlergias[index]),
+                ...alergiasPersonalizadas,
+            ]);
+            setRestricoesAlimentares(
+                indicesRestricoes
+                    .filter((index) => index !== 0)
+                    .map((index) => opcoesRestricoesAlimentares[index]),
+            );
+            setTemposPreferidos(indicesTempo);
+            setDificuldadesPreferidas(indicesDificuldade);
+        }, []),
+    );
+
     function filtrarPorCategoria(categoria: (typeof itensIniciais)[number]) {
         setCategoriaSelecionada(categoria);
     }
@@ -110,15 +157,31 @@ export default function App() {
     const correspondeACategoria = (receita: (typeof receitasRecomendadas)[number]) =>
         categoriaSelecionada === itensIniciais[0] ||
         receita.categorias.includes(categoriaSelecionada);
+    const respeitaRestricoesUsuario = (receita: (typeof receitasRecomendadas)[number]) =>
+        receitaRespeitaRestricoes(
+            receita.ingredientes.map(({ nome }) => nome),
+            alimentosEvitados,
+            alergias,
+            restricoesAlimentares,
+            receita.condicoes,
+        );
     const correspondeAosFiltros = (receita: (typeof receitasRecomendadas)[number]) =>
-        correspondeACategoria(receita) && correspondeAIngredientes(receita);
+        correspondeACategoria(receita)
+        && correspondeAIngredientes(receita)
+        && respeitaRestricoesUsuario(receita);
     const receitasUnicas = removerReceitasDuplicadas([
         ...receitasRecomendadas,
         ...receitasSobremesas,
         ...receitasMaisProcuradas,
     ]);
     const idsRecomendadas = new Set(
-        receitasUnicas.filter((receita) => receitasRecomendadas.includes(receita)).map((receita) => receita.id),
+        receitasUnicas
+            .filter((receita) =>
+                receitasRecomendadas.includes(receita)
+                || (receitasMaisProcuradas.includes(receita)
+                    && receitaAtendeDificuldade(receita.dificuldade, [0])),
+            )
+            .map((receita) => receita.id),
     );
     const idsSobremesas = new Set(
         receitasUnicas.filter((receita) => receitasSobremesas.includes(receita)).map((receita) => receita.id),
@@ -126,9 +189,20 @@ export default function App() {
     const idsMaisProcuradas = new Set(
         receitasUnicas.filter((receita) => receitasMaisProcuradas.includes(receita)).map((receita) => receita.id),
     );
-    const recomendadasFiltradas = receitasUnicas
+    const recomendadasFiltradas = filtrarReceitasPorPreferencias(
+        receitasUnicas
         .filter((receita) => idsRecomendadas.has(receita.id))
-        .filter(correspondeAosFiltros)
+        .filter(correspondeACategoria)
+        .filter(correspondeAIngredientes),
+        {
+            alimentosPreferidos,
+            alimentosEvitados,
+            alergias,
+            restricoesAlimentares,
+            temposPreferidos,
+            dificuldadesPreferidas,
+        },
+    )
         .sort((a, b) => {
             const correspondencias = (receita: (typeof receitasRecomendadas)[number]) =>
                 receita.ingredientes.filter((ingrediente) =>
@@ -144,6 +218,7 @@ export default function App() {
         .filter(correspondeAosFiltros);
     const maisProcuradasFiltradas = receitasUnicas
         .filter((receita) => idsMaisProcuradas.has(receita.id))
+        .filter((receita) => !idsRecomendadas.has(receita.id))
         .filter(correspondeAosFiltros);
     const quantidadeReceitas =
         recomendadasFiltradas.length +
@@ -238,6 +313,10 @@ export default function App() {
                                 keyExtractor={(item) => item.id}
                                 renderItem={({ item }) => renderCategoria({
                                     item,
+                                    alimentosPreferidos,
+                                    alimentosEvitados,
+                                    alergias,
+                                    restricoesAlimentares,
                                     returnState: {
                                         ingredientes: ingredientesBusca.join(','),
                                         textoIngredientes,
@@ -247,6 +326,11 @@ export default function App() {
                             />
                         </>
                     )}
+                    {recomendadasFiltradas.length === 0 && ingredientesBusca.length === 0 && (
+                        <Text style={styles.semResultados}>
+                            Não encontramos receitas que atendam às suas preferências e restrições. Ajuste os filtros no seu perfil e tente novamente.
+                        </Text>
+                    )}
                     {sobremesasFiltradas.length > 0 && (
                         <>
                             <Text style={styles.titulo3}>🍰 Sobremesas</Text>
@@ -255,6 +339,10 @@ export default function App() {
                                 keyExtractor={(item) => item.id}
                                 renderItem={({ item }) => renderCategoria({
                                     item,
+                                    alimentosPreferidos,
+                                    alimentosEvitados,
+                                    alergias,
+                                    restricoesAlimentares,
                                     returnState: {
                                         ingredientes: ingredientesBusca.join(','),
                                         textoIngredientes,
@@ -272,6 +360,10 @@ export default function App() {
                                 keyExtractor={(item) => item.id}
                                 renderItem={({ item }) => renderCategoria({
                                     item,
+                                    alimentosPreferidos,
+                                    alimentosEvitados,
+                                    alergias,
+                                    restricoesAlimentares,
                                     returnState: {
                                         ingredientes: ingredientesBusca.join(','),
                                         textoIngredientes,
@@ -499,9 +591,10 @@ semResultados: {
     paddingVertical: 11,
     marginTop: 15,
     backgroundColor: "#03a51e",
+    fontSize: 16,
     color: "white",
     borderRadius: 10,
-    width: "38%",
+    width: "85%",
     textAlign: "center",
     margin: "auto",
 },

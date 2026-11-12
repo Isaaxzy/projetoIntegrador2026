@@ -28,13 +28,27 @@ import {
 } from "../servicos/planejamento";
 import Carregamento from "../../components/Carregamento";
 import { listarFavoritos } from "../servicos/favoritos";
+import { lerIndicesSalvos, lerTextoSalvo } from "../componentes/introStorage";
+import {
+    filtrarReceitasPorPreferencias,
+    opcoesAlergias,
+    opcoesAlimentosEvitados,
+    opcoesAlimentosPreferidos,
+    opcoesRestricoesAlimentares,
+    receitaAtendeDificuldade,
+    type FiltrosPreferenciasReceitas,
+} from "../componentes/preferencias";
 
 const receitasDisponiveis = removerReceitasDuplicadas([
     ...receitasRecomendadas,
     ...receitasSobremesas,
     ...receitasMaisProcuradas,
 ]);
-const receitasRecomendadasUnicas = removerReceitasDuplicadas(receitasRecomendadas);
+const receitasRecomendadasParaUsuario = removerReceitasDuplicadas([
+    ...receitasRecomendadas,
+    ...receitasMaisProcuradas.filter((receita) => receitaAtendeDificuldade(receita.dificuldade, [0])),
+]);
+const quantidadeRecomendacoes = 10;
 
 export default function Planejar() {
     const { width } = useWindowDimensions();
@@ -47,6 +61,14 @@ export default function Planejar() {
     const [erro, setErro] = useState<string | null>(null);
     const [idsFavoritos, setIdsFavoritos] = useState<string[]>([]);
     const [erroFavoritos, setErroFavoritos] = useState<string | null>(null);
+    const [filtrosReceitas, setFiltrosReceitas] = useState<FiltrosPreferenciasReceitas>({
+        alimentosPreferidos: [],
+        alimentosEvitados: [],
+        alergias: [],
+        restricoesAlimentares: [],
+        temposPreferidos: [],
+        dificuldadesPreferidas: [],
+    });
 
     useEffect(() => {
         let ativo = true;
@@ -77,6 +99,30 @@ export default function Planejar() {
     useFocusEffect(
         useCallback(() => {
             let ativo = true;
+            const indicesPreferidos = lerIndicesSalvos('Gostos', opcoesAlimentosPreferidos.length);
+            const indicesEvitados = lerIndicesSalvos('Desgostos', opcoesAlimentosEvitados.length);
+            const indicesAlergias = lerIndicesSalvos('Alergias', opcoesAlergias.length);
+            const alergiasPersonalizadas = lerTextoSalvo('OutrosA')
+                .split(/[,;\n]+/)
+                .map((alergia) => alergia.trim())
+                .filter(Boolean);
+            const indicesRestricoes = lerIndicesSalvos('Alimentacao', opcoesRestricoesAlimentares.length);
+            const indicesTempo = lerIndicesSalvos('Tempo', 6);
+            const indicesDificuldade = lerIndicesSalvos('Tipo', 4);
+
+            setFiltrosReceitas({
+                alimentosPreferidos: indicesPreferidos.map((index) => opcoesAlimentosPreferidos[index]),
+                alimentosEvitados: indicesEvitados.map((index) => opcoesAlimentosEvitados[index]),
+                alergias: [
+                    ...indicesAlergias.map((index) => opcoesAlergias[index]),
+                    ...alergiasPersonalizadas,
+                ],
+                restricoesAlimentares: indicesRestricoes
+                    .filter((index) => index !== 0)
+                    .map((index) => opcoesRestricoesAlimentares[index]),
+                temposPreferidos: indicesTempo,
+                dificuldadesPreferidas: indicesDificuldade,
+            });
 
             async function carregarFavoritos() {
                 try {
@@ -139,6 +185,10 @@ export default function Planejar() {
                 return receita ? [{ receita, indice }] : [];
             });
     const diaModal = diasDaSemana.find((dia) => dia.id === diaSelecionado);
+    const receitasRecomendadasUnicas = filtrarReceitasPorPreferencias(
+        receitasRecomendadasParaUsuario,
+        filtrosReceitas,
+    ).slice(0, quantidadeRecomendacoes);
     const totalRefeicoes = diasDaSemana.reduce((total, dia) => total + plano[dia.id].length, 0);
     const posicaoFavorito = new Map(idsFavoritos.map((id, indice) => [id, indice]));
     const receitasParaSelecao = [...receitasDisponiveis].sort((a, b) => {

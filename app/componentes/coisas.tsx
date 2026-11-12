@@ -2414,7 +2414,7 @@ export const receitasMaisProcuradas: Receita[] = [
     descrição: 'Frango inteiro assado e temperado com limão, alho, cebola e ervas frescas.',
     info: 'Frango inteiro, limão, alho, cebola e temperos',
     dificuldade: '👨‍🍳 Fácil',
-    duracao: '⏳ 1h',
+    duracao: '1h',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta'],
     condicoes: ['Flexitariano', 'High protein', 'Low carb', 'Low sugar'],
     ingredientes: [
@@ -2448,7 +2448,7 @@ export const receitasMaisProcuradas: Receita[] = [
     descrição: 'Panetone caseiro fofinho, recheado com bastante ganache de chocolate e finalizado com uma cobertura cremosa.',
     info: 'Farinha de trigo, chocolate meio-amargo, creme de leite e manteiga',
     dificuldade: '👨‍🍳 Média',
-    duracao: '⏳ 3h',
+    duracao: '3h',
     categorias: ['⭐ Todas', '🍰 Sobremesas'],
     condicoes: ['Flexitariano'],
     ingredientes: [
@@ -2717,7 +2717,7 @@ export const receitasMaisProcuradas: Receita[] = [
     descrição: 'Caldo cremoso e encorpado feito com frango desfiado, mandioca, mandioquinha, cenoura e bacon.',
     info: 'Frango, mandioca, mandioquinha, cenoura e bacon',
     dificuldade: '👨‍🍳 Média',
-    duracao: '⏳ 1h30min',
+    duracao: '1h30min',
     categorias: ['⭐ Todas', '👩‍🍳 Almoço', '👩‍🍳 Janta', '🥗 Saudáveis'],
     condicoes: ['Flexitariano', 'High protein'],
     ingredientes: [
