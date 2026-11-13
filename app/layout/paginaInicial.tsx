@@ -1,5 +1,5 @@
 import { View, StyleSheet, Text, Image, Pressable, FlatList, ScrollView, TextInput } from 'react-native';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import Carregamento from '../../components/Carregamento';
@@ -55,6 +55,21 @@ export default function App() {
         useState<(typeof itensIniciais)[number]>(itensIniciais[0]);
     const [textoIngredientes, setTextoIngredientes] = useState('');
     const [ingredientesBusca, setIngredientesBusca] = useState<string[]>([]);
+    // Guarda a referência e a posição da rolagem das categorias para os botões de seta.
+    const scrollCategoriasRef = useRef<ScrollView>(null);
+    const posicaoScrollCategorias = useRef(0);
+    const larguraConteudoCategorias = useRef(0);
+    const larguraVisivelCategorias = useRef(0);
+
+    function rolarCategorias(direcao: 1 | -1) {
+        const posicaoMaxima = Math.max(0, larguraConteudoCategorias.current - larguraVisivelCategorias.current);
+        const novaPosicao = Math.min(
+            posicaoMaxima,
+            Math.max(0, posicaoScrollCategorias.current + direcao * 200),
+        );
+        scrollCategoriasRef.current?.scrollTo({ x: novaPosicao, animated: true });
+        posicaoScrollCategorias.current = novaPosicao;
+    }
 
     useEffect(() => {
         if (parametrosBusca.restaurarPesquisa !== '1') {
@@ -240,7 +255,31 @@ export default function App() {
                     <View style={{flexDirection: "row", padding: 10, gap: 20, width: "95%", margin: "auto"}}>
                     <Text style={styles.textoApresentacao}><Text style={styles.titulo}>Pronto, {nomeUsuario || 'nome do usuário'}! 🥦</Text> Agora já sei um pouquinho mais sobre seus gostos. Separei algumas receitas que combinam com você</Text>
                 </View>
-                   <ScrollView horizontal>
+                <View style={styles.linhaCategorias}>
+                <Pressable
+                    accessibilityRole="button"
+                    accessibilityLabel="Rolar categorias para a esquerda"
+                    onPress={() => rolarCategorias(-1)}
+                    style={styles.botaoSeta}
+                >
+                    <Ionicons name="chevron-back" size={22} color="#168A3A" />
+                </Pressable>
+                   <ScrollView
+                    horizontal
+                    ref={scrollCategoriasRef}
+                    style={{ flex: 1 }}
+                    showsHorizontalScrollIndicator={false}
+                    scrollEventThrottle={16}
+                    onLayout={(evento) => {
+                        larguraVisivelCategorias.current = evento.nativeEvent.layout.width;
+                    }}
+                    onContentSizeChange={(largura) => {
+                        larguraConteudoCategorias.current = largura;
+                    }}
+                    onScroll={(evento) => {
+                        posicaoScrollCategorias.current = evento.nativeEvent.contentOffset.x;
+                    }}
+                   >
                 <View style={{flexDirection: "row", gap: 10, marginLeft: 8, padding: 8,}}>
                         {itensIniciais.map((item) => (
                             
@@ -260,6 +299,15 @@ export default function App() {
 
                 </View>
                 </ScrollView>
+                <Pressable
+                    accessibilityRole="button"
+                    accessibilityLabel="Rolar categorias para a direita"
+                    onPress={() => rolarCategorias(1)}
+                    style={styles.botaoSeta}
+                >
+                    <Ionicons name="chevron-forward" size={22} color="#168A3A" />
+                </Pressable>
+                </View>
                <View style={styles.cont}>
                     <Text style={styles.titulo1}>O que tenho em casa</Text>
                     <Text style={styles.subtexto}>Digite o que você tem na geladeira e encontre receitas.</Text>
@@ -436,6 +484,21 @@ backcolor: {
 },
 
 linha: {},
+
+linhaCategorias: {
+    flexDirection: "row",
+    alignItems: "center",
+},
+
+botaoSeta: {
+    width: 34,
+    height: 34,
+    borderRadius: 17,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ffffff",
+    boxShadow: "0px 0px 3px rgba(0, 0, 0, 0.2)",
+},
 
 container: {
     width: "100%",
